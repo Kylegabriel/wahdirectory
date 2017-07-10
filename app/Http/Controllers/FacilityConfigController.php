@@ -8,6 +8,8 @@ use App\DemographicRegion;
 use App\DemographicProvince;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Partner;
 
 
 class FacilityConfigController extends Controller
@@ -19,11 +21,11 @@ class FacilityConfigController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Partner::where('id','<=',1)->get();
+         //$user = DB::table('users')->where('id','like',28)->first();
+        //$user = DB::select('SELECT * FROM users');
 
-        $getRegion = DemographicRegion::get();
-
-
-        return view('facility.index')->with('region',$getRegion);
+        return view('facility.index')->with('try',$user);  
 
     }
 
