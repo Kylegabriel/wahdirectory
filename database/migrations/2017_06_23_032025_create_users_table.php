@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('suffix_name')->nullable();
             $table->char('gender',1)->nullable();
             $table->string('designation')->nullable();
+            $table->char('sites',1)->nullable();
             $table->string('primary_contact',11)->nullable();
             $table->string('secondary_contact',11)->nullable();
             $table->string('email',50)->nullable();

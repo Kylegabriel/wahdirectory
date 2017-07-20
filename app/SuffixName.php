@@ -15,4 +15,8 @@ class SuffixName extends Model
     public function user(){
     	$this->hasOne('App\User');
     }
+
+    public function warmleads(){
+    	$this->hasOne('App\WarmLeads');
+    }
 }

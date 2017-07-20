@@ -11,17 +11,25 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
         'first_name',
         'last_name',
+        'middle_name',
+        'suffix_name',
+        'gender',
         'designation',
         'primary_contact',
         'secondary_contact',
         'email',
+        'secondary_email',
         'username',
         'password',
-        'date_of_birth',
-        'date_of_hired'
+        'birthdate',
+        'datehired',
+        'is_active',
+        'sites'
     ];
 
     /**
@@ -29,12 +37,16 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    public function designation(){
-      return $this->hasOne('App\UserRole','role_id','designation');
+    public function designations(){
+      return $this->belongsTo('App\UserRole','designation','role_id');
     }
 
+    public function suffix(){
+      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
+    }
 }

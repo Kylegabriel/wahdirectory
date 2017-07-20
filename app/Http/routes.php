@@ -14,11 +14,15 @@
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::resource('userRole', 'UserRoleController',[
-		'only' => ['index']
-	]);
-Route::resource('profile', 'ProfileController');
-Route::resource('sites', 'FacilityConfigController');
-Route::resource('partner', 'PartnerController');
+
+Route::resource('profile','UserController',['except'=>['destroy','show']]);
+Route::resource('warmleads','WarmLeadsController',['only'=>['index']]);
+Route::resource('partner','PartnerController',['except'=>['destroy','show']]);
+Route::resource('summary','SummaryController',['only'=>['index']]);
+Route::resource('interns','InternController');
+Route::resource('others','OthersController',['only' => ['index']]);
+Route::resource('school','SchoolController',['only' =>['store','update']]);
+Route::resource('course','CourseController',['only' =>['store','update']]);
+Route::resource('papers','PaperController',['only' =>['store','update']]);
 Route::auth();
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');

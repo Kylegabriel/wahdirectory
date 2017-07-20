@@ -19,13 +19,23 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $search = $request->input('search');
 
-        return view('profile.index')->with('user',$users);
+        $users = User::when($search, function ($query) use ($search) {
+                            return $query->where('last_name','=',$search)
+                                         ->orWhere('first_name','=',$search)
+                                         ->orWhere('middle_name','=',$search)
+                                         ->orWhere('primary_contact','=',$search)
+                                         ->orWhere('secondary_contact','=',$search)
+                                         ->orWhere('email','=',$search)
+                                         ->orWhere('secondary_email','=',$search);
+                            })
+                            ->get();
+        $no = 1;
+        return view('profile.index')->with(['user'=>$users,'count'=>$no]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +43,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //return view('profile.create');
+        return view('profile.create');
     }
 
     /**
@@ -74,6 +84,8 @@ class UserController extends Controller
         $user->secondary_email = $request->input('secondary_email');
         $user->birthdate = $request->input('date_of_birth');
         $user->datehired = $request->input('date_of_hired');
+        $user->is_active = $request->input('is_active');
+        $user->sites = $request->input('sites');
 
         $user->save();
 
@@ -123,13 +135,15 @@ class UserController extends Controller
         $user->middle_name = $request->input('middle_name');
         $user->suffix_name = $request->input('suffix_name');
         $user->gender = $request->input('gender');
-        $user->designation = $request->input('user_designation');
+        $user->designation = $request->input('designation');
         $user->primary_contact = $request->input('primary_contact');
         $user->secondary_contact = $request->input('secondary_contact');
         $user->email = $request->input('email');
         $user->secondary_email = $request->input('secondary_email');
         $user->birthdate = $request->input('date_of_birth');
         $user->datehired = $request->input('date_of_hired');
+        $user->is_active = $request->input('is_active');
+        $user->sites = $request->input('sites');
 
         $user->save();
         

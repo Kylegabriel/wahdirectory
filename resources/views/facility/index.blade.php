@@ -1,32 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-    	    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Sites</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="region_code">Region</label>
-                            <select type="text" class="form-control" id="region_code" name="region_code">
-                              <option value="">--Select--</option>
-                              @foreach($region as $region)
+    <br>
+    	<div class="card">
+           <!-- <div class="row">
+                    <div class="input-field col s12">
+                        <select type="text" id="region_code" name="region_code">
+                          <option value="" disabled selected>Choose your option</option>
+                              @foreach(App\DemographicRegion::get() as $region)
                                 <option value="{{ $region->region_code }}">{{ $region->region_name }}</option>
                               @endforeach
-                            </select>
-                        </div>
+                        </select>
+                        <label for="region_code">Region</label>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="province_code">Province</label>
-                            <select type="text" class="form-control" id="province_code" name="province_code">
-                              <option value="">--Select--</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select type="text" id="province_code" name="province_code">
+                      <option value="" disabled selected>Choose your option</option>
+
+                    </select>
+                    <label for="province_code">Province</label>
+                </div>
+            </div> 
+            
+
+              <br>
+            <form class="right" role="search" method="GET" action="{{ route('sites.index') }}">
+                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Search">
+                <button class="btn " type="submit">Search</button>
+          </form>
+          -->
+          @foreach($try as $try)
+              {{ $try->first_name }}
+          @endforeach
         </div>
-    </div>
+@endsection
+@section('scripts')
+    <script>
+          $(document).ready(function() {
+            $('select').material_select();
+          });
+    </script>
 @endsection

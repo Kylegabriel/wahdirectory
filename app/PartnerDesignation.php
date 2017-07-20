@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class PartnerDesignation extends Model
 {
-    
-    protected $table='partner_designation';
+    protected $table = 'designations';
 
-	protected $fillable = [
-		'designation'
-	];
+    public function partner(){
+    	$this->hasOne('App\Partner');
+    }
 
-
+    public function warmleads(){
+    	$this->hasOne('App\WarmLeads');
+    }
 }

@@ -3,156 +3,156 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>WAH Directory</title>
 
-    <!-- Fonts 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">-->
-
-    <!-- Styles -->
     <link rel="stylesheet" href="/materialize/css/materialize.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    <style>
-            .modal { 
-                width: 75% !important;
-                max-height: 75% !important;
-              }
+    <link rel="stylesheet" href="/css/style.css">
+    @yield('stylesheets')
+    <style> 
+        .input-field label:after {
+          -webkit-transform: translateY(-190%);
+          transform: translateY(-190%);
+          font-size: 0.8rem;
+          transition: .2s ease-out;
+          margin-top: 15px;
+        }
+        .input-field label.active:after {
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          transition: .2s ease-out;
+        }
+        .margin li{
+          margin: 2px 0px;
+        }
     </style>
 </head>
-<body >
-    <!--
-    <nav class="navbar navbar-default navbar-static-top">
-        
-            <div class="navbar-header">
-    id="app-layout"
-                Collapsed Hamburger 
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+<body>
 
- 
-                <a class="navbar-brand" href="#">
-                    <strong>WAH Directory</strong>
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-
-                <ul class="nav navbar-nav navbar-right">
-
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Hello {{ Auth::user()->username }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                </ul>
-                 <ul class="nav navbar-nav">
-                            <li><a href="{{ url('/home') }}">Home</a></li>
-                            <li><a href="{{ url('/profile') }}">Wah NGO</a></li>
-                            <li><a href="#">Partner Organization</a></li>
-                            <li><a href="{{ url('/sites')}}">Sites</a></li>
-                 </ul>
-                 @endif
-            </div>
-        </div>
-    </nav>
--->
-
+    <div class="fixed-action-btn horizontal">
+        <a class="btn-floating btn-large red">
+          <i class="material-icons md-26">add</i>
+        </a>
+        <ul>
+          <li><a href="{{ route('partner.create') }}" class="btn-floating waves-effect waves-light purple tooltipped right " data-position="top" data-tooltip="Partner Organization"><i class="material-icons">group_add</i></a></li>
+          <li><a href="{{ route('profile.create') }}" class="btn-floating waves-effect waves-light green tooltipped right" data-position="top" data-tooltip="WAH-NGO"><i class="material-icons">people_outline</i></a></li>
+          <li><a href="{{ route('interns.create') }}" class="btn-floating waves-effect waves-light yellow tooltipped right" data-position="top" data-tooltip="Interns"><i class="material-icons">group</i></a></li>
+        </ul>
+    </div>
     <!-- Dropdown Structure -->
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="{{ url('/logout') }}"></i>Logout</a></li>
+        <li><a href="{{ url('/logout') }}"></i>Logout</a></li>  
     </ul>
 
-    <nav class="light-blue lighten-1">
-      <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo" style="font-family: Calibri;">WAH DIRECTORY</a>
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
 
-                @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
-                @else
+    <nav class="light-blue lighten-1 navbar-fixed" role="navigation">
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">WAH DIRECTORY</a>
+          <ul class="right hide-on-med-and-down">
 
-              <!-- Dropdown Trigger -->
-                <li class="{{ Request::is('home') ? 'active' : '' }}"><a href="{{ url('/home') }}"><i class="material-icons">home</i></a></li>
-                <li class="{{ Request::is('profile') ? 'active' : '' }}"><a href="{{ url('/profile') }}">WAH-NGO</a></li>
-                <li class="{{ Request::is('partner') ? 'active' : '' }}"><a href="{{url('/partner')}}" >Partner Organization</a></li>
-                <li class="{{ Request::is('sites') ? 'active' : '' }}"><a href="{{ url('/sites')}}">Sites</a></li>
-                <!-- Dropdown Trigger --> 
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Hello {{ Auth::user()->username }}<i class="material-icons right">menu</i></a></li>
-              @endif
-        </ul>
-
+                  @if (Auth::guest())
+                      <li><a href="{{ url('/login') }}">Login</a></li>
+                      <li><a href="{{ url('/register') }}">Register</a></li>
+                  @else
+                  <li class="{{ Request::is('partner') ? 'active' : '' }}"><a href="{{url('/partner')}}" >Partners</a></li>
+                  <li class="{{ Request::is('profile') ? 'active' : '' }}"><a href="{{ url('/profile') }}">WAH-NGO</a></li>
+                  <li class="{{ Request::is('warmleads') ? 'active' : '' }}"><a href="{{ url('/warmleads')}}">Warm Leads</a></li>
+                  <li class="{{ Request::is('interns') ? 'active' : '' }}"><a href="{{ url('/interns')}}">Interns</a></li>
+                  <li class="{{ Request::is('summary') ? 'active' : '' }}"><a href="{{ url('/summary')}}">Summary</a></li>
+                  <li class="{{ Request::is('others') ? 'active' : '' }}"><a href="{{ url('/others')}}">Others</a></li>
+                  <!-- Dropdown Trigger --> 
+                  <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><b>{{ Auth::user()->first_name }}</b><i class="material-icons right md-26">face</i></a></li>
+                @endif
+          </ul>
       </div>
     </nav>
+
   
-        <div class="row">
-        <div class="col s3" style="padding-left:10px">
-            <br>
-              <ul class="collapsible" data-collapsible="accordion" style="width:330px;padding:20px">
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-                  <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-                  <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                  <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-              </ul>
-        </div>
-        <div class="col s9" style="padding-right:60px">
-        @if(Session::has('success'))
-                Materialize.toast('{{ Session::get('success') }}', 4000)
-        @endif
+<div class="row">
 
-        @yield('content')
-        </div>
-        </div>
+  <div class="col s3">
+
+              <div class="card z-depth-3">
+                <div class="card-image">
+                  <img src="/img/5.png">
+                </div>
+                @if(!Auth::guest())
+                <div class="card-content" style="padding-top:5px">
+                   <center>Today is <b>{{ date('D, F j, o') }}</b><br></center>
+                      <ul class="margin">
+                          <li><span class="new badge" data-badge-caption="">{{ App\Partner::where('status','=','Partner')->count() }}</span><i class="material-icons left">person</i>Partner Organization</li>
+                          <li><span class="new badge" data-badge-caption="">{{ Auth::user()->count() }}</span><i class="material-icons left">group</i>WAH-NGO</li>
+                          <li><span class="new badge" data-badge-caption="">{{ App\Partner::where('status','=','Warm Lead')->count() }}</span><i class="material-icons left">people</i>Warm Leads</li>
+                          <li><span class="new badge" data-badge-caption="">{{ App\Intern::count() }}</span><i class="material-icons left">people_outline</i>Interns</li>
+                      </ul>
+                </div>
+                 @endif
+
+                <div class="card-content" style="padding-top:0px;margin-top:-20px">
+                  <span class="card-title"><span class="new badge" data-badge-caption="">
+                      <?php 
+                          $date = date('Y-m-d'); 
+
+                          $one = App\Partner::where("birthdate","=",$date)->get()->count();
+                          $two = App\User::where("birthdate","=",$date)->get()->count();
+                       ?>
+                       {{ $one + $two }}
+                    </span><i class="material-icons prefix">cake</i>Celebrator</span>
+                  <?php 
+                    $date = date('Y-m-d');
+                    $partner = App\Partner::select('first_name','last_name','middle_name')->where("birthdate","=",$date)->get();
+                    $user = App\User::select('first_name','last_name','middle_name')->where("birthdate","=",$date)->get();
+                  ?> 
+                    
+                    <ul class="collapsible" data-collapsible="accordion">
+                      <li>
+                          <div class="collapsible-header">Partner<span class="badge">{{ App\Partner::where("birthdate","=",date('Y-m-d'))->count() }}</div>
+                          <div class="collapsible-body">
+                            @foreach( $partner as $bday )
+                            <ul>
+                              <li>{{ $bday->last_name . ', ' . $bday->first_name . ' ' . $bday->middle_name }}</li>
+                            </ul>
+                            @endforeach
+                          </div>
+                      </li>
+                      <li>
+                        <div class="collapsible-header">WAH-NGO<span class="badge">{{ App\User::where("birthdate","=",date('Y-m-d'))->count() }}</div>
+                          <div class="collapsible-body">
+                              @foreach( $user as $bday )
+                              <ul class="collection">
+                                <li class="collection-item">{{ $bday->last_name . ', ' . $bday->first_name . ' ' . $bday->middle_name }}</li>
+                              </ul>
+                              @endforeach
+                          </div>
+                      </li>
+                  </ul> 
+                </div>
+          </div> <!-- end of card z-depth-3 -->
+
+  </div>
+
+    <div class="col s9">
+      @yield('content')
+    </div>
+
+</div>
+
+
     
-
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="/materialize/js/materialize.js"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/materialize/js/materialize.min.js"></script>
+    <script src="/js/_script.js"></script>
+    @yield('scripts')
     <script>
-      $(document).ready(function(){
-            $(".button-collapse").sideNav({
-                menuWidth: 300, // Default is 300
-                edge: 'right', // Choose the horizontal origin
-                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                draggable: true // Choose whether you can drag to open on touch screens
-                });
-            });
-            $(".dropdown-button").dropdown();
-            $('select').material_select();
-            $('.datepicker').pickadate({
-                selectMonths: true, // Creates a dropdown to control month
-                selectYears: 15 // Creates a dropdown of 15 years to control year
-              });
-            $('.tooltipped').tooltip({delay: 50});
-
-            $('.modal').modal();
-            
+            @if(Session::has('success'))
+                Materialize.toast("<i class='material-icons md-36'>done</i>{{ Session::get('success') }}", 4000,'green lighten-5 rounded green-text')
+            @endif
+            @if(Session::has('repeat'))
+            Materialize.toast("<i class='material-icons md-36'>error</i>{{ Session::get('repeat') }}", 4000,'red lighten-5 rounded red-text')
+            @endif
     </script>
 </body>
 </html>
