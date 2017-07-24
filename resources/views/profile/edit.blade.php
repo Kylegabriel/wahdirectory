@@ -2,17 +2,105 @@
 
 @section('content')
 	<div class="col s12 card">
-		<form method="POST" action="{{ route('profile.update',$users->id) }}" class="formValidate">
-
+        {!! Form::model($users, ['route' => ['profile.update',$users->id], 'method' => 'PUT','class'=>'formValidate']) !!}    
+            {{ csrf_field() }}
                         <h5><div class="card blue" style="padding:10px">Edit WAH NGO</div></h5>
-                        @include('partials._EditAndCreateProfile')
+                        <div class="row">
+                            <div class="input-field col s3">
+                                {{ Form::text('last_name',null,['class'=>'validate','id'=>'last_name','data-length'=>'20']) }} 
+                                {{ Form::label('last_name','Last Name') }}
+                            </div>
+                            <div class="input-field col s3">
+                                {{ Form::text('first_name',null,['class'=>'validate','id'=>'first_name','data-length'=>'20']) }} 
+                                {{ Form::label('first_name','First Name') }}
+                            </div>
+                            <div class="input-field col s3">
+                                {{ Form::text('middle_name',null,['class'=>'validate','id'=>'middle_name','data-length'=>'20']) }} 
+                                {{ Form::label('middle_name','Middle Name') }}
+                            </div>
+                            <div class="input-field col s3">
+                                <select type="text" id="suffix_name" name="suffix_name">
+                                  <option value="{{ $users->suffix['suffix_code'] }}">{{ $users->suffix['suffix_desc'] }}</option>
+                                  @foreach( App\SuffixName::get() as $suffix)
+                                    <option value="{{ $suffix['suffix_code'] }}">{{ $suffix['suffix_desc'] }}</option>
+                                  @endforeach
+                                </select>
+                                <label for="suffix_name">Suffix Name</label>
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <div class="input-field col s6">
+                                    <select type="text" id="designation" name="designation">
+                                      <option value="{{ $users->designations['role_id'] }}">{{ $users->designations['role_name'] }}</option>
+                                        @foreach(App\UserRole::get() as $role)
+                                            <option value="{{ $role['role_id'] }}">{{ $role['role_name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="designation">Designation</label>
+                             </div>
+                            <div class="input-field col s3">
+                                <select type="text" id="gender" name="gender">
+                                    @if($users->gender == 'M')
+                                        <option value="{{ $users->gender }}">{{ $users->gender == 'M' ? 'Male' : 'Female' }}</option>
+                                        <option value="F">Female</option>
+                                    @else    
+                                        <option value="{{ $users->gender }}">{{ $users->gender == 'F' ? 'Female' : 'Male' }}</option>
+                                        <option value="F">Male</option>
+                                    @endif
+                                </select>
+                            <label for="gender">Gender</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <select type="text" id="is_active" name="is_active">
+                                        @if($users->is_active == 'Y')
+                                            <option value="{{ $users->is_active }}" >{{$users->is_active == 'Y' ? 'Active' : 'In Active'}}</option>
+                                            <option value="N" >In Active</option>
+                                        @elseif($users->is_active == 'N')
+                                            <option value="N" >{{$users->is_active == 'N' ? 'In Active' : 'Active'}}</option>
+                                            <option value="Y" >Active</option>
+                                        @else
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <option value="N">Active</option>
+                                            <option value="Y">In Active</option> 
+                                        @endif
+                                </select>
+                                <label for="is_active">Is Active</label>
+                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                {{ Form::email('email',null,['class'=>'validate','id'=>'email']) }} 
+                                {{ Form::label('email','Email') }}
+                            </div>
+                            <div class="input-field col s4">
+                                {{ Form::email('secondary_email',null,['class'=>'validate','id'=>'secondary_email']) }} 
+                                {{ Form::label('secondary_email','Secondary Email') }}
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="date" name="date_of_hired" id="date_of_hired" class="datepicker" value="{{ isset($users->birthdate) ? $users->birthdate : null }}">
+                                <label for="date_of_hired">Date Of Hired</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                {{ Form::text('primary_contact',null,['class'=>'validate','id'=>'primary_contact','data-length'=>'11','placeholder'=>'0930*******']) }} 
+                                {{ Form::label('primary_contact','Primary Contact') }}
+                            </div>
+                            <div class="input-field col s4">
+                                {{ Form::text('secondary_contact',null,['class'=>'validate','id'=>'secondary_contact','data-length'=>'11','placeholder'=>'0906*******']) }} 
+                                {{ Form::label('secondary_contact','Secondary Contact') }}
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="date" name="date_of_birth" id="date_of_birth" class="datepicker" value="{{ isset($users->datehired) ? $users->datehired : null }}">
+                                <label for="date_of_birth">Date of Birth</label>
+                            </div>  
+                        </div>
     </div>
                     <div class="row">
                     	<button type="submit" class="waves-effect waves-light btn left">UPDATE<i class="material-icons right">send</i></button>
                 	    <a href="{{ route('profile.index') }}" class="waves-effect waves-green btn-flat left" style="margin-left:5px"><i class="material-icons left">keyboard_arrow_left</i>Close</a>
-                		{{ method_field('PUT') }}
                 	</div>	
-        </form>
+        {!! Form::close() !!}
 	
 
 @endsection

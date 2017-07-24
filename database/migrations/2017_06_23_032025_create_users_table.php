@@ -18,11 +18,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('last_name',50);
             $table->string('first_name',50);
-            $table->string('middle_name',50);
+            $table->string('middle_name',50)->nullable();
             $table->string('suffix_name')->nullable();
             $table->char('gender',1)->nullable();
             $table->string('designation')->nullable();
-            $table->char('sites',1)->nullable();
             $table->string('primary_contact',11)->nullable();
             $table->string('secondary_contact',11)->nullable();
             $table->string('email',50)->nullable();

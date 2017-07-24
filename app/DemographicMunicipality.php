@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class DemographicMunicipality extends Model
-{
-    	
+{	
     protected $table='lib_muncity';
 
 	protected $fillable = [
@@ -15,6 +14,9 @@ class DemographicMunicipality extends Model
 		'muncity_code',
 		'muncity_name'
 	];
+
+	public function site(){
+	    return $this->hasOne('App\Site');
+	}
 }
 
-}

@@ -1,0 +1,136 @@
+@extends('layouts.app')
+@section('content')
+	<div class="col s12 card">
+        {!! Form::open(['route' => 'sites.store','method' => 'POST','class' => 'formValidate']) !!}
+            <h5><div class="card blue" style="padding:10px"><i class="material-icons small">add</i>Sites</div></h5> 
+              	{{ csrf_field() }} 
+                    <div class="row">
+                            <div class="input-field col s3">
+                                {{ Form::text('last_name',null,['class'=>'validate','id'=>'last_name','data-length'=>'20']) }} 
+                                {{ Form::label('last_name','Last Name') }}
+                            </div>
+                            <div class="input-field col s3">
+                                {{ Form::text('first_name',null,['class'=>'validate','id'=>'first_name','data-length'=>'20']) }} 
+                                {{ Form::label('first_name','First Name') }}
+                            </div>
+                            <div class="input-field col s3">
+                                {{ Form::text('middle_name',null,['class'=>'validate','id'=>'middle_name','data-length'=>'20']) }} 
+                                {{ Form::label('middle_name','Middle Name') }}
+                            </div>
+                            <div class="input-field col s3">
+                                <select type="text" id="suffixName" name="suffixName" class="validate">
+                                  <option value="" disabled selected>Choose your option</option>
+                                  @foreach($suffix as $suffix)
+                                    <option value="{{ $suffix->suffix_code }}">{{ $suffix->suffix_desc }}</option>
+                                  @endforeach
+                                </select>
+                                {{ Form::label('suffixName','Suffix Name') }}
+                            </div>
+                    </div>    
+
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <select type="text" id="sitDesignation" name="sitDesignation">
+                              <option value="" disabled selected>Choose your option</option>
+                             @foreach($siteDesig as $siteDesig)
+                              <option value="{{ $siteDesig->sites_code }}">{{ $siteDesig->sites_desc }}</option>  
+                              @endforeach
+                            </select>
+                            {{ Form::label('sitDesignation','Designation') }}
+                        </div>
+                        <div class="input-field col s3">
+                            <select type="text" id="region" name="region">
+                              <option value="" disabled selected>Choose your option</option>
+                              @foreach($region as $region)
+                              <option value="{{ $region->region_code }}">{{ $region->region_name }}</option>  
+                              @endforeach
+                            </select>
+                            {{ Form::label('region','Region') }}
+                        </div>
+                        <div class="input-field col s3">
+                            <select type="text" id="province" name="province">
+                              <option value="" disabled selected>Choose your option</option>
+                              @foreach($province as $province)
+                              <option value="{{ $province->province_code }}">{{ $province->province_name }}</option>  
+                              @endforeach
+                            </select>
+                            {{ Form::label('province','Province') }}
+                        </div>
+                        <div class="input-field col s3">
+                            <select type="text" id="municipality" name="municipality">
+                              <option value="" disabled selected>Choose your option</option>
+                              @foreach($muncity as $muncity)
+                              <option value="{{ $muncity->muncity_code }}">{{ $muncity->muncity_name }}</option>  
+                              @endforeach
+                            </select>
+                            {{ Form::label('municipality','Municipality') }}
+                        </div>
+                    </div>
+                     
+                    <div class="row">
+                        <div class="input-field col s4">
+                            {{ Form::email('email',null,['class'=>'validate','id'=>'email']) }} 
+                            {{ Form::label('email','Email') }}
+                        </div>
+                        <div class="input-field col s4">
+                            {{ Form::email('secondary_email',null,['class'=>'validate','id'=>'secondary_email']) }} 
+                            {{ Form::label('secondary_email','Secondary Email') }}
+                        </div> 
+                        <div class="input-field col s4">
+                            <select type="text" id="gender" name="gender">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                            {{ Form::label('gender','Gender') }}
+                        </div>
+                    </div> 
+
+                    <div class="row">
+                        <div class="input-field col s4">
+                            {{ Form::text('primary_contact',null,['class'=>'validate','id'=>'primary_contact','data-length'=>'11','placeholder'=>'0930*******']) }} 
+                            {{ Form::label('primary_contact','Primary Contact') }}
+                        </div>
+                        <div class="input-field col s4">
+                            {{ Form::text('secondary_contact',null,['class'=>'validate','id'=>'secondary_contact','data-length'=>'11','placeholder'=>'0906*******']) }} 
+                            {{ Form::label('secondary_contact','Secondary Contact') }}
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="date" name="date_of_birth" id="date_of_birth" class="datepicker">
+                            <label for="date_of_birth">Date of Birth</label>
+                        </div> 
+                    </div>  
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select type="text" id="site" name="site">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="L">Luzon</option>
+                                <option value="V">Visayas</option>
+                                <option value="M">Mindanao</option>
+                            </select> 
+                            {{ Form::label('site','Site') }}
+                        </div>
+                        <div class="input-field col s4">
+                            <select type="text" id="is_active" name="is_active">
+                              <option value="" disabled selected>Choose your option</option>
+                              <option value="Y" >Active</option>
+                              <option value="N" >In Active</option>
+                            </select>
+                            <label for="is_active">Is Active</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select type="text" id="status" name="status">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="Y">Site Partner</option>
+                                <option value="N">Warm Leads</option>
+                            </select>
+                            {{ Form::label('status','Status') }}
+                        </div>
+                    </div>
+    </div>        
+    <div class="row">
+    	<button type="submit" class="waves-effect waves-light btn left">SUBMIT<i class="material-icons right">send</i></button>
+	    <a href="{{ route('partner.index') }}" class="waves-effect waves-green btn-flat left" style="margin-left:5px"><i class="material-icons left">keyboard_arrow_left</i>Close</a>
+	</div>	
+        {!! Form::close() !!}
+@endsection

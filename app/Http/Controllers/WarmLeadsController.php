@@ -20,12 +20,10 @@ class WarmLeadsController extends Controller
     
     public function index(Request $request)
     {   
-        $partner = Partner::where('status','=','Warm Lead')
-                            ->orderBy('id','desc')
-                            ->get();
+
         $no = 1;
         return view('warmleads.index')->with([
-                    'partner' => $partner,
+
                     'count' => $no
                     ]);
     }
@@ -70,9 +68,7 @@ class WarmLeadsController extends Controller
      */
     public function edit($id)
     {
-        $editPartner = WarmLeads::find($id);
 
-        return view('warmleads.edit')->with('partners',$editPartner);
     }
 
     /**

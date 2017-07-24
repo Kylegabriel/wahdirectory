@@ -2532,10 +2532,6 @@ table {
   border-spacing: 0;
 }
 
-td,
-th {
-  padding: 0;
-}
 
 html {
   -webkit-box-sizing: border-box;
@@ -2945,7 +2941,7 @@ thead {
 }
 
 td, th {
-  padding: 0px;
+  padding: 0px 5px;
   display: table-cell;
   text-align: left;
   vertical-align: middle;

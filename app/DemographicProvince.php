@@ -14,5 +14,8 @@ class DemographicProvince extends Model
 		'province_code',
 		'province_name'
 	];
-	
+
+	public function site(){
+	    return $this->hasOne('App\Site');
+	}
 }

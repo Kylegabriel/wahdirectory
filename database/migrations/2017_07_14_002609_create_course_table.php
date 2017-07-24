@@ -17,7 +17,6 @@ class CreateCourseTable extends Migration
             
             $table->increments('id');
             $table->string('course');
-            $table->timestamps();
         });
 
         DB::table('course')

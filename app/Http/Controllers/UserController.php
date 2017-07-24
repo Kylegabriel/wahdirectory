@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\UserRole;
+use App\SuffixName;
 use App\Http\Requests;
 use Session;
-use App\UserRole;
+
 
 class UserController extends Controller
 {
@@ -24,13 +26,13 @@ class UserController extends Controller
         $search = $request->input('search');
 
         $users = User::when($search, function ($query) use ($search) {
-                            return $query->where('last_name','=',$search)
-                                         ->orWhere('first_name','=',$search)
-                                         ->orWhere('middle_name','=',$search)
-                                         ->orWhere('primary_contact','=',$search)
-                                         ->orWhere('secondary_contact','=',$search)
-                                         ->orWhere('email','=',$search)
-                                         ->orWhere('secondary_email','=',$search);
+                            return $query->where('last_name','LIKE','%'.$search.'%')
+                                         ->orWhere('first_name','LIKE','%'.$search.'%')
+                                         ->orWhere('middle_name','LIKE','%'.$search.'%')
+                                         ->orWhere('primary_contact','LIKE','%'.$search.'%')
+                                         ->orWhere('secondary_contact','LIKE','%'.$search.'%')
+                                         ->orWhere('email','LIKE','%'.$search.'%')
+                                         ->orWhere('secondary_email','LIKE','%'.$search.'%');
                             })
                             ->get();
         $no = 1;
@@ -43,7 +45,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('profile.create');
+        $role = UserRole::get();
+        $suffix = SuffixName::get();
+
+        return view('profile.create')->with([
+            'role'=>$role,
+            'suffix' => $suffix
+            ]);
     }
 
     /**
@@ -85,11 +93,11 @@ class UserController extends Controller
         $user->birthdate = $request->input('date_of_birth');
         $user->datehired = $request->input('date_of_hired');
         $user->is_active = $request->input('is_active');
-        $user->sites = $request->input('sites');
+
 
         $user->save();
 
-        Session::flash('success','The User was Successfully Save..!');
+        Session::flash('success','New WAH-NGO was Successfully Save..!');
 
         return redirect()->route('profile.index');
         }
@@ -143,11 +151,11 @@ class UserController extends Controller
         $user->birthdate = $request->input('date_of_birth');
         $user->datehired = $request->input('date_of_hired');
         $user->is_active = $request->input('is_active');
-        $user->sites = $request->input('sites');
+
 
         $user->save();
         
-        Session::flash('success','The User was Updated Successfully..!');
+        Session::flash('success','WAH-NGO ' .$user->last_name. ' was Updated Successfully..!');
 
         return redirect()->route('profile.index');
     }

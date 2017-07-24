@@ -16,13 +16,13 @@ class Partner extends Model
 		'middle_name',
 		'suffix_name',
 		'gender',
+		'province',
 		'primary_contact',
 		'secondary_contact',
 		'email',
 		'secondary_email',
 		'birthdate',
 		'is_active',
-		'sites'
 	];
 
 	public function partnerDesignation(){

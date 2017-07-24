@@ -15,11 +15,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('profile','UserController',['except'=>['destroy','show']]);
-Route::resource('warmleads','WarmLeadsController',['only'=>['index']]);
 Route::resource('partner','PartnerController',['except'=>['destroy','show']]);
-Route::resource('summary','SummaryController',['only'=>['index']]);
+Route::resource('profile','UserController',['except'=>['destroy','show']]);
 Route::resource('interns','InternController');
+Route::resource('warmleads','WarmLeadsController',['only'=>['index']]);
+Route::resource('sites','SitesController');
+Route::resource('summary','SummaryController',['only'=>['index']]);
 Route::resource('others','OthersController',['only' => ['index']]);
 Route::resource('school','SchoolController',['only' =>['store','update']]);
 Route::resource('course','CourseController',['only' =>['store','update']]);

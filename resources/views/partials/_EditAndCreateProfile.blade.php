@@ -15,8 +15,8 @@
                             </div>
                             <div class="input-field col s3">
                                 <select type="text" id="suffix_name" name="suffix_name">
-                                  <option value="{{ isset($users->suffix['suffix_code']) ? $users->suffix['suffix_code'] : 'NOTAP' }}">{{ isset($users->suffix['suffix_desc']) ? $users->suffix['suffix_desc'] : 'N/A' }}</option>
-                                  @foreach( App\SuffixName::get() as $suffix)
+                                  <option value="" disabled selected>Choose your option</option>
+                                  @foreach( $suffix as $suffix)
                                     <option value="{{ $suffix['suffix_code'] }}">{{ $suffix['suffix_desc'] }}</option>
                                   @endforeach
                                 </select>

@@ -26,11 +26,11 @@ class InternController extends Controller
         $search = $request->input('search');
         
         $intern = Intern::when($search, function ($query) use ($search) {
-                            return $query->where('last_name','=',$search)
-                                         ->orWhere('first_name','=',$search)
-                                         ->orWhere('middle_name','=',$search)
-                                         ->orWhere('primary_contact','=',$search)
-                                         ->orWhere('email','=',$search);
+                            return $query->where('last_name','LIKE','%'.$search.'%')
+                                         ->orWhere('first_name','LIKE','%'.$search.'%')
+                                         ->orWhere('middle_name','LIKE','%'.$search.'%')
+                                         ->orWhere('primary_contact','LIKE','%'.$search.'%')
+                                         ->orWhere('email','LIKE','%'.$search.'%');
                             })
                             ->get();
 

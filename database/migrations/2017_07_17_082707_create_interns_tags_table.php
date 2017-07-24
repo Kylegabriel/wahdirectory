@@ -31,6 +31,10 @@ class CreateInternsTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('interns_tags');
+        Schema::table('intern_tag', function ($table) {
+            $table->dropForeign('intern_tag_intern_id_foreign');
+            $table->dropForeign('intern_tag_tag_id_foreign');
+        });
+        Schema::drop('intern_tag');
     }
 }

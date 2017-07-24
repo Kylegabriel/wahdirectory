@@ -19,15 +19,12 @@
                       maxlength: 20 
                     },
                     middle_name: {
-                      required: true,
                       maxlength: 20
                     },
                     email: {
-                      required: true,
                       email: true
                     },
                     primary_contact: {
-                      required: true,
                       number: true,
                       maxlength: 11
                     },

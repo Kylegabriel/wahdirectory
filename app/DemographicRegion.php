@@ -14,4 +14,7 @@ class DemographicRegion extends Model
 		'region_name'
 	];
 	
+	public function site(){
+	    return $this->hasOne('App\Site');
+	}
 }

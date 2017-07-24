@@ -17,7 +17,6 @@ class CreateSchoolTable extends Migration
             
             $table->increments('id');
             $table->string('school');
-            $table->timestamps();
         });
 
         DB::table('school')

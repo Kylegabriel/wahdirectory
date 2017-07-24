@@ -16,36 +16,26 @@ class SummaryController extends Controller
      */
     public function index(Request $request)
     {
-        $summary = $request->input('sites');
+
         $designation = $request->input('partnerDesignation');
         $organization = $request->input('partnerOrganization');
 
-        $getsites = Partner::when($summary, function ($query) use ($summary) {
-                            return $query->where('sites','=',$summary);
-                            })
-                            ->when($designation,function($query) use ($designation){
+        $getsites = Partner::when($designation,function($query) use ($designation){
                                 return $query->where('designation',$designation);
                             })
                             ->when($organization,function($query) use ($organization){
                                 return $query->where('organization','=',$organization);
                             })
-                            ->when($summary && $designation,function($query) use ($summary,$designation){
-                                return $query->where('sites','=',$summary)->where('designation','=',$designation);
+                            ->when($designation && $organization,function($query) use ($designation,$organization){
+                                return $query->where('designation','=',$designation)->where('organization','=',$organization);
                             })
-                            ->when($summary && $organization,function($query) use ($summary,$organization){
-                                return $query->where('sites','=',$summary)->where('organization','=',$organization);
-                            })
-                            ->when($summary && $organization && $designation,function($query) use ($summary,$designation,$organization){
-                                return $query->where('sites','=',$summary)->where('designation','=',$designation)->where('organization','=',$organization);
-                            })
-                            ->where('status','=','Partner')
                             ->get();
 
         $count = 1;
-        $data = count($getsites);                    
+        //$data = count($getsites);                    
         return view('summary.index')->with([ 
                             'summary' => $getsites, 
-                            'count' => $data,
+                            //'count' => $data,
                             'count2' => $count
                             ]);
 

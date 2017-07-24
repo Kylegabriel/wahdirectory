@@ -36,9 +36,10 @@
           <i class="material-icons md-26">add</i>
         </a>
         <ul>
-          <li><a href="{{ route('partner.create') }}" class="btn-floating waves-effect waves-light purple tooltipped right " data-position="top" data-tooltip="Partner Organization"><i class="material-icons">group_add</i></a></li>
-          <li><a href="{{ route('profile.create') }}" class="btn-floating waves-effect waves-light green tooltipped right" data-position="top" data-tooltip="WAH-NGO"><i class="material-icons">people_outline</i></a></li>
-          <li><a href="{{ route('interns.create') }}" class="btn-floating waves-effect waves-light yellow tooltipped right" data-position="top" data-tooltip="Interns"><i class="material-icons">group</i></a></li>
+          <li><a href="{{ route('partner.create') }}" class="btn-floating waves-effect waves-light red tooltipped right " data-position="top" data-tooltip="Partner Organization"><i class="material-icons">group_add</i></a></li>
+          <li><a href="{{ route('profile.create') }}" class="btn-floating waves-effect waves-light yellow darken-1 tooltipped right" data-position="top" data-tooltip="WAH-NGO"><i class="material-icons">people_outline</i></a></li>
+          <li><a href="{{ route('interns.create') }}" class="btn-floating waves-effect waves-light green tooltipped right" data-position="top" data-tooltip="Interns"><i class="material-icons">group</i></a></li>
+          <li><a href="{{ route('sites.create') }}" class="btn-floating waves-effect waves-light blue tooltipped right" data-position="top" data-tooltip="Sites"><i class="material-icons">place</i></a></li>
         </ul>
     </div>
     <!-- Dropdown Structure -->
@@ -58,9 +59,10 @@
                   @else
                   <li class="{{ Request::is('partner') ? 'active' : '' }}"><a href="{{url('/partner')}}" >Partners</a></li>
                   <li class="{{ Request::is('profile') ? 'active' : '' }}"><a href="{{ url('/profile') }}">WAH-NGO</a></li>
+                  <li class="{{ Request::is('sites') ? 'active' : '' }}"><a href="{{ url('/sites') }}">Sites</a></li>
                   <li class="{{ Request::is('warmleads') ? 'active' : '' }}"><a href="{{ url('/warmleads')}}">Warm Leads</a></li>
                   <li class="{{ Request::is('interns') ? 'active' : '' }}"><a href="{{ url('/interns')}}">Interns</a></li>
-                  <li class="{{ Request::is('summary') ? 'active' : '' }}"><a href="{{ url('/summary')}}">Summary</a></li>
+                  <li class="{{ Request::is('summary') ? 'active' : '' }}"><a href="{{ url('/summary')}}">Partner Summary</a></li>
                   <li class="{{ Request::is('others') ? 'active' : '' }}"><a href="{{ url('/others')}}">Others</a></li>
                   <!-- Dropdown Trigger --> 
                   <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><b>{{ Auth::user()->first_name }}</b><i class="material-icons right md-26">face</i></a></li>
@@ -82,9 +84,9 @@
                 <div class="card-content" style="padding-top:5px">
                    <center>Today is <b>{{ date('D, F j, o') }}</b><br></center>
                       <ul class="margin">
-                          <li><span class="new badge" data-badge-caption="">{{ App\Partner::where('status','=','Partner')->count() }}</span><i class="material-icons left">person</i>Partner Organization</li>
+                          <li><span class="new badge" data-badge-caption="">{{ App\Partner::count() }}</span><i class="material-icons left">person</i>Partner Organization</li>
                           <li><span class="new badge" data-badge-caption="">{{ Auth::user()->count() }}</span><i class="material-icons left">group</i>WAH-NGO</li>
-                          <li><span class="new badge" data-badge-caption="">{{ App\Partner::where('status','=','Warm Lead')->count() }}</span><i class="material-icons left">people</i>Warm Leads</li>
+                          <li><span class="new badge" data-badge-caption=""></span><i class="material-icons left">people</i>Warm Leads</li>
                           <li><span class="new badge" data-badge-caption="">{{ App\Intern::count() }}</span><i class="material-icons left">people_outline</i>Interns</li>
                       </ul>
                 </div>

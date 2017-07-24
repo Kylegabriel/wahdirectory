@@ -9,7 +9,6 @@
 
                 <div class="row">
                         <div class="input-field col s4">
-                            <i class="material-icons prefix">person_pin</i>
                             {{ Form::text('last_name',null,['class'=>'validate','id'=>'last_name','data-length'=>'20']) }} 
                             {{ Form::label('last_name','Last Name') }}
                         </div>
@@ -50,12 +49,10 @@
                 </div>
                 <div class="row">
                         <div class="input-field col s3">
-                            <i class="material-icons prefix">phone</i>
                             {{ Form::text('primary_contact',null,['class'=>'validate','id'=>'primary_contact','data-length'=>'11']) }} 
                             {{ Form::label('primary_contact','Contact Number') }}
                         </div>
                         <div class="input-field col s3">
-                            <i class="material-icons prefix">mail_outline</i>
                             {{ Form::email('email',null,['class'=>'validate','id'=>'email']) }}
                             {{ Form::label('email','Email Address') }}
                         </div>

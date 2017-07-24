@@ -19,14 +19,36 @@
 		<div class="col s4"><h5>Partner Organization</h5></div>
 		<div class="col s8">
 			<form method="GET" action="{{ route('partner.index') }}">
-				@include('partials._search')
+				<div class="row">
+			        <div class="input-field col s10">
+			          <input type="search" id="search" name="search" placeholder="Search">
+			          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+			          <i class="material-icons">close</i>
+			        </div>
+			        <div class="input-field col s2">
+			        	<button type="submit" class="waves-effect waves-light btn"><i class="material-icons">search</i></button>
+			        </div>
+				</div>
 			</form>	
 		</div>
 	</div>
-
-	<div class="scroll card" style="margin-top:-15px"> 
+	<hr>
+	<div class="scroll card"> 
 		<table class="table bordered centered highlight responsive-table">
-			@include('partials._thead')
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Name</th>
+					<th>Gender</th>
+					<th>Organization</th>
+					<th>Designation</th>
+					<th>Province</th>
+					<th><i class="material-icons prefix">phone</i></th>
+					<th><i class="material-icons prefix">mail_outline</i></th>
+					<th>Date of Birth</th>
+					<th>Action</th>
+				</tr>
+			</thead>
 			<tbody>
 				@foreach($partner as $partners)
 				<tr>
@@ -35,6 +57,7 @@
 					@if($partners->gender == 'M')<td>Male</td>@elseif($partners->gender == 'F')<td>Female</td>@else<td></td>@endif
 					<td>{{ $partners->organization }}</td>
 					<td>{{ $partners->designation }}</td>
+					<td>{{ $partners->province }}</td>
 					<td>{{ $partners->primary_contact . ' ' .$partners->secondary_contact}}</td>
 					<td>{{ $partners->email . ' ' . $partners->secondary_email }}</td>
 					@if($partners->birthdate == '0000-00-00' || $partners->birthdate == NULL)

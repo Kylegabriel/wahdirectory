@@ -8,6 +8,7 @@ use App\Partner;
 use App\SuffixName;
 use App\PartnerDesignation;
 use App\PartnerOrganization;
+use App\DemographicProvince;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -27,15 +28,17 @@ class PartnerController extends Controller
         $search = $request->input('search');
 
         $partner = DB::table('partners')->when($search, function ($query) use ($search) {
-                            return $query->where('last_name','=',$search)
-                                         ->orWhere('first_name','=',$search)
-                                         ->orWhere('middle_name','=',$search)
-                                         ->orWhere('primary_contact','=',$search)
-                                         ->orWhere('secondary_contact','=',$search)
-                                         ->orWhere('email','=',$search)
-                                         ->orWhere('secondary_email','=',$search);
+                            return $query->where('last_name','LIKE','%'.$search.'%')
+                                         ->orWhere('first_name','LIKE','%'.$search.'%')
+                                         ->orWhere('middle_name','LIKE','%'.$search.'%')
+                                         ->orWhere('primary_contact','LIKE','%'.$search.'%')
+                                         ->orWhere('secondary_contact','LIKE','%'.$search.'%')
+                                         ->orWhere('organization','LIKE','%'.$search.'%')
+                                         ->orWhere('designation','LIKE','%'.$search.'%')
+                                         ->orWhere('province','LIKE','%'.$search.'%')
+                                         ->orWhere('email','LIKE','%'.$search.'%')
+                                         ->orWhere('secondary_email','LIKE','%'.$search.'%');
                             })
-                            ->where('status','=','Partner')
                             ->orderBy('id','asc')
                             ->get();
         $no = 1;
@@ -49,8 +52,17 @@ class PartnerController extends Controller
      */
     public function create()
     {
+        $province = DemographicProvince::select('province_name')->orderBy('province_name','asc')->get();
+        $designation = PartnerDesignation::get();
+        $organization = PartnerOrganization::get();
+        $suffix = SuffixName::get();
 
-        return view('partner.create');
+        return view('partner.create')->with([
+            'province'=>$province,
+            'designation' => $designation,
+            'organization' => $organization,
+            'suffix' => $suffix
+            ]);
     }
 
     /**
@@ -84,6 +96,7 @@ class PartnerController extends Controller
         $partner->middle_name = $request->input('middle_name');
         $partner->organization = $request->input('partnerOrganization');
         $partner->designation = $request->input('partnerDesignation');
+        $partner->province = $request->input('province');
         $partner->suffix_name = $request->input('suffixName');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
@@ -92,18 +105,10 @@ class PartnerController extends Controller
         $partner->secondary_email = $request->input('secondary_email');
         $partner->birthdate = $request->input('date_of_birth');
         $partner->is_active = $request->input('is_active');
-        $partner->sites = $request->input('sites');
-        $partner->status = $request->input('status');
 
         $partner->save();
 
-        
-
-        if ($request->input('status') == 'Warm Lead') {
-            Session::flash('success','New WarmLead was Successfully Save');
-        }else{
             Session::flash('success','New Partner was Successfully Save');
-        }
 
         return redirect()->route('partner.index');//,$partner->id);
         }
@@ -130,9 +135,17 @@ class PartnerController extends Controller
     {
 
         $editPartner = Partner::find($id);
+        $province = DemographicProvince::select('province_name')->orderBy('province_name','asc')->get();
+        $designation = PartnerDesignation::get();
+        $organization = PartnerOrganization::get();
+        $suffix = SuffixName::get();
 
         return view('partner.edit')->with([
             'partners' => $editPartner,
+            'province'=> $province,
+            'designation' => $designation,
+            'organization' => $organization,
+            'suffix' => $suffix
             ]);
     }
 
@@ -153,6 +166,7 @@ class PartnerController extends Controller
         $partner->middle_name = $request->input('middle_name');
         $partner->organization = $request->input('partnerOrganization');
         $partner->designation = $request->input('partnerDesignation');
+        $partner->province = $request->input('province');
         $partner->suffix_name = $request->input('suffixName');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
@@ -161,12 +175,11 @@ class PartnerController extends Controller
         $partner->secondary_email = $request->input('secondary_email');
         $partner->birthdate = $request->input('date_of_birth'); 
         $partner->is_active = $request->input('is_active');
-        $partner->sites = $request->input('sites');
-        $partner->status = $request->input('status');
 
         $partner->save();
 
-        Session::flash('success','New Partner was Successfully Updated');
+        Session::flash('success','Partner '.$partner->last_name.' was Updated Successfully..!');
+
 
         return redirect()->route('partner.index');//,$partner->id);
     }

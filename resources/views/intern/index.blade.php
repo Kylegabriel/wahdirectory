@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('stylesheets')
     <style>
-            .modal { 
-                width: 40% !important;
-                max-height: 50% !important;
-              }
             .scroll{
                 height: 380px;
                 overflow-y: auto;
+            }
+            .modal { 
+                width: 35% !important;
+                max-height: 60% !important;
             }
     </style>
 @endsection
@@ -44,16 +44,44 @@
 						<td>{{ $intern->last_name .', ' . $intern->first_name . ' ' . $intern->middle_name }}</td>
 						<td>{{ $intern->primary_contact }}</td>
 						<td>{{ $intern->email }}</td>
-						<td>{{ $intern->courses['course'] }}</td>
-						<td>{{ $intern->schools['school'] }}</td>
-						<td>@foreach($intern->tags as $tag )
-						      	{{ $tag->name . ', ' }} 
-						    @endforeach
+						<td>{{ substr($intern->courses['course'],0,4) }} {{  strlen($intern->courses['course']) > 4 ? "..." : "" }}</td>
+						<td>{{ substr($intern->schools['school'],0,4) }} {{  strlen($intern->schools['school']) > 4 ? "..." : "" }}</td>
+						<td>
+							{{ str_replace('$intern->tags','','...') }}
 						</td>
 						<td>{{ date('F j, Y', strtotime($intern->date_start)) }}</td>
 						<td>{{ date('F j, Y', strtotime($intern->date_end)) }}</td>
-						<td><a href="{{ route('interns.edit',$intern->id) }}" class="waves-effect waves-light tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit"><i class="material-icons red-text text-darken-1">mode_edit</i></a></td>
+						<td>
+							<a href="{{ route('interns.edit',$intern->id) }}" class="waves-effect waves-light tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit"><i class="material-icons red-text text-darken-1">mode_edit</i></a>
+							<a data-target="show{{ $intern->id }}" class="waves-effect waves-light tooltipped" data-position="bottom" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+						</td>
 					</tr>
+
+					  <!-- Modal Structure -->
+						  <div id="show{{ $intern->id }}" class="modal modal-fixed-footer">
+						    <div class="modal-content">
+							    <div class="row">
+							      <div class="col s12">
+							        <div class="card-panel">
+							        	<span class="card-title"><b>Intern Information</b></span><br>
+							        	<b>Name:</b> {{ $intern->last_name .', ' . $intern->first_name . ' ' . $intern->middle_name }}<br>
+							        	<b>Contact Number:</b> {{ $intern->primary_contact }}<br>
+										<b>Email:</b> {{ $intern->email }}<br>
+										<b>Course:</b> {{ $intern->courses['course'] }}<br>
+										<b>School:</b> {{ $intern->schools['school'] }}<br>
+										<b>Papers:</b>@foreach($intern->tags as $tag )
+										      	{{ $tag->name . ', ' }} 
+										    @endforeach <br>
+										<b>Date Start:</b> {{ date('F j, Y', strtotime($intern->date_start)) }}<br>
+										<b>Date End:</b> {{ date('F j, Y', strtotime($intern->date_end)) }}
+							        </div>
+							      </div>
+							    </div>
+						    </div>
+						    <div class="modal-footer">
+						      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+						    </div>
+						  </div>
 				@endforeach	  
 			</tbody>
 		</table>		
