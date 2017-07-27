@@ -134,7 +134,7 @@
            success:function(res){            
             if(res){
                 $("#region").empty();
-                $("#region").append("<option value=''>Choose your Region</option>");
+                $("#region").append("<option disabled selected>Choose your Region</option>");
                 $.each(res,function(key,value){
                     $('#region').material_select();
                     $("#region").append('<option value="'+key+'">'+value+'</option>');
@@ -162,7 +162,7 @@
            success:function(res){            
             if(res){
                 $("#province").empty();
-                $("#province").append("<option value=''>Choose your Province</option>");
+                $("#province").append("<option disabled selected>Choose your Province</option>");
                 $.each(res,function(key,value){
                     $('#province').material_select();
                     $("#province").append('<option value="'+key+'">'+value+'</option>');
@@ -190,7 +190,7 @@
            success:function(res){               
             if(res){
                 $("#municipality").empty();
-                $("#municipality").append('<option>Choose your Municipality</option>');
+                $("#municipality").append('<option disabled selected>Choose your Municipality</option>');
                 $.each(res,function(key,value){
                     $('#municipality').material_select();
                     $("#municipality").append('<option value="'+key+'">'+value+'</option>');
