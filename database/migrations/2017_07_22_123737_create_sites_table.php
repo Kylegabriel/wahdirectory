@@ -34,10 +34,6 @@ class CreateSitesTable extends Migration
             $table->char('site',1)->nullable();
             $table->char('status',1)->nullable();
             $table->timestamps();
-
-            $table->foreign('region_code')->references('region_code')->on('lib_region');
-            $table->foreign('province_code')->references('province_code')->on('lib_province');
-            $table->foreign('muncity_code')->references('muncity_code')->on('lib_muncity');
         });
     }
 
@@ -48,11 +44,6 @@ class CreateSitesTable extends Migration
      */
     public function down()
     {
-        Schema::table('sites', function($table) {
-          $table->dropForeign('sites_region_code_foreign');
-          $table->dropForeign('sites_province_code_foreign');
-          $table->dropForeign('sites_muncity_code_foreign');
-        });
         Schema::drop('sites');
     }
 }

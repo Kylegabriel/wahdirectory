@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/style.css">
     @yield('stylesheets')
     <style> 
-        .input-field label:after {
+         /*.input-field label:after {
           -webkit-transform: translateY(-190%);
           transform: translateY(-190%);
           font-size: 0.8rem;
@@ -23,10 +23,16 @@
           -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
           transition: .2s ease-out;
-        }
+        }*/
         .margin li{
           margin: 2px 0px;
         }
+        .form-error {
+          color: #D8000C;
+          font-size: 0.8rem;
+          margin-top: -18px;
+        }
+       
     </style>
 </head>
 <body>
@@ -88,6 +94,7 @@
                           <li><span class="new badge" data-badge-caption="">{{ Auth::user()->count() }}</span><i class="material-icons left">group</i>WAH-NGO</li>
                           <li><span class="new badge" data-badge-caption=""></span><i class="material-icons left">people</i>Warm Leads</li>
                           <li><span class="new badge" data-badge-caption="">{{ App\Intern::count() }}</span><i class="material-icons left">people_outline</i>Interns</li>
+                          <li><span class="new badge" data-badge-caption="">{{ App\Site::count() }}</span><i class="material-icons left">people_outline</i>Sites Partner</li>
                       </ul>
                 </div>
                  @endif
@@ -138,7 +145,6 @@
     <div class="col s9">
       @yield('content')
     </div>
-
 </div>
 
 

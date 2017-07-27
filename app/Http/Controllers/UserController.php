@@ -65,7 +65,7 @@ class UserController extends Controller
         $check_user = User::where('last_name','LIKE',$request->input('last_name'))
                                   ->where('first_name','LIKE',$request->input('first_name'))
                                   ->where('middle_name','LIKE',$request->input('middle_name'))
-                                  ->where('suffix_name','LIKE',$request->input('suffix_name'))
+                                  ->where('suffix_name','LIKE',$request->input('suffixName'))
                                   ->where('birthdate','=',$request->input('date_of_birth'))
                                   ->get();
 
@@ -83,7 +83,7 @@ class UserController extends Controller
         $user->last_name = $request->input('last_name');
         $user->first_name = $request->input('first_name');
         $user->middle_name = $request->input('middle_name');
-        $user->suffix_name = $request->input('suffix_name');
+        $user->suffix_name = $request->input('suffixName');
         $user->gender = $request->input('gender');
         $user->designation = $request->input('designation');
         $user->primary_contact = $request->input('primary_contact');
@@ -141,7 +141,7 @@ class UserController extends Controller
         $user->last_name = $request->input('last_name');
         $user->first_name = $request->input('first_name');
         $user->middle_name = $request->input('middle_name');
-        $user->suffix_name = $request->input('suffix_name');
+        $user->suffix_name = $request->input('suffixName');
         $user->gender = $request->input('gender');
         $user->designation = $request->input('designation');
         $user->primary_contact = $request->input('primary_contact');

@@ -19,13 +19,13 @@
                                         {{ Form::label('middle_name','Middle Name') }}
                                     </div>
                                     <div class="input-field col s3">
-                                        <select type="text" id="suffix_name" name="suffix_name">
+                                        <select type="text" id="suffixName" name="suffixName">
                                           <option value="" disabled selected>Choose your option</option>
                                           @foreach( $suffix as $suffix)
                                             <option value="{{ $suffix['suffix_code'] }}">{{ $suffix['suffix_desc'] }}</option>
                                           @endforeach
                                         </select>
-                                        <label for="suffix_name">Suffix Name</label>
+                                        <label for="suffixName">Suffix Name</label>
                                     </div>
                                 </div>    
                                 <div class="row">

@@ -7,15 +7,15 @@
                     <div class="row">
                             <div class="input-field col s3">
                                 {{ Form::text('last_name',null,['class'=>'validate','id'=>'last_name','data-length'=>'20']) }} 
-                                {{ Form::label('last_name','Last Name') }}
+                                {{ Form::label('last_name','Last Name*') }}
                             </div>
                             <div class="input-field col s3">
                                 {{ Form::text('first_name',null,['class'=>'validate','id'=>'first_name','data-length'=>'20']) }} 
-                                {{ Form::label('first_name','First Name') }}
+                                {{ Form::label('first_name','First Name*') }}
                             </div>
                             <div class="input-field col s3">
                                 {{ Form::text('middle_name',null,['class'=>'validate','id'=>'middle_name','data-length'=>'20']) }} 
-                                {{ Form::label('middle_name','Middle Name') }}
+                                {{ Form::label('middle_name','Middle Name*') }}
                             </div>
                             <div class="input-field col s3">
                                 <select type="text" id="suffixName" name="suffixName" class="validate">
@@ -24,7 +24,7 @@
                                         <option value="{{ $suffix['suffix_code'] }}">{{ $suffix['suffix_desc'] }}</option>
                                   @endforeach
                                 </select>
-                                {{ Form::label('suffixName','Suffix Name') }}
+                                {{ Form::label('suffixName','Suffix Name*') }}
                             </div>
                     </div>    
 
@@ -36,7 +36,7 @@
                                     <option value="{{ $designation['designation_id'] }}">{{ $designation['designation'] }}</option>
                               @endforeach
                             </select>
-                            {{ Form::label('partnerDesignation','Designation') }}
+                            {{ Form::label('partnerDesignation','Designation*') }}
 
                         </div>
                         <div class="input-field col s4">
@@ -46,7 +46,7 @@
                                         <option value="{{ $organization['organization_id'] }}">{{ $organization['organization'] }}</option>
                                   @endforeach
                             </select>
-                            {{ Form::label('partnerOrganization','Organization') }}
+                            {{ Form::label('partnerOrganization','Organization*') }}
                         </div>
                         <div class="input-field col s3">
                             <select type="text" id="province" name="province">
@@ -55,7 +55,7 @@
                                     <option value="{{ $province->province_name }}">{{ $province->province_name }}</option>
                                 @endforeach
                             </select>
-                            {{ Form::label('province','Province') }}
+                            {{ Form::label('province','Province*') }}
                         </div>
                         <div class="input-field col s2">
                             <select type="text" id="gender" name="gender">
@@ -63,7 +63,7 @@
                                 <option value="M">Male</option>
                                 <option value="F">Female</option>
                             </select>
-                            {{ Form::label('gender','Gender') }}
+                            {{ Form::label('gender','Gender*') }}
                         </div>
 
                     </div>
@@ -71,26 +71,26 @@
                     <div class="row">
                         <div class="input-field col s4">
                             {{ Form::email('email',null,['class'=>'validate','id'=>'email']) }} 
-                            {{ Form::label('email','Email') }}
+                            {{ Form::label('email','Email*') }}
                         </div>
                         <div class="input-field col s4">
                             {{ Form::email('secondary_email',null,['class'=>'validate','id'=>'secondary_email']) }} 
-                            {{ Form::label('secondary_email','Secondary Email') }}
+                            {{ Form::label('secondary_email','Secondary Email*') }}
                         </div>
                         <div class="input-field col s4">
                             <input type="date" name="date_of_birth" id="date_of_birth" class="datepicker">
-                            <label for="date_of_birth">Date of Birth</label>
+                            {{ Form::label('date_of_birth','Date of Birth*') }}
                         </div>  
                     </div> 
 
                     <div class="row">
                         <div class="input-field col s4">
                             {{ Form::text('primary_contact',null,['class'=>'validate','id'=>'primary_contact','data-length'=>'11','placeholder'=>'0930*******']) }} 
-                            {{ Form::label('primary_contact','Primary Contact') }}
+                            {{ Form::label('primary_contact','Primary Contact*') }}
                         </div>
                         <div class="input-field col s4">
                             {{ Form::text('secondary_contact',null,['class'=>'validate','id'=>'secondary_contact','data-length'=>'11','placeholder'=>'0906*******']) }} 
-                            {{ Form::label('secondary_contact','Secondary Contact') }}
+                            {{ Form::label('secondary_contact','Secondary Contact*') }}
                         </div>
                         <div class="input-field col s4">
                             <select type="text" id="is_active" name="is_active">
@@ -98,7 +98,7 @@
                               <option value="N" >In Active</option>
                               <option value="Y" >Active</option>
                             </select>
-                            <label for="is_active">Is Active</label>
+                            {{ Form::label('is_active','Is Active*') }}
                         </div>
                     </div>  
     </div>        

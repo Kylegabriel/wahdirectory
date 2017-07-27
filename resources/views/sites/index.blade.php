@@ -6,7 +6,7 @@
                 max-height: 90% !important;
               }
               .scroll{
-                height: 380px;
+                height: 400px;
                 overflow-y: auto;
               }
     </style>
@@ -18,7 +18,7 @@
 	<div class="row indigo lighten-5">
 		<div class="col s4"><h5>Sites</h5></div>
 		<div class="col s8">
-			<form method="GET" action="{{ route('partner.index') }}">
+			<form method="GET" action="{{ route('sites.index') }}">
 				<div class="row">
 			        <div class="input-field col s10">
 			          <input type="search" id="search" name="search" placeholder="Search">
@@ -52,7 +52,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($site as $site)
+				@foreach($sites as $site)
 				<tr>
 					<td>{{ $count++ .'.' }}</td>
 					<td>{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} @if($site->suffix_name == 'NOTAP') @else {{ $site->suffix_name }} @endif</td>

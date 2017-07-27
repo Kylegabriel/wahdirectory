@@ -20,10 +20,13 @@ Route::resource('profile','UserController',['except'=>['destroy','show']]);
 Route::resource('interns','InternController');
 Route::resource('warmleads','WarmLeadsController',['only'=>['index']]);
 Route::resource('sites','SitesController');
+Route::resource('sites/create/get-region-list','SitesController@getRegionList');
+Route::resource('sites/create/get-province-list','SitesController@getProvinceList');
+Route::resource('sites/create/get-muncity-list','SitesController@getMuncityList');
 Route::resource('summary','SummaryController',['only'=>['index']]);
 Route::resource('others','OthersController',['only' => ['index']]);
 Route::resource('school','SchoolController',['only' =>['store','update']]);
 Route::resource('course','CourseController',['only' =>['store','update']]);
 Route::resource('papers','PaperController',['only' =>['store','update']]);
 Route::auth();
-//Route::get('/home', 'HomeController@index');
+
