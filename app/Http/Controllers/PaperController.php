@@ -38,7 +38,7 @@ class PaperController extends Controller
     public function store(Request $request)
     {
         //post to database
-        $check_paper = Tag::where('name','LIKE',$request->input('papers'))
+        $check_paper = Tag::where('name','LIKE',$request->input('paper'))
                                   ->get();
 
         $count = count($check_paper);
@@ -51,7 +51,7 @@ class PaperController extends Controller
         }else{
         $paper = new Tag;
 
-        $paper->name = $request->input('papers');
+        $paper->name = $request->input('paper');
 
         $paper->save();
 
@@ -94,7 +94,7 @@ class PaperController extends Controller
     {
         $paper = Tag::find($id);
 
-        $paper->name = $request->input('papers');
+        $paper->name = $request->input('paper');
 
         $paper->save();
 

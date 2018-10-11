@@ -4917,17 +4917,17 @@ small {
   display: block;
 }
 
-#toast-container {
+/*#toast-container {
   display: block;
   position: fixed;
   z-index: 10000;
-}
+}*/
 
 @media only screen and (max-width: 600px) {
-  #toast-container {
+/*  #toast-container {
     min-width: 100%;
     bottom: 0%;
-  }
+  }*/
 }
 
 @media only screen and (min-width: 601px) and (max-width: 992px) {
@@ -4939,19 +4939,19 @@ small {
 }
 
 @media only screen and (min-width: 993px) {
-  #toast-container {
-    /* This is the Original
+/*  #toast-container {
+     This is the Original
     top: 10%;
     right: 7%;
-    max-width: 86%;*/
+    max-width: 86%;
         top: 9%;
-    /* This is the right position of the toast in material toast the original right is 7 and top is 10*/
+     This is the right position of the toast in material toast the original right is 7 and top is 10
     right: 1%;
     max-width: 86%;
-  }
+  }*/
 }
 
-.toast {
+/*.toast {
   border-radius: 2px;
   top: 35px;
   width: auto;
@@ -4980,34 +4980,34 @@ small {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-}
+}*/
 
-.toast .btn, .toast .btn-large, .toast .btn-flat {
+/*.toast .btn, .toast .btn-large, .toast .btn-flat {
   margin: 0;
   margin-left: 3rem;
-}
+}*/
 
-.toast.rounded {
+/*.toast.rounded {
   border-radius: 24px;
 }
-
+*/
 @media only screen and (max-width: 600px) {
-  .toast {
+/*  .toast {
     width: 100%;
     border-radius: 0;
-  }
+  }*/
 }
 
 @media only screen and (min-width: 601px) and (max-width: 992px) {
-  .toast {
+/*  .toast {
     float: left;
-  }
+  }*/
 }
 
 @media only screen and (min-width: 993px) {
-  .toast {
+/*  .toast {
     float: right;
-  }
+  }*/
 }
 
 .tabs {

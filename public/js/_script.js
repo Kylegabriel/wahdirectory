@@ -1,15 +1,30 @@
       $(document).ready(function(){
 
+
+
+            // to prevent clicking outside of the modal
+            $('.modal').modal({
+                show: false,
+                  backdrop: 'static'
+            })
+
+
+            // Bootstrap 
+            $('.dropdown-toggle').dropdown();
+            // DataTables
+            $('#example')
+            .DataTable({
+                  "scrollY"        : "400px",
+                  "scrollCollapse" : true,
+            });
+            
+            $('[data-toggle="tooltip"]').tooltip();
+
             $('form').each(function() {
               $.validator.setDefaults({
                      ignore: []
               });
-              $(this).validate({
-                      errorClass: "invalid form-error",       
-                      errorElement : 'div',       
-                      errorPlacement: function(error, element) {
-                          error.appendTo( element.parent() );
-                      },
+            $(this).validate({
                       rules: {
                         last_name: {
                           required: true,
@@ -20,24 +35,34 @@
                           maxlength: 20 
                         },
                         middle_name: {
+                          required: true,    
                           maxlength: 20
                         },
                         email: {
-                          email: true
+                          email: true,
+                          required: true
+                        },
+                        is_admin: {
+                          required: true
+                        },
+                        birthdate: {
+                          required: true
                         },
                         primary_contact: {
                           number: true,
-                          maxlength: 11
+                          minlength: 11,
+                          maxlength:11
                         },
                         secondary_contact : {
                           number: true,
-                          maxlength: 11
+                          minlength: 11,
+                          maxlength:11
                         },
-                        suffixName: {
-                          required: true
-                        },
-                        is_active: {
-                          required: true
+                        mobile_number : {
+                          required: true,
+                          number: true,
+                          minlength: 11,
+                          maxlength:11
                         },
                         status: {
                           required: true
@@ -47,71 +72,47 @@
                         },
                         site: {
                           required: true
-                        }
-                      }
-              });
-            });
+                        },
+                        course: {
+                          required: true
+                        },
+                        school: {
+                          required: true
+                        },
+                        paper: {
+                          required: true
+                        },
 
-            /*$('form').each(function() {  // attach to all form elements on page
-                $(this).validate({ // initialize plugin on each form
-                  errorClass: 'invalid',
-                  errorPlacement: function (error, element) {
-                      $(element)
-                          .closest("form")
-                          .find("label[for='" + element.attr("id") + "']")
-                          .attr('data-error', error.text());
-                  },
-                  rules: {
-                    last_name: {
-                      required: true,
-                      maxlength: 20
+                        username: {
+                          required: true,
+                          minlength: 4,
+                          maxlength: 10
+                        },
+                        password: {
+                          required: true,
+                          minlength: 4,
+                          maxlength: 10
+                        },
+                        comfirm_password: {
+                          required: true,
+                          equalTo: "#password"
+                        }
+                      },
+                              highlight: function(element) {
+                        $(element).closest('.form-control').addClass('is-invalid');
                     },
-                    first_name: {
-                      required: true,
-                      maxlength: 20 
+                    unhighlight: function(element) {
+                        $(element).closest('.form-control').removeClass('is-invalid');
                     },
-                    middle_name: {
-                      maxlength: 20
-                    },
-                    email: {
-                      email: true
-                    },
-                    primary_contact: {
-                      number: true,
-                      maxlength: 11
-                    },
-                    secondary_contact : {
-                      number: true,
-                      maxlength: 11
-                    },
-                    site: {
-                      required: true
-                    },
-                    suffixName: {
-                      required: true
+                    errorElement: 'div',
+                    errorClass: 'invalid-feedback',
+                    errorPlacement: function(error, element) {
+                        if(element.parent('.invalid-feedback').length) {
+                            error.insertAfter(element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
                     }
-                  }
-                });
-            });*/
-            
-            $('.dropdown-button').dropdown({
-                belowOrigin: true,
-                  }
-              );
-            $('select').material_select();
-            $('ul.tabs').tabs({ 
-              responsiveThreshold : 1920
-            });
-            $('.modal').modal({
-              dismissible: false
-            });
-            $('.datepicker').pickadate({
-                selectMonths: true,
-                selectYears: 50,
-                format: 'yyyy-mm-dd',
               });
-            $('.tooltipped').tooltip({delay: 50});
-            $('.button-collapse').sideNav();
-            $('.collapsible').collapsible();
-            //$(".button-collapse").sideNav();
+            });
        });

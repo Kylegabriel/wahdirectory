@@ -34,4 +34,7 @@ class Partner extends Model
     public function partnerSuffix(){
       return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
     }
+        public function partnerProvince(){
+      return $this->belongsTo('App\DemographicProvince','province','province_code');
+    }
 }

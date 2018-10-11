@@ -23,19 +23,25 @@ class InternController extends Controller
     
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        
-        $intern = Intern::when($search, function ($query) use ($search) {
-                            return $query->where('last_name','LIKE','%'.$search.'%')
-                                         ->orWhere('first_name','LIKE','%'.$search.'%')
-                                         ->orWhere('middle_name','LIKE','%'.$search.'%')
-                                         ->orWhere('primary_contact','LIKE','%'.$search.'%')
-                                         ->orWhere('email','LIKE','%'.$search.'%');
-                            })
-                            ->get();
+        $intern = Intern::get();
+        $course = InternCourse::all();
+        $school = InternSchool::all();
+        $tag = Tag::all();
+
+        $tags = Tag::all();
+        $tags2 = [];
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
 
         $count = 1;
-        return view('intern.index')->with([ 'interns'=> $intern,'count' => $count ]);
+        return view('intern.index')->with([ 
+            'interns'=> $intern,
+            'count' => $count,
+            'courses' => $course,
+            'schools' => $school,
+            'tags' => $tags2,
+            ]);
     }
 
     /**
@@ -45,15 +51,7 @@ class InternController extends Controller
      */
     public function create()
     {
-        $course = InternCourse::all();
-        $school = InternSchool::all();
-        $tag = Tag::all();
 
-        return view('intern.create')->with([
-                'courses' => $course,
-                'schools' => $school,
-                'tags' => $tag
-          ]);
     }
 
     /**
@@ -123,14 +121,10 @@ class InternController extends Controller
     {
         $internedit = Intern::find($id);
 
-        $tags = Tag::all();
-        $tags2 = [];
-        foreach ($tags as $tag) {
-            $tags2[$tag->id] = $tag->name;
-        }
+
 
         return view('intern.edit')->with([
-                'tags' => $tags2,
+               
                 'internEdit' => $internedit
           ]);
     }

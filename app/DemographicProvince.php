@@ -18,4 +18,8 @@ class DemographicProvince extends Model
 	public function site(){
 	    return $this->hasOne('App\Site');
 	}
+
+	public function partner(){
+        $this->hasOne('App\Partner');
+    }
 }

@@ -27,25 +27,13 @@ class SitesController extends Controller
 
     public function index(Request $request)
     {        
-        $search = $request->input('search');
 
-        $site = Site::when($search, function ($query) use ($search) {
-                            return $query->where('last_name','LIKE','%'.$search.'%')
-                                         ->orWhere('first_name','LIKE','%'.$search.'%')
-                                         ->orWhere('middle_name','LIKE','%'.$search.'%')
-                                         ->orWhere('primary_contact','LIKE','%'.$search.'%')
-                                         ->orWhere('secondary_contact','LIKE','%'.$search.'%')
-                                         ->orWhere('designation','LIKE','%'.$search.'%')
-                                         ->orWhere('email','LIKE','%'.$search.'%')
-                                         ->orWhere('secondary_email','LIKE','%'.$search.'%');
-                            })
-                            ->orderBy('id','desc')
-                            ->get();
+        $site = Site::where('status', '=', 'Y')->get();
 
         $count = 1;
         return view('sites.index')->with([
             'sites' => $site,
-            'count' => $count
+            'count' => $count,
             ]);
     }
 
@@ -57,15 +45,22 @@ class SitesController extends Controller
 
     public function create(Request $request)
     {
-        $suffix = SuffixName::get();
         $siteDesignation = SitesDesignation::get();
         $region = DemographicRegion::get();
 
+        $suffix = SuffixName::get();
+        $suf = array();
+        foreach ($suffix as $suffixes) {
+            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+
+        $count = 1;
         return view('sites.create')->with([
-            'suffix' => $suffix,
+            'count' => $count,
+            'suffix' => $suf,
             'siteDesig' => $siteDesignation,
             'region' => $region
-        ]);
+            ]);
     }
 
     public function getRegionList(Request $request){
@@ -102,8 +97,8 @@ class SitesController extends Controller
         $check_site = Site::where('last_name','LIKE',$request->input('last_name'))
                                   ->where('first_name','LIKE',$request->input('first_name'))
                                   ->where('middle_name','LIKE',$request->input('middle_name'))
-                                  ->where('suffix_name','LIKE',$request->input('suffixName'))
-                                  ->where('birthdate','=',$request->input('date_of_birth'))
+                                  ->where('suffix_name','LIKE',$request->input('suffix_name'))
+                                  ->where('birthdate','=',$request->input('birthdate'))
                                   ->get();
 
         $count = count($check_site);
@@ -120,7 +115,7 @@ class SitesController extends Controller
         $partner->last_name = $request->input('last_name');
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
-        $partner->suffix_name = $request->input('suffixName');
+        $partner->suffix_name = $request->input('suffix_name');
         $partner->designation = $request->input('sitDesignation');
         $partner->region_code = $request->input('region');
         $partner->province_code = $request->input('province');
@@ -132,7 +127,7 @@ class SitesController extends Controller
         $partner->secondary_contact = $request->input('secondary_contact');
         $partner->email = $request->input('email');
         $partner->secondary_email = $request->input('secondary_email');
-        $partner->birthdate = $request->input('date_of_birth');
+        $partner->birthdate = $request->input('birthdate');
         $partner->is_active = $request->input('is_active');
 
         $partner->save();
@@ -162,7 +157,33 @@ class SitesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editSites = Site::find($id);
+
+        $suffix = SuffixName::get();
+        $suf = array();
+        foreach ($suffix as $suffixes) {
+            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+        
+        $siteDesignations = SitesDesignation::get();
+        $siteDesig = array();
+        foreach ($siteDesignations as $siteDesignation) {
+            $siteDesig[$siteDesignation->sites_code] = $siteDesignation->sites_desc;
+        }
+
+        $regions = DemographicRegion::get();
+        $reg = array();
+        foreach ($regions as $region) {
+            $reg[$region->region_code] = $region->region_name;
+        }
+
+
+        return view('sites.edit')->with([
+            'sites' => $editSites,
+            'suffix' => $suf,
+            'siteDesig' => $siteDesig,
+            'region' => $reg
+          ]);
     }
 
     /**
@@ -174,7 +195,32 @@ class SitesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $partner = Site::find($id);
+
+        $partner->last_name = $request->input('last_name');
+        $partner->first_name = $request->input('first_name');
+        $partner->middle_name = $request->input('middle_name');
+        $partner->suffix_name = $request->input('suffix_name');
+        $partner->designation = $request->input('sitDesignation');
+        $partner->region_code = $request->input('region');
+        $partner->province_code = $request->input('province');
+        $partner->muncity_code = $request->input('municipality');
+        $partner->site = $request->input('site');
+        $partner->status = $request->input('status');
+        $partner->gender = $request->input('gender');
+        $partner->primary_contact = $request->input('primary_contact');
+        $partner->secondary_contact = $request->input('secondary_contact');
+        $partner->email = $request->input('email');
+        $partner->secondary_email = $request->input('secondary_email');
+        $partner->birthdate = $request->input('date_of_birth');
+        $partner->is_active = $request->input('is_active');
+
+        $partner->save();
+
+        Session::flash('success','Partner '.$partner->last_name.' was Updated Successfully..!');
+
+
+        return redirect()->route('sites.index');//,$partner->id);
     }
 
     /**

@@ -18,7 +18,7 @@ class CreatePartnersTable extends Migration
             $table->increments('id');
             $table->char('organization',10)->nullable();
             $table->char('designation',15)->nullable();
-            $table->string('province')->nullable();
+            $table->char('province',15)->nullable();
             $table->string('last_name',50);
             $table->string('first_name',50);
             $table->string('middle_name',50)->nullable();

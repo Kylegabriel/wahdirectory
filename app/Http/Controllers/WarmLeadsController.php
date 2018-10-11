@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Partner;
+use App\Site;
+use App\SitesDesignation;
+use App\DemographicRegion;
+use App\SuffixName;
 use App\Http\Requests;
 use Session;
 
@@ -20,12 +23,24 @@ class WarmLeadsController extends Controller
     
     public function index(Request $request)
     {   
+        $site = Site::where('status', '=', 'Y')->get();
+        $siteDesignation = SitesDesignation::get();
+        $region = DemographicRegion::get();
 
-        $no = 1;
-        return view('warmleads.index')->with([
+        $suffix = SuffixName::get();
+        $suf = array();
+        foreach ($suffix as $suffixes) {
+            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
 
-                    'count' => $no
-                    ]);
+        $count = 1;
+        return view('sites.index')->with([
+            'sites' => $site,
+            'count' => $count,
+            'suffix' => $suf,
+            'siteDesig' => $siteDesignation,
+            'region' => $region
+            ]);
     }
 
     /**
@@ -36,6 +51,28 @@ class WarmLeadsController extends Controller
     public function create()
     {
 
+    }
+        public function getRegionList(Request $request){
+        $region = DemographicRegion::
+                    where('site','LIKE','%'.$request->site_id.'%')
+                    ->pluck("region_name","region_code");
+        return $region;
+    }
+
+    public function getProvinceList(Request $request)
+    {
+        $province = DemographicProvince::
+                    where("region_code",'LIKE','%'.$request->region_id.'%')
+                    ->pluck("province_name","province_code");
+        return $province;
+    }
+
+    public function getMuncityList(Request $request)
+    {
+        $muncity = DemographicMunicipality::
+                    where('province_code','LIKE','%'.$request->province_id.'%')
+                    ->pluck("muncity_name","muncity_code");
+        return $muncity;
     }
 
     /**

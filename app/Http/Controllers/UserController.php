@@ -23,20 +23,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $search = $request->input('search');
 
-        $users = User::when($search, function ($query) use ($search) {
-                            return $query->where('last_name','LIKE','%'.$search.'%')
-                                         ->orWhere('first_name','LIKE','%'.$search.'%')
-                                         ->orWhere('middle_name','LIKE','%'.$search.'%')
-                                         ->orWhere('primary_contact','LIKE','%'.$search.'%')
-                                         ->orWhere('secondary_contact','LIKE','%'.$search.'%')
-                                         ->orWhere('email','LIKE','%'.$search.'%')
-                                         ->orWhere('secondary_email','LIKE','%'.$search.'%');
-                            })
-                            ->get();
-        $no = 1;
-        return view('profile.index')->with(['user'=>$users,'count'=>$no]);
     }
     /**
      * Show the form for creating a new resource.
@@ -62,18 +49,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $check_user = User::where('last_name','LIKE',$request->input('last_name'))
-                                  ->where('first_name','LIKE',$request->input('first_name'))
-                                  ->where('middle_name','LIKE',$request->input('middle_name'))
-                                  ->where('suffix_name','LIKE',$request->input('suffixName'))
-                                  ->where('birthdate','=',$request->input('date_of_birth'))
+        $check_user = User::where('username','LIKE',$request->input('username'))
                                   ->get();
 
         $count = count($check_user);
 
         if($count >= 1){
 
-          Session::flash('repeat','Record Already Exist');
+          Session::flash('repeat','Username Already Exist');
 
           return redirect()->route('profile.index');//,$partner->id);
 
@@ -83,23 +66,21 @@ class UserController extends Controller
         $user->last_name = $request->input('last_name');
         $user->first_name = $request->input('first_name');
         $user->middle_name = $request->input('middle_name');
-        $user->suffix_name = $request->input('suffixName');
+        $user->suffix_name = $request->input('suffix_name');
+        $user->birthdate = $request->input('birthdate');
         $user->gender = $request->input('gender');
-        $user->designation = $request->input('designation');
-        $user->primary_contact = $request->input('primary_contact');
-        $user->secondary_contact = $request->input('secondary_contact');
+        $user->mobile_number = $request->input('mobile_number');
         $user->email = $request->input('email');
-        $user->secondary_email = $request->input('secondary_email');
-        $user->birthdate = $request->input('date_of_birth');
-        $user->datehired = $request->input('date_of_hired');
-        $user->is_active = $request->input('is_active');
-
+        $user->username = $request->input('username');
+        $user->password = bcrypt($request->input('password'));
+        $user->designation = $request->input('designation');
+        $user->is_admin = $request->input('is_admin');
 
         $user->save();
 
-        Session::flash('success','New WAH-NGO was Successfully Save..!');
+        Session::flash('success','New User was Successfully Save..!');
 
-        return redirect()->route('profile.index');
+        return redirect()->route('settings.index');
         }
     }
 
@@ -123,8 +104,14 @@ class UserController extends Controller
     public function edit($id)
     {
         $editUser = User::find($id);
+        $suffix = SuffixName::get();
+        $role = UserRole::get();
 
-        return view('profile.edit')->with('users',$editUser);
+        return view('profile.edit')->with([
+            'users'  => $editUser,
+            'suffix' => $suffix,
+            'role'=>$role
+            ]);
     }
 
     /**
@@ -137,20 +124,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-
-        $user->last_name = $request->input('last_name');
-        $user->first_name = $request->input('first_name');
-        $user->middle_name = $request->input('middle_name');
-        $user->suffix_name = $request->input('suffixName');
-        $user->gender = $request->input('gender');
-        $user->designation = $request->input('designation');
-        $user->primary_contact = $request->input('primary_contact');
-        $user->secondary_contact = $request->input('secondary_contact');
-        $user->email = $request->input('email');
-        $user->secondary_email = $request->input('secondary_email');
-        $user->birthdate = $request->input('date_of_birth');
-        $user->datehired = $request->input('date_of_hired');
-        $user->is_active = $request->input('is_active');
 
 
         $user->save();

@@ -11,27 +11,13 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table = 'users';
+    protected $table='users';
 
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'middle_name',
-        'suffix_name',
-        'gender',
-        'designation',
-        'primary_contact',
-        'secondary_contact',
-        'email',
-        'secondary_email',
-        'username',
-        'password',
-        'birthdate',
-        'datehired',
-        'is_active',
-        'sites'
+        'last_name', 'first_name', 'middle_name', 'birthdate', 'gender', 'role', 'is_admin', 
+        'username', 'email', 'mobile_number', 'is_active',
+        'designation'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -42,11 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function designations(){
       return $this->belongsTo('App\UserRole','designation','role_id');
-    }
-
-    public function suffix(){
-      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
     }
 }

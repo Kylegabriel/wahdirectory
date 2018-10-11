@@ -1,52 +1,49 @@
 @extends('layouts.app')
-@section('stylesheets')
-
-    {!! Html::style('/css/select2.min.css') !!}
-
-@endsection
+    {!! Html::style('/select2/dist/css/select2.css') !!}
 @section('content')
-<div class="col s12 card">
-    {!! Form::open(['route'=>'interns.store','class'=>'formValidate','method'=>'POST']) !!}
-            <h5><div class="card blue" style="padding:10px"><i class="material-icons small">add</i>Intern</div></h5> 
+<div class="card shadow border-0 border-primary">
+    <div class="card-header border-primary">Create Intern</div>
+        <div class="card-body">
+    {!! Form::open(['route'=>'interns.store','class'=>'formform-control','method'=>'POST']) !!}
           	 {{ csrf_field() }} 
                     <div class="row">
-                            <div class="input-field col s4">
-                                {{ Form::text('last_name',null,['class'=>'validate','id'=>'last_name','data-length'=>'20']) }} 
+                            <div class="col-md-4">
                                 {{ Form::label('last_name','Last Name') }}
+                                {{ Form::text('last_name',null,['class'=>'form-control','id'=>'last_name']) }} 
                             </div>
-                            <div class="input-field col s4">
-                                {{ Form::text('first_name',null,['class'=>'validate','id'=>'first_name','data-length'=>'20']) }}
+                            <div class="col-md-4">
                                 {{ Form::label('first_name','First Name') }}
+                                {{ Form::text('first_name',null,['class'=>'form-control','id'=>'first_name']) }}
                             </div>
-                            <div class="input-field col s4">
-                                {{ Form::text('middle_name',null,['class'=>'validate','id'=>'middle_name','data-length'=>'20']) }}
+                            <div class="col-md-4">
                                 {{ Form::label('middle_name','Middle Name') }}
+                                {{ Form::text('middle_name',null,['class'=>'form-control','id'=>'middle_name']) }}
                             </div>
                     </div>
                     <div class="row">
-                            <div class="input-field col s6">
-                                <select type="text" name="school" id="school" class="validate">
+                            <div class="col-md-6">
+                                {{ Form::label('school','School') }}
+                                <select type="text" name="school" id="school" class="form-control">
                                 <option value="" disabled selected>Choose your option</option>
                                     @foreach($schools as $school)
                                     <option value="{{ $school->id }}">{{ $school->school }}</option>
                                     @endforeach
                                   </select> 
-                                {{ Form::label('school','School') }}
                             </div>
-                            <div class="input-field col s6">
-                                <select type="text" name="course" id="course" class="validate">
+                            <div class="col-md-6">
+                                {{ Form::label('course','Course') }}
+                                <select type="text" name="course" id="course" class="form-control">
                                    <option value="" disabled selected>Choose your option</option>
                                     @foreach($courses as $course)
                                     <option value="{{ $course->id }}">{{ $course->course }}</option>
                                     @endforeach
                                 </select> 
-                                {{ Form::label('course','Course') }}
                             </div>
                     </div> 
                     <div class="row">
-                            <div class="input-field col s12">
+                            <div class="col-md-11">
                                 {{ Form::label('tags', 'Paper') }}
-                                <select class="validate select2-multi" name="tags[]" id="tags" multiple="multiple">
+                                <select class="form-control select2-multi" name="tags[]" id="tags" multiple="multiple" >
                                     @foreach($tags as $tag)
                                         <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
                                     @endforeach
@@ -54,39 +51,46 @@
                             </div>
                     </div>
                     <div class="row">
-                            <div class="input-field col s4">
-                                {{ Form::text('primary_contact',null,['class'=>'validate','id'=>'primary_contact','data-length'=>'11']) }}
+                            <div class="col-md-4">
                                 {{ Form::label('primary_contact','Contact Number') }}
+                                {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }}
                             </div>
-                            <div class="input-field col s4">
-                                {{ Form::email('email',null,['class'=>'validate','id'=>'email']) }} 
+                            <div class="col-md-4">
                                 {{ Form::label('email','Email Address') }}
+                                {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
                             </div>
-                            <div class="input-field col s2">
-                                <i class="material-icons prefix">date_range</i>
-                                {{ Form::text('date_start',null,['class'=>'datepicker','id'=>'date_start']) }}
+                            <div class="col-md-2">
                                 {{ Form::label('date_start','Date Start') }}
+                                {{ Form::date('date_start',null,['class'=>'form-control','id'=>'date_start']) }}
                             </div>
-                            <div class="input-field col s2">
-                                <i class="material-icons prefix">date_range</i>
-                                {{ Form::text('date_end',null,['class'=>'datepicker','id'=>'date_end']) }}
+                            <div class="col-md-2">
                                 {{ Form::label('date_end','Date End') }}
+                                {{ Form::date('date_end',null,['class'=>'form-control','id'=>'date_end']) }}
                             </div>
                     </div> 
                 </div>
-                <div class="row">
-                	<button type="submit" class="waves-effect waves-light btn left">SUBMIT<i class="material-icons right">send</i></button>
-            	    <a href="{{ route('partner.index') }}" class="waves-effect waves-green btn-flat left" style="margin-left:5px"><i class="material-icons left">keyboard_arrow_left</i>Cancel</a>
-            	</div>	
+            <div class="card-footer border-primary">
+                <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
+                    <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
+                    <span class="btn-inner--text">Submit</span>
+                </button>
+                <a href="{{ route('interns.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
+                    <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                    <span class="btn-inner--text">Go Back</span>
+                </a>
+            </div>               
+</div>
     {!! Form::close() !!}
 
 @endsection
 @section('scripts')
 
-    {!! Html::script('/js/select2.min.js') !!}
-
+    {!! Html::script('/select2/dist/js/select2.js') !!}
     <script>
-        $('.select2-multi').select2();
+        $('.select2-multi').select2({
+            width: 'resolve',
+            placeholder: 'Choose Paper'
+        });
     </script>
 
 @endsection

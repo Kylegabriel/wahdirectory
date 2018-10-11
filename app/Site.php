@@ -43,4 +43,9 @@ class Site extends Model
 	  public function designations(){
 	    return $this->belongsTo('App\SitesDesignation','designation','sites_code');
 	  }
+
+	  public function siteSuffix(){
+      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
+    }
+
 }
