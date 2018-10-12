@@ -4,32 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Site;
-use App\SitesDesignation;
-use App\DemographicRegion;
-use App\SuffixName;
 use App\Http\Requests;
 use Session;
 
-class WarmLeadsController extends Controller
+class SitesInactiveController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-        $this->middleware('auth');
-    }
-    
-    public function index(Request $request)
-    {   
-        $site = Site::where('status', '=', 'N')->get();
+    public function index()
+    {
 
-        $count = 1;
-        return view('warmleads.index')->with([
-            'sites' => $site,
-            'count' => $count,
-            ]);
     }
 
     /**
@@ -39,7 +26,7 @@ class WarmLeadsController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -50,7 +37,7 @@ class WarmLeadsController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -72,7 +59,7 @@ class WarmLeadsController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -84,6 +71,21 @@ class WarmLeadsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+    	$siteInactive = Site::find($id);
+
+        $siteInactive->status = $request->input('status');
+        $siteInactive->reasons = $request->input('reasons');
+
+        $siteInactive->save();
+
+        if ($request->input('status') == 'Y') {
+        	Session::flash('success','Account has been Activated');
+            return redirect()->route('sites.index');
+        }else{
+        	Session::flash('repeat','Account has been Deactivated');
+            return redirect()->route('warmleads.index');
+        }
 
     }
 

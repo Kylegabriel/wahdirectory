@@ -3,7 +3,7 @@
 <div class="card shadow border-0  border-primary">
     <div class="card-header  border-primary">Create WAH NGO</div>
         <div class="card-body">
-         {!! Form::open(['route' => 'profile.store','method' => 'POST','class' => 'formform-control']) !!}    
+         {!! Form::open(['route' => 'profile.store','method' => 'POST']) !!}    
                         {{ csrf_field() }}
                                   <div class="row">
                                         <div class="col-md-3">

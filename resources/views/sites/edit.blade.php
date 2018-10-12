@@ -72,18 +72,16 @@
                 {{ Form::select('site', ['' => 'Choose you option','L' => 'Luzon','V' => 'Visayas','M' => 'Mindanao'],null, ['class' => 'form-control','id' => 'site','name' => 'site']) }}
             </div>
             <div class="col-md-3">
-                {{ Form::label('region','Region') }}
-                {{ Form::select('region',$region,null, ['class' => 'form-control','id' => 'region','name' => 'region']) }}
+                {{ Form::label('region_code','Region') }}
+                {{ Form::select('region_code',$region,null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
             </div>
             <div class="col-md-3">
-                {{ Form::label('province','Province') }}
-                <select type="text" id="province" name="province" class="form-control">
-                </select>
+                {{ Form::label('province_code','Province') }}
+                {{ Form::select('province_code',$province,null, ['class' => 'form-control','id' => 'province_code','name' => 'province_code']) }}
             </div>
             <div class="col-md-3">
-                {{ Form::label('municipality','Municipality') }}
-                <select type="text" id="municipality" name="municipality" class="form-control">
-                </select>
+                {{ Form::label('muncity_code','Municipality') }}
+                {{ Form::select('muncity_code',$municipality,null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
             </div>
         </div> 
     </div>
@@ -101,89 +99,6 @@
         {!! Form::close() !!}
 </div>
 @section('scripts')        
-<script>
-
-    $('#site').on('change',function(){
-    var siteID = $(this).val();    
-    if(siteID){
-        $.ajax({
-           type:"GET",
-           url:"{{url('sites/create/get-region-list')}}?site_id="+siteID,
-           success:function(res){ 
-           console.log(res);           
-            if(res){
-                $("#region").html("<option disabled selected>sadfd</option>");
-                $("#region").html("<option disabled selected>Choose your Region</option>");
-                $.each(res,function(key,value){
-                    //console.log(key,value);
-                    $('#region').html();
-                    $("#region").append('<option value="'+key+'">'+value+'</option>');
-                 });
-           
-            }else{
-               $("#region").empty();
-            }
-           }
-        });
-    }
-    else{
-        $("#region").empty();
-        $("#province").empty();
-    }   
-   });
-
-    $('#region').on('change',function(){
-    var regionID = $(this).val();    
-    if(regionID){
-        $.ajax({
-           type:"GET",
-           url:"{{url('sites/create/get-province-list')}}?region_id="+regionID,
-           success:function(res){            
-            if(res){
-                $("#province").empty();
-                $("#province").append("<option disabled selected>Choose your Province</option>");
-                $.each(res,function(key,value){
-                    $('#province').html();
-                    $("#province").append('<option value="'+key+'">'+value+'</option>');
-                });
-           
-            }else{
-               $("#province").empty();
-            }
-           }
-        });
-    }
-    else{
-        $("#province").empty();
-        $("#municipality").empty();
-    }   
-   });
-
-    $('#province').on('change',function(){
-    var provinceID = $(this).val();    
-    if(provinceID){
-        $.ajax({
-           type:"GET",
-           url:"{{url('sites/create/get-muncity-list')}}?province_id="+provinceID,
-           success:function(res){               
-            if(res){
-                $("#municipality").empty();
-                $("#municipality").append('<option disabled selected>Choose your Municipality</option>');
-                $.each(res,function(key,value){
-                    $('#municipality').html();
-                    $("#municipality").append('<option value="'+key+'">'+value+'</option>');
-                });
-           
-            }else{
-               $("#municipality").empty();
-            }
-           }
-        });
-    }
-    else{
-        $("#municipality").empty();
-    }   
-   });
-</script>
+    @include('partials._sitesScript')
 @endsection
 @endsection

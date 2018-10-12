@@ -54,10 +54,11 @@
 					<td>{{ $site->birthdate }}</td>
 					<td>
 						<a  href="{{ route('sites.edit',$site->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-						<!-- <a data-toggle="modal" data-target="#sitesActivation" class="btn btn-link text-primary" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-eye fa-2x"></i></a> -->
+						<a data-toggle="modal" data-target="#disable{{ $site->id }}" class="btn btn-link text-primary" data-toggle="tooltip" data-placement="left" title="Activate"><i class="fa fa-eye fa-2x"></i></a>
 						</a>
 					</td>
 				</tr>
+				@include('partials._activeInactiveSites')
 			@endforeach				  
 			</tbody>
 		</table>

@@ -23,7 +23,8 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $profiles = Profile::get();
+        $profiles = Profile::orderBy('id','desc')
+                            ->get();
         
         $no = 1;
         return view('profile.index')->with([

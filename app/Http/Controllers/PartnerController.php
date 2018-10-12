@@ -26,7 +26,8 @@ class PartnerController extends Controller
     
     public function index(Request $request)
     {
-        $partner = Partner::get();
+        $partner = Partner::orderBy('id','desc')
+                            ->get();
 
         $no = 1;
         return view('partner.index')->with([ 

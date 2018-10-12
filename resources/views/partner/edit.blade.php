@@ -3,7 +3,7 @@
 <div class="card shadow border-0 border-primary">
     <div class="card-header border-primary">Edit Partner Organization</div>
         <div class="card-body">
-                {!! Form::model($partners, ['route' => ['partner.update', $partners->id], 'method' => 'PUT','class'=>'formValidate']) !!} 
+                {!! Form::model($partners, ['route' => ['partner.update', $partners->id], 'method' => 'PUT']) !!} 
                         {{ csrf_field() }} 
                             <div class="row">
                                 <div class="col-md-3">
@@ -23,7 +23,6 @@
                                         {{ Form::select('suffix_name', $suffix,'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
                                 </div>
                             </div>
-
 
                             <div class="row">
                                 <div class="col-md-3">

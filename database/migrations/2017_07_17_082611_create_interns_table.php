@@ -21,7 +21,6 @@ class CreateInternsTable extends Migration
             $table->string('middle_name')->nullable();
             $table->integer('course_id')->unsigned();
             $table->integer('school_id')->unsigned();
-            //$table->integer('papers_id')->unsigned();
             $table->string('primary_contact',12);
             $table->string('email',50)->nullable();
             $table->date('date_start');
@@ -30,7 +29,6 @@ class CreateInternsTable extends Migration
 
             $table->foreign('course_id')->references('id')->on('course');
             $table->foreign('school_id')->references('id')->on('school');
-            //$table->foreign('papers_id')->references('id')->on('papers');
         });
     }
 
@@ -44,7 +42,6 @@ class CreateInternsTable extends Migration
         Schema::table('interns', function ($table) {
             $table->dropForeign('interns_course_id_foreign');
             $table->dropForeign('interns_school_id_foreign');
-            //$table->dropForeign('intern_papers_id_foreign');
         });
         Schema::drop('interns');
     }

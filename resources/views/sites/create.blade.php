@@ -76,18 +76,18 @@
                 {{ Form::select('site', ['' => 'Choose you option','L' => 'Luzon','V' => 'Visayas','M' => 'Mindanao'],null, ['class' => 'form-control','id' => 'site','name' => 'site']) }}
             </div>
             <div class="col-md-3">
-                {{ Form::label('region','Region') }}
-                <select type="text" id="region" name="region" class="form-control">
+                {{ Form::label('region_code','Region') }}
+                <select type="text" id="region_code" name="region_code" class="form-control">
                 </select>
             </div>
             <div class="col-md-3">
-                {{ Form::label('province','Province') }}
-                <select type="text" id="province" name="province" class="form-control">
+                {{ Form::label('province_code','Province') }}
+                <select type="text" id="province_code" name="province_code" class="form-control">
                 </select>
             </div>
             <div class="col-md-3">
-                {{ Form::label('municipality','Municipality') }}
-                <select type="text" id="municipality" name="municipality" class="form-control">
+                {{ Form::label('muncity_code','Municipality') }}
+                <select type="text" id="muncity_code" name="muncity_code" class="form-control">
                 </select>
             </div>
         </div>
@@ -108,89 +108,5 @@
 </div>
 @endsection
 @section('scripts')        
-<script>
-    $('#site').on('change',function(){
-    var siteID = $(this).val();    
-    if(siteID){
-        $.ajax({
-           type:"GET",
-           url:"{{url('sites/create/get-region-list')}}?site_id="+siteID,
-           success:function(res){ 
-           console.log(res);           
-            if(res){
-                $("#region").empty();
-                $("#region").html("<option disabled selected>Choose your Region</option>");
-                $.each(res,function(key,value){
-                    //console.log(key,value);
-                    $('#region').html();
-                    $("#region").append('<option value="'+key+'">'+value+'</option>');
-                 });
-           
-            }else{
-               $("#region").empty();
-            }
-           }
-        });
-    }
-    else{
-        $("#region").empty();
-        $("#province").empty();
-    }   
-
-   });
-
-    $('#region').on('change',function(){
-    var regionID = $(this).val();    
-    if(regionID){
-        $.ajax({
-           type:"GET",
-           url:"{{url('sites/create/get-province-list')}}?region_id="+regionID,
-           success:function(res){            
-            if(res){
-                $("#province").empty();
-                $("#province").append("<option disabled selected>Choose your Province</option>");
-                $.each(res,function(key,value){
-                    $('#province').html();
-                    $("#province").append('<option value="'+key+'">'+value+'</option>');
-                });
-           
-            }else{
-               $("#province").empty();
-            }
-           }
-        });
-    }
-    else{
-        $("#province").empty();
-        $("#municipality").empty();
-    }   
-
-   });
-
-    $('#province').on('change',function(){
-    var provinceID = $(this).val();    
-    if(provinceID){
-        $.ajax({
-           type:"GET",
-           url:"{{url('sites/create/get-muncity-list')}}?province_id="+provinceID,
-           success:function(res){               
-            if(res){
-                $("#municipality").empty();
-                $("#municipality").append('<option disabled selected>Choose your Municipality</option>');
-                $.each(res,function(key,value){
-                    $('#municipality').html();
-                    $("#municipality").append('<option value="'+key+'">'+value+'</option>');
-                });
-           
-            }else{
-               $("#municipality").empty();
-            }
-           }
-        });
-    }
-    else{
-        $("#municipality").empty();
-    }     
-   });
-</script>
+    @include('partials._sitesScript')
 @endsection

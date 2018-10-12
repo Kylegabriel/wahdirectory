@@ -3,7 +3,7 @@
 <div class="card shadow border-0  border-primary">
     <div class="card-header border-primary">Edit WAH-NGO</div>
         <div class="card-body">
-         {!! Form::model($profile, ['route' => ['profile.update', $profile->id], 'method' => 'PUT','class'=>'formValidate']) !!}     
+         {!! Form::model($profile, ['route' => ['profile.update', $profile->id], 'method' => 'PUT']) !!}     
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-3">

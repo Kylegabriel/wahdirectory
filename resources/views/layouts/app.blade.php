@@ -8,11 +8,10 @@
     <title>WAH Directory</title>
 
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/DataTables/Data/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/toastr/build/toastr.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
     <link type="text/css" href="/argon-design/argon-design/assets/css/argon.css" rel="stylesheet">
+    <link type="text/css" href="/DataTables/Data/css/dataTables.bootstrap4.min.css" rel="stylesheet"> 
     @yield('stylesheets')
 </head>
 <body>  
@@ -86,10 +85,10 @@
    
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="/node_modules/popper/popper.min.js"></script>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/DataTables/datatables.js"></script>
     <script src="/DataTables/Data/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/node_modules/popper/popper.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/toastr/toastr.js"></script>
     <script src="/argon-design/argon-design/assets/js/argon.js"></script>
     <script src="/js/_script.js"></script>

@@ -54,11 +54,11 @@
                             <td>{{ $profile->datehired }}</td>
                             <td>
                               <a  href="{{ route('profile.edit',$profile->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-                              <a data-toggle="modal" data-target="#showInfo" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Info"><i class="fa fa-clipboard fa-2x"></i></a>
+                              <a data-toggle="modal" data-target="#showInfo{{ $profile->id }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Info"><i class="fa fa-clipboard fa-2x"></i></a>
                             </td>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="showInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="showInfo{{ $profile->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">

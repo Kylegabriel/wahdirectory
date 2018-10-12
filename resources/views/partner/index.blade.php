@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@section('stylesheets')
-
-@endsection
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-dark bg-success rounded">
     <a class="navbar-brand" href="">Partner</a>
@@ -9,9 +6,6 @@
       <div class="navbar-collapse-header">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a href="./index.html">
-              <img src="./assets/img/brand/blue.png">
-            </a>
           </div>
           <div class="col-6 collapse-close">
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-inner-primary" aria-controls="nav-inner-primary" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +56,7 @@
 					<td>{{ $partners->birthdate }}</td>
 					<td>
 						<a  href="{{ route('partner.edit',$partners->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-            @if($partners->is_active == '')
+            			@if($partners->is_active == '')
 						@else
 						@endif
 					</td>

@@ -28,7 +28,9 @@ class SitesController extends Controller
     public function index(Request $request)
     {        
 
-        $site = Site::where('status', '=', 'Y')->get();
+        $site = Site::where('status', '=', 'Y')
+                      ->orderBy('id','desc')
+                      ->get();
 
         $count = 1;
         return view('sites.index')->with([
@@ -117,9 +119,9 @@ class SitesController extends Controller
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
         $partner->designation = $request->input('sitDesignation');
-        $partner->region_code = $request->input('region');
-        $partner->province_code = $request->input('province');
-        $partner->muncity_code = $request->input('municipality');
+        $partner->region_code = $request->input('region_code');
+        $partner->province_code = $request->input('province_code');
+        $partner->muncity_code = $request->input('muncity_code');
         $partner->site = $request->input('site');
         $partner->status = $request->input('status');
         $partner->gender = $request->input('gender');
@@ -177,12 +179,25 @@ class SitesController extends Controller
             $reg[$region->region_code] = $region->region_name;
         }
 
+        $provinces = DemographicProvince::get();
+        $prov = array();
+        foreach ($provinces as $province) {
+            $prov[$province->province_code] = $province->province_name;
+        }
+
+        $municipalities = DemographicMunicipality::get();
+        $muncity = array();
+        foreach ($municipalities as $municipality) {
+            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        }
 
         return view('sites.edit')->with([
             'sites' => $editSites,
             'suffix' => $suf,
             'siteDesig' => $siteDesig,
-            'region' => $reg
+            'region' => $reg,
+            'province' => $prov,
+            'municipality' => $muncity
           ]);
     }
 
@@ -195,6 +210,8 @@ class SitesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         $partner = Site::find($id);
 
         $partner->last_name = $request->input('last_name');
@@ -202,9 +219,9 @@ class SitesController extends Controller
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
         $partner->designation = $request->input('sitDesignation');
-        $partner->region_code = $request->input('region');
-        $partner->province_code = $request->input('province');
-        $partner->muncity_code = $request->input('municipality');
+        $partner->region_code = $request->input('region_code');
+        $partner->province_code = $request->input('province_code');
+        $partner->muncity_code = $request->input('muncity_code');
         $partner->site = $request->input('site');
         $partner->status = $request->input('status');
         $partner->gender = $request->input('gender');
@@ -212,7 +229,7 @@ class SitesController extends Controller
         $partner->secondary_contact = $request->input('secondary_contact');
         $partner->email = $request->input('email');
         $partner->secondary_email = $request->input('secondary_email');
-        $partner->birthdate = $request->input('date_of_birth');
+        $partner->birthdate = $request->input('birthdate');
         $partner->is_active = $request->input('is_active');
 
         $partner->save();

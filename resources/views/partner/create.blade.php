@@ -3,7 +3,7 @@
 <div class="card shadow border-0 border-primary">
     <div class="card-header border-primary">Create Partner</div>
         <div class="card-body">
-        {!! Form::open(['route' => 'partner.store','method' => 'POST','class' => 'formValidate']) !!}
+        {!! Form::open(['route' => 'partner.store','method' => 'POST']) !!}
               	{{ csrf_field() }} 
                     <div class="row">
                             <div class="col-md-3">
