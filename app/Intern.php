@@ -22,11 +22,11 @@ class Intern extends Model
     ];
 
     public function courses(){
-    	return $this->belongsTo('App\InternCourse','course_id','id');
+    	return $this->hasOne('App\InternCourse','id','course_id');
     }
     
     public function schools(){
-    	return $this->belongsTo('App\InternSchool','school_id','id');
+    	return $this->hasOne('App\InternSchool','id','school_id');
     }
 
     public function tags(){
@@ -34,6 +34,6 @@ class Intern extends Model
     }
 
     public function internSuffix(){
-      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
+      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
     }
 }

@@ -9,22 +9,22 @@ class SuffixName extends Model
     protected $table = 'suffixes';
 
     public function partner(){
-    	$this->hasOne('App\Partner');
+    	$this->belongsTo('App\Partner');
     }
 
     public function user(){
-    	$this->hasOne('App\User');
+    	$this->belongsTo('App\User');
     }
 
-    public function warmleads(){
-    	$this->hasOne('App\WarmLeads');
+    public function profile(){
+        $this->belongsTo('App\Profile');
     }
 
     public function sites(){
-        $this->hasOne('App\Site');
+        $this->belongsTo('App\Site');
     }
 
     public function interns(){
-        $this->hasOne('App\Intern');
+        $this->belongsTo('App\Intern');
     }
 }

@@ -35,10 +35,10 @@ class Profile extends Model
     ];
 
     public function designations(){
-      return $this->belongsTo('App\UserRole','designation','role_id');
+      return $this->hasOne('App\UserRole','role_id','designation');
     }
 
     public function suffix(){
-      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
+      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
     }
 }

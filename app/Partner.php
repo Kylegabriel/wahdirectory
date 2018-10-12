@@ -26,16 +26,16 @@ class Partner extends Model
 	];
 
 	public function partnerDesignation(){
-      return $this->belongsTo('App\PartnerDesignation','designation','designation_id');
+      return $this->hasOne('App\PartnerDesignation','designation','designation_id');
     }
     public function partnerOrganization(){
-      return $this->belongsTo('App\PartnerOrganization','organization','organization_id');
+      return $this->hasOne('App\PartnerOrganization','organization','organization_id');
     }
     public function partnerSuffix(){
-      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
+      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
     }
         public function partnerProvince(){
-      return $this->belongsTo('App\DemographicProvince','province','province_code');
+      return $this->hasOne('App\DemographicProvince','province_code','province');
     }
     
 }

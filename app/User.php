@@ -30,6 +30,6 @@ class User extends Authenticatable
 
 
     public function designations(){
-      return $this->belongsTo('App\UserRole','designation','role_id');
+      return $this->hasOne('App\UserRole','role_id','designation');
     }
 }

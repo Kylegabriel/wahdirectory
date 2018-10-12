@@ -9,7 +9,7 @@ class PartnerDesignation extends Model
     protected $table = 'designations';
 
     public function partner(){
-    	$this->hasOne('App\Partner');
+    	$this->belongsTo('App\Partner');
     }
 
     public function warmleads(){

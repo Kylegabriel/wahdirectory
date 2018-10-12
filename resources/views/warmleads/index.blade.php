@@ -45,8 +45,8 @@
 					<td>{{ $site->email . ' ' . $site->secondary_email }}</td>
 					<td>{{ $site->birthdate }}</td>
 					<td>
-						<a data-toggle="modal" data-target="#disable{{ $site->id }}" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="left" title="Activate"><i class="fa fa-eye-slash fa-2x"></i></a>
 						<a  href="{{ route('sites.edit',$site->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
+						<a data-toggle="modal" data-target="#disable{{ $site->id }}" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="left" title="Activate"><i class="fa fa-eye-slash fa-2x"></i></a>
 					</td>
 				</tr>
 					@include('partials._activeInactiveSites')

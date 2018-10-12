@@ -11,6 +11,6 @@ class InternCourse extends Model
     public $timestamps = false;
 
     public function interns(){
-    	return $this->hasOne('App\Intern');
+    	return $this->belongsTo('App\Intern');
     }
 }

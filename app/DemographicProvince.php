@@ -16,10 +16,10 @@ class DemographicProvince extends Model
 	];
 
 	public function site(){
-	    return $this->hasOne('App\Site');
+	    return $this->belongsTo('App\Site');
 	}
 
 	public function partner(){
-        $this->hasOne('App\Partner');
+        $this->belongsTo('App\Partner');
     }
 }

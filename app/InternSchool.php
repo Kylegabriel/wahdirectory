@@ -12,6 +12,6 @@ class InternSchool extends Model
     protected $fillable = ['school'];
 
     public function interns(){
-    	return $this->hasOne('App\Intern');
+    	return $this->belongsTo('App\Intern');
     }
 }

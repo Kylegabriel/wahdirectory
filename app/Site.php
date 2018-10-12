@@ -29,23 +29,23 @@ class Site extends Model
     ];
 
 	  public function region(){
-	    return $this->belongsTo('App\DemographicRegion','region_code','region_code');
+	    return $this->hasOne('App\DemographicRegion','region_code','region_code');
 	  }
 
 	  public function province(){
-	    return $this->belongsTo('App\DemographicProvince','province_code','province_code');
+	    return $this->hasOne('App\DemographicProvince','province_code','province_code');
 	  }
 
 	  public function municipality(){
-	    return $this->belongsTo('App\DemographicMunicipality','muncity_code','muncity_code');
+	    return $this->hasOne('App\DemographicMunicipality','muncity_code','muncity_code');
 	  }
 
 	  public function designations(){
-	    return $this->belongsTo('App\SitesDesignation','designation','sites_code');
+	    return $this->hasOne('App\SitesDesignation','sites_code','designation');
 	  }
 
 	  public function siteSuffix(){
-      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
+      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
     }
 
 }

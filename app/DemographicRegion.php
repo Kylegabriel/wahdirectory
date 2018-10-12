@@ -15,6 +15,6 @@ class DemographicRegion extends Model
 	];
 	
 	public function site(){
-	    return $this->hasOne('App\Site');
+	    return $this->belongsTo('App\Site');
 	}
 }

@@ -11,4 +11,8 @@ class UserRole extends Model
     public function user(){
     	$this->hasOne('App\User');
     }
+
+    public function profile(){
+    	$this->belongsTo('App\Profile');
+    }
 }

@@ -9,7 +9,7 @@ class PartnerOrganization extends Model
     protected $table = 'organizations';
 
     public function partner(){
-    	$this->hasOne('App\Partner');
+    	$this->belongsTo('App\Partner');
     }
 
     public function warmleads(){

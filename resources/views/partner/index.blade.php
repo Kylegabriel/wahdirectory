@@ -56,15 +56,12 @@
 					<td>{{ date('F j, Y', strtotime($partners->birthdate)) }}</td>
 					<td>
 						<a  href="{{ route('partner.edit',$partners->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-						@if($partners->is_active == 'Y')
-						<a data-toggle="modal" data-target="#activeInactive{{ $partners->id }}" class="btn btn-link text-primary" data-toggle="tooltip" data-placement="left" title="Activate">
-							<i class="fa fa-eye fa-2x"></i>
+						
+						<a data-toggle="modal" data-target="#activeInactive{{ $partners->id }}"  data-toggle="tooltip" data-placement="left"
+							class="btn btn-link text-{{ $partners->is_active == 'Y' ? 'primary' : 'danger' }}" 
+							title="{{ $partners->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
+						<i class="fa {{ $partners->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
 						</a>
-						@else
-							<a data-toggle="modal" data-target="#activeInactive{{ $partners->id }}" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="left" title="Deactivate">
-							<i class="fa fa-eye-slash fa-2x"></i>
-						</a>
-						@endif
 					</td>
 				</tr>
 
@@ -79,7 +76,7 @@
 					        </button>
 					      </div>
 					      <div class="modal-body">
-					        <h5>Would you like to {{ $partners->status == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
+					        <h5>Would you like to {{ $partners->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
 					        {!! Form::model($partners, ['route' => ['partnerInactive.update', $partners->id], 'method' => 'PUT']) !!}
 					        <input type="hidden" name="is_active" id="is_active" value="{{ $partners->is_active == 'N' ? 'Y' : 'N' }}">
 					      </div>
