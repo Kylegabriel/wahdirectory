@@ -53,14 +53,44 @@
 					<td>{{ $partners->partnerProvince['province_name'] }}</td>
 					<td>{{ $partners->primary_contact . ' ' .$partners->secondary_contact}}</td>
 					<td>{{ $partners->email . ' ' . $partners->secondary_email }}</td>
-					<td>{{ $partners->birthdate }}</td>
+					<td>{{ date('F j, Y', strtotime($partners->birthdate)) }}</td>
 					<td>
 						<a  href="{{ route('partner.edit',$partners->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-            			@if($partners->is_active == '')
+						@if($partners->is_active == 'Y')
+						<a data-toggle="modal" data-target="#activeInactive{{ $partners->id }}" class="btn btn-link text-primary" data-toggle="tooltip" data-placement="left" title="Activate">
+							<i class="fa fa-eye fa-2x"></i>
+						</a>
 						@else
+							<a data-toggle="modal" data-target="#activeInactive{{ $partners->id }}" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="left" title="Deactivate">
+							<i class="fa fa-eye-slash fa-2x"></i>
+						</a>
 						@endif
 					</td>
 				</tr>
+
+					<!-- Modal -->
+					<div class="modal fade" id="activeInactive{{ $partners->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLongTitle">Please Confirm!</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        <h5>Would you like to {{ $partners->status == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
+					        {!! Form::model($partners, ['route' => ['partnerInactive.update', $partners->id], 'method' => 'PUT']) !!}
+					        <input type="hidden" name="is_active" id="is_active" value="{{ $partners->is_active == 'N' ? 'Y' : 'N' }}">
+					      </div>
+					      <div class="modal-footer">
+					      	<button type="submit" class="btn btn-primary">Save changes</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					      {!! Form::close() !!}
+					    </div>
+					  </div>
+					</div>
 			 @endforeach					  
 			</tbody>
 		</table>

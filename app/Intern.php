@@ -24,10 +24,16 @@ class Intern extends Model
     public function courses(){
     	return $this->belongsTo('App\InternCourse','course_id','id');
     }
+    
     public function schools(){
     	return $this->belongsTo('App\InternSchool','school_id','id');
     }
+
     public function tags(){
     	return $this->belongsToMany('App\Tag');
+    }
+
+    public function internSuffix(){
+      return $this->belongsTo('App\SuffixName','suffix_name','suffix_code');
     }
 }

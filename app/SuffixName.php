@@ -23,4 +23,8 @@ class SuffixName extends Model
     public function sites(){
         $this->hasOne('App\Site');
     }
+
+    public function interns(){
+        $this->hasOne('App\Intern');
+    }
 }

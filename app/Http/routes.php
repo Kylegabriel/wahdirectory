@@ -30,6 +30,7 @@ Route::resource('course','CourseController',['only' =>['store','update']]);
 Route::resource('papers','PaperController',['only' =>['store','update']]);
 Route::resource('users','UserController',['only' =>['store','update']]);
 Route::resource('sitesInactive','SitesInactiveController',['only' =>['update']]);
+Route::resource('partnerInactive','PartnerInactiveController',['only' =>['update']]);
 
 Route::auth();
 

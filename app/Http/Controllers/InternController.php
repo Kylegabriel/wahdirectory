@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\InternCourse;
 use App\InternSchool;
 use App\Tag;
+use App\SuffixName;
 use Session;
 
 class InternController extends Controller
@@ -24,23 +25,11 @@ class InternController extends Controller
     public function index(Request $request)
     {
         $intern = Intern::get();
-        $course = InternCourse::all();
-        $school = InternSchool::all();
-        $tag = Tag::all();
-
-        $tags = Tag::all();
-        $tags2 = [];
-        foreach ($tags as $tag) {
-            $tags2[$tag->id] = $tag->name;
-        }
 
         $count = 1;
         return view('intern.index')->with([ 
             'interns'=> $intern,
             'count' => $count,
-            'courses' => $course,
-            'schools' => $school,
-            'tags' => $tags2,
             ]);
     }
 
@@ -52,6 +41,24 @@ class InternController extends Controller
     public function create()
     {
 
+        $course = InternCourse::all();
+        $school = InternSchool::all();
+        $tags = Tag::all();
+
+        $suffix = SuffixName::get();
+        $suf = array();
+        foreach ($suffix as $suffixes) {
+            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+
+
+        $count = 1;
+        return view('intern.create')->with([ 
+            'courses' => $course,
+            'schools' => $school,
+            'tags' => $tags,
+            'suffix' => $suf
+            ]);
     }
 
     /**
@@ -65,6 +72,7 @@ class InternController extends Controller
         $check_intern = Intern::where('last_name','LIKE',$request->input('last_name'))
                                   ->where('first_name','LIKE',$request->input('first_name'))
                                   ->where('middle_name','LIKE',$request->input('middle_name'))
+                                  ->where('suffix_name','LIKE',$request->input('suffix_name'))
                                   ->get();
 
         $count = count($check_intern);
@@ -81,6 +89,7 @@ class InternController extends Controller
         $intern->last_name = $request->input('last_name');
         $intern->first_name = $request->input('first_name');
         $intern->middle_name = $request->input('middle_name');
+        $intern->suffix_name = $request->input('suffix_name');
         $intern->email = $request->input('email');
         $intern->school_id = $request->input('school');
         $intern->course_id = $request->input('course');
@@ -121,12 +130,40 @@ class InternController extends Controller
     {
         $internedit = Intern::find($id);
 
+        $tags = Tag::all();
+        $tags2 = [];
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
 
+        $schools = InternSchool::all();
+        $sch = [];
+        foreach ($schools as $school) {
+            $sch[$school->id] = $school->school;
+        }
 
+        $courses = InternCourse::all();
+        $cours = [];
+        foreach ($courses as $course) {
+            $cours[$course->id] = $course->course;
+        }
+
+        $suffix = SuffixName::get();
+        $suf = array();
+        foreach ($suffix as $suffixes) {
+            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+
+        $count = 1;
         return view('intern.edit')->with([
-               
-                'internEdit' => $internedit
+            'count' => $count,
+            'intern' => $internedit,
+            'courses' => $cours,
+            'schools' => $sch,
+            'tags' => $tags2,
+            'suffix' => $suf
           ]);
+
     }
 
     /**
@@ -143,6 +180,7 @@ class InternController extends Controller
         $intern->last_name = $request->input('last_name');
         $intern->first_name = $request->input('first_name');
         $intern->middle_name = $request->input('middle_name');
+        $intern->suffix_name = $request->input('suffix_name');
         $intern->email = $request->input('email');
         $intern->school_id = $request->input('school');
         $intern->course_id = $request->input('course');

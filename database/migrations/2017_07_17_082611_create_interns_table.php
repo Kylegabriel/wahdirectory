@@ -18,7 +18,8 @@ class CreateInternsTable extends Migration
             $table->increments('id');
             $table->string('last_name');
             $table->string('first_name');
-            $table->string('middle_name')->nullable();
+            $table->string('middle_name');
+            $table->char('suffix_name',5);
             $table->integer('course_id')->unsigned();
             $table->integer('school_id')->unsigned();
             $table->string('primary_contact',12);

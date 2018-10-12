@@ -37,4 +37,5 @@ class Partner extends Model
         public function partnerProvince(){
       return $this->belongsTo('App\DemographicProvince','province','province_code');
     }
+    
 }
