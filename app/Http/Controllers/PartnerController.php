@@ -92,8 +92,8 @@ class PartnerController extends Controller
         $partner->last_name = $request->input('last_name');
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
-        $partner->organization = $request->input('partnerOrganization');
-        $partner->designation = $request->input('partnerDesignation');
+        $partner->organization = $request->input('organization');
+        $partner->designation = $request->input('designation');
         $partner->province = $request->input('province');
         $partner->suffix_name = $request->input('suffix_name');
         $partner->gender = $request->input('gender');
@@ -137,7 +137,7 @@ class PartnerController extends Controller
         $designations = PartnerDesignation::get();
         $desig = array();
         foreach ($designations as $designation) {
-            $desig[$designation->designation_id] = $designation->designation;
+            $desig[$designation->id] = $designation->designation;
         }
 
         $suffix = SuffixName::get();
@@ -149,7 +149,7 @@ class PartnerController extends Controller
         $organizations = PartnerOrganization::get();
         $org = array();
         foreach ($organizations as $organization) {
-            $org[$organization->organization_id] = $organization->organization;
+            $org[$organization->id] = $organization->organization;
         }
 
         $provinces = DemographicProvince::orderBy('province_name','asc')->get();
@@ -185,8 +185,8 @@ class PartnerController extends Controller
         $partner->last_name = $request->input('last_name');
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
-        $partner->organization = $request->input('partnerOrganization');
-        $partner->designation = $request->input('partnerDesignation');
+        $partner->organization = $request->input('organization');
+        $partner->designation = $request->input('designation');
         $partner->province = $request->input('province');
         $partner->suffix_name = $request->input('suffix_name');
         $partner->gender = $request->input('gender');

@@ -48,8 +48,8 @@
 					<td>{{ $count++ .'.' }}</td>
 					<td>{{ $partners->last_name . ", " . $partners->first_name . " " . $partners->middle_name . " " }} @if($partners->suffix_name == 'NOTAP') @else {{ $partners->suffix_name }} @endif</td>
 					<td>{{ $partners->gender }}</td>
-					<td>{{ $partners->organization }}</td>
-					<td>{{ $partners->designation }}</td>
+					<td>{{ $partners->partnerOrganization['organization'] }}</td>
+					<td>{{ $partners->partnerDesignation['designation'] }}</td>
 					<td>{{ $partners->partnerProvince['province_name'] }}</td>
 					<td>{{ $partners->primary_contact . ' ' .$partners->secondary_contact}}</td>
 					<td>{{ $partners->email . ' ' . $partners->secondary_email }}</td>
@@ -61,6 +61,7 @@
 							class="btn btn-link text-{{ $partners->is_active == 'Y' ? 'primary' : 'danger' }}" 
 							title="{{ $partners->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
 						<i class="fa {{ $partners->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
+						
 						</a>
 					</td>
 				</tr>
@@ -88,6 +89,7 @@
 					    </div>
 					  </div>
 					</div>
+
 			 @endforeach					  
 			</tbody>
 		</table>

@@ -26,10 +26,10 @@ class Partner extends Model
 	];
 
 	public function partnerDesignation(){
-      return $this->hasOne('App\PartnerDesignation','designation','designation_id');
+      return $this->hasOne('App\PartnerDesignation','id','designation');
     }
     public function partnerOrganization(){
-      return $this->hasOne('App\PartnerOrganization','organization','organization_id');
+      return $this->hasOne('App\PartnerOrganization','id','organization');
     }
     public function partnerSuffix(){
       return $this->hasOne('App\SuffixName','suffix_name','suffix_code');

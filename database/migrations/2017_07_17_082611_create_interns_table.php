@@ -26,6 +26,7 @@ class CreateInternsTable extends Migration
             $table->string('email',50)->nullable();
             $table->date('date_start');
             $table->date('date_end')->nullable();
+            $table->char('is_active',1);
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('course');

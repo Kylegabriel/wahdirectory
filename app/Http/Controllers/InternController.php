@@ -96,10 +96,17 @@ class InternController extends Controller
         $intern->primary_contact = $request->input('primary_contact');
         $intern->date_start = $request->input('date_start');
         $intern->date_end = $request->input('date_end');
+        $intern->is_active = $request->input('is_active');
+
 
         $intern->save();
 
-        $intern->tags()->sync($request->input('tags'), false);
+        
+        if (isset($request->tags)) {
+            $intern->tags()->sync($request->input('tags'), false);
+        } else {
+            $intern->tags()->sync(array());
+        }
 
         Session::flash('success','Intern was Successfully Save');
 
@@ -187,10 +194,15 @@ class InternController extends Controller
         $intern->primary_contact = $request->input('primary_contact');
         $intern->date_start = $request->input('date_start');
         $intern->date_end = $request->input('date_end');
+        $intern->is_active = $request->input('is_active');
 
         $intern->save();
 
-        $intern->tags()->sync($request->input('tags'));
+        if (isset($request->tags)) {
+            $intern->tags()->sync($request->tags);
+        } else {
+            $intern->tags()->sync(array());
+        }
 
         Session::flash('success','Intern was Successfully Updated');
 

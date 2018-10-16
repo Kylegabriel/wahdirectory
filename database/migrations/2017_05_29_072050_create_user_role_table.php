@@ -35,6 +35,7 @@ class CreateUserRoleTable extends Migration
             ['role_id' => 'HPP', 'role_name' => 'Health Program Partner'],
             ['role_id' => 'NSP', 'role_name' => 'Network & System Partner'],
             ['role_id' => 'PIP', 'role_name' => 'Platform & Innovation Partner'],
+            ['role_id' => 'NONE', 'role_name' => 'NONE'],
         ]);
 
 

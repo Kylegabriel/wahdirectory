@@ -94,6 +94,7 @@ class ProfileController extends Controller
         $user->secondary_email = $request->input('secondary_email');
         $user->birthdate = $request->input('birthdate');
         $user->datehired = $request->input('datehired');
+        $user->is_active = $request->input('is_active');
         $user->philhealth = $request->input('philhealth');
         $user->tin = $request->input('tin');
         $user->sss = $request->input('sss');

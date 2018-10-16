@@ -15,23 +15,22 @@ class CreateOrganizationTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->char('organization_id',10);
+            $table->increments('id');
             $table->string('organization');
-
-            $table->primary('organization_id');
 
         });
 
         DB::table('organizations')
         ->insert([
-          ['organization_id' => 'QUALWR',   'organization' => 'QualComm Wireless Reach'],
-          ['organization_id' => 'USAID',    'organization' => 'United States Agency for International Development'],
-          ['organization_id' => 'WAH/PGO',  'organization' => 'Wireless Access for Health/Tarlac Provincial Health Office'],
-          ['organization_id' => 'PGO',      'organization' => 'Provincial Government of Tarlac'],
-          ['organization_id' => 'CHD',      'organization' => 'CHD-CAR'],
-          ['organization_id' => 'DOH',  'organization' => 'Department of Health'],
-          ['organization_id' => 'CHO-MITD', 'organization' => 'CBO - MITD'],
-          ['organization_id' => 'LH',       'organization' => 'LH'],
+          ['id' => '1', 'organization' => 'QualComm Wireless Reach'],
+          ['id' => '2', 'organization' => 'United States Agency for International Development'],
+          ['id' => '3', 'organization' => 'Wireless Access for Health/Tarlac Provincial Health Office'],
+          ['id' => '4', 'organization' => 'Provincial Government of Tarlac'],
+          ['id' => '5', 'organization' => 'CHD-CAR'],
+          ['id' => '6', 'organization' => 'Department of Health'],
+          ['id' => '7', 'organization' => 'CBO - MITD'],
+          ['id' => '8', 'organization' => 'LH'],
+          ['id' => '9', 'organization' => 'NONE'],
         ]);
     }
 

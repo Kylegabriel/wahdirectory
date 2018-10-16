@@ -83,6 +83,7 @@ class CreateSitesDesignationTable extends Migration
             ['sites_code' => 'ADM VI', 'sites_desc' => 'Admin Aide VI'],
             ['sites_code' => 'DE', 'sites_desc' => 'Data Encoder'],
             ['sites_code' => 'PHILHSTAF', 'sites_desc' => 'Philhealth Staff'],
+            ['sites_code' => 'NONE', 'sites_desc' => 'NONE'],
           ]);
     }
 

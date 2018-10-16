@@ -60,8 +60,39 @@
 						<td>{{ date('F j, Y', strtotime($intern->date_end)) }}</td>
 						<td>
 							<a  href="{{ route('interns.edit',$intern->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
+						
+							<a data-toggle="modal" data-target="#activeInactive{{ $intern->id }}"  data-toggle="tooltip" data-placement="left"
+								class="btn btn-link text-{{ $intern->is_active == 'Y' ? 'primary' : 'danger' }}" 
+								title="{{ $intern->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
+							<i class="fa {{ $intern->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
+								
 						</td>
 					</tr>
+
+					<!-- Modal -->
+					<div class="modal fade" id="activeInactive{{ $intern->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLongTitle">Please Confirm!</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        <h5>Would you like to {{ $intern->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
+					        {!! Form::model($intern, ['route' => ['internInactive.update', $intern->id], 'method' => 'PUT']) !!}
+					        <input type="hidden" name="is_active" id="is_active" value="{{ $intern->is_active == 'N' ? 'Y' : 'N' }}">
+					      </div>
+					      <div class="modal-footer">
+					      	<button type="submit" class="btn btn-primary">Save changes</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					      {!! Form::close() !!}
+					    </div>
+					  </div>
+					</div>
+
 				@endforeach	  
 			</tbody>
 		</table>			

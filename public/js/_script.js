@@ -5,17 +5,19 @@
             // to prevent clicking outside of the modal
             $('.modal').modal({
                 show: false,
-                  backdrop: 'static'
+                backdrop: 'static'
             })
 
 
             // Bootstrap 
             $('.dropdown-toggle').dropdown();
             // DataTables
+
             $('#example')
             .DataTable({
                   "scrollY"        : "400px",
                   "scrollCollapse" : true,
+                  "responsive": true
             });
             
             $('[data-toggle="tooltip"]').tooltip();

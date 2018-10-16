@@ -30,7 +30,11 @@ Route::resource('course','CourseController',['only' =>['store','update']]);
 Route::resource('papers','PaperController',['only' =>['store','update']]);
 Route::resource('users','UserController',['only' =>['store','update']]);
 Route::resource('sitesInactive','SitesInactiveController',['only' =>['update']]);
+
+// Activation and Deactivation
 Route::resource('partnerInactive','PartnerInactiveController',['only' =>['update']]);
+Route::resource('profileInactive','ProfileInactiveController',['only' =>['update']]);
+Route::resource('internInactive','InternInactiveController',['only' =>['update']]);
 
 Route::auth();
 

@@ -60,6 +60,7 @@
                     {{ Form::label('date_end','Date End') }}
                     {{ Form::date('date_end',null,['class'=>'form-control','id'=>'date_end']) }}
                 </div>
+                <input type="hidden" name="is_active" id="is_active" value="{{ $intern->is_active == 'Y' ? 'Y' : 'N' }}">
             </div>
     </div>             
 
