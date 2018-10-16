@@ -1,0 +1,113 @@
+<div class="card shadow border-0 border-primary">
+    <div class="card-header border-primary">
+            @if(isset($intern))
+            Edit Partner Organization
+            @else
+            Create Intern
+            @endif
+    </div>
+        <div class="card-body">
+            @if(isset($intern))
+            {!! Form::model($intern, ['route' => ['interns.update', $intern->id], 'method' => 'PUT','class'=>'formform-control']) !!}
+            @else
+            {!! Form::open(['route'=>'interns.store','method'=>'POST']) !!}
+            @endif
+            {{ csrf_field() }} 
+            <div class="row">
+                <div class="col-md-3">
+                    {{ Form::label('last_name','Last Name') }}
+                    {{ Form::text('last_name',null,['class'=>'form-control','id'=>'last_name']) }}
+                </div>
+                <div class="col-md-3">
+                    {{ Form::label('first_name','First Name') }}
+                    {{ Form::text('first_name',null,['class'=>'form-control','id'=>'first_name']) }} 
+                </div>
+                <div class="col-md-3">
+                    {{ Form::label('middle_name','Middle Name') }}
+                    {{ Form::text('middle_name',null,['class'=>'form-control','id'=>'middle_name']) }} 
+                </div>
+                <div class="col-md-3">
+                    {{ Form::label('suffix_name','Suffix Name') }}
+                    {{ Form::select('suffix_name', $suffix,'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-6">
+                        {{ Form::label('school','School') }}
+                        @if(isset($intern->school))
+                        {{ Form::select('school', $schools,null, ['class' => 'form-control','id' => 'school','name' => 'school']) }}
+                        @else
+                        <select type="text" name="school" id="school" class="form-control">
+                        <option value="" disabled selected>Choose your option</option>
+                            @foreach($schools as $school)
+                            <option value="{{ $school['id'] }}">{{ $school['school'] }}</option>
+                            @endforeach
+                        </select>
+                        @endif 
+                    </div>
+                    <div class="col-md-6">
+                        {{ Form::label('course','Course') }}
+                        @if(isset($intern->course))
+                        {{ Form::select('course', $courses,null, ['class' => 'form-control','id' => 'course','name' => 'course']) }}
+                        @else
+                        <select type="text" name="course" id="course" class="form-control">
+                           <option value="" disabled selected>Choose your option</option>
+                            @foreach($courses as $course)
+                            <option value="{{ $course["id"] }}">{{ $course["course"] }}</option>
+                            @endforeach
+                        </select>
+                        @endif 
+                    </div>
+            </div> 
+            <div class="row">
+                    <div class="col-md-11">
+                        {{ Form::label('tags','Papers') }}
+                        @if(isset($intern->tags))
+                        {{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi','id'=>'tags','multiple' => 'multiple']) }}
+                        @else
+                        <select type="text" name="tags[]" id="tags" class="form-control select2-multi" multiple="multiple">
+                            @foreach($tags as $tag)
+                            <option value="{{ $tag['id'] }}">{{ $tag['name'] }}</option>
+                            @endforeach
+                        </select> 
+                        @endif  
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-4">
+                        {{ Form::label('primary_contact','Contact Number') }}
+                        {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ Form::label('email','Email Address') }}
+                        {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
+                    </div>
+                    <div class="col-md-2">
+                        {{ Form::label('date_start','Date Start') }}
+                        {{ Form::date('date_start',null,['class'=>'form-control','id'=>'date_start']) }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ Form::label('date_end','Date End') }}
+                        {{ Form::date('date_end',null,['class'=>'form-control','id'=>'date_end']) }}
+                    </div>
+                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($partners->is_active) == '' ? 'Y' : 'N' }}">
+            </div> 
+        </div>
+        <div class="card-footer border-primary">
+            <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
+                <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
+                <span class="btn-inner--text">
+                    @if(isset($intern))
+                    Save Changes
+                    @else
+                    Submit
+                    @endif
+                </span>
+            </button>
+            <a href="{{ route('interns.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
+                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                <span class="btn-inner--text">Go Back</span>
+            </a>
+        </div>               
+</div>
+    {!! Form::close() !!}

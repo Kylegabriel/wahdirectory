@@ -42,11 +42,11 @@
                 {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','data-length'=>'11','placeholder'=>'0906*******']) }} 
             </div>
             <div class="col-md-4">
-                {{ Form::label('sitDesignation','Designation*') }}
+                {{ Form::label('designation','Designation*') }}
                 @if(isset($sites->designation))
-                {{ Form::select('sitDesignation', $siteDesig,null, ['class' => 'form-control','id' => 'sitDesignation','name' => 'sitDesignation']) }}
+                {{ Form::select('designation', $siteDesig,null, ['class' => 'form-control','id' => 'designation','name' => 'designation']) }}
                 @else
-                <select type="text" id="sitDesignation" name="sitDesignation" class="form-control">
+                <select type="text" id="designation" name="designation" class="form-control">
                   <option value="NONE" >None of the option</option>
                  @foreach($siteDesig as $siteDesig)
                   <option value="{{ $siteDesig['sites_code'] }}">{{ $siteDesig['sites_desc'] }}</option>  
@@ -75,7 +75,7 @@
                 {{ Form::label('birthdate','Birthdate') }}
                 {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
             </div> 
-            <input type="hidden" name="is_active" id="is_active" value="Y">
+            <input type="hidden" name="is_active" id="is_active" value="{{ isset($sites->is_active) == '' ? 'Y' : 'N' }}">
             <div class="col-md-4">
                 {{ Form::label('gender', "Gender") }}
                 {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}

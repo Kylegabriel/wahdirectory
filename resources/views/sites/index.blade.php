@@ -59,7 +59,7 @@
 					</td>
 				</tr>
 				@include('partials._activeInactiveSites')
-			@endforeach				  
+				@endforeach				  
 			</tbody>
 		</table>
 	</div>			

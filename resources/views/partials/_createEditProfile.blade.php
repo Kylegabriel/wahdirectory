@@ -111,7 +111,7 @@
                                             {{ Form::text('getgocebupac',null,['class'=>'form-control','id'=>'getgocebupac']) }} 
                                         </div>
                                     </div>
-                                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($partners->is_active) == '' ? 'Y' : 'N' }}">
+                                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($profile->is_active) == '' ? 'Y' : 'N' }}">
         </div>
         <div class="card-footer border-primary">
                 <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
