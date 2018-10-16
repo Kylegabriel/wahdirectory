@@ -91,8 +91,8 @@ class InternController extends Controller
         $intern->middle_name = $request->input('middle_name');
         $intern->suffix_name = $request->input('suffix_name');
         $intern->email = $request->input('email');
-        $intern->school_id = $request->input('school');
-        $intern->course_id = $request->input('course');
+        $intern->school_id = $request->input('school_id');
+        $intern->course_id = $request->input('course_id');
         $intern->primary_contact = $request->input('primary_contact');
         $intern->date_start = $request->input('date_start');
         $intern->date_end = $request->input('date_end');
@@ -189,8 +189,8 @@ class InternController extends Controller
         $intern->middle_name = $request->input('middle_name');
         $intern->suffix_name = $request->input('suffix_name');
         $intern->email = $request->input('email');
-        $intern->school_id = $request->input('school');
-        $intern->course_id = $request->input('course');
+        $intern->school_id = $request->input('school_id');
+        $intern->course_id = $request->input('course_id');
         $intern->primary_contact = $request->input('primary_contact');
         $intern->date_start = $request->input('date_start');
         $intern->date_end = $request->input('date_end');

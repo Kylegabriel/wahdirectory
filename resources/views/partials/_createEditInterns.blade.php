@@ -33,27 +33,27 @@
             </div>
             <div class="row">
                     <div class="col-md-6">
-                        {{ Form::label('school','School') }}
-                        @if(isset($intern->school))
-                        {{ Form::select('school', $schools,null, ['class' => 'form-control','id' => 'school','name' => 'school']) }}
+                        {{ Form::label('school_id','School') }}
+                        @if(isset($intern->school_id))
+                        {{ Form::select('school_id', $schools,null, ['class' => 'form-control','id' => 'school_id','name' => 'school_id']) }}
                         @else
-                        <select type="text" name="school" id="school" class="form-control">
+                        <select type="text" name="school_id" id="school_id" class="form-control">
                         <option value="" disabled selected>Choose your option</option>
-                            @foreach($schools as $school)
+                            @foreach(App\InternSchool::get() as $school)
                             <option value="{{ $school['id'] }}">{{ $school['school'] }}</option>
                             @endforeach
                         </select>
                         @endif 
                     </div>
                     <div class="col-md-6">
-                        {{ Form::label('course','Course') }}
-                        @if(isset($intern->course))
-                        {{ Form::select('course', $courses,null, ['class' => 'form-control','id' => 'course','name' => 'course']) }}
+                        {{ Form::label('course_id','Course') }}
+                        @if(isset($intern->course_id))
+                        {{ Form::select('course_id', $courses,null, ['class' => 'form-control','id' => 'course_id','name' => 'course_id']) }}
                         @else
-                        <select type="text" name="course" id="course" class="form-control">
+                        <select type="text" name="course_id" id="course_id" class="form-control">
                            <option value="" disabled selected>Choose your option</option>
-                            @foreach($courses as $course)
-                            <option value="{{ $course["id"] }}">{{ $course["course"] }}</option>
+                            @foreach(App\InternCourse::get() as $course)
+                            <option value="{{ $course['id'] }}">{{ $course['course'] }}</option>
                             @endforeach
                         </select>
                         @endif 
@@ -67,7 +67,7 @@
                         @else
                         <select type="text" name="tags[]" id="tags" class="form-control select2-multi" multiple="multiple">
                             @foreach($tags as $tag)
-                            <option value="{{ $tag['id'] }}">{{ $tag['name'] }}</option>
+                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                             @endforeach
                         </select> 
                         @endif  
