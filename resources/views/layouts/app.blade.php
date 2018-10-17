@@ -67,11 +67,17 @@
                   </a>    
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-primary_dropdown_1">
                     @if(Auth::user()->is_admin == 'Y')
-                    <a class="dropdown-item" href="{{ url('/settings')}}">Setting</a>
+                    <a class="dropdown-item" href="{{ url('/settings')}}">
+                      <span class="fa fa-cog"></span>
+                      Setting
+                    </a>
                     <div class="dropdown-divider"></div>
                     @else
                     @endif
-                    <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
+                    <a class="dropdown-item" href="{{ url('/logout') }}">
+                      <span class="fa fa-power-off"></span>
+                      Logout
+                    </a>
                   </div>
                 </li>
               </ul>
@@ -79,6 +85,7 @@
         </nav>
          <br>
           @yield('content')
+          
   </div>
 
 </div>      

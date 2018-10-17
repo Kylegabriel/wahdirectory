@@ -16,7 +16,13 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $course = InternCourse::all();
+        $count = 1;
+
+        return view('course.index')->with([ 
+            'courses' => $course,
+            'count' => $count,
+            ]);
     }
 
     /**
@@ -58,7 +64,7 @@ class CourseController extends Controller
 
         Session::flash('success','New Course was Successfully Save');
 
-        return redirect()->route('others.index');
+        return redirect()->route('course.index');
 
         }
     }
@@ -102,7 +108,7 @@ class CourseController extends Controller
 
         Session::flash('success','School was Successfully Updated');
 
-        return redirect()->route('others.index');
+        return redirect()->route('course.index');
     }
 
     /**

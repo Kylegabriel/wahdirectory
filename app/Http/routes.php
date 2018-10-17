@@ -26,9 +26,9 @@ Route::resource('sites/get-muncity-list','SitesController@getMuncityList',['only
 Route::resource('others','OthersController',['only' => ['index']]);
 Route::resource('settings','SettingsController',['only' => ['index']]);
 Route::resource('school','SchoolController',['only' =>['store','update']]);
-Route::resource('course','CourseController',['only' =>['store','update']]);
-Route::resource('papers','PaperController',['only' =>['store','update']]);
-Route::resource('users','UserController',['only' =>['store','update']]);
+Route::resource('course','CourseController',['only' =>['store','update','index']]);
+Route::resource('papers','PaperController',['only' =>['store','update','index']]);
+Route::resource('users','UserController',['only' =>['store','update','index']]);
 Route::resource('sitesInactive','SitesInactiveController',['only' =>['update']]);
 
 // Activation and Deactivation

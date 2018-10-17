@@ -1,168 +1,178 @@
-@extends('layouts.app')
-@section('stylesheets')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-@endsection
-@section('content')
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-    <a class="navbar-brand" href="">User List</a>
-    <div class="collapse navbar-collapse" id="nav-inner-primary">
-      <div class="navbar-collapse-header">
-        <div class="row">
-          <div class="col-6 collapse-brand">
-          </div>
-          <div class="col-6 collapse-close">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-inner-primary" aria-controls="nav-inner-primary" aria-expanded="false" aria-label="Toggle navigation">
-              <span></span>
-              <span></span>
+    <title>WAH Directory</title>
+
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/toastr/build/toastr.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    <link type="text/css" href="/argon-design/argon-design/assets/css/argon.css" rel="stylesheet">
+    <link type="text/css" href="/DataTables/Data/css/dataTables.bootstrap4.min.css" rel="stylesheet"> 
+    @yield('stylesheets')
+</head>
+<body>  
+   
+<div class="row">
+  <div class="col-md-12" style="padding:0px 30px 0px 30px">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-2">
+            <a class="navbar-brand" href="#">WAH DIRECTORY</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-          </div>
-        </div>
-      </div>
-      <ul class="navbar-nav ml-lg-auto">
-        <li class="nav-item">
-          <a href="" role="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="Add User" >
-            <span class="btn-inner--icon"></span>
-            <span class="btn-inner--text"><i class="fa fa-user-plus fa-2x"></i> Add User</span>
-      		</a>
-        </li>
-      </ul>
-    </div>
-</nav> 
-<div class="card shadow border-0">
-	<div class="card-body">  
-		<table id="example" class="table-striped" style="width:100%">
-			<thead>
-				<tr>
-					<th>No.</th>
-					<th>Name</th>
-					<th>Designation</th>
-					<th>Birthdate</th>
-					<th>Gender</th>
-					<th>Mobile Number</th>
-					<th>Email Address</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-		  	@foreach($users as $user)
-				<tr>
-					<td>{{ $count++ .'.' }}</td>
-					<td>{{ $user->last_name . ", " . $user->first_name . " " . $user->middle_name . " " }} @if($user->suffix_name == 'NOTAP') @else {{ $user->suffix_name }} @endif</td>
-					<td>{{ $user->designations['role_name'] }}</td>
-					<td>{{ $user->birthdate }}</td>
-					<td>{{ $user->gender }}</td>
-					<td>{{ $user->mobile_number }}</td>
-					<td>{{ $user->email }}</td>
-					<td>
+            <div class="collapse navbar-collapse" id="navbar-primary">
+              <div class="navbar-collapse-header">
+                <div class="row">
+                  <div class="col-6 collapse-brand">
+                  </div>
+                  <div class="col-6 collapse-close">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
+                      <span></span>
+                      <span></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <ul class="navbar-nav ml-lg-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/partner')}}">Partners
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/profile')}}">WAH-NGO
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/sites')}}">Sites
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/warmleads')}}">Warm Leads
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/interns')}}">Interns</a>
+                </li>
 
-					</td>
-				</tr>
-			@endforeach	
-			</tbody>
-		</table>
-	</div>	
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-		{!! Form::open(['route' => 'users.store','method' => 'POST']) !!}
-              	{{ csrf_field() }} 
-                    <div class="row">
-                            <div class="col-md-4">
-                                {{ Form::label('username','User Name') }}
-                                <input type="text" class="form-control" name="username" id="username">
-                            </div>
-                            <div class="col-md-4">
-                                {{ Form::label('password','Password') }}
-                                <input type="password" class="form-control" name="password" id="password">
-                            </div>
-                            <div class="col-md-4">
-                                {{ Form::label('confirm_password','Comfirm Password') }}
-                                <input type="password" class="form-control" name="comfirm_password" id="comfirm_password"> 
-                            </div>
-                    </div>    
-
-                    <div class="row">
-                            <div class="col-md-3">
-                                {{ Form::label('last_name','Last Name*') }}
-                                {{ Form::text('last_name',null,['class'=>'form-control','id'=>'last_name']) }}
-                            </div>
-                            <div class="col-md-3">
-                                {{ Form::label('first_name','First Name*') }}
-                                {{ Form::text('first_name',null,['class'=>'form-control','id'=>'first_name']) }} 
-                            </div>
-                            <div class="col-md-3">
-                                {{ Form::label('middle_name','Middle Name*') }}
-                                {{ Form::text('middle_name',null,['class'=>'form-control','id'=>'middle_name']) }} 
-                            </div>
-                            <div class="col-md-3">
-                                {{ Form::label('suffix_name','Suffix Name*') }}
-                                <select type="text" id="suffix_name" name="suffix_name" class="form-control">
-                                  <option value="" disabled selected>Choose your option</option>
-                                  @foreach( $suffix as $suffix )
-                                        <option value="{{ $suffix['suffix_code'] }}">{{ $suffix['suffix_desc'] }}</option>
-                                  @endforeach
-                                </select>
-                            </div>
-                    </div>
-                     
-                    <div class="row">
-                        <div class="col-md-2">
-                            {{ Form::label('gender','Gender*') }}
-                            <select type="text" id="gender" name="gender" class="form-control">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="M">Male</option>
-                                <option value="F">Female</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">  
-                            {{ Form::label('birthdate','Date of Birth*') }}
-                            <input type="text" name="birthdate" id="birthdate" data-date-format="mm/dd/yyyy" class="form-control datepicker" placeholder="12/31/2018">
-                        </div> 
-                        <div class="col-md-4">
-                            {{ Form::label('mobile_number','Mobile Number') }}
-                            {{ Form::text('mobile_number',null,['class'=>'form-control','id'=>'mobile_number','placeholder'=>'0930*******']) }} 
-                        </div>
-                        <div class="col-md-4">
-                            {{ Form::label('email','Email') }}
-                            {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
-                        </div>
-                    </div> 
-
-                    <div class="row">
-                      <div class="col-md-9">
-                          <label for="designation">Designation</label>
-                              <select type="text" id="designation" name="designation" class="form-control">
-                                <option value="" disabled selected>Choose your option</option>
-                                  @foreach($role as $role)
-                                      <option value="{{ $role['role_id'] }}">{{ $role['role_name'] }}</option>
-                                  @endforeach
-                              </select>
-                       </div>
-                        <div class="col-md-3">
-                            {{ Form::label('is_admin','Admin') }}
-                            <select type="text" id="is_admin" name="is_admin" class="form-control">
-                              <option value="" disabled selected>Choose your option</option>
-                              <option value="Y" >Yes</option>
-                              <option value="N" >No</option>
-                            </select>
-                        </div>
-                    </div>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/others')}}">Others</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="nav-link-inner--text">{{ Auth::user()->first_name }}</span>
+                      <i class="fa fa-ellipsis-v"></i>
+                  </a>    
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-primary_dropdown_1">
+                    @if(Auth::user()->is_admin == 'Y')
+                    <a class="dropdown-item" href="{{ url('/settings')}}">
+                      <span class="fa fa-cog"></span>
+                      Setting
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    @else
+                    @endif
+                    <a class="dropdown-item" href="{{ url('/logout') }}">
+                      <span class="fa fa-power-off"></span>
+                      Logout
+                    </a>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-primary">Save</button>
-		      </div>
-		    </div>  
-		    {!! Form::close() !!}        
-		</div>        
+        </nav>
+
+        <br>
+
+        <div class="row" style="padding:0px 10px 0px 10px;">
+          <div class="col-md-2 card shadow">
+              <nav>
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/users')}}">
+                      <i class="fa fa-users"></i>
+                      User Records
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/course')}}">
+                      <i class="fa fa-graduation-cap"></i>
+                      Intern Course
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="fa fa-university"></i>
+                      Intern School
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="fa fa-paperclip"></i>
+                      Intern Papers
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="fa fa-tasks"></i>
+                      User Designation
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="fa fa-handshake-o"></i>
+                      Site Designation
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="fa fa-building"></i>
+                      Partner Designation
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      Partner Organization
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="fa fa-building"></i>
+                      WAH-NGO Designation
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+          </div>
+          <div class="col-md-10">
+              @yield('settings')
+          </div>
+      </div>
+   </div>
 </div>
-@endsection
+
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/DataTables/datatables.js"></script>
+    <script src="/DataTables/Data/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/node_modules/popper/popper.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/toastr/toastr.js"></script>
+    <script src="/argon-design/argon-design/assets/js/argon.js"></script>
+    <script src="/js/_script.js"></script>
+    @yield('scripts')
+    <script>
+            @if(Session::has('success'))
+                toastr.success('{{ Session::get('success') }}');
+            @endif
+            @if(Session::has('repeat'))
+                toastr.warning('{{ Session::get('repeat') }}');
+            @endif
+    </script>
+</body>
+</html>
+
+ 

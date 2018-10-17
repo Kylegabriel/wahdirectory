@@ -24,6 +24,18 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
+        $users = User::get();
+        $suffix = SuffixName::get();
+        $role = UserRole::get();
+
+
+        $no = 1;
+        return view('users.index')->with([
+            'users'=>$users,
+            'count'=>$no,
+            'suffix' => $suffix,
+            'role'=>$role
+            ]);
     }
     /**
      * Show the form for creating a new resource.
