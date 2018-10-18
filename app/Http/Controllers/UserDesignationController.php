@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\InternSchool;
+use App\UserRole;
 use App\Http\Requests;
 use Session;
-class SchoolController extends Controller
+
+class UserDesignationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,12 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $school = InternSchool::orderBy('id','desc')
+        $userRoles = UserRole::orderBy('id','desc')
                                ->get();
-
         $count = 1;
-        return view('school.index')->with([ 
-            'schools' => $school,
+
+        return view('userDesignaton.index')->with([ 
+            'userRole' => $userRoles,
             'count' => $count,
             ]);
     }
@@ -32,7 +33,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -44,26 +45,28 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
         //post to database
-        $check_school = InternSchool::where('school','LIKE',$request->input('school'))
+        $check_userRole = UserRole::where('role_name','LIKE',$request->input('role'))
                                   ->get();
 
-        $count = count($check_school);
+        $count = count($check_userRole);
 
         if($count >= 1){
 
-          Session::flash('repeat','School Already Exist');
-          return redirect()->route('school.index');
+          Session::flash('repeat','User Role Already Exist');
+          return redirect()->route('userDesignaton.index');
 
         }else{
-        $school = new InternSchool;
 
-        $school->school = $request->input('school');
+        $UserRole = new UserRole;
 
-        $school->save();
+        $UserRole->role_name = $request->input('role');
 
-        Session::flash('success','New School was Successfully Save');
+        $UserRole->save();
 
-        return redirect()->route('school.index');
+        Session::flash('success','New Course was Successfully Save');
+
+        return redirect()->route('userDesignaton.index');
+
         }
     }
 
@@ -75,7 +78,7 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        //show data by specified id
+        //
     }
 
     /**
@@ -86,7 +89,7 @@ class SchoolController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -98,15 +101,16 @@ class SchoolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $school = InternSchool::find($id);
+        //
+        $UserRole = UserRole::find($id);
 
-        $school->school = $request->input('schools');
+        $UserRole->role_name = $request->input('role');
 
-        $school->save();
+        $UserRole->save();
 
-        Session::flash('success','School was Successfully Updated');
+        Session::flash('success','User Role was Successfully Updated');
 
-        return redirect()->route('school.index');
+        return redirect()->route('userDesignaton.index');
     }
 
     /**
@@ -117,6 +121,6 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 }

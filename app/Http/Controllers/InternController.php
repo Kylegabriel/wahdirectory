@@ -24,7 +24,8 @@ class InternController extends Controller
     
     public function index(Request $request)
     {
-        $intern = Intern::get();
+        $intern = Intern::orderBy('id','desc')
+                               ->get();
 
         $count = 1;
         return view('intern.index')->with([ 
@@ -41,8 +42,6 @@ class InternController extends Controller
     public function create()
     {
 
-        $course = InternCourse::all();
-        $school = InternSchool::all();
         $tags = Tag::all();
 
         $suffix = SuffixName::get();
@@ -54,8 +53,6 @@ class InternController extends Controller
 
         $count = 1;
         return view('intern.create')->with([ 
-            'courses' => $course,
-            'schools' => $school,
             'tags' => $tags,
             'suffix' => $suf
             ]);

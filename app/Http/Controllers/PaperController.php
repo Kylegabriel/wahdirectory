@@ -16,7 +16,13 @@ class PaperController extends Controller
      */
     public function index()
     {
-        //
+        $paper = Tag::orderBy('id','desc')
+                               ->get();
+        $count = 1;
+        return view('papers.index')->with([ 
+            'papers' => $paper,
+            'count' => $count
+            ]);
     }
 
     /**
@@ -46,7 +52,7 @@ class PaperController extends Controller
         if($count >= 1){
 
           Session::flash('repeat','Paper Already Exist');
-          return redirect()->route('others.index');
+          return redirect()->route('papers.index');
 
         }else{
         $paper = new Tag;
@@ -57,7 +63,7 @@ class PaperController extends Controller
 
         Session::flash('success','New Paper was Successfully Save');
 
-        return redirect()->route('others.index');
+        return redirect()->route('papers.index');
         }
     }
 
@@ -100,7 +106,7 @@ class PaperController extends Controller
 
         Session::flash('success','Paper was Successfully Updated');
 
-        return redirect()->route('others.index');
+        return redirect()->route('papers.index');
     }
 
     /**

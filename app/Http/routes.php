@@ -23,18 +23,24 @@ Route::resource('sites','SitesController',['except'=>['show','destroy']]);
 Route::resource('sites/get-region-list','SitesController@getRegionList',['only'=>['index']]);
 Route::resource('sites/get-province-list','SitesController@getProvinceList',['only'=>['index']]);
 Route::resource('sites/get-muncity-list','SitesController@getMuncityList',['only'=>['index']]);
-Route::resource('others','OthersController',['only' => ['index']]);
+
+//settings
 Route::resource('settings','SettingsController',['only' => ['index']]);
-Route::resource('school','SchoolController',['only' =>['store','update']]);
+Route::resource('school','SchoolController',['only' =>['store','update','index']]);
 Route::resource('course','CourseController',['only' =>['store','update','index']]);
 Route::resource('papers','PaperController',['only' =>['store','update','index']]);
 Route::resource('users','UserController',['only' =>['store','update','index']]);
-Route::resource('sitesInactive','SitesInactiveController',['only' =>['update']]);
+Route::resource('userDesignaton','UserDesignationController',['only' =>['store','update','index']]);
+Route::resource('siteDesignation','siteDesignationController',['only' =>['store','update','index']]);
+Route::resource('partnerDesignation','partnerDesignationController',['only' =>['store','update','index']]);
+Route::resource('partnerOrganization','PartnerOrganizationtionController',['only' =>['store','update','index']]);
+
 
 // Activation and Deactivation
 Route::resource('partnerInactive','PartnerInactiveController',['only' =>['update']]);
 Route::resource('profileInactive','ProfileInactiveController',['only' =>['update']]);
 Route::resource('internInactive','InternInactiveController',['only' =>['update']]);
+Route::resource('sitesInactive','SitesInactiveController',['only' =>['update']]);
 
 Route::auth();
 

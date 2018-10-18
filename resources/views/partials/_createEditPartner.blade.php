@@ -38,28 +38,28 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    {{ Form::label('designation','Designation') }}
-                                    @if(isset($partners->designation))
-                                    {{ Form::select('designation', $designation,null, ['class' => 'form-control','id' => 'designation','name' => 'designation']) }}
+                                    {{ Form::label('desig_id','Designation') }}
+                                    @if(isset($partners->desig_id))
+                                    {{ Form::select('desig_id', $designation,null, ['class' => 'form-control','id' => 'desig_id','name' => 'desig_id']) }}
                                     @else
-                                    <select type="text" id="designation" name="designation" class="form-control">
-                                      <option value="9">None of the option</option>
-                                      @foreach( $designation as $designation )
+                                    <select type="text" id="desig_id" name="desig_id" class="form-control">
+                                      <option value="" disabled selected>Choose your option</option>
+                                      @foreach( App\PartnerDesignation::get() as $designation )
                                             <option value="{{ $designation['id'] }}">{{ $designation['designation'] }}</option>
                                       @endforeach
                                     </select>
                                     @endif
                                 </div>
                                 <div class="col-md-4">
-                                    {{ Form::label('organization','Organization') }}
-                                    @if(isset($partners->organization))
-                                    {{ Form::select('organization',$organization,NULL, ['class' => 'form-control','id' => 'organization','name' => 'organization']) }}
+                                    {{ Form::label('org_id','Organization') }}
+                                    @if(isset($partners->org_id))
+                                    {{ Form::select('org_id',$organization,NULL, ['class' => 'form-control','id' => 'org_id','name' => 'org_id']) }}
                                     @else
-                                    <select type="text" id="organization" name="organization" class="form-control">
-                                          <option value="9">None of the option</option>
-                                          @foreach( $organization as $organizations )
-                                                <option value="{{ $organizations['id'] }}">{{ $organizations['organization'] }}</option>
-                                          @endforeach
+                                    <select type="text" id="org_id" name="org_id" class="form-control">
+                                      <option value="" disabled selected>Choose your option</option>    
+                                      @foreach( App\PartnerOrganization::get() as $organizations )
+                                            <option value="{{ $organizations['id'] }}">{{ $organizations['organization'] }}</option>
+                                      @endforeach
                                     </select>
                                     @endif
                                 </div>
@@ -107,7 +107,12 @@
                                     {{ Form::label('secondary_email','Secondary Email') }}
                                     {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
                                 </div>
-                                <input type="hidden" name="is_active" id="is_active" value="{{ isset($partners->is_active) == '' ? 'Y' : 'N' }}">
+                                
+                                @if(isset($partners))
+                                <input type="hidden" name="is_active" id="is_active" value="{{ isset($partners->is_active) == 'Y' ? 'Y' : 'N' }}">
+                                @else
+                                <input type="hidden" name="is_active" id="is_active" value="Y">
+                                @endif
                             </div>
         </div>
 

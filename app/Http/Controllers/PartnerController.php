@@ -44,8 +44,6 @@ class PartnerController extends Controller
     public function create()
     {
         $province = DemographicProvince::orderBy('province_name','asc')->get();
-        $designation = PartnerDesignation::get();
-        $organization = PartnerOrganization::get();
 
         $suffix = SuffixName::get();
         $suf = array();
@@ -58,8 +56,6 @@ class PartnerController extends Controller
             'count' => $no,
             'suffix' => $suf,
             'province'=>$province,
-            'designation' => $designation,
-            'organization' => $organization,
             ]);
     }
 
@@ -89,13 +85,13 @@ class PartnerController extends Controller
                 
         $partner = new Partner;
 
+        $partner->desig_id = $request->input('desig_id');
+        $partner->org_id = $request->input('org_id');
         $partner->last_name = $request->input('last_name');
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
-        $partner->organization = $request->input('organization');
-        $partner->designation = $request->input('designation');
-        $partner->province = $request->input('province');
         $partner->suffix_name = $request->input('suffix_name');
+        $partner->province = $request->input('province');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
         $partner->secondary_contact = $request->input('secondary_contact');
@@ -136,8 +132,8 @@ class PartnerController extends Controller
 
         $designations = PartnerDesignation::get();
         $desig = array();
-        foreach ($designations as $designation) {
-            $desig[$designation->id] = $designation->designation;
+        foreach ($designations as $desiginat) {
+            $desig[$desiginat->id] = $desiginat->designation;
         }
 
         $suffix = SuffixName::get();
@@ -182,19 +178,19 @@ class PartnerController extends Controller
 
         $partner = Partner::find($id);
 
+        $partner->desig_id = $request->input('desig_id');
+        $partner->org_id = $request->input('org_id');
         $partner->last_name = $request->input('last_name');
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
-        $partner->organization = $request->input('organization');
-        $partner->designation = $request->input('designation');
-        $partner->province = $request->input('province');
         $partner->suffix_name = $request->input('suffix_name');
+        $partner->province = $request->input('province');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
         $partner->secondary_contact = $request->input('secondary_contact');
         $partner->email = $request->input('email');
         $partner->secondary_email = $request->input('secondary_email');
-        $partner->birthdate = $request->input('birthdate'); 
+        $partner->birthdate = $request->input('birthdate');
         $partner->is_active = $request->input('is_active');
 
         $partner->save();

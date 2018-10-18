@@ -16,15 +16,15 @@ class CreateInternsTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->integer('course_id')->unsigned()->nullable();
+            $table->integer('school_id')->unsigned()->nullable();
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name');
             $table->char('suffix_name',5);
-            $table->integer('course_id')->unsigned();
-            $table->integer('school_id')->unsigned();
             $table->string('primary_contact',12);
             $table->string('email',50)->nullable();
-            $table->date('date_start');
+            $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
             $table->char('is_active',1);
             $table->timestamps();

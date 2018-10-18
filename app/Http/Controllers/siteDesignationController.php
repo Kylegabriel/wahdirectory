@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\InternSchool;
+use App\SitesDesignation;
 use App\Http\Requests;
 use Session;
-class SchoolController extends Controller
+
+class siteDesignationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,12 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $school = InternSchool::orderBy('id','desc')
+        $sitesDesig = SitesDesignation::orderBy('id','desc')
                                ->get();
-
         $count = 1;
-        return view('school.index')->with([ 
-            'schools' => $school,
+
+        return view('siteDesignation.index')->with([ 
+            'sitesDesig' => $sitesDesig,
             'count' => $count,
             ]);
     }
@@ -32,7 +33,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -44,26 +45,28 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
         //post to database
-        $check_school = InternSchool::where('school','LIKE',$request->input('school'))
+        $check_siteDesig = SitesDesignation::where('sites_desc','LIKE',$request->input('sites_desc'))
                                   ->get();
 
-        $count = count($check_school);
+        $count = count($check_siteDesig);
 
         if($count >= 1){
 
-          Session::flash('repeat','School Already Exist');
-          return redirect()->route('school.index');
+          Session::flash('repeat','Site Designation Already Exist');
+          return redirect()->route('siteDesignation.index');
 
         }else{
-        $school = new InternSchool;
 
-        $school->school = $request->input('school');
+        $site = new SitesDesignation;
 
-        $school->save();
+        $site->sites_desc = $request->input('sites_desc');
 
-        Session::flash('success','New School was Successfully Save');
+        $site->save();
 
-        return redirect()->route('school.index');
+        Session::flash('success','New Site Designation was Successfully Save');
+
+        return redirect()->route('siteDesignation.index');
+
         }
     }
 
@@ -75,7 +78,7 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        //show data by specified id
+        //
     }
 
     /**
@@ -86,7 +89,7 @@ class SchoolController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -98,15 +101,15 @@ class SchoolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $school = InternSchool::find($id);
+        $site = SitesDesignation::find($id);
 
-        $school->school = $request->input('schools');
+        $site->sites_desc = $request->input('sites_desc');
 
-        $school->save();
+        $site->save();
 
         Session::flash('success','School was Successfully Updated');
 
-        return redirect()->route('school.index');
+        return redirect()->route('siteDesignation.index');
     }
 
     /**
@@ -117,6 +120,6 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 }

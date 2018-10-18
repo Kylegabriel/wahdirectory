@@ -3,37 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\InternSchool;
-use App\InternCourse;
-use App\Tag;
+use App\PartnerDesignation;
 use App\Http\Requests;
+use Session;
 
-class OthersController extends Controller
+class partnerDesignationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-        $school = InternSchool::all();
-        $course = InternCourse::all();
-        $paper = Tag::all();
+        $partnerDesignation = PartnerDesignation::orderBy('id','desc')
+                               ->get();
         $count = 1;
-        $count2 = 1;
-        $count3 = 1;
-        return view('others.index')->with([ 
-            'schools' => $school,
-            'courses' => $course,
-            'papers' => $paper,
+
+        return view('partnerDesignation.index')->with([ 
+            'partnerDesig' => $partnerDesignation,
             'count' => $count,
-            'count2' => $count2,
-            'count3' => $count3
             ]);
     }
 
@@ -44,7 +33,7 @@ class OthersController extends Controller
      */
     public function create()
     {
-        //return view('partner.create')
+        //
     }
 
     /**
@@ -55,7 +44,30 @@ class OthersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //post to database
+        $check_partnerDesig = PartnerDesignation::where('designation','LIKE',$request->input('designation'))
+                                  ->get();
+
+        $count = count($check_partnerDesig);
+
+        if($count >= 1){
+
+          Session::flash('repeat','Parnter Designation Already Exist');
+          return redirect()->route('partnerDesignation.index');
+
+        }else{
+
+        $partnerdesig = new PartnerDesignation;
+
+        $partnerdesig->designation = $request->input('designation');
+
+        $partnerdesig->save();
+
+        Session::flash('success','New Partner Designation was Successfully Save');
+
+        return redirect()->route('partnerDesignation.index');
+
+        }
     }
 
     /**
@@ -90,6 +102,15 @@ class OthersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $partnerdesig = PartnerDesignation::find($id);
+
+        $partnerdesig->designation = $request->input('designation');
+
+        $partnerdesig->save();
+
+        Session::flash('success','Partner Designation was Successfully Updated');
+
+        return redirect()->route('partnerDesignation.index');
     }
 
     /**

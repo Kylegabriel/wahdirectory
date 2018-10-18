@@ -52,7 +52,7 @@
                         @else
                         <select type="text" name="course_id" id="course_id" class="form-control">
                            <option value="" disabled selected>Choose your option</option>
-                            @foreach(App\InternCourse::get() as $course)
+                            @foreach( App\InternCourse::get() as $course)
                             <option value="{{ $course['id'] }}">{{ $course['course'] }}</option>
                             @endforeach
                         </select>
@@ -90,7 +90,11 @@
                         {{ Form::label('date_end','Date End') }}
                         {{ Form::date('date_end',null,['class'=>'form-control','id'=>'date_end']) }}
                     </div>
-                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($partners->is_active) == '' ? 'Y' : 'N' }}">
+                    @if(isset($intern))
+                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($intern->is_active) == 'Y' ? 'Y' : 'N' }}">
+                    @else
+                    <input type="hidden" name="is_active" id="is_active" value="Y">
+                    @endif
             </div> 
         </div>
         <div class="card-footer border-primary">

@@ -1,7 +1,7 @@
       $(document).ready(function(){
 
-
-
+            // to remove dropdown suggested comment in form input
+            // $('input').attr('autocomplete','off');
             // to prevent clicking outside of the modal
             $('.modal').modal({
                 show: false,
@@ -42,9 +42,6 @@
                         },
                         email: {
                           email: true,
-                          required: true
-                        },
-                        is_admin: {
                           required: true
                         },
                         birthdate: {

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\InternSchool;
+use App\PartnerOrganization;
 use App\Http\Requests;
 use Session;
-class SchoolController extends Controller
+
+class PartnerOrganizationtionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,12 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $school = InternSchool::orderBy('id','desc')
+        $partnerOrganization = PartnerOrganization::orderBy('id','desc')
                                ->get();
-
         $count = 1;
-        return view('school.index')->with([ 
-            'schools' => $school,
+
+        return view('partnerOrganization.index')->with([ 
+            'partnerOrg' => $partnerOrganization,
             'count' => $count,
             ]);
     }
@@ -32,7 +33,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -44,26 +45,28 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
         //post to database
-        $check_school = InternSchool::where('school','LIKE',$request->input('school'))
+        $check_partnerOrg = PartnerOrganization::where('organization','LIKE',$request->input('organization'))
                                   ->get();
 
-        $count = count($check_school);
+        $count = count($check_partnerOrg);
 
         if($count >= 1){
 
-          Session::flash('repeat','School Already Exist');
-          return redirect()->route('school.index');
+          Session::flash('repeat','Partner Organization Already Exist');
+          return redirect()->route('partnerDesignation.index');
 
         }else{
-        $school = new InternSchool;
 
-        $school->school = $request->input('school');
+        $partnerorg = new PartnerOrganization;
 
-        $school->save();
+        $partnerorg->organization = $request->input('organization');
 
-        Session::flash('success','New School was Successfully Save');
+        $partnerorg->save();
 
-        return redirect()->route('school.index');
+        Session::flash('success','New Partner Organization was Successfully Save');
+
+        return redirect()->route('partnerOrganization.index');
+
         }
     }
 
@@ -75,7 +78,7 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        //show data by specified id
+        //
     }
 
     /**
@@ -86,7 +89,7 @@ class SchoolController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -98,15 +101,16 @@ class SchoolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $school = InternSchool::find($id);
+        //
+        $partnerorg = PartnerOrganization::find($id);
 
-        $school->school = $request->input('schools');
+        $partnerorg->organization = $request->input('organization');
 
-        $school->save();
+        $partnerorg->save();
 
-        Session::flash('success','School was Successfully Updated');
+        Session::flash('success','Partner Organization was Successfully Updated');
 
-        return redirect()->route('school.index');
+        return redirect()->route('partnerOrganization.index');
     }
 
     /**
@@ -117,6 +121,6 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 }

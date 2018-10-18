@@ -56,10 +56,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/interns')}}">Interns</a>
                 </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/others')}}">Others</a>
-                </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="#" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="nav-link-inner--text">{{ Auth::user()->first_name }}</span>

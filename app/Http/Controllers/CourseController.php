@@ -16,7 +16,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = InternCourse::all();
+        $course = InternCourse::orderBy('id','desc')
+                               ->get();
         $count = 1;
 
         return view('course.index')->with([ 

@@ -8,7 +8,7 @@
     </div>
         <div class="card-body">
         @if(isset($sites))
-        {!! Form::model($sites, ['route' => ['partner.update', $sites->id], 'method' => 'PUT']) !!}
+        {!! Form::model($sites, ['route' => ['sites.update', $sites->id], 'method' => 'PUT']) !!}
         @else
         {!! Form::open(['route' => 'sites.store','method' => 'POST']) !!}
         @endif 
@@ -42,14 +42,14 @@
                 {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','data-length'=>'11','placeholder'=>'0906*******']) }} 
             </div>
             <div class="col-md-4">
-                {{ Form::label('designation','Designation*') }}
-                @if(isset($sites->designation))
-                {{ Form::select('designation', $siteDesig,null, ['class' => 'form-control','id' => 'designation','name' => 'designation']) }}
+                {{ Form::label('site_id','Designation*') }}
+                @if(isset($sites->site_id))
+                {{ Form::select('site_id', $siteDesig,null, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
                 @else
-                <select type="text" id="designation" name="designation" class="form-control">
+                <select type="text" id="site_id" name="site_id" class="form-control">
                   <option value="NONE" >None of the option</option>
                  @foreach($siteDesig as $siteDesig)
-                  <option value="{{ $siteDesig['sites_code'] }}">{{ $siteDesig['sites_desc'] }}</option>  
+                  <option value="{{ $siteDesig['id'] }}">{{ $siteDesig['sites_desc'] }}</option>  
                   @endforeach
                 </select>
                 @endif
@@ -75,7 +75,6 @@
                 {{ Form::label('birthdate','Birthdate') }}
                 {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
             </div> 
-            <input type="hidden" name="is_active" id="is_active" value="{{ isset($sites->is_active) == '' ? 'Y' : 'N' }}">
             <div class="col-md-4">
                 {{ Form::label('gender', "Gender") }}
                 {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
@@ -114,6 +113,12 @@
                 </select>
                 @endif
             </div>
+
+                                @if(isset($sites))
+                                <input type="hidden" name="is_active" id="is_active" value="{{ isset($sites->is_active) == 'Y' ? 'Y' : 'N' }}">
+                                @else
+                                <input type="hidden" name="is_active" id="is_active" value="Y">
+                                @endif
         </div>
     </div>
 

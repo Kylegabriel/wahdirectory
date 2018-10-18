@@ -56,8 +56,8 @@
 								<span class="badge badge-pill badge-primary text-uppercase">{{ $tag->name }}</span>
 							@endforeach
 						</td>
-						<td>{{ date('F j, Y', strtotime($intern->date_start)) }}</td>
-						<td>{{ date('F j, Y', strtotime($intern->date_end)) }}</td>
+						<td>{{ $intern->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($intern->date_start)) }}</td>
+						<td>{{ $intern->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($intern->date_end)) }}</td>
 						<td>
 							<a  href="{{ route('interns.edit',$intern->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 						

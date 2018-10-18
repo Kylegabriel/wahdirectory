@@ -9,7 +9,7 @@ class Site extends Model
     protected $table = 'sites';
 
     protected $fillable = [
-		'designation',
+		'site_id',
 		'region_code',
 		'province_code',
 		'muncity_code',
@@ -41,7 +41,7 @@ class Site extends Model
 	  }
 
 	  public function designations(){
-	    return $this->hasOne('App\SitesDesignation','sites_code','designation');
+	    return $this->hasOne('App\SitesDesignation','id','site_id');
 	  }
 
 	  public function siteSuffix(){

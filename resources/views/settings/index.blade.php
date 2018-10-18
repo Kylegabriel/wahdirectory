@@ -56,10 +56,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/interns')}}">Interns</a>
                 </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/others')}}">Others</a>
-                </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="#" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="nav-link-inner--text">{{ Auth::user()->first_name }}</span>
@@ -103,44 +99,38 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('/school')}}">
                       <i class="fa fa-university"></i>
                       Intern School
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('/papers')}}">
                       <i class="fa fa-paperclip"></i>
                       Intern Papers
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('/userDesignaton')}}">
                       <i class="fa fa-tasks"></i>
-                      User Designation
+                      User/WAH-NGO Designation
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('/siteDesignation')}}">
                       <i class="fa fa-handshake-o"></i>
                       Site Designation
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('/partnerDesignation')}}">
                       <i class="fa fa-building"></i>
                       Partner Designation
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('/partnerOrganization')}}">
                       Partner Organization
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <i class="fa fa-building"></i>
-                      WAH-NGO Designation
                     </a>
                   </li>
                 </ul>

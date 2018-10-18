@@ -14,7 +14,7 @@ class Profile extends Model
         'middle_name',
         'suffix_name',
         'gender',
-        'designation',
+        'role_id',
         'primary_contact',
         'secondary_contact',
         'email',
@@ -35,7 +35,7 @@ class Profile extends Model
     ];
 
     public function designations(){
-      return $this->hasOne('App\UserRole','role_id','designation');
+      return $this->hasOne('App\UserRole','id','role_id');
     }
 
     public function suffix(){

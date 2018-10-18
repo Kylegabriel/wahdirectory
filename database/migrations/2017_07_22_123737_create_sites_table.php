@@ -16,7 +16,7 @@ class CreateSitesTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->char('designation',15)->nullable();
+            $table->integer('site_id')->unsigned();
             $table->char('site',1);
             $table->char('region_code',2);
             $table->char('province_code',4);
@@ -35,6 +35,9 @@ class CreateSitesTable extends Migration
             $table->char('status',1);
             $table->text('reasons')->nullable();          
             $table->timestamps();
+    
+            $table->foreign('site_id')->references('id')->on('sites_designation');
+
         });
     }
 
@@ -45,6 +48,9 @@ class CreateSitesTable extends Migration
      */
     public function down()
     {
+        Schema::table('sites', function ($table) {
+            $table->dropForeign('sites_site_id_foreign');
+        });
         Schema::drop('sites');
     }
 }

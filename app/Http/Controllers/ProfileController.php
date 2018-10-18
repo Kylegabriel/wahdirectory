@@ -87,7 +87,7 @@ class ProfileController extends Controller
         $user->middle_name = $request->input('middle_name');
         $user->suffix_name = $request->input('suffix_name');
         $user->gender = $request->input('gender');
-        $user->designation = $request->input('designation');
+        $user->role_id = $request->input('role_id');
         $user->primary_contact = $request->input('primary_contact');
         $user->secondary_contact = $request->input('secondary_contact');
         $user->email = $request->input('email');
@@ -135,7 +135,7 @@ class ProfileController extends Controller
         $role = UserRole::get();
         $desig = array();
         foreach ($role as $role) {
-            $desig[$role->role_id] = $role->role_name;
+            $desig[$role->id] = $role->role_name;
         }
 
         $suffix = SuffixName::get();
@@ -167,7 +167,7 @@ class ProfileController extends Controller
         $user->middle_name = $request->input('middle_name');
         $user->suffix_name = $request->input('suffix_name');
         $user->gender = $request->input('gender');
-        $user->designation = $request->input('designation');
+        $user->role_id = $request->input('role_id');
         $user->primary_contact = $request->input('primary_contact');
         $user->secondary_contact = $request->input('secondary_contact');
         $user->email = $request->input('email');

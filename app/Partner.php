@@ -9,8 +9,8 @@ class Partner extends Model
    	protected $table='partners';
 
 	protected $fillable = [
-		'organization',
-		'designation',
+		'org_id',
+		'desig_id',
 		'last_name',
 		'first_name',
 		'middle_name',
@@ -26,10 +26,10 @@ class Partner extends Model
 	];
 
 	public function partnerDesignation(){
-      return $this->hasOne('App\PartnerDesignation','id','designation');
+      return $this->hasOne('App\PartnerDesignation','id','desig_id');
     }
     public function partnerOrganization(){
-      return $this->hasOne('App\PartnerOrganization','id','organization');
+      return $this->hasOne('App\PartnerOrganization','id','org_id');
     }
     public function partnerSuffix(){
       return $this->hasOne('App\SuffixName','suffix_name','suffix_code');

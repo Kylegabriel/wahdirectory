@@ -16,12 +16,12 @@ class CreateProfilesTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');
+            $table->integer('role_id')->unsigned();
             $table->string('last_name',50);
             $table->string('first_name',50);
             $table->string('middle_name',50)->nullable();
             $table->string('suffix_name');
             $table->char('gender',1)->nullable();
-            $table->string('designation')->nullable();
             $table->string('primary_contact',11)->nullable();
             $table->string('secondary_contact',11)->nullable();
             $table->string('email',50)->nullable();
@@ -37,6 +37,9 @@ class CreateProfilesTable extends Migration
             $table->string('mabuhaymilespal',20)->nullable();
             $table->string('getgocebupac',20)->nullable();
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('user_role');
+
         });
     }
 
@@ -47,6 +50,9 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
+        Schema::table('profiles', function ($table) {
+            $table->dropForeign('profiles_role_id_foreign');
+        });
         Schema::drop('profiles');
     }
 }

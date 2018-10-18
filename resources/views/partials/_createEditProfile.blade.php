@@ -34,14 +34,14 @@
                                     </div>    
                                     <div class="row">
                                         <div class="col-md-9">
-                                            {{ Form::label('designation','Designation') }}
-                                            @if(isset($profile->designation))
-                                            {{ Form::select('designation', $desig,NULL, ['class' => 'form-control','id' => 'designation','name' => 'designation']) }}
+                                            {{ Form::label('role_id','Designation') }}
+                                            @if(isset($profile->role_id))
+                                            {{ Form::select('role_id', $desig,NULL, ['class' => 'form-control','id' => 'role_id','name' => 'role_id']) }}
                                             @else
-                                            <select type="text" id="designation" name="designation" class="form-control">
+                                            <select type="text" id="role_id" name="role_id" class="form-control">
                                               <option value="NONE">None of the option</option>
                                               @foreach( $designation as $designation )
-                                                    <option value="{{ $designation['role_id'] }}">{{ $designation['role_name'] }}</option>
+                                                    <option value="{{ $designation['id'] }}">{{ $designation['role_name'] }}</option>
                                               @endforeach
                                             </select>
                                             @endif
@@ -111,7 +111,11 @@
                                             {{ Form::text('getgocebupac',null,['class'=>'form-control','id'=>'getgocebupac']) }} 
                                         </div>
                                     </div>
-                                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($profile->is_active) == '' ? 'Y' : 'N' }}">
+                                    @if(isset($profile))
+                                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($profile->is_active) == 'Y' ? 'Y' : 'N' }}">
+                                    @else
+                                    <input type="hidden" name="is_active" id="is_active" value="Y">
+                                    @endif
         </div>
         <div class="card-footer border-primary">
                 <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">

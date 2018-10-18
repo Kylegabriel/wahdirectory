@@ -16,9 +16,9 @@ class UsersTableSeeder extends Seeder
 
 	    //Default Admin User for Initial Login
 	    $users = array(
-	            ['last_name' => 'Padilla', 'first_name' => 'Remar', 'middle_name' => 'Mecina', 'birthdate' => '1993-12-17', 'gender' => 'M', 'role' => 'Admin', 
+	            ['last_name' => 'Padilla', 'first_name' => 'Remar', 'middle_name' => 'Mecina', 'birthdate' => '1993-12-17', 'gender' => 'M', 'role_id' => '1', 
 	            'is_admin' => 'Y', 'username' => 'user', 'email' => 'user@wah.ph', 'mobile_number' => '0917343117', 'is_active' => 'Y',
-	    		'designation' => '', 'password' => Hash::make('user')],
+				'password' => Hash::make('user')],
 	    );
 	        
 	    foreach ($users as $user)

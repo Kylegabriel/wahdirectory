@@ -118,7 +118,7 @@ class SitesController extends Controller
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
-        $partner->designation = $request->input('designation');
+        $partner->site_id = $request->input('site_id');
         $partner->region_code = $request->input('region_code');
         $partner->province_code = $request->input('province_code');
         $partner->muncity_code = $request->input('muncity_code');
@@ -170,7 +170,7 @@ class SitesController extends Controller
         $siteDesignations = SitesDesignation::get();
         $siteDesig = array();
         foreach ($siteDesignations as $siteDesignation) {
-            $siteDesig[$siteDesignation->sites_code] = $siteDesignation->sites_desc;
+            $siteDesig[$siteDesignation->id] = $siteDesignation->sites_desc;
         }
 
         $regions = DemographicRegion::get();
@@ -218,7 +218,7 @@ class SitesController extends Controller
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
-        $partner->designation = $request->input('designation');
+        $partner->site_id = $request->input('site_id');
         $partner->region_code = $request->input('region_code');
         $partner->province_code = $request->input('province_code');
         $partner->muncity_code = $request->input('muncity_code');
