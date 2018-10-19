@@ -39,7 +39,7 @@
                                             {{ Form::select('role_id', $desig,NULL, ['class' => 'form-control','id' => 'role_id','name' => 'role_id']) }}
                                             @else
                                             <select type="text" id="role_id" name="role_id" class="form-control">
-                                              <option value="NONE">None of the option</option>
+                                              <option value="14">Choose your option/option>
                                               @foreach( $designation as $designation )
                                                     <option value="{{ $designation['id'] }}">{{ $designation['role_name'] }}</option>
                                               @endforeach
@@ -111,11 +111,6 @@
                                             {{ Form::text('getgocebupac',null,['class'=>'form-control','id'=>'getgocebupac']) }} 
                                         </div>
                                     </div>
-                                    @if(isset($profile))
-                                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($profile->is_active) == 'Y' ? 'Y' : 'N' }}">
-                                    @else
-                                    <input type="hidden" name="is_active" id="is_active" value="Y">
-                                    @endif
         </div>
         <div class="card-footer border-primary">
                 <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
@@ -134,4 +129,3 @@
                 </a>
         </div> 
     </div>            
-        {!! Form::close() !!}

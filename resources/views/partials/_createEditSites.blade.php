@@ -47,7 +47,7 @@
                 {{ Form::select('site_id', $siteDesig,null, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
                 @else
                 <select type="text" id="site_id" name="site_id" class="form-control">
-                  <option value="NONE" >None of the option</option>
+                  <option value="31" >None of the option</option>
                  @foreach($siteDesig as $siteDesig)
                   <option value="{{ $siteDesig['id'] }}">{{ $siteDesig['sites_desc'] }}</option>  
                   @endforeach
@@ -113,31 +113,25 @@
                 </select>
                 @endif
             </div>
-
-                                @if(isset($sites))
-                                <input type="hidden" name="is_active" id="is_active" value="{{ isset($sites->is_active) == 'Y' ? 'Y' : 'N' }}">
-                                @else
-                                <input type="hidden" name="is_active" id="is_active" value="Y">
-                                @endif
         </div>
     </div>
 
-    <div class="card-footer border-primary">
-        <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
-            <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
-            <span class="btn-inner--text">
-                @if(isset($profile))
-                Save Changes
-                @else
-                Submit
-                @endif
-            </span>
-        </button>
-        <a href="{{ route('sites.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
-            <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
-            <span class="btn-inner--text">Go Back</span>
-        </a>
-    </div> 
-</div>            
-        {!! Form::close() !!}
+        <div class="card-footer border-primary">
+            <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
+                <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
+                <span class="btn-inner--text">
+                    @if(isset($profile))
+                    Save Changes
+                    @else
+                    Submit
+                    @endif
+                </span>
+            </button>
+            <a href="{{ route('sites.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
+                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                <span class="btn-inner--text">Go Back</span>
+            </a>
+        </div> 
+    </div>            
+    
 </div>

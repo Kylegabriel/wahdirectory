@@ -2,6 +2,8 @@
     {!! Html::style('/select2/dist/css/select2.css') !!}
 @section('content')
     @include('partials._createEditInterns')
+    <input type="hidden" name="is_active" id="is_active" value="{{ $intern->is_active == 'Y' ? 'Y' : 'N' }}">
+    {!! Form::close() !!}
 @endsection
 @section('scripts')
 

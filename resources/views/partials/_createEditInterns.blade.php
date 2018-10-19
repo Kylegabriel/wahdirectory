@@ -90,11 +90,6 @@
                         {{ Form::label('date_end','Date End') }}
                         {{ Form::date('date_end',null,['class'=>'form-control','id'=>'date_end']) }}
                     </div>
-                    @if(isset($intern))
-                    <input type="hidden" name="is_active" id="is_active" value="{{ isset($intern->is_active) == 'Y' ? 'Y' : 'N' }}">
-                    @else
-                    <input type="hidden" name="is_active" id="is_active" value="Y">
-                    @endif
             </div> 
         </div>
         <div class="card-footer border-primary">
@@ -114,4 +109,3 @@
             </a>
         </div>               
 </div>
-    {!! Form::close() !!}

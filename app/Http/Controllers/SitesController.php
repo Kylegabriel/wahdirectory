@@ -134,9 +134,14 @@ class SitesController extends Controller
 
         $partner->save();
 
-            Session::flash('success','New Site Partner was Successfully Save');
+        Session::flash('success','New Site Partner was Successfully Save');
 
-        return redirect()->route('sites.index');//,$partner->id);
+        if ($request->input('status') == 'N') {
+          return redirect()->route('warmleads.index');
+        }else{
+          return redirect()->route('sites.index');
+        }
+        
         }
     }
 
@@ -234,10 +239,14 @@ class SitesController extends Controller
 
         $partner->save();
 
-        Session::flash('success','Partner '.$partner->last_name.' was Updated Successfully..!');
+        Session::flash('success','Site Partner '.$partner->last_name.' was Updated Successfully..!');
 
+        if ($request->input('status') == 'N') {
+          return redirect()->route('warmleads.index');
+        }else{
+          return redirect()->route('sites.index');
+        }
 
-        return redirect()->route('sites.index');//,$partner->id);
     }
 
     /**

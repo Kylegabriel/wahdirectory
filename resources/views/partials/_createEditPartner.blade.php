@@ -107,12 +107,6 @@
                                     {{ Form::label('secondary_email','Secondary Email') }}
                                     {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
                                 </div>
-                                
-                                @if(isset($partners))
-                                <input type="hidden" name="is_active" id="is_active" value="{{ isset($partners->is_active) == 'Y' ? 'Y' : 'N' }}">
-                                @else
-                                <input type="hidden" name="is_active" id="is_active" value="Y">
-                                @endif
                             </div>
         </div>
 
@@ -133,6 +127,6 @@
             </a>
         </div>                
 </div>
-{!! Form::close() !!}
+
 
                             
