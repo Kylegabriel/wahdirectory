@@ -30,6 +30,10 @@
 							<td>
 								<a data-toggle="modal" data-target="#editCourse{{ $course->id }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 								<a data-toggle="modal" data-target="#deleteCourse{{ $course->id }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Delete"><i class="fa fa-trash fa-2x"></i></a>
+								<a data-toggle="modal" data-target="#activeInactive{{ $course->id }}"  data-toggle="tooltip" data-placement="left"
+									class="btn btn-link text-{{ $course->is_active == 'Y' ? 'primary' : 'danger' }}" 
+									title="{{ $course->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
+								<i class="fa {{ $course->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
 							</td>
 						</tr>
 
@@ -91,6 +95,33 @@
 			            	</div>
 			           	</div>
 			           	<!--modal -->
+
+			           	<!-- Modal -->
+						<div class="modal fade" id="activeInactive{{ $course->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLongTitle">Please Confirm!</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <h5>Would you like to {{ $course->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
+						        <h5> and all Partners and User Account will also Deactivate?</h5>
+						        {!! Form::model($course, ['route' => ['partnerInactive.update', $course->id], 'method' => 'PUT']) !!}
+						        <input type="hidden" name="is_active" id="is_active" value="{{ $course->is_active == 'N' ? 'Y' : 'N' }}">
+						      </div>
+						      <div class="modal-footer">
+						      	<button type="submit" class="btn btn-primary">Save changes</button>
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						      </div>
+						      {!! Form::close() !!}
+						    </div>
+						  </div>
+						</div>
+						<!-- Modal -->
+
 
 					@endforeach
 				</tbody>
