@@ -7,11 +7,11 @@
 
     <title>WAH Directory</title>
 
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/toastr/build/toastr.css">
-    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/toastr/build/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link type="text/css" href="/argon-design/argon-design/assets/css/argon.css" rel="stylesheet">
-    <link type="text/css" href="/DataTables/Data/css/dataTables.bootstrap4.min.css" rel="stylesheet"> 
+    <link type="text/css" href="/DataTables/Data/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     @yield('stylesheets')
 </head>
 <body>  
@@ -42,7 +42,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/profile')}}">WAH-NGO
+                  <a class="nav-link" href="{{ url('/profile')}}">WAH-STAFF
                   </a>
                 </li>
                 <li class="nav-item">
@@ -94,6 +94,7 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/toastr/toastr.js"></script>
     <script src="/argon-design/argon-design/assets/js/argon.js"></script>
+    <script src="/jQuery-Mask/dist/jquery.mask.js"></script>
     <script src="/js/_script.js"></script>
     @yield('scripts')
     <script>

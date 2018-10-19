@@ -1,5 +1,9 @@
       $(document).ready(function(){
 
+
+
+
+
             // to remove dropdown suggested comment in form input
             // $('input').attr('autocomplete','off');
             // to prevent clicking outside of the modal
@@ -47,21 +51,8 @@
                         birthdate: {
                           required: true
                         },
-                        primary_contact: {
-                          number: true,
-                          minlength: 11,
-                          maxlength:11
-                        },
-                        secondary_contact : {
-                          number: true,
-                          minlength: 11,
-                          maxlength:11
-                        },
                         mobile_number : {
                           required: true,
-                          number: true,
-                          minlength: 11,
-                          maxlength:11
                         },
                         status: {
                           required: true
@@ -114,4 +105,49 @@
                     }
               });
             });
+
+            // jquery-mask
+            $('input[name="mobile_number"]').mask('0000-0000-000',{
+              placeholder: "0917-XXXX-XXX",
+              clearIfNotMatch: true
+            });
+
+            $('input[name="primary_contact"]').mask('0000-0000-000',{
+              placeholder: "0917-XXXX-XXX",
+              clearIfNotMatch: true
+            });
+
+            $('input[name="secondary_contact"]').mask('0000-0000-000',{
+              placeholder: "0917-XXXX-XXX",
+              clearIfNotMatch: true
+            });
+            $('input[name="philhealth"]').mask('00-000000000-0',{
+              placeholder: "XX-XXXXXXXXX-X",
+              clearIfNotMatch: true
+            });
+              $('input[name="tin"]').mask('000-000-000',{
+              placeholder: "XXX-XXX-XXX",
+              clearIfNotMatch: true
+            });
+              $('input[name="sss"]').mask('00-0000000-0',{
+              placeholder: "XX-XXXXXXX-X",
+              clearIfNotMatch: true
+            });
+              $('input[name="pagibigmidno"]').mask('0000-0000-0000',{
+              placeholder: "XXXX-XXXX-XXXX",
+              clearIfNotMatch: true
+            });
+              $('input[name="pagibigrtn"]').mask('000000000000',{
+              placeholder: "XXXXXXXXXXXX",
+              clearIfNotMatch: true
+            });
+              $('input[name="mabuhaymilespal"]').mask('000000000',{
+              placeholder: "XXXXXXXXX",
+              clearIfNotMatch: true
+            });
+              $('input[name="getgocebupac"]').mask('0000000000',{
+              placeholder: "XXXXXXXXXX",
+              clearIfNotMatch: true
+            });
+
        });

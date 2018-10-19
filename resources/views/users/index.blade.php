@@ -108,7 +108,7 @@
                                   </div> 
                                   <div class="col-md-4">
                                           {{ Form::label('mobile_number','Mobile Number') }}
-                                          {{ Form::text('mobile_number',null,['class'=>'form-control','id'=>'mobile_number','placeholder'=>'0930*******']) }} 
+                                          {{ Form::text('mobile_number',null,['class'=>'form-control','id'=>'mobile_number']) }} 
                                   </div>
                                   <div class="col-md-4">
                                           {{ Form::label('email','Email') }}
@@ -200,7 +200,7 @@
                         </div> 
                         <div class="col-md-4">
                                 {{ Form::label('mobile_number','Mobile Number') }}
-                                {{ Form::text('mobile_number',null,['class'=>'form-control','id'=>'mobile_number','placeholder'=>'0930*******']) }} 
+                                {{ Form::text('mobile_number',null,['class'=>'form-control','id'=>'mobile_number']) }} 
                         </div>
                         <div class="col-md-4">
                                 {{ Form::label('email','Email') }}

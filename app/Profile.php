@@ -39,6 +39,6 @@ class Profile extends Model
     }
 
     public function suffix(){
-      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
+      return $this->hasOne('App\SuffixName','suffix_code','suffix_name');
     }
 }

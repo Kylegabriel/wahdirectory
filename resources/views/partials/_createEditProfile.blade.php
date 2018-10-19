@@ -68,11 +68,11 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             {{ Form::label('primary_contact','Primary Contact') }}
-                                            {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact','placeholder'=>'0930*******']) }} 
+                                            {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }} 
                                         </div>
                                         <div class="col-md-4">
                                             {{ Form::label('secondary_contact','Secondary Contact') }}
-                                            {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','placeholder'=>'0906*******']) }} 
+                                            {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact']) }} 
                                         </div>
                                         <div class="col-md-4">
                                             {{ Form::label('birthdate','Birthdate') }}

@@ -27,7 +27,7 @@
                                     {{ Form::text('middle_name',null,['class'=>'form-control','id'=>'middle_name']) }} 
                                 </div>
                                 <div class="col-md-3">
-                                    {{ Form::label('suffixName','Suffix Name') }}
+                                    {{ Form::label('suffix_name','Suffix Name') }}
                                     @if(isset($partners->suffix_name))
                                     {{ Form::select('suffix_name', $suffix,null, ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
                                     @else
@@ -85,11 +85,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     {{ Form::label('primary_contact','Primary Contact') }}
-                                    {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact','placeholder'=>'0930*******']) }} 
+                                    {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }} 
                                 </div>
                                 <div class="col-md-4">
                                     {{ Form::label('secondary_contact','Secondary Contact') }}
-                                    {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','placeholder'=>'0906*******']) }} 
+                                    {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact']) }} 
                                 </div>
                                 <div class="col-md-4">
                                     {{ Form::label('birthdate','Birthdate') }}
@@ -134,4 +134,5 @@
         </div>                
 </div>
 {!! Form::close() !!}
+
                             

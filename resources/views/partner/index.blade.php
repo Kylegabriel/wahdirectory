@@ -51,7 +51,7 @@
 					<td>{{ $partners->partnerOrganization['organization'] }}</td>
 					<td>{{ $partners->partnerDesignation['designation'] }}</td>
 					<td>{{ $partners->partnerProvince['province_name'] }}</td>
-					<td>{{ $partners->primary_contact . ' ' .$partners->secondary_contact}}</td>
+					<td>{{ $partners->primary_contact . ' / ' .$partners->secondary_contact}}</td>
 					<td>{{ $partners->email . ' ' . $partners->secondary_email }}</td>
 					<td>{{ date('F j, Y', strtotime($partners->birthdate)) }}</td>
 					<td>
