@@ -117,6 +117,11 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
+        $school = InternSchool::find($id);
 
+        $school->delete();
+
+        Session::flash('repeat','School was Successfully Deleted');
+        return redirect()->route('school.index');
     }
 }

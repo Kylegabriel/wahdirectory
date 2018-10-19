@@ -101,11 +101,11 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $school = InternCourse::find($id);
+        $course = InternCourse::find($id);
 
-        $school->course = $request->input('course');
+        $course->course = $request->input('course');
 
-        $school->save();
+        $course->save();
 
         Session::flash('success','School was Successfully Updated');
 
@@ -120,6 +120,11 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = InternCourse::find($id);
+
+        $course->delete();
+
+        Session::flash('repeat','School was Successfully Deleted');
+        return redirect()->route('course.index');
     }
 }

@@ -111,7 +111,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/userDesignaton')}}">
+                    <a class="nav-link" href="{{ url('/userDesignation')}}">
                       <i class="fa fa-tasks"></i>
                       User/WAH-NGO Designation
                     </a>

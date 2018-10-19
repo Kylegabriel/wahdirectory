@@ -118,5 +118,11 @@ class PaperController extends Controller
     public function destroy($id)
     {
         //
+        $paper = Tag::find($id);
+
+        $paper->delete();
+
+        Session::flash('repeat','School was Successfully Deleted');
+        return redirect()->route('papers.index');
     }
 }

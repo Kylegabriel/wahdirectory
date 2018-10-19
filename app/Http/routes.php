@@ -26,14 +26,14 @@ Route::resource('sites/get-muncity-list','SitesController@getMuncityList',['only
 
 //settings
 Route::resource('settings','SettingsController',['only' => ['index']]);
-Route::resource('school','SchoolController',['only' =>['store','update','index']]);
-Route::resource('course','CourseController',['only' =>['store','update','index']]);
-Route::resource('papers','PaperController',['only' =>['store','update','index']]);
+Route::resource('school','SchoolController',['except' =>['create','show']]);
+Route::resource('course','CourseController',['except' =>['create','show']]);
+Route::resource('papers','PaperController', ['except' =>['create','show']]);
 Route::resource('users','UserController',['only' =>['store','update','index']]);
-Route::resource('userDesignaton','UserDesignationController',['only' =>['store','update','index']]);
-Route::resource('siteDesignation','siteDesignationController',['only' =>['store','update','index']]);
-Route::resource('partnerDesignation','partnerDesignationController',['only' =>['store','update','index']]);
-Route::resource('partnerOrganization','PartnerOrganizationtionController',['only' =>['store','update','index']]);
+Route::resource('userDesignation','UserDesignationController',['except' =>['create','show']]);
+Route::resource('siteDesignation','siteDesignationController',['except' =>['create','show']]);
+Route::resource('partnerDesignation','partnerDesignationController',['except' =>['create','show']]);
+Route::resource('partnerOrganization','PartnerOrganizationtionController',['except' =>['create','show']]);
 
 
 // Activation and Deactivation

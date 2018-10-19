@@ -122,5 +122,11 @@ class PartnerOrganizationtionController extends Controller
     public function destroy($id)
     {
         //
+        $partnerorg = PartnerOrganization::find($id);
+
+        $partnerorg->delete();
+
+        Session::flash('repeat','Partner Organization was Successfully Deleted');
+        return redirect()->route('partnerOrganization.index');
     }
 }

@@ -20,7 +20,7 @@ class UserDesignationController extends Controller
                                ->get();
         $count = 1;
 
-        return view('userDesignaton.index')->with([ 
+        return view('userDesignation.index')->with([ 
             'userRole' => $userRoles,
             'count' => $count,
             ]);
@@ -53,7 +53,7 @@ class UserDesignationController extends Controller
         if($count >= 1){
 
           Session::flash('repeat','User Role Already Exist');
-          return redirect()->route('userDesignaton.index');
+          return redirect()->route('userDesignation.index');
 
         }else{
 
@@ -65,7 +65,7 @@ class UserDesignationController extends Controller
 
         Session::flash('success','New Course was Successfully Save');
 
-        return redirect()->route('userDesignaton.index');
+        return redirect()->route('userDesignation.index');
 
         }
     }
@@ -110,7 +110,7 @@ class UserDesignationController extends Controller
 
         Session::flash('success','User Role was Successfully Updated');
 
-        return redirect()->route('userDesignaton.index');
+        return redirect()->route('userDesignation.index');
     }
 
     /**
@@ -122,5 +122,11 @@ class UserDesignationController extends Controller
     public function destroy($id)
     {
         //
+        $UserRole = UserRole::find($id);
+
+        $UserRole->delete();
+
+        Session::flash('repeat','User Role was Successfully Deleted');
+        return redirect()->route('userDesignation.index');
     }
 }

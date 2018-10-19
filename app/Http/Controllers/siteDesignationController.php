@@ -107,7 +107,7 @@ class siteDesignationController extends Controller
 
         $site->save();
 
-        Session::flash('success','School was Successfully Updated');
+        Session::flash('success','Site Designation was Successfully Updated');
 
         return redirect()->route('siteDesignation.index');
     }
@@ -121,5 +121,11 @@ class siteDesignationController extends Controller
     public function destroy($id)
     {
         //
+        $site = SitesDesignation::find($id);
+
+        $site->delete();
+
+        Session::flash('repeat','Site Designation was Successfully Deleted');
+        return redirect()->route('userDesignaton.index');
     }
 }

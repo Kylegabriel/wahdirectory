@@ -121,6 +121,11 @@ class partnerDesignationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $site = PartnerDesignation::find($id);
+
+        $site->delete();
+
+        Session::flash('repeat','Partner Designation was Successfully Deleted');
+        return redirect()->route('userDesignaton.index');
     }
 }
