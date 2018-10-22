@@ -1,8 +1,32 @@
+        
+
+        //       // make it First letter to be capitale
+        // ,'onkeyup' => 'capitalize(this.id, this.value);'
+        // function capitalize(textboxid, str) {
+        //     // string with alteast one character
+        //     if (str && str.length >= 1)
+        //     {       
+        //         var firstChar = str.charAt(0);
+        //         var remainingStr = str.slice(1);
+        //         str = firstChar.toUpperCase() + remainingStr;
+        //     }
+        //     document.getElementById(textboxid).value = str;
+        // }
+        $.fn.capitalize = function() {
+            $.each(this, function() {
+                this.value = this.value.replace(/\b[a-z]/gi, function($0) {
+                    return $0.toUpperCase();
+                });
+            });
+        }
+
+        //usage
+        $('#last_name,#first_name,#middle_name').keyup(function() {
+            $(this).capitalize();
+        }).capitalize();  
+
+
       $(document).ready(function(){
-
-
-
-
 
             // to remove dropdown suggested comment in form input
             // $('input').attr('autocomplete','off');
