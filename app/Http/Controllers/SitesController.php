@@ -9,6 +9,7 @@ use App\SitesDesignation;
 use App\DemographicRegion;
 use App\DemographicProvince;
 use App\DemographicMunicipality;
+use App\DemographicBarangay;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\DB;
@@ -64,30 +65,6 @@ class SitesController extends Controller
             'region' => $region
             ]);
     }
-
-    public function getRegionList(Request $request){
-        $region = DemographicRegion::
-                    where('site','LIKE','%'.$request->site_id.'%')
-                    ->pluck("region_name","region_code");
-        return $region;
-    }
-
-    public function getProvinceList(Request $request)
-    {
-        $province = DemographicProvince::
-                    where("region_code",'LIKE','%'.$request->region_id.'%')
-                    ->pluck("province_name","province_code");
-        return $province;
-    }
-
-    public function getMuncityList(Request $request)
-    {
-        $muncity = DemographicMunicipality::
-                    where('province_code','LIKE','%'.$request->province_id.'%')
-                    ->pluck("muncity_name","muncity_code");
-        return $muncity;
-    }
-
     /**
      * Store a newly created resource in storage.
      *

@@ -8,7 +8,7 @@
     </div>
         <div class="card-body">
             @if(isset($intern))
-            {!! Form::model($intern, ['route' => ['interns.update', $intern->id], 'method' => 'PUT','class'=>'formform-control']) !!}
+            {!! Form::model($intern, ['route' => ['interns.update', $intern->id], 'method' => 'PUT']) !!}
             @else
             {!! Form::open(['route'=>'interns.store','method'=>'POST']) !!}
             @endif

@@ -133,6 +133,11 @@
                       Partner Organization
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/facility')}}">
+                      Facility Config
+                    </a>
+                  </li>
                 </ul>
               </nav>
           </div>

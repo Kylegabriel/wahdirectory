@@ -103,6 +103,15 @@ class ProfileController extends Controller
         $user->mabuhaymilespal = $request->input('mabuhaymilespal');
         $user->getgocebupac = $request->input('getgocebupac');
 
+        // if ($request->hasFile('image_url')) {
+        //     $file = $request->file('image_url');
+        //     $file->move(public_path(). '/', $file->getClientOriginalName());
+
+        //     $user->image_url = $file->getClientOriginalName();
+        // }
+
+        
+
         $user->save();
 
         Session::flash('success','New WAH-NGO was Successfully Save..!');
@@ -119,7 +128,11 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = Profile::find($id);
+
+        return view('profile.show')->with([
+            'profile'=>$profile,
+            ]);
     }
 
     /**

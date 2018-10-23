@@ -16,13 +16,10 @@ Route::get('/', function () {
 });
 
 Route::resource('partner','PartnerController',['except'=>['destroy','show']]);
-Route::resource('profile','ProfileController',['except'=>['destroy','show']]);
+Route::resource('profile','ProfileController',['except'=>['destroy']]);
 Route::resource('interns','InternController',['except'=>['show','destroy']]);
 Route::resource('warmleads','WarmLeadsController',['only'=>['index']]);
 Route::resource('sites','SitesController',['except'=>['show','destroy']]);
-Route::resource('sites/get-region-list','SitesController@getRegionList',['only'=>['index']]);
-Route::resource('sites/get-province-list','SitesController@getProvinceList',['only'=>['index']]);
-Route::resource('sites/get-muncity-list','SitesController@getMuncityList',['only'=>['index']]);
 
 //settings
 Route::resource('settings','SettingsController',['only' => ['index']]);
@@ -34,6 +31,13 @@ Route::resource('userDesignation','UserDesignationController',['except' =>['crea
 Route::resource('siteDesignation','siteDesignationController',['except' =>['create','show']]);
 Route::resource('partnerDesignation','partnerDesignationController',['except' =>['create','show']]);
 Route::resource('partnerOrganization','PartnerOrganizationtionController',['except' =>['create','show']]);
+
+// // Facility Config
+Route::resource('facility','FacilityConfigController',['except'=>['show','destroy']]);
+Route::resource('facility/get-region-list','FacilityConfigController@getRegionList',['only'=>['index']]);
+Route::resource('facility/get-province-list','FacilityConfigController@getProvinceList',['only'=>['index']]);
+Route::resource('facility/get-muncity-list','FacilityConfigController@getMuncityList',['only'=>['index']]);
+Route::resource('facility/get-brgy-list','FacilityConfigController@getBrgyList',['only'=>['index']]);
 
 
 // Activation and Deactivation

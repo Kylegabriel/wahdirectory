@@ -29,7 +29,8 @@
       $(document).ready(function(){
 
             // to remove dropdown suggested comment in form input
-            // $('input').attr('autocomplete','off');
+            $('input').attr('autocomplete','off');
+            
             // to prevent clicking outside of the modal
             $('.modal').modal({
                 show: false,
@@ -87,6 +88,18 @@
                         site: {
                           required: true
                         },
+                        region_code: {
+                          required: true
+                        },
+                        province_code: {
+                          required: true
+                        },
+                        muncity_code: {
+                          required: true
+                        },
+                        brgy_code: {
+                          required: true
+                        },
                         course: {
                           required: true
                         },
@@ -110,7 +123,8 @@
                         comfirm_password: {
                           required: true,
                           equalTo: "#password"
-                        }
+                        },
+
                       },
                               highlight: function(element) {
                         $(element).closest('.form-control').addClass('is-invalid');

@@ -39,7 +39,7 @@
                                             {{ Form::select('role_id', $desig,NULL, ['class' => 'form-control','id' => 'role_id','name' => 'role_id']) }}
                                             @else
                                             <select type="text" id="role_id" name="role_id" class="form-control">
-                                              <option value="14">Choose your option/option>
+                                              <option value="14">Choose your option</option>
                                               @foreach( $designation as $designation )
                                                     <option value="{{ $designation['id'] }}">{{ $designation['role_name'] }}</option>
                                               @endforeach
@@ -111,6 +111,12 @@
                                             {{ Form::text('getgocebupac',null,['class'=>'form-control','id'=>'getgocebupac']) }} 
                                         </div>
                                     </div>
+<!--                                     <div class="row">
+                                        <div class="col-md-6">
+                                            {{ Form::label('image_url','Image') }}
+                                            <input type="file" name="image_url" id="image_url" class="form-control">
+                                        </div>
+                                    </div> -->
         </div>
         <div class="card-footer border-primary">
                 <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">

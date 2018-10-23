@@ -50,11 +50,12 @@
                             <td>{{ $profile->designations['role_name'] }}</td>
                             <td>{{ $profile->primary_contact . ' ' . $profile->secondary_contact }}</td>
                             <td>{{ $profile->email . ' ' . $profile->secondary_email }}</td>
-                            <td>{{ date('F j, Y', strtotime($profile->birthdate)) }}</td>
-                            <td>{{ date('F j, Y', strtotime($profile->datehired)) }}</td>
+                            <td>{{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}</td>
+                            <td>{{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}</td>
                             <td>
                               <a  href="{{ route('profile.edit',$profile->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-                              <a data-toggle="modal" data-target="#showInfo{{ $profile->id }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Info"><i class="fa fa-clipboard fa-2x"></i></a>
+                              <a  href="{{ route('profile.show',$profile->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
+                              <!-- <a data-toggle="modal" data-target="#showInfo{{ $profile->id }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Info"><i class="fa fa-clipboard fa-2x"></i></a> -->
                               <a data-toggle="modal" data-target="#activeInactive{{ $profile->id }}"  data-toggle="tooltip" data-placement="left"
                                 class="btn btn-link text-{{ $profile->is_active == 'Y' ? 'primary' : 'danger' }}" 
                                 title="{{ $profile->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
@@ -62,7 +63,7 @@
                             </td>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="showInfo{{ $profile->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--                             <div class="modal fade" id="showInfo{{ $profile->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -87,7 +88,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
                             <!-- endModal -->
 
                             <!-- Modal -->

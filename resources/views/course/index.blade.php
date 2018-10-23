@@ -108,7 +108,7 @@
 						      </div>
 						      <div class="modal-body">
 						        <h5>Would you like to {{ $course->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
-						        <h5> and all Partners and User Account will also Deactivate?</h5>
+						        <h5>Partners and User Account will also Deactivated?</h5>
 						        {!! Form::model($course, ['route' => ['partnerInactive.update', $course->id], 'method' => 'PUT']) !!}
 						        <input type="hidden" name="is_active" id="is_active" value="{{ $course->is_active == 'N' ? 'Y' : 'N' }}">
 						      </div>

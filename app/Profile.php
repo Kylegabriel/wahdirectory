@@ -31,7 +31,8 @@ class Profile extends Model
         'pagibigmidno',
         'pagibigrtn',
         'mabuhaymilespal',
-        'getgocebupac'
+        'getgocebupac',
+        // 'image_url'
     ];
 
     public function designations(){
