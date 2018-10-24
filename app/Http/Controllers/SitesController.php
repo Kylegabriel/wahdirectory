@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SuffixName;
 use App\Site;
+use App\FacilityConfig;
 use App\SitesDesignation;
 use App\DemographicRegion;
 use App\DemographicProvince;
@@ -12,8 +13,6 @@ use App\DemographicMunicipality;
 use App\DemographicBarangay;
 use App\Http\Requests;
 use Session;
-use Illuminate\Support\Facades\DB;
-use Response;
 
 class SitesController extends Controller
 {
@@ -57,12 +56,15 @@ class SitesController extends Controller
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
 
+        $facility = FacilityConfig::with('region','province','municipality','barangay')->first();
+        
         $count = 1;
         return view('sites.create')->with([
             'count' => $count,
             'suffix' => $suf,
             'siteDesig' => $siteDesignation,
-            'region' => $region
+            'region' => $region,
+            'facility' => $facility
             ]);
     }
     /**
@@ -74,44 +76,45 @@ class SitesController extends Controller
     public function store(Request $request)
     {
         $check_site = Site::where('last_name','LIKE',$request->input('last_name'))
-                                  ->where('first_name','LIKE',$request->input('first_name'))
-                                  ->where('middle_name','LIKE',$request->input('middle_name'))
-                                  ->where('suffix_name','LIKE',$request->input('suffix_name'))
-                                  ->where('birthdate','=',$request->input('birthdate'))
-                                  ->get();
+                          ->where('first_name','LIKE',$request->input('first_name'))
+                          ->where('middle_name','LIKE',$request->input('middle_name'))
+                          ->where('suffix_name','LIKE',$request->input('suffix_name'))
+                          ->where('birthdate','=',$request->input('birthdate'))
+                          ->get();
 
         $count = count($check_site);
 
         if($count >= 1){
 
-          Session::flash('repeat','Site Partner Already Exist');
+          Session::flash('repeat','Site sites Already Exist');
           return redirect()->route('sites.index');
 
         }else{
                 
-        $partner = new Site;
+        $sites = new Site;
 
-        $partner->last_name = $request->input('last_name');
-        $partner->first_name = $request->input('first_name');
-        $partner->middle_name = $request->input('middle_name');
-        $partner->suffix_name = $request->input('suffix_name');
-        $partner->site_id = $request->input('site_id');
-        $partner->region_code = $request->input('region_code');
-        $partner->province_code = $request->input('province_code');
-        $partner->muncity_code = $request->input('muncity_code');
-        $partner->site = $request->input('site');
-        $partner->status = $request->input('status');
-        $partner->gender = $request->input('gender');
-        $partner->primary_contact = $request->input('primary_contact');
-        $partner->secondary_contact = $request->input('secondary_contact');
-        $partner->email = $request->input('email');
-        $partner->secondary_email = $request->input('secondary_email');
-        $partner->birthdate = $request->input('birthdate');
-        $partner->is_active = $request->input('is_active');
+        $sites->last_name = $request->input('last_name');
+        $sites->first_name = $request->input('first_name');
+        $sites->middle_name = $request->input('middle_name');
+        $sites->suffix_name = $request->input('suffix_name');
+        $sites->site_id = $request->input('site_id');
+        $sites->region_code = $request->input('region_code');
+        $sites->province_code = $request->input('province_code');
+        $sites->muncity_code = $request->input('muncity_code');
+        $sites->brgy_code = $request->input('brgy_code');
+        // $sites->site = $request->input('site');
+        $sites->status = $request->input('status');
+        $sites->gender = $request->input('gender');
+        $sites->primary_contact = $request->input('primary_contact');
+        $sites->secondary_contact = $request->input('secondary_contact');
+        $sites->email = $request->input('email');
+        $sites->secondary_email = $request->input('secondary_email');
+        $sites->birthdate = $request->input('birthdate');
+        $sites->is_active = $request->input('is_active');
 
-        $partner->save();
+        $sites->save();
 
-        Session::flash('success','New Site Partner was Successfully Save');
+        Session::flash('success','New Site sites was Successfully Save');
 
         if ($request->input('status') == 'N') {
           return redirect()->route('warmleads.index');
@@ -130,7 +133,11 @@ class SitesController extends Controller
      */
     public function show($id)
     {
-        //
+        $sites = Site::find($id);
+
+        return view('sites.show')->with([
+            'sites'=>$sites,
+            ]);
     }
 
     /**
@@ -161,25 +168,14 @@ class SitesController extends Controller
             $reg[$region->region_code] = $region->region_name;
         }
 
-        $provinces = DemographicProvince::get();
-        $prov = array();
-        foreach ($provinces as $province) {
-            $prov[$province->province_code] = $province->province_name;
-        }
-
-        $municipalities = DemographicMunicipality::get();
-        $muncity = array();
-        foreach ($municipalities as $municipality) {
-            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
-        }
+        $facility = FacilityConfig::with('region','province','municipality','barangay')->first();
 
         return view('sites.edit')->with([
             'sites' => $editSites,
             'suffix' => $suf,
             'siteDesig' => $siteDesig,
             'region' => $reg,
-            'province' => $prov,
-            'municipality' => $muncity
+            'facility' => $facility,
           ]);
     }
 
@@ -194,29 +190,30 @@ class SitesController extends Controller
     {
 
 
-        $partner = Site::find($id);
+        $sites = Site::find($id);
 
-        $partner->last_name = $request->input('last_name');
-        $partner->first_name = $request->input('first_name');
-        $partner->middle_name = $request->input('middle_name');
-        $partner->suffix_name = $request->input('suffix_name');
-        $partner->site_id = $request->input('site_id');
-        $partner->region_code = $request->input('region_code');
-        $partner->province_code = $request->input('province_code');
-        $partner->muncity_code = $request->input('muncity_code');
-        $partner->site = $request->input('site');
-        $partner->status = $request->input('status');
-        $partner->gender = $request->input('gender');
-        $partner->primary_contact = $request->input('primary_contact');
-        $partner->secondary_contact = $request->input('secondary_contact');
-        $partner->email = $request->input('email');
-        $partner->secondary_email = $request->input('secondary_email');
-        $partner->birthdate = $request->input('birthdate');
-        $partner->is_active = $request->input('is_active');
+        $sites->last_name = $request->input('last_name');
+        $sites->first_name = $request->input('first_name');
+        $sites->middle_name = $request->input('middle_name');
+        $sites->suffix_name = $request->input('suffix_name');
+        $sites->site_id = $request->input('site_id');
+        $sites->region_code = $request->input('region_code');
+        $sites->province_code = $request->input('province_code');
+        $sites->muncity_code = $request->input('muncity_code');
+        $sites->brgy_code = $request->input('brgy_code');
+        // $sites->site = $request->input('site');
+        $sites->status = $request->input('status');
+        $sites->gender = $request->input('gender');
+        $sites->primary_contact = $request->input('primary_contact');
+        $sites->secondary_contact = $request->input('secondary_contact');
+        $sites->email = $request->input('email');
+        $sites->secondary_email = $request->input('secondary_email');
+        $sites->birthdate = $request->input('birthdate');
+        $sites->is_active = $request->input('is_active');
 
-        $partner->save();
+        $sites->save();
 
-        Session::flash('success','Site Partner '.$partner->last_name.' was Updated Successfully..!');
+        Session::flash('success','Site sites '.$sites->last_name.' was Updated Successfully..!');
 
         if ($request->input('status') == 'N') {
           return redirect()->route('warmleads.index');

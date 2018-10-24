@@ -16,7 +16,7 @@ class CreateFacilityTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');
-            $table->char('site_id',1);
+            // $table->char('site_id',1);
             $table->char('region_code',2);
             $table->char('province_code',4);
             $table->char('muncity_code',6);

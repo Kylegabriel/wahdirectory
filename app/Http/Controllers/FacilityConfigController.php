@@ -26,18 +26,19 @@ class FacilityConfigController extends Controller
     public function index()
     {
         $facility = FacilityConfig::with('region','province','municipality','barangay')->first();
+        $reg = DemographicRegion::all();
 
-        return view('facility.index')->with(
-            ['facility' => $facility
+        return view('facility.index')->with([
+            'facility' => $facility,
+            'region' => $reg
             ]);
     }
 
-    public function getRegionList(Request $request){
-        $region = DemographicRegion::
-                    where('site','LIKE','%'.$request->site_id.'%')
-                    ->pluck("region_name","region_code");
-        return $region;
-    }
+    // public function getRegionList(Request $request){
+    //     $region = DemographicRegion::where('site','LIKE','%'.$request->site_id.'%')
+    //                 // ->pluck("region_name","region_code");
+    //     return $region;
+    // }
 
     public function getProvinceList(Request $request)
     {
@@ -95,7 +96,7 @@ class FacilityConfigController extends Controller
 
         $facility = new FacilityConfig;
 
-        $facility->site_id = $request->input('site_id');
+        //$facility->site_id = $request->input('site');
         $facility->region_code = $request->input('region_code');
         $facility->province_code = $request->input('province_code');
         $facility->muncity_code = $request->input('muncity_code');
@@ -143,7 +144,7 @@ class FacilityConfigController extends Controller
         //
         $facility = FacilityConfig::find($id);
 
-        $facility->site_id = $request->input('site_id');
+        //$facility->site_id = $request->input('site');
         $facility->region_code = $request->input('region_code');
         $facility->province_code = $request->input('province_code');
         $facility->muncity_code = $request->input('muncity_code');

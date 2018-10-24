@@ -10,7 +10,7 @@
         <!-- User profile -->
         <div class="card shadow">
           <div class="card-header">
-              WAH-Staff Record
+              Partner Record
           </div>
           <div class="profile-comments__item">
             <div class="card-body">
@@ -18,13 +18,12 @@
                 <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
               </div>
               <div class="profile__header">
-                <h4>{{ $profile-> first_name . ' ' . $profile->middle_name . ' ' . $profile->last_name }}</h4>
-                <small>{{ $profile->designations['role_name'] }}</small><br>
-                <small>This record is {{ $profile->is_active == 'Y' ? 'Active' : 'Inactive' }}</small>
+                <h4>{{ $partner-> first_name . ' ' . $partner->middle_name . ' ' . $partner->last_name }}</h4>
+                <small>{{ $partner->partnerDesignation['designation'] }}</small><br>
+                <small>This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}</small>
                 <p class="text-muted">
-                 Birtdate: {{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}<br>
-                 Date Hired: {{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}<br>
-                 Gender: {{ $profile->gender == 'M' ? 'Male' : 'Female' }}<br>
+                 Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
+                 Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
                 </p>
   <!--               <p>
                   <a href="#">bootdey.com</a>
@@ -33,7 +32,7 @@
             </div>
             <div class="profile-comments__controls">
               <!-- <a href="#"><i class="fa fa-share-square-o"></i></a>
-  -->         <a href="{{ route('profile.edit',$profile->id) }}"><i class="fa fa-edit"></i></a>
+  -->         <a href="{{ route('partner.edit',$partner->id) }}"><i class="fa fa-edit"></i></a>
               <!-- <a href="#"><i class="fa fa-trash-o"></i></a> -->
             </div>
           </div>
@@ -50,38 +49,17 @@
               <tbody>
                 <tr>
                   <th><strong>Address :</strong></th>
-                  <td>{{ $profile->region['region_name'] . ", " 
-                    . $profile->province['province_name'] . ", " 
-                    . $profile->municipality['muncity_name'] . " "
-                    . $profile->barangay['brgy_name'] }}</td>
+                  <td>
+                   {{ 
+                      $partner->region['region_name'] . ", " 
+                    . $partner->provinces['province_name'] . ", " 
+                    . $partner->municipality['muncity_name'] . " "
+                    . $partner->barangay['brgy_name'] 
+                  }}</td>
                 </tr>
                 <tr>
-                  <th><strong>PhilHealth :</strong></th>
-                  <td>{{ $profile->philhealth }}</td>
-                </tr>
-                <tr>
-                  <th><strong>SSS :</strong></th>
-                  <td>{{ $profile->sss }}</td>
-                </tr>
-                <tr>
-                  <th><strong>TIN :</strong></th>
-                  <td>{{ $profile->tin }}</td>
-                </tr>
-                <tr>
-                  <th><strong>MID NO :</strong></th>
-                  <td>{{ $profile->pagibigmidno }}</td>
-                </tr>
-                <tr>
-                  <th><strong>RTN NO :</strong></th>
-                  <td>{{ $profile->pagibigrtn }}</td>
-                </tr>
-                <tr>
-                  <th><strong>MABUHAY MILES NO : </strong></th>
-                  <td>{{ $profile->mabuhaymilespal }}</td>
-                </tr>
-                <tr>
-                  <th><strong>CEBU PAC GET GO NO : </strong></th>
-                  <td>{{ $profile->getgocebupac }}</td>
+                  <th><strong>Organization :</strong></th>
+                  <td>{{ $partner->partnerOrganization['organization'] }}</td>
                 </tr>
               </tbody>
             </table>
@@ -124,7 +102,7 @@
         
         <!-- Edit user -->
         <p>
-          <a href="{{ route('profile.index') }}" class="profile__contact-btn btn btn-lg btn-block btn-primary">
+          <a href="{{ route('partner.index') }}" class="profile__contact-btn btn btn-lg btn-block btn-primary">
             BACK
           </a>
         </p>
@@ -139,7 +117,7 @@
             </div>
             <div class="profile__contact-info-body">
               <h5 class="profile__contact-info-heading">Work number</h5>
-              {{ $profile->primary_contact }}
+              {{ $partner->primary_contact }}
             </div>
           </div>
           <div class="profile__contact-info-item">
@@ -148,7 +126,7 @@
             </div>
             <div class="profile__contact-info-body">
               <h5 class="profile__contact-info-heading">Mobile number</h5>
-              {{ $profile->secondary_contact }}
+              {{ $partner->secondary_contact }}
             </div>
           </div>
           <div class="profile__contact-info-item">
@@ -157,7 +135,7 @@
             </div>
             <div class="profile__contact-info-body">
               <h5 class="profile__contact-info-heading">E-mail address</h5>
-              {{ $profile->email }}
+              {{ $partner->email }}
             </div>
           </div>
           <div class="profile__contact-info-item">
@@ -166,7 +144,7 @@
             </div>
             <div class="profile__contact-info-body">
               <h5 class="profile__contact-info-heading">Work address</h5>
-              {{ $profile->secondary_email }}
+              {{ $partner->secondary_email }}
             </div>
           </div>
         </div>

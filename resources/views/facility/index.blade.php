@@ -10,28 +10,35 @@
                   </div>
               </nav>
                <div class="card shadow border-0 border-primary">
-                    @if(isset($facility->region))
+                    @if(isset($facility))
                       {!! Form::model($facility, ['route' => ['facility.update', $facility->id], 'method' => 'PUT']) !!}
                     @else
                     {!! Form::open(['route' => 'facility.store','method' => 'POST']) !!}
 
                     @endif
                     <div class="card-body">
-                          <div class="row">
+<!--                           <div class="row">
                               <div class="col-md-12">
-                                  {{ Form::label('site_id', "Site") }}
-                                  {{ Form::select('site_id', ['' => 'Choose you option','L' => 'Luzon','V' => 'Visayas','M' => 'Mindanao'],isset($facility->site_id) ? $facility->site_id : null, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
+                                  {{ Form::label('site', "Site") }}
+                                  {{ Form::select('site', ['' => 'Choose you option','L' => 'Luzon','V' => 'Visayas','M' => 'Mindanao'],isset($facility->site) ? $facility->site : null, ['class' => 'form-control','id' => 'site','name' => 'site']) }}
                               </div>
-                          </div>
+                          </div> -->
                           <div class="row">    
                               <div class="col-md-12">
                                   {{ Form::label('region_code','Region') }}
                                   @if(isset($facility->region))
                                   <select type="text" id="region_code" name="region_code" class="form-control">
                                     <option value="{{ $facility->region['region_code'] }}">{{ $facility->region['region_name'] }}</option>
+                                      @foreach($region as $ion)
+                                        <option value="{{ $ion->region_code }}">{{ $ion->region_name }}</option>
+                                      @endforeach
                                   </select>
                                   @else
                                   <select type="text" id="region_code" name="region_code" class="form-control">
+                                    <option disabled selected>Choose your option</option>
+                                    @foreach($region as $ion)
+                                      <option value="{{ $ion->region_code }}">{{ $ion->region_name }}</option>
+                                    @endforeach
                                   </select>
                                   @endif
                               </div>
@@ -83,22 +90,17 @@
                           <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
                               <span class="btn-inner--icon">
                                 <i class="fa fa-save"></i>
+                                @if(isset($facility))
+                                Save Changes
+                                @else
                                 Save
+                                @endif
                               </span>
                               <span class="btn-inner--text"></span>
                           </button>
                       </div> 
                 </div>
         </div>
-<!--         <div class="col-md-4">
-            <div class="card shadow border-0 border-primary">
-              <div class="card shadow border-0 border-primary" style="width: 18rem;">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                </div>
-              </div>
-            </div>
-        </div> -->
   {!! Form::close() !!}
 
 @endsection

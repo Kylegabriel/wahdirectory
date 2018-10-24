@@ -9,7 +9,7 @@ class FacilityConfig extends Model
     protected $table = 'facility';
 
     protected $fillable = [
-		'site_id',
+		// 'site_id',
 		'region_code',
 		'province_code',
 		'muncity_code',

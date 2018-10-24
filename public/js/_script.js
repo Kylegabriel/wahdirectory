@@ -29,7 +29,7 @@
       $(document).ready(function(){
 
             // to remove dropdown suggested comment in form input
-            $('input').attr('autocomplete','off');
+            // $('input').attr('autocomplete','off');
             
             // to prevent clicking outside of the modal
             $('.modal').modal({

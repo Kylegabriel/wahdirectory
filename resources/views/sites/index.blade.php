@@ -33,10 +33,6 @@
 					<th>No.</th>
 					<th>Name</th>
 					<th>Gender</th>
-					<th>Designation</th>
-					<th>Place</th>
-					<th>Phone</th>
-					<th>Email</th>
 					<th>Birthdate</th>
 					<th>Action</th>
 				</tr>
@@ -47,15 +43,12 @@
 					<td>{{ $count++ .'.' }}</td>
 					<td>{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} @if($site->suffix_name == 'NOTAP') @else {{ $site->suffix_name }} @endif</td>
 					<td>{{ $site->gender }}</td>
-					<td>{{ $site->designations['sites_desc'] }}</td>
-					<td>{{ $site->region['region_name'] . ", " . $site->province['province_name'] . ", " . $site->municipality['muncity_name'] . ", " }}</td>
-					<td>{{ $site->primary_contact . ' ' .$site->secondary_contact}}</td>
-					<td>{{ $site->email . ' ' . $site->secondary_email }}</td>
 					<td>{{ $site->birthdate }}</td>
 					<td>
 						<a  href="{{ route('sites.edit',$site->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 						<a data-toggle="modal" data-target="#disable{{ $site->id }}" class="btn btn-link text-primary" data-toggle="tooltip" data-placement="left" title="Activate"><i class="fa fa-eye fa-2x"></i></a>
 						</a>
+						<a  href="{{ route('sites.show',$site->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
 					</td>
 				</tr>
 				@include('partials._activeInactiveSites')

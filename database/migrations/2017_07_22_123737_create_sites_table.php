@@ -17,10 +17,11 @@ class CreateSitesTable extends Migration
 
             $table->increments('id');
             $table->integer('site_id')->unsigned();
-            $table->char('site',1);
+            // $table->char('site',1);
             $table->char('region_code',2);
             $table->char('province_code',4);
             $table->char('muncity_code',6);
+            $table->char('brgy_code',10);
             $table->string('last_name',50);
             $table->string('first_name',50);
             $table->string('middle_name',50);

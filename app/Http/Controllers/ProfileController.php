@@ -7,6 +7,8 @@ use App\Profile;
 use App\Http\Requests;
 use App\UserRole;
 use App\SuffixName;
+use App\FacilityConfig;
+use App\DemographicRegion;
 use Session;
 
 class ProfileController extends Controller
@@ -45,14 +47,16 @@ class ProfileController extends Controller
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
-
         $role = UserRole::get();
+        $region = DemographicRegion::get();
 
-        $no = 1;
+        $facility = FacilityConfig::with('province','municipality','barangay')->first();
+
         return view('profile.create')->with([
-            'count'=>$no,
             'designation'=>$role,
-            'suffix' => $suf
+            'suffix' => $suf,
+            'facility' => $facility,
+            'region' => $region,
             ]);
     }
 
@@ -88,6 +92,10 @@ class ProfileController extends Controller
         $user->suffix_name = $request->input('suffix_name');
         $user->gender = $request->input('gender');
         $user->role_id = $request->input('role_id');
+        $user->region_code = $request->input('region_code');
+        $user->province_code = $request->input('province_code');
+        $user->muncity_code = $request->input('muncity_code');
+        $user->brgy_code = $request->input('brgy_code');
         $user->primary_contact = $request->input('primary_contact');
         $user->secondary_contact = $request->input('secondary_contact');
         $user->email = $request->input('email');
@@ -156,11 +164,21 @@ class ProfileController extends Controller
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
+
+        $facility = FacilityConfig::with('province','municipality','barangay')->first();
+
+        $regions = DemographicRegion::get();
+        $reg = array();
+        foreach ($regions as $region) {
+            $reg[$region->region_code] = $region->region_name;
+        }
             
         return view('profile.edit')->with([
             'profile' => $editProfile,
             'desig' => $desig,
-            'suffix' => $suf
+            'suffix' => $suf,
+            'facility' => $facility,
+            'region' => $reg
           ]);
     }
 
@@ -181,6 +199,10 @@ class ProfileController extends Controller
         $user->suffix_name = $request->input('suffix_name');
         $user->gender = $request->input('gender');
         $user->role_id = $request->input('role_id');
+        $user->region_code = $request->input('region_code');
+        $user->province_code = $request->input('province_code');
+        $user->muncity_code = $request->input('muncity_code');
+        $user->brgy_code = $request->input('brgy_code');
         $user->primary_contact = $request->input('primary_contact');
         $user->secondary_contact = $request->input('secondary_contact');
         $user->email = $request->input('email');

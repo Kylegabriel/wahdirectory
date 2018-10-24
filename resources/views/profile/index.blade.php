@@ -33,11 +33,7 @@
                             <th>No.</th>
                             <th>Name</th>
                             <th>Gender</th>
-                            <th>Designation</th>
-                            <th>Phone</th>
-                            <th>Email</th>
                             <th>Birthdate</th>
-                            <th>DateHired</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,11 +43,7 @@
                             <td>{{ $count++ . '.' }}</td>
                             <td>{{ $profile->last_name . ", " . $profile->first_name . " " . $profile->middle_name . " " }}@if($profile->suffix_name == 'NOTAP') @else {{ $profile->suffix['suffix_desc'] }} @endif</td>
                             <td>{{ $profile->gender }}</td>
-                            <td>{{ $profile->designations['role_name'] }}</td>
-                            <td>{{ $profile->primary_contact . ' ' . $profile->secondary_contact }}</td>
-                            <td>{{ $profile->email . ' ' . $profile->secondary_email }}</td>
                             <td>{{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}</td>
-                            <td>{{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}</td>
                             <td>
                               <a  href="{{ route('profile.edit',$profile->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
                               <a  href="{{ route('profile.show',$profile->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>

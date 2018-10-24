@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('partner','PartnerController',['except'=>['destroy','show']]);
+Route::resource('partner','PartnerController',['except'=>['destroy']]);
 Route::resource('profile','ProfileController',['except'=>['destroy']]);
-Route::resource('interns','InternController',['except'=>['show','destroy']]);
+Route::resource('interns','InternController',['except'=>['destroy']]);
 Route::resource('warmleads','WarmLeadsController',['only'=>['index']]);
-Route::resource('sites','SitesController',['except'=>['show','destroy']]);
+Route::resource('sites','SitesController',['except'=>['destroy']]);
 
 //settings
 Route::resource('settings','SettingsController',['only' => ['index']]);
@@ -33,8 +33,8 @@ Route::resource('partnerDesignation','partnerDesignationController',['except' =>
 Route::resource('partnerOrganization','PartnerOrganizationtionController',['except' =>['create','show']]);
 
 // // Facility Config
-Route::resource('facility','FacilityConfigController',['except'=>['show','destroy']]);
-Route::resource('facility/get-region-list','FacilityConfigController@getRegionList',['only'=>['index']]);
+Route::resource('facility','FacilityConfigController',['only'=>['update','index','store']]);
+// Route::resource('facility/get-region-list','FacilityConfigController@getRegionList',['only'=>['index']]);
 Route::resource('facility/get-province-list','FacilityConfigController@getProvinceList',['only'=>['index']]);
 Route::resource('facility/get-muncity-list','FacilityConfigController@getMuncityList',['only'=>['index']]);
 Route::resource('facility/get-brgy-list','FacilityConfigController@getBrgyList',['only'=>['index']]);

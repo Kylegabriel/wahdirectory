@@ -33,11 +33,6 @@
 					<th>No.</th>
 					<th>Name</th>
 					<th>Gender</th>
-					<th>Organization</th>
-					<th>Designation</th>
-					<th>Province</th>
-					<th>Phone</th>
-					<th>Email</th>
 					<th>Birthdate</th>
 					<th>Action</th>
 				</tr>
@@ -46,23 +41,20 @@
 				@foreach($partner as $partners)
 				<tr>
 					<td>{{ $count++ .'.' }}</td>
-					<td>{{ $partners->last_name . ", " . $partners->first_name . " " . $partners->middle_name . " " }} @if($partners->suffix_name == 'NOTAP') @else {{ $partners->suffix_name }} @endif</td>
+					<td>{{ $partners->last_name . ", " 
+						. $partners->first_name . " " . $partners->middle_name . " " }} 
+						@if($partners->suffix_name == 'NOTAP') @else {{ $partners->suffix_name }} @endif
+					</td>
 					<td>{{ $partners->gender }}</td>
-					<td>{{ $partners->partnerOrganization['organization'] }}</td>
-					<td>{{ $partners->partnerDesignation['designation'] }}</td>
-					<td>{{ $partners->partnerProvince['province_name'] }}</td>
-					<td>{{ $partners->primary_contact . ' / ' .$partners->secondary_contact}}</td>
-					<td>{{ $partners->email . ' ' . $partners->secondary_email }}</td>
-					<td>{{ date('F j, Y', strtotime($partners->birthdate)) }}</td>
+					<td>{{ $partners->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partners->birthdate)) }}</td>
 					<td>
 						<a  href="{{ route('partner.edit',$partners->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-						
 						<a data-toggle="modal" data-target="#activeInactive{{ $partners->id }}"  data-toggle="tooltip" data-placement="left"
 							class="btn btn-link text-{{ $partners->is_active == 'Y' ? 'primary' : 'danger' }}" 
 							title="{{ $partners->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
 						<i class="fa {{ $partners->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
-						
 						</a>
+						<a  href="{{ route('partner.show',$partners->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
 					</td>
 				</tr>
 

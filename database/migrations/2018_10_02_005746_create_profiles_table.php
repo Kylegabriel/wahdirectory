@@ -21,6 +21,10 @@ class CreateProfilesTable extends Migration
             $table->string('first_name',50);
             $table->string('middle_name',50)->nullable();
             $table->string('suffix_name');
+            $table->char('region_code',2);
+            $table->char('province_code',4);
+            $table->char('muncity_code',6);
+            $table->char('brgy_code',10);
             $table->char('gender',1)->nullable();
             $table->string('primary_contact',11)->nullable();
             $table->string('secondary_contact',11)->nullable();

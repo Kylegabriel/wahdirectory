@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     {{ Form::label('desig_id','Designation') }}
                                     @if(isset($partners->desig_id))
                                     {{ Form::select('desig_id', $designation,null, ['class' => 'form-control','id' => 'desig_id','name' => 'desig_id']) }}
@@ -50,7 +50,7 @@
                                     </select>
                                     @endif
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     {{ Form::label('org_id','Organization') }}
                                     @if(isset($partners->org_id))
                                     {{ Form::select('org_id',$organization,NULL, ['class' => 'form-control','id' => 'org_id','name' => 'org_id']) }}
@@ -60,19 +60,6 @@
                                       @foreach( App\PartnerOrganization::get() as $organizations )
                                             <option value="{{ $organizations['id'] }}">{{ $organizations['organization'] }}</option>
                                       @endforeach
-                                    </select>
-                                    @endif
-                                </div>
-                                <div class="col-md-3">
-                                    {{ Form::label('province','Province') }}
-                                    @if(isset($partners->province))
-                                    {{ Form::select('province',$province,NULL,['class' => 'form-control','id' => 'province','name' => 'province']) }}
-                                    @else
-                                    <select type="text" id="province" name="province" class="form-control">
-                                        <option value="">Choose your option</option>
-                                        @foreach($province as $province)
-                                            <option value="{{ $province->province_code }}">{{ $province->province_name }}</option>
-                                        @endforeach
                                     </select>
                                     @endif
                                 </div>
@@ -106,6 +93,52 @@
                                 <div class="col-md-6">
                                     {{ Form::label('secondary_email','Secondary Email') }}
                                     {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ Form::label('region_code','Region') }}
+                                    @if(isset($partners->region_code))
+                                    {{ Form::select('region_code',$region,null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
+                                    @else
+                                    <select type="text" id="region_code" name="region_code" class="form-control">
+                                        <option value="{{ $facility->region['region_code'] }}" >{{ $facility->region['region_name'] }}</option>
+                                        @foreach($region as $ion)
+                                          <option value="{{ $ion->region_code }}">{{ $ion->region_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @endif
+                                </div>
+                                <div class="col-md-3">
+                                        {{ Form::label('province_code','Province') }}
+                                        <select type="text" id="province_code" name="province_code" class="form-control">
+                                            @if(isset($partners->province_code))
+                                            <option value="{{ $facility->province['province_code'] }}" >{{ $facility->province['province_name'] }}</option>
+                                            @else
+                                            <option value="{{ $facility->province['province_code'] }}" >{{ $facility->province['province_name'] }}</option>
+                                            @endif
+                                        </select>
+                                </div>
+                                <div class="col-md-3">
+                                        {{ Form::label('muncity_code','Municipality') }}
+                                        <select type="text" id="muncity_code" name="muncity_code" class="form-control">
+                                            @if(isset($partners->muncity_code))
+                                            <option value="{{ $facility->municipality['muncity_code'] }}" >{{ $facility->municipality['muncity_name'] }}</option>
+                                            @else
+                                            <option value="{{ $facility->municipality['muncity_code'] }}" >{{ $facility->municipality['muncity_name'] }}</option>
+                                            @endif
+                                        </select>
+                                </div>
+                                <div class="col-md-3">
+                                        {{ Form::label('brgy_code','Barangay') }}
+                                        <select type="text" id="brgy_code" name="brgy_code" class="form-control">
+                                            @if(isset($partners->brgy_code))
+                                            <option value="{{ $facility->barangay['brgy_code'] }}" >{{ $facility->barangay['brgy_name'] }}</option>
+                                            @else
+                                            <option value="{{ $facility->barangay['brgy_code'] }}" >{{ $facility->barangay['brgy_name'] }}</option>
+                                            @endif
+                                        </select>                
                                 </div>
                             </div>
         </div>

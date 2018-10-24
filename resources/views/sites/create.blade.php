@@ -7,7 +7,5 @@
 
 @endsection
 @section('scripts')  
-
     @include('partials._sitesScript')
-    
 @endsection

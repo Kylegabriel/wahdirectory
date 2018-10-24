@@ -9,8 +9,8 @@ use App\SuffixName;
 use App\UserRole;
 use App\PartnerDesignation;
 use App\PartnerOrganization;
-use App\DemographicProvince;
-use Illuminate\Support\Facades\DB;
+use App\FacilityConfig;
+use App\DemographicRegion;
 use Session;
 
 class PartnerController extends Controller
@@ -43,19 +43,19 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        $province = DemographicProvince::orderBy('province_name','asc')->get();
-
         $suffix = SuffixName::get();
         $suf = array();
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
+        $region = DemographicRegion::get();
 
-        $no = 1;
+        $facility = FacilityConfig::with('province','municipality','barangay')->first();
+
         return view('partner.create')->with([ 
-            'count' => $no,
             'suffix' => $suf,
-            'province'=>$province,
+            'facility' => $facility,
+            'region' => $region
             ]);
     }
 
@@ -91,7 +91,10 @@ class PartnerController extends Controller
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
-        $partner->province = $request->input('province');
+        $partner->region_code = $request->input('region_code');
+        $partner->province_code = $request->input('province_code');
+        $partner->muncity_code = $request->input('muncity_code');
+        $partner->brgy_code = $request->input('brgy_code');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
         $partner->secondary_contact = $request->input('secondary_contact');
@@ -117,6 +120,11 @@ class PartnerController extends Controller
     public function show($id)
     {
         //
+        $partner = Partner::find($id);
+
+        return view('partner.show')->with([
+            'partner'=>$partner,
+            ]);
     }
 
     /**
@@ -148,19 +156,21 @@ class PartnerController extends Controller
             $org[$organization->id] = $organization->organization;
         }
 
-        $provinces = DemographicProvince::orderBy('province_name','asc')->get();
-        $prov = array();
-        foreach ($provinces as $province) {
-            $prov[$province->province_code] = $province->province_name;
-        }
+        $facility = FacilityConfig::with('province','municipality','barangay')->first();
 
+        $regions = DemographicRegion::get();
+        $reg = array();
+        foreach ($regions as $region) {
+            $reg[$region->region_code] = $region->region_name;
+        }
 
         return view('partner.edit')->with([
             'partners' => $editPartner,
             'designation' => $desig,
             'suffix' => $suf,
             'organization' => $org,
-            'province'=>$prov,
+            'facility' => $facility,
+            'region' => $reg
           ]);
 
 
@@ -184,7 +194,10 @@ class PartnerController extends Controller
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
-        $partner->province = $request->input('province');
+        $partner->region_code = $request->input('region_code');
+        $partner->province_code = $request->input('province_code');
+        $partner->muncity_code = $request->input('muncity_code');
+        $partner->brgy_code = $request->input('brgy_code');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
         $partner->secondary_contact = $request->input('secondary_contact');

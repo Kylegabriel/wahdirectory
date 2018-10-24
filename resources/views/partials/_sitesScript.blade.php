@@ -1,33 +1,33 @@
   <script>
-      $('#site_id').on('change',function(){
-      var siteID = $(this).val();    
-      if(siteID){
-          $.ajax({
-             type:"GET",
-             url:"{{url('facility/get-region-list')}}?site_id="+siteID,
-             success:function(res){ 
-             // console.log(res);           
-              if(res){
-                  $("#region_code").empty();
-                  $("#region_code").html("<option disabled selected>Choose your Region</option>");
-                  $.each(res,function(key,value){
-                      //console.log(key,value);
-                      $('#region_code').html();
-                      $("#region_code").append('<option value="'+key+'">'+value+'</option>');
-                   });
+     //  $('#site').on('change',function(){
+     //  var siteID = $(this).val();    
+     //  if(siteID){
+     //      $.ajax({
+     //         type:"GET",
+     //         url:"{{url('facility/get-region-list')}}?site_id="+siteID,
+     //         success:function(res){ 
+     //         // console.log(res);           
+     //          if(res){
+     //              $("#region_code").empty();
+     //              $("#region_code").html("<option disabled selected>Choose your Region</option>");
+     //              $.each(res,function(key,value){
+     //                  //console.log(key,value);
+     //                  $('#region_code').html();
+     //                  $("#region_code").append('<option value="'+key+'">'+value+'</option>');
+     //               });
              
-              }else{
-                 $("#region_code").empty();
-              }
-             }
-          });
-      }
-      else{
-          $("#region_code").empty();
-          $("#province_code").empty();
-      }   
+     //          }else{
+     //             $("#region_code").empty();
+     //          }
+     //         }
+     //      });
+     //  }
+     //  else{
+     //      $("#region_code").empty();
+     //      $("#province_code").empty();
+     //  }   
 
-     });
+     // });
 
       $('#region_code').on('change',function(){
       var regionID = $(this).val();    
