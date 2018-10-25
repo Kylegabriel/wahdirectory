@@ -47,13 +47,11 @@ class ProfileController extends Controller
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
-        $role = UserRole::get();
         $region = DemographicRegion::get();
 
         $facility = FacilityConfig::with('province','municipality','barangay')->first();
 
         return view('profile.create')->with([
-            'designation'=>$role,
             'suffix' => $suf,
             'facility' => $facility,
             'region' => $region,

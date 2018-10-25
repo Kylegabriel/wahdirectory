@@ -38,8 +38,7 @@ class CreateDesignationTable extends Migration
           ['id' => '14','designation' => 'Job Order'],
           ['id' => '15','designation' => 'ISA III'],
           ['id' => '16','designation' => 'CO I'],
-          ['id' => '17','designation' => 'Senior Technical Advisor'],
-          ['id' => '18','designation' => 'NONE']
+          ['id' => '17','designation' => 'Senior Technical Advisor']
         ]);
     }
 

@@ -29,8 +29,7 @@ class CreateOrganizationTable extends Migration
           ['id' => '5', 'organization' => 'CHD-CAR'],
           ['id' => '6', 'organization' => 'Department of Health'],
           ['id' => '7', 'organization' => 'CBO - MITD'],
-          ['id' => '8', 'organization' => 'LH'],
-          ['id' => '9', 'organization' => 'NONE'],
+          ['id' => '8', 'organization' => 'LH']
         ]);
     }
 

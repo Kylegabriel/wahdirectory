@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');
-            $table->integer('role_id')->unsigned();
+            $table->integer('role_id')->unsigned()->nullable();
             $table->string('last_name',50);
             $table->string('first_name',50);
             $table->string('middle_name',50)->nullable();
