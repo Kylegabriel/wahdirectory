@@ -29,7 +29,7 @@
       $(document).ready(function(){
 
             // to remove dropdown suggested comment in form input
-            // $('input').attr('autocomplete','off');
+            $('input').attr('autocomplete','off');
             
             // to prevent clicking outside of the modal
             $('.modal').modal({
@@ -46,7 +46,12 @@
             .DataTable({
                   "scrollY"        : "400px",
                   "scrollCollapse" : true,
-                  "responsive": true
+                  "responsive": true,
+                  // "ordering": false
+                  "columnDefs": [
+                      { "orderable": false, "targets": [2,3,4] },
+                      // { "orderable": true, "targets": [1, 2, 3] }
+                  ]
             });
             
             $('[data-toggle="tooltip"]').tooltip();

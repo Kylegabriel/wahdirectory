@@ -1,9 +1,9 @@
-<div class="card shadow border-0 border-primary">
-        <div class="card-header border-primary">
+<div class="card shadow rounded">
+        <div class="card-header border-primary text-white bg-primary">
             @if(isset($partners))
-            Edit Partner Organization
+            EDIT PARTNER ORGANIZATION
             @else
-            Create Partner
+            CREATE PARTNER
             @endif
         </div>
         <div class="card-body">

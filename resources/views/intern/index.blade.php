@@ -32,13 +32,8 @@
 				<tr>
 					<th>No.</th>
 					<th>Name</th>
-					<th>Phone</th>
-					<th>Mail</th>
-					<th>Course</th>
-					<th>School</th>
-					<th>Papers</th>
-					<th>Date Start</th>
-					<th>Date End</th>
+					<th>Gender</th>
+					<th>Birthdate</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -47,17 +42,8 @@
 					<tr>
 						<td>{{ $count++ .'.' }}</td>
 						<td>{{ $intern->last_name . ", " . $intern->first_name . " " . $intern->middle_name . " " }} @if($intern->suffix_name == 'NOTAP') @else {{ $intern->suffix_name }} @endif</td>
-						<td>{{ $intern->primary_contact }}</td>
-						<td>{{ $intern->email }}</td>
-						<td>{{ $intern->courses['course'] }}</td>
-						<td>{{ $intern->schools['school'] }}</td>
-						<td>
-							@foreach($intern->tags as $tag)
-								<span class="badge badge-pill badge-primary text-uppercase">{{ $tag->name }}</span>
-							@endforeach
-						</td>
-						<td>{{ $intern->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($intern->date_start)) }}</td>
-						<td>{{ $intern->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($intern->date_end)) }}</td>
+						<td>{{ $intern->gender }}</td>
+						<td>{{ $intern->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($intern->birthdate)) }}</td>
 						<td>
 							<a  href="{{ route('interns.edit',$intern->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 						
@@ -66,6 +52,7 @@
 								title="{{ $intern->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
 							<i class="fa {{ $intern->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
 								
+							<a  href="{{ route('interns.show',$intern->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
 						</td>
 					</tr>
 

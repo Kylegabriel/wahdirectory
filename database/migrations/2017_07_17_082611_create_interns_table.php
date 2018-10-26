@@ -26,6 +26,8 @@ class CreateInternsTable extends Migration
             $table->string('email',50)->nullable();
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
+            $table->char('gender',1);
+            $table->date('birthdate')->nullable();
             $table->char('is_active',1);
             $table->timestamps();
 

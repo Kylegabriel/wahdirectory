@@ -1,5 +1,5 @@
-<div class="card shadow border-0  border-primary">
-    <div class="card-header  border-primary">
+<div class="card shadow rounded">
+    <div class="card-header border-primary text-white bg-primary">
             @if(isset($profile))
             Edit WAH-NGO
             @else

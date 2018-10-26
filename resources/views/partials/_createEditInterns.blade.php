@@ -1,5 +1,5 @@
-<div class="card shadow border-0 border-primary">
-    <div class="card-header border-primary">
+<div class="card shadow">
+    <div class="card-header border-primary text-white bg-primary">
             @if(isset($intern))
             Edit Partner Organization
             @else
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         {{ Form::label('school_id','School') }}
                         @if(isset($intern->school_id))
                         {{ Form::select('school_id', $schools,null, ['class' => 'form-control','id' => 'school_id','name' => 'school_id']) }}
@@ -45,7 +45,7 @@
                         </select>
                         @endif 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         {{ Form::label('course_id','Course') }}
                         @if(isset($intern->course_id))
                         {{ Form::select('course_id', $courses,null, ['class' => 'form-control','id' => 'course_id','name' => 'course_id']) }}
@@ -58,9 +58,13 @@
                         </select>
                         @endif 
                     </div>
+                    <div class="col-md-2">
+                        {{ Form::label('gender', "Gender") }}
+                        {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],null, ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
+                    </div>
             </div> 
             <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-md-10">
                         {{ Form::label('tags','Papers') }}
                         @if(isset($intern->tags))
                         {{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi','id'=>'tags','multiple' => 'multiple']) }}
@@ -71,6 +75,10 @@
                             @endforeach
                         </select> 
                         @endif  
+                    </div>
+                    <div class="col-md-2">
+                        {{ Form::label('birthdate','Birthdate') }}
+                        {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }} 
                     </div>
             </div>
             <div class="row">

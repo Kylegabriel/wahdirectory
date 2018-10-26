@@ -1,5 +1,5 @@
-<div class="card shadow border-0  border-primary">
-    <div class="card-header border-primary">
+<div class="card shadow">
+    <div class="card-header border-primary text-white bg-primary">
         @if(isset($sites))
         Edit Sites Organization
         @else

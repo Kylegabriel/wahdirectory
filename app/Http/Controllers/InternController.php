@@ -67,10 +67,11 @@ class InternController extends Controller
     public function store(Request $request)
     {
         $check_intern = Intern::where('last_name','LIKE',$request->input('last_name'))
-                                  ->where('first_name','LIKE',$request->input('first_name'))
-                                  ->where('middle_name','LIKE',$request->input('middle_name'))
-                                  ->where('suffix_name','LIKE',$request->input('suffix_name'))
-                                  ->get();
+                              ->where('first_name','LIKE',$request->input('first_name'))
+                              ->where('middle_name','LIKE',$request->input('middle_name'))
+                              ->where('suffix_name','LIKE',$request->input('suffix_name'))
+                              ->where('birthdate','LIKE',$request->input('birthdate'))
+                              ->get();
 
         $count = count($check_intern);
 
@@ -87,6 +88,8 @@ class InternController extends Controller
         $intern->first_name = $request->input('first_name');
         $intern->middle_name = $request->input('middle_name');
         $intern->suffix_name = $request->input('suffix_name');
+        $intern->gender = $request->input('gender');
+        $intern->birthdate = $request->input('birthdate');
         $intern->email = $request->input('email');
         $intern->school_id = $request->input('school_id');
         $intern->course_id = $request->input('course_id');
@@ -119,9 +122,9 @@ class InternController extends Controller
      */
     public function show($id)
     {
-        //$tag = Intern::find($id);
+        $tags = Intern::find($id);
 
-        //return view('intern.show')->with('tag',$tag);
+        return view('intern.show')->with('tag',$tags);
     }
 
     /**
@@ -185,6 +188,8 @@ class InternController extends Controller
         $intern->first_name = $request->input('first_name');
         $intern->middle_name = $request->input('middle_name');
         $intern->suffix_name = $request->input('suffix_name');
+        $intern->gender = $request->input('gender');
+        $intern->birthdate = $request->input('birthdate');
         $intern->email = $request->input('email');
         $intern->school_id = $request->input('school_id');
         $intern->course_id = $request->input('course_id');
