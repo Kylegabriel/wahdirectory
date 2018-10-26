@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
     <a class="navbar-brand" href="">Partner</a>
     <div class="collapse navbar-collapse" id="nav-inner-primary">
@@ -70,7 +71,7 @@
 					      </div>
 					      <div class="modal-body">
 					        <h5>Would you like to {{ $partners->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
-					        {!! Form::model($partners, ['route' => ['partnerInactive.update', $partners->id], 'method' => 'PUT']) !!}
+					        {!! Form::model($partners, ['route' => ['PartnerActivation', $partners->id], 'method' => 'PUT']) !!}
 					        <input type="hidden" name="is_active" id="is_active" value="{{ $partners->is_active == 'N' ? 'Y' : 'N' }}">
 					      </div>
 					      <div class="modal-footer">

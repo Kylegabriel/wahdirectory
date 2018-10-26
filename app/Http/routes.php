@@ -41,10 +41,15 @@ Route::resource('facility/get-brgy-list','FacilityConfigController@getBrgyList',
 
 
 // Activation and Deactivation
-Route::resource('partnerInactive','PartnerInactiveController',['only' =>['update']]);
-Route::resource('profileInactive','ProfileInactiveController',['only' =>['update']]);
-Route::resource('internInactive','InternInactiveController',['only' =>['update']]);
-Route::resource('sitesInactive','SitesInactiveController',['only' =>['update']]);
+Route::put('partnerInactive/{id}', ['uses' => 'PartnerInactiveController@update', 'as' => 'PartnerActivation']);
+Route::put('profileInactive/{id}', ['uses' => 'ProfileInactiveController@update', 'as' => 'ProfileActivation']);
+Route::put('sitesInactive/{id}',   ['uses' => 'SitesInactiveController@update', 'as' => 'SitesActivation']);
+Route::put('internInactive/{id}',  ['uses' => 'InternInactiveController@update', 'as' => 'InternActivation']);
+Route::put('userInactive/{id}',    ['uses' => 'UserInactiveController@update', 'as' => 'UserActivation']);
+
+
+// diactivate partner organization and diactivate all record that have this course
+Route::put('partnerOrganizationInactive/{id}',    ['uses' => 'PartnerOrganizationInactiveController@update', 'as' => 'PartnerOrganizationInactive']);
 
 Route::auth();
 

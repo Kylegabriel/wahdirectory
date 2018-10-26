@@ -52,8 +52,38 @@
           <td>{{ $user->email }}</td>
           <td>
               <a data-toggle="modal" data-target="#editUser{{ $user->id }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
+              <a data-toggle="modal" data-target="#activeInactive{{ $user->id }}"  data-toggle="tooltip" data-placement="left"
+              class="btn btn-link text-{{ $user->is_active == 'Y' ? 'primary' : 'danger' }}" 
+              title="{{ $user->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
+              <i class="fa {{ $user->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
+            </a>
+
           </td>
         </tr>
+
+          <!-- Modal -->
+          <div class="modal fade" id="activeInactive{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Please Confirm!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5>Would you like to {{ $user->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
+                  {!! Form::model($user, ['route' => ['UserActivation', $user->id], 'method' => 'PUT']) !!}
+                  <input type="hidden" name="is_active" id="is_active" value="{{ $user->is_active == 'N' ? 'Y' : 'N' }}">
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                {!! Form::close() !!}
+              </div>
+            </div>
+          </div>
 
         <div class="modal fade" id="editUser{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -130,6 +160,8 @@
                                       {{ Form::select('is_admin', ['Y' => 'Yes', 'N' => 'No'],null, ['class' => 'form-control','id' => 'is_admin','name' => 'is_admin']) }}
                                   </div>
                               </div>
+
+                              <input type="hidden" name="is_active" id="is_active" value="{{ $user->is_active == 'Y' ? 'Y' : 'N' }}">
                       </div>
                       <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -227,6 +259,8 @@
                             {{ Form::select('is_admin', ['Y' => 'Yes', 'N' => 'No'],'N', ['class' => 'form-control','id' => 'is_admin','name' => 'is_admin']) }}
                         </div>
                     </div>
+
+                    <input type="hidden" name="is_active" id="is_active" value="Y">
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -29,7 +29,7 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectAfterLogout = '/login';
-    protected $redirectTo = '/profile';
+    protected $redirectTo = '/partner';
     protected $username = 'username';
 
     /**
@@ -40,6 +40,14 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+    }
+
+    public function authenticate()
+    {
+        if (Auth::attempt(['username' => $username, 'password' => $password , 'is_active' => 1])) {
+            // Authentication passed...
+            return redirect()->intended('/partner');
+        }
     }
 
     /**
@@ -73,4 +81,5 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
 }

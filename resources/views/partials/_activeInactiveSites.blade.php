@@ -10,7 +10,7 @@
 					      </div>
 					      <div class="modal-body">
 					        <h5>Would you like to {{ $site->status == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
-					        {!! Form::model($site, ['route' => ['sitesInactive.update', $site->id], 'method' => 'PUT']) !!}
+					        {!! Form::model($site, ['route' => ['SitesActivation', $site->id], 'method' => 'PUT']) !!}
 					        <input type="hidden" name="status" id="status" value="{{ $site->status == 'N' ? 'Y' : 'N' }}">
 					          <div class="form-group">
 							   		<div class="form-group">

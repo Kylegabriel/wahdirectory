@@ -21,9 +21,9 @@ class CreateCourseTable extends Migration
 
         DB::table('course')
           ->insert([
-            ['id' => '1', 'course' => 'Bachelor of Science in Information System'],
+            ['id' => '1', 'course' => 'Bachelor of Science in Information System' ],
             ['id' => '2', 'course' => 'Bachelor of Science in Information Technology'],
-            ['id' => '3', 'course' => 'Bachelor of Science in Computer Science'],
+            ['id' => '3', 'course' => 'Bachelor of Science in Computer Science']
         ]);
     }
 

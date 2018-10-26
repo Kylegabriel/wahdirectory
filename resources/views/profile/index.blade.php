@@ -47,41 +47,12 @@
                             <td>
                               <a  href="{{ route('profile.edit',$profile->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
                               <a  href="{{ route('profile.show',$profile->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
-                              <!-- <a data-toggle="modal" data-target="#showInfo{{ $profile->id }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Info"><i class="fa fa-clipboard fa-2x"></i></a> -->
                               <a data-toggle="modal" data-target="#activeInactive{{ $profile->id }}"  data-toggle="tooltip" data-placement="left"
                                 class="btn btn-link text-{{ $profile->is_active == 'Y' ? 'primary' : 'danger' }}" 
                                 title="{{ $profile->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
                               <i class="fa {{ $profile->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
+                              </a>
                             </td>
-
-                            <!-- Modal -->
-<!--                             <div class="modal fade" id="showInfo{{ $profile->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">WAH-NGO INFORMATION</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div class="card">
-                                      PhilHealth : {{ $profile->philhealth }}<br>
-                                      SSS: {{ $profile->tin }}<br>
-                                      TIN: {{ $profile->sss }}<br>
-                                      MID NO. :{{ $profile->pagibigmidno }}<br>
-                                      RTN NO. :{{ $profile->pagibigrtn }}<br>
-                                      MABUHAY MILES NO.{{ $profile->mabuhaymilespal }}<br>
-                                      CEBU PAC GET GO NO.{{ $profile->getgocebupac }}<br>
-                                    </div>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> -->
-                            <!-- endModal -->
 
                             <!-- Modal -->
                             <div class="modal fade" id="activeInactive{{ $profile->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -95,7 +66,7 @@
                                   </div>
                                   <div class="modal-body">
                                     <h5>Would you like to {{ $profile->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
-                                    {!! Form::model($profile, ['route' => ['profileInactive.update', $profile->id], 'method' => 'PUT']) !!}
+                                    {!! Form::model($profile, ['route' => ['ProfileActivation', $profile->id], 'method' => 'PUT']) !!}
                                     <input type="hidden" name="is_active" id="is_active" value="{{ $profile->is_active == 'N' ? 'Y' : 'N' }}">
                                   </div>
                                   <div class="modal-footer">

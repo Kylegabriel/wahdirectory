@@ -57,7 +57,7 @@
                     @else
                     <select type="text" id="org_id" name="org_id" class="form-control">
                       <option value="" disabled selected>Choose your option</option>    
-                      @foreach( App\PartnerOrganization::get() as $organizations )
+                      @foreach( App\PartnerOrganization::where('is_active','Y')->get() as $organizations )
                             <option value="{{ $organizations['id'] }}">{{ $organizations['organization'] }}</option>
                       @endforeach
                     </select>

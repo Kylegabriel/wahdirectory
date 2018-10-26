@@ -60,6 +60,7 @@ class PartnerOrganizationtionController extends Controller
         $partnerorg = new PartnerOrganization;
 
         $partnerorg->organization = $request->input('organization');
+        $partnerorg->is_active = $request->input('is_active');
 
         $partnerorg->save();
 
@@ -105,6 +106,7 @@ class PartnerOrganizationtionController extends Controller
         $partnerorg = PartnerOrganization::find($id);
 
         $partnerorg->organization = $request->input('organization');
+        $partnerorg->is_active = $request->input('is_active');
 
         $partnerorg->save();
 

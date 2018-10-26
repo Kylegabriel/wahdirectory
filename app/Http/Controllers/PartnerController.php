@@ -138,6 +138,12 @@ class PartnerController extends Controller
 
         $editPartner = Partner::find($id);
 
+        $organizations = PartnerOrganization::where('is_active','Y')->get();
+        $org = array();
+        foreach ($organizations as $organization) {
+            $org[$organization->id] = $organization->organization;
+        }
+
         $designations = PartnerDesignation::get();
         $desig = array();
         foreach ($designations as $desiginat) {
@@ -148,12 +154,6 @@ class PartnerController extends Controller
         $suf = array();
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-        
-        $organizations = PartnerOrganization::get();
-        $org = array();
-        foreach ($organizations as $organization) {
-            $org[$organization->id] = $organization->organization;
         }
 
         $facility = FacilityConfig::with('province','municipality','barangay')->first();

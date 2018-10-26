@@ -30,6 +30,11 @@
 							<td>
 								<a data-toggle="modal" data-target="#editPartOrg{{ $partner->id }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 								<a data-toggle="modal" data-target="#deleteeditPartOrg{{ $partner->id }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Delete"><i class="fa fa-trash fa-2x"></i></a>
+								<a data-toggle="modal" data-target="#activeInactive{{ $partner->id }}"  data-toggle="tooltip" data-placement="left"
+									class="btn btn-link text-{{ $partner->is_active == 'Y' ? 'primary' : 'danger' }}" 
+									title="{{ $partner->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
+								<i class="fa {{ $partner->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
+								</a>
 							</td>
 						</tr>
 
@@ -50,7 +55,8 @@
 						                		<div class="col s12">
 						    	            		<div class="input-field col s12">
 						    	            			<label for="organization">Partner Organization</label>
-						    					        <input type="text" name="organization" id="organization" class="form-control" value="{{ $partner->organization }}"> 
+						    					        <input type="text" name="organization" id="organization" class="form-control" value="{{ $partner->organization }}">
+						    					        <input type="hidden" name="is_active" id="is_active" value="{{ $partner->is_active == 'Y' ? 'Y' : 'N' }}"> 
 						    					    </div>
 						    	            	</div>
 						    	            </div>	    
@@ -92,6 +98,32 @@
 			           	</div>
 			           	<!--modal -->
 
+			           	<!-- Modal -->
+						<div class="modal fade" id="activeInactive{{ $partner->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLongTitle">Please Confirm!</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <h5>Would you like to {{ $partner->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
+						        <h5>Partners Record will also {{ $partner->is_active == 'N' ? 'Activated' : 'Deactived' }}?</h5>
+						        {!! Form::model($partner, ['route' => ['PartnerOrganizationInactive', $partner->id], 'method' => 'PUT']) !!}
+						        <input type="hidden" name="is_active" id="is_active" value="{{ $partner->is_active == 'N' ? 'Y' : 'N' }}">
+						      </div>
+						      <div class="modal-footer">
+						      	<button type="submit" class="btn btn-primary">Save changes</button>
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						      </div>
+						      {!! Form::close() !!}
+						    </div>
+						  </div>
+						</div>
+						<!-- Modal -->
+
 					@endforeach
 				</tbody>
 			</table>
@@ -117,6 +149,7 @@
 		    					        <input type="text" name="organization" id="organization" class="form-control"> 
 		    					    </div>
 		    	            	</div>
+		    	            	<input type="hidden" name="is_active" id="is_active" value="Y">
 		    	            </div>	    
 	                  </div>
 	                 	@include('partials._footerCreateModal')

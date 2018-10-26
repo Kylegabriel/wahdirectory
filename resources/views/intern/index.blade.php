@@ -81,7 +81,7 @@
 					      </div>
 					      <div class="modal-body">
 					        <h5>Would you like to {{ $intern->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
-					        {!! Form::model($intern, ['route' => ['internInactive.update', $intern->id], 'method' => 'PUT']) !!}
+					        {!! Form::model($intern, ['route' => ['InternActivation', $intern->id], 'method' => 'PUT']) !!}
 					        <input type="hidden" name="is_active" id="is_active" value="{{ $intern->is_active == 'N' ? 'Y' : 'N' }}">
 					      </div>
 					      <div class="modal-footer">
