@@ -26,8 +26,13 @@ class Site extends Model
 		'birthdate',
 		'is_active',
 		'site',
-		'status'
+		'status',
+		'user_id'
     ];
+
+      public function user(){
+      return $this->hasOne('App\User','id','user_id');
+      } 
 
 	  public function region(){
 	    return $this->hasOne('App\DemographicRegion','region_code','region_code');

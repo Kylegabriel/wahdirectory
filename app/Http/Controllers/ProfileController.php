@@ -196,7 +196,6 @@ class ProfileController extends Controller
         $user->first_name = $request->input('first_name');
         $user->middle_name = $request->input('middle_name');
         $user->suffix_name = $request->input('suffix_name');
-        $user->user_id = $request->user()->id;
         $user->gender = $request->input('gender');
         $user->role_id = $request->input('role_id');
         $user->region_code = $request->input('region_code');

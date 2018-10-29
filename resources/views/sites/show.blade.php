@@ -17,15 +17,13 @@
               </div>
               <div class="profile__header">
                 <h4>{{ $sites->first_name . ' ' . $sites->middle_name . ' ' . $sites->last_name . ' ' }}</h4>
-                <small>{{ $sites->designations['sites_desc'] }}</small><br>
-                <small>This record is {{ $sites->is_active == 'Y' ? 'Active' : 'Inactive' }}</small>
-                <p class="text-muted">
-                 Birtdate: {{ $sites->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($sites->birthdate)) }}<br>
-                 Gender: {{ $sites->gender == 'M' ? 'Male' : 'Female' }}<br>
-                </p>
-  <!--               <p>
-                  <a href="#">bootdey.com</a>
-                </p> -->
+                <small>{{ $sites->designations['sites_desc'] }}<br>
+                This record is {{ $sites->is_active == 'Y' ? 'Active' : 'Inactive' }}
+                Birtdate: {{ $sites->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($sites->birthdate)) }}<br>
+                Gender: {{ $sites->gender == 'M' ? 'Male' : 'Female' }}<br>
+                Registered by : {{ $sites->user->first_name . ' ' . $sites->user->middle_name . ' ' . $sites->user->last_name . ' ' }}
+                @if($sites->user->suffix_name == 'NOTAP') @else {{ $sites->user->suffix_name }} @endif
+                </small>
               </div>
             </div>
             <div class="profile-comments__controls">

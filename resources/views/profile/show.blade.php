@@ -19,13 +19,14 @@
               </div>
               <div class="profile__header">
                 <h4>{{ $profile-> first_name . ' ' . $profile->middle_name . ' ' . $profile->last_name }}</h4>
-                <small>{{ $profile->designations['role_name'] }}</small><br>
-                <small>This record is {{ $profile->is_active == 'Y' ? 'Active' : 'Inactive' }}</small>
-                <p class="text-muted">
+                <small>{{ $profile->designations['role_name'] }}<br>
+                This record is {{ $profile->is_active == 'Y' ? 'Active' : 'Inactive' }}
                  Birtdate: {{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}<br>
                  Date Hired: {{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}<br>
                  Gender: {{ $profile->gender == 'M' ? 'Male' : 'Female' }}<br>
-                </p>
+                 Registered by : {{ $profile->user->first_name . ' ' . $profile->user->middle_name . ' ' . $profile->user->last_name . ' ' }}
+                 @if($profile->user->suffix_name == 'NOTAP') @else {{ $profile->user->suffix_name }} @endif
+                </small>
   <!--               <p>
                   <a href="#">bootdey.com</a>
                 </p> -->

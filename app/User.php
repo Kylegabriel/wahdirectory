@@ -32,7 +32,16 @@ class User extends Authenticatable
       return $this->hasOne('App\UserRole','id','role_id');
     }
 
-    public function user(){
+    public function partner(){
         $this->belongsTo('App\Partner');
+    }
+    public function profile(){
+        $this->belongsTo('App\Profile');
+    }
+    public function sites(){
+        $this->belongsTo('App\Site');
+    }
+    public function interns(){
+        $this->belongsTo('App\Intern');
     }
 }

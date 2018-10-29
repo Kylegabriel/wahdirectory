@@ -18,15 +18,15 @@
                 <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
               </div>
               <div class="profile__header">
-                <h4>{{ $tag-> first_name . ' ' . $tag->middle_name . ' ' . $tag->last_name }}</h4>
-                <small>This record is {{ $tag->is_active == 'Y' ? 'Active' : 'Inactive' }}</small>
-                <p class="text-muted">
-                 <small>Birtdate: {{ $tag->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($tag->birthdate)) }}<br>
-                 Gender: {{ $tag->gender == 'M' ? 'Male' : 'Female' }}<br>
-                 Start of OJT: {{ $tag->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($tag->date_start)) }} <br>
-                 End of OJT: {{ $tag->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($tag->date_end)) }}</small>
-                </p>
-
+                <h4>{{ $tag->first_name . ' ' . $tag->middle_name . ' ' . $tag->last_name }}</h4>
+                <small>This record is {{ $tag->is_active == 'Y' ? 'Active' : 'Inactive' }}<br>
+                Birtdate: {{ $tag->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($tag->birthdate)) }}<br>
+                Gender: {{ $tag->gender == 'M' ? 'Male' : 'Female' }}<br>
+                Start of OJT: {{ $tag->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($tag->date_start)) }} <br>
+                End of OJT: {{ $tag->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($tag->date_end)) }}<br>
+                Registered by : {{ $tag->user->first_name . ' ' . $tag->user->middle_name . ' ' . $tag->user->last_name . ' ' }}
+                @if($tag->user->suffix_name == 'NOTAP') @else {{ $tag->user->suffix_name }} @endif
+                </small>
               </div>
             </div>
             <div class="profile-comments__controls">

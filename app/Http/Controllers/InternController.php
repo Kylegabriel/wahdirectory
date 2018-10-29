@@ -190,7 +190,6 @@ class InternController extends Controller
         $intern->middle_name = $request->input('middle_name');
         $intern->suffix_name = $request->input('suffix_name');
         $intern->gender = $request->input('gender');
-        $intern->user_id = $request->user()->id;
         $intern->birthdate = $request->input('birthdate');
         $intern->email = $request->input('email');
         $intern->school_id = $request->input('school_id');

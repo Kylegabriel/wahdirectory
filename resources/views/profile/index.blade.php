@@ -46,12 +46,12 @@
                             <td>{{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}</td>
                             <td>
                               <a  href="{{ route('profile.edit',$profile->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-                              <a  href="{{ route('profile.show',$profile->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
                               <a data-toggle="modal" data-target="#activeInactive{{ $profile->id }}"  data-toggle="tooltip" data-placement="left"
                                 class="btn btn-link text-{{ $profile->is_active == 'Y' ? 'primary' : 'danger' }}" 
                                 title="{{ $profile->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">
                               <i class="fa {{ $profile->is_active == 'Y' ? 'fa-eye fa-2x' : 'fa-eye-slash fa-2x' }}"></i>
                               </a>
+                              <a  href="{{ route('profile.show',$profile->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
                             </td>
 
                             <!-- Modal -->

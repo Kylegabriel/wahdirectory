@@ -18,8 +18,13 @@ class Intern extends Model
         'primary_contact',
         'email',
         'date_start',
-        'date_end'
+        'date_end',
+        'user_id'
     ];
+
+    public function user(){
+      return $this->hasOne('App\User','id','user_id');
+    } 
 
     public function courses(){
     	return $this->hasOne('App\InternCourse','id','course_id');

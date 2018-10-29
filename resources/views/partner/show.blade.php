@@ -23,7 +23,9 @@
                 This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}
                 Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
                 Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
-                Registered by : {{ $partner->user->first_name . ' ' . $partner->user->middle_name . ' ' . $partner->user->last_name }}</small>
+                Registered by : {{ $partner->user->first_name . ' ' . $partner->user->middle_name . ' ' . $partner->user->last_name . ' ' }}
+                @if($partner->user->suffix_name == 'NOTAP') @else {{ $partner->user->suffix_name }} @endif
+              </small>
                 
               </div>
             </div>

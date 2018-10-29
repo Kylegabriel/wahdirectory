@@ -35,9 +35,14 @@ class Profile extends Model
         'region_code',
         'province_code',
         'muncity_code',
-        'brgy_code'
+        'brgy_code',
+        'user_id'
         // 'image_url'
     ];
+
+    public function user(){
+      return $this->hasOne('App\User','id','user_id');
+    } 
 
     public function designations(){
       return $this->hasOne('App\UserRole','id','role_id');
