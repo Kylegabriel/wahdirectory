@@ -102,6 +102,7 @@ class SitesController extends Controller
         $sites->province_code = $request->input('province_code');
         $sites->muncity_code = $request->input('muncity_code');
         $sites->brgy_code = $request->input('brgy_code');
+        $sites->user_id = $request->user()->id;
         // $sites->site = $request->input('site');
         $sites->status = $request->input('status');
         $sites->gender = $request->input('gender');
@@ -201,6 +202,7 @@ class SitesController extends Controller
         $sites->province_code = $request->input('province_code');
         $sites->muncity_code = $request->input('muncity_code');
         $sites->brgy_code = $request->input('brgy_code');
+        $sites->user_id = $request->user()->id;
         // $sites->site = $request->input('site');
         $sites->status = $request->input('status');
         $sites->gender = $request->input('gender');

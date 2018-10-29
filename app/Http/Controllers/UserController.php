@@ -27,25 +27,10 @@ class UserController extends Controller
         $users = User::orderBy('id','desc')
                                ->get();
 
-        $suffix = SuffixName::get();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-        $role = UserRole::get();
-
-        $roles = UserRole::get();
-        $role = array();
-        foreach ($roles as $rol) {
-            $role[$rol->id] = $rol->role_name;
-        }
-
         $no = 1;
         return view('users.index')->with([
             'users'=>$users,
             'count'=>$no,
-            'suffix' => $suf,
-            'role'=>$role
             ]);
     }
     /**
@@ -55,7 +40,15 @@ class UserController extends Controller
      */
     public function create()
     {
+        $suffix = SuffixName::get();
+        $suf = array();
+        foreach ($suffix as $suffixes) {
+            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
 
+        return view('users.create')->with([
+            'suffix' => $suf
+            ]);
     }
 
     /**
@@ -92,6 +85,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->role_id = $request->input('role_id');
         $user->is_admin = $request->input('is_admin');
+        $user->is_active = $request->input('is_active');
 
         $user->save();
 
@@ -120,7 +114,27 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user = User::find($id);
 
+        $suffix = SuffixName::get();
+        $suf = array();
+        foreach ($suffix as $suffixes) {
+            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+
+        $role = UserRole::get();
+
+        $roles = UserRole::get();
+        $role = array();
+        foreach ($roles as $rol) {
+            $role[$rol->id] = $rol->role_name;
+        }
+
+        return view('users.edit')->with([
+            'user' => $user,
+            'suffix' => $suf,
+            'role'=>$role
+          ]);
     }
 
     /**
@@ -146,10 +160,11 @@ class UserController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->role_id = $request->input('role_id');
         $user->is_admin = $request->input('is_admin');
+        $user->is_active = $request->input('is_active');
 
         $user->save();
         
-        Session::flash('success','WAH-NGO ' .$user->last_name. ' was Updated Successfully..!');
+        Session::flash('success','User ' .$user->last_name. ' was Updated Successfully..!');
 
         return redirect()->route('users.index');
     }

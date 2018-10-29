@@ -87,6 +87,7 @@ class PartnerController extends Controller
 
         $partner->desig_id = $request->input('desig_id');
         $partner->org_id = $request->input('org_id');
+        $partner->user_id = $request->user()->id;
         $partner->last_name = $request->input('last_name');
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
@@ -190,6 +191,7 @@ class PartnerController extends Controller
 
         $partner->desig_id = $request->input('desig_id');
         $partner->org_id = $request->input('org_id');
+        $partner->user_id = $request->user()->id;
         $partner->last_name = $request->input('last_name');
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');

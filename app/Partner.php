@@ -25,12 +25,14 @@ class Partner extends Model
 		'region_code',
     'province_code',
     'muncity_code',
-    'brgy_code'
+    'brgy_code',
+    'user_id'
 	];
 
-	public function partnerDesignation(){
-      return $this->hasOne('App\PartnerDesignation','id','desig_id');
-    }
+
+	  public function user(){
+      return $this->hasOne('App\User','id','user_id');
+    } 
     public function partnerOrganization(){
       return $this->hasOne('App\PartnerOrganization','id','org_id');
     }

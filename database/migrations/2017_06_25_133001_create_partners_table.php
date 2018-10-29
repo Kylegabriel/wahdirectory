@@ -18,6 +18,7 @@ class CreatePartnersTable extends Migration
             $table->increments('id');
             $table->integer('desig_id')->unsigned()->nullable();
             $table->integer('org_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned();
             $table->char('region_code',2);
             $table->char('province_code',4);
             $table->char('muncity_code',6);
@@ -37,6 +38,7 @@ class CreatePartnersTable extends Migration
 
             $table->foreign('desig_id')->references('id')->on('designations');
             $table->foreign('org_id')->references('id')->on('organizations');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -49,6 +51,7 @@ class CreatePartnersTable extends Migration
     {
         Schema::table('partners', function ($table) {
             $table->dropForeign('partners_desig_id_foreign');
+            $table->dropForeign('partners_user_id_foreign');
         });
         Schema::drop('partners');
     }

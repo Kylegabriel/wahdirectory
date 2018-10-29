@@ -17,6 +17,7 @@ class CreateSitesTable extends Migration
 
             $table->increments('id');
             $table->integer('site_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             // $table->char('site',1);
             $table->char('region_code',2);
             $table->char('province_code',4);
@@ -38,6 +39,7 @@ class CreateSitesTable extends Migration
             $table->timestamps();
     
             $table->foreign('site_id')->references('id')->on('sites_designation');
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
     }
@@ -51,6 +53,7 @@ class CreateSitesTable extends Migration
     {
         Schema::table('sites', function ($table) {
             $table->dropForeign('sites_site_id_foreign');
+            $table->dropForeign('sites_user_id_foreign');
         });
         Schema::drop('sites');
     }

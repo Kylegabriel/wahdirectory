@@ -19,12 +19,12 @@
               </div>
               <div class="profile__header">
                 <h4>{{ $partner-> first_name . ' ' . $partner->middle_name . ' ' . $partner->last_name }}</h4>
-                <small>{{ $partner->partnerDesignation['designation'] }}</small><br>
-                <small>This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}</small>
-                <p class="text-muted">
-                 Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
-                 Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
-                </p>
+                <small>{{ $partner->partnerDesignation['designation'] }}<br>
+                This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}
+                Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
+                Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
+                Registered by : {{ $partner->user->first_name . ' ' . $partner->user->middle_name . ' ' . $partner->user->last_name }}</small>
+                
               </div>
             </div>
             <div class="profile-comments__controls">
