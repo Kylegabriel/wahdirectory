@@ -7,9 +7,11 @@ use App\DemographicRegion;
 use App\DemographicProvince;
 use App\DemographicMunicipality;
 use App\DemographicBarangay;
-use App\Http\Requests;
 use App\FacilityConfig;
+use App\Http\Requests;
+use App\Facility;
 use Session;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class FacilityConfigController extends Controller
@@ -23,14 +25,52 @@ class FacilityConfigController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $facility = FacilityConfig::with('region','province','municipality','barangay')->first();
+        $facility = FacilityConfig::with('region','province','municipality','barangay','facilities')->first();
+
         $reg = DemographicRegion::all();
+
+        $provinces = DemographicProvince::select('province_code','province_name')
+                                    ->where('region_code','=',$facility->province->region_code)
+                                    ->get();
+        $prov = array();
+        foreach ($provinces as $province) {
+            $prov[$province->province_code] = $province->province_name;
+        }
+
+        $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
+                                    //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
+                                    ->where('province_code','=',$facility->municipality->province_code)
+                                    ->get();
+        $muncity = array();
+        foreach ($municipalities as $municipality) {
+            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        }
+
+        $barangays = DemographicBarangay::select('brgy_code','brgy_name')
+                                    ->where('muncity_code','=',$facility->municipality->muncity_code)
+                                    ->get();
+        $brgy = array();
+        foreach ($barangays as $barangay) {
+            $brgy[$barangay->brgy_code] = $barangay->brgy_name;
+        }
+
+        $FacilityName = Facility::select('hfhudcode','hfhudname')
+                                    ->where('brgy_code','=',$facility->facilities->brgy_code)
+                                    ->get();
+        $loop = array();
+        foreach ($FacilityName as $data) {
+            $loop[$data->hfhudcode] = $data->hfhudname;
+        }
 
         return view('facility.index')->with([
             'facility' => $facility,
-            'region' => $reg
+            'region' => $reg,
+            'province' => $prov,
+            'muncity' => $muncity,
+            'brgy' => $brgy,
+            'fac' => $loop,
             ]);
     }
 
@@ -43,7 +83,8 @@ class FacilityConfigController extends Controller
     public function getProvinceList(Request $request)
     {
         $province = DemographicProvince::
-                    where("region_code",'LIKE','%'.$request->region_id.'%')
+                      select('province_name','province_code')
+                    ->where("region_code",'LIKE','%'.$request->input('region_id').'%')
                     ->pluck("province_name","province_code");
         return $province;
     }
@@ -51,7 +92,8 @@ class FacilityConfigController extends Controller
     public function getMuncityList(Request $request)
     {
         $muncity = DemographicMunicipality::
-                    where('province_code','LIKE','%'.$request->province_id.'%')
+                      select('muncity_name','muncity_code')
+                    ->where('province_code','LIKE','%'.$request->input('province_id').'%')
                     ->pluck("muncity_name","muncity_code");
         return $muncity;
     }
@@ -59,9 +101,18 @@ class FacilityConfigController extends Controller
     public function getBrgyList(Request $request)
     {
         $muncity = DemographicBarangay::
-                    where('muncity_code','LIKE','%'.$request->muncity_id.'%')
+                      select('brgy_name','brgy_code')
+                    ->where('muncity_code','LIKE','%'.$request->input('muncity_id').'%')
                     ->pluck("brgy_name","brgy_code");
         return $muncity;
+    }
+    public function gethfhudcodeList(Request $request)
+    {
+        $hfhudcode = Facility::
+                    select('hfhudname','hfhudcode')
+                    ->where('brgy_code','LIKE','%'.$request->input('brgy_code').'%')
+                    ->pluck("hfhudname","hfhudcode");
+        return $hfhudcode;
     }
 
     /**
@@ -101,6 +152,7 @@ class FacilityConfigController extends Controller
         $facility->province_code = $request->input('province_code');
         $facility->muncity_code = $request->input('muncity_code');
         $facility->brgy_code = $request->input('brgy_code');
+        $facility->hfhudcode = $request->input('hfhudcode');
 
         $facility->save();
 
@@ -149,6 +201,7 @@ class FacilityConfigController extends Controller
         $facility->province_code = $request->input('province_code');
         $facility->muncity_code = $request->input('muncity_code');
         $facility->brgy_code = $request->input('brgy_code');
+        $facility->hfhudcode = $request->input('hfhudcode');
 
         $facility->save();
 

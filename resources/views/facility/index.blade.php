@@ -1,6 +1,7 @@
 @extends('settings.index')
 @section('settings') 
-    <div class="row">
+
+   <div class="row">
         <div class="col-md-8">
               <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
                   <a class="navbar-brand" href="">Facility Config</a>
@@ -47,9 +48,7 @@
                               <div class="col-md-12">
                                   {{ Form::label('province_code','Province') }}
                                   @if(isset($facility->province))
-                                  <select type="text" id="province_code" name="province_code" class="form-control">
-                                    <option value="{{ $facility->province['province_code'] }}">{{ $facility->province['province_name'] }}</option>
-                                  </select>
+                                  {{ Form::select('province_code', $province,null, ['class' => 'form-control','id' => 'province_code','name' => 'province_code']) }}
                                   @else
                                   <select type="text" id="province_code" name="province_code" class="form-control">
 
@@ -61,9 +60,7 @@
                               <div class="col-md-12">
                                   {{ Form::label('muncity_code','Municipality') }}
                                   @if(isset($facility->municipality))
-                                  <select type="text" id="muncity_code" name="muncity_code" class="form-control">
-                                    <option value="{{ $facility->municipality['muncity_code'] }}">{{ $facility->municipality['muncity_name'] }}</option>
-                                  </select>
+                                  {{ Form::select('muncity_code', $muncity,null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
                                   @else
                                   <select type="text" id="muncity_code" name="muncity_code" class="form-control">
 
@@ -75,9 +72,7 @@
                               <div class="col-md-12">
                                   {{ Form::label('brgy_code','Barangay') }}
                                   @if(isset($facility->barangay))
-                                  <select type="text" id="brgy_code" name="brgy_code" class="form-control">
-                                    <option value="{{ $facility->barangay['brgy_code'] }}">{{ $facility->barangay['brgy_name'] }}</option>
-                                  </select>
+                                  {{ Form::select('brgy_code', $brgy,null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}
                                   @else
                                   <select type="text" id="brgy_code" name="brgy_code" class="form-control">
 
@@ -85,9 +80,21 @@
                                   @endif
                               </div>
                           </div>
+                          <div class="row">    
+                              <div class="col-md-12">
+                                  {{ Form::label('hfhudcode','Facility Name') }}
+                                  @if(isset($facility->hfhudcode))
+                                  {{ Form::select('hfhudcode', $fac,null, ['class' => 'form-control','id' => 'hfhudcode','name' => 'hfhudcode']) }}
+                                  @else
+                                  <select type="text" id="hfhudcode" name="hfhudcode" class="form-control">
+
+                                  </select>
+                                  @endif
+                              </div>
+                          </div>
                       </div>
                       <div class="card-footer border-primary">
-                          <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
+                          <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button" id="save">
                               <span class="btn-inner--icon">
                                 <i class="fa fa-save"></i>
                                 @if(isset($facility))
@@ -106,4 +113,24 @@
 @endsection
 @section('scripts')        
     @include('partials._sitesScript')
+    // <script>
+    //     $("#save").click(function() {
+    //       // alert('Hi');
+    //         $.ajax({
+    //           type: 'POST',
+    //           headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    //           url: "{{ route('facility.store') }}",
+    //           data: {
+    //             'region_code': $('input[name="region_code"]').val(),
+    //             'province_code': $('input[name="province_code"]').val(),
+    //             'muncity_code': $('input[name="muncity_code"]').val(),
+    //             'brgy_code': $('input[name="brgy_code"]').val(),
+    //             'hfhudcode': $('input[name="hfhudcode"]').val()
+    //           },
+    //           success: function(data) {
+    //             console.log(data);
+    //           },
+    //         });
+    //       });
+    // </script>
 @endsection

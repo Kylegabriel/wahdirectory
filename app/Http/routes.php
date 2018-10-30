@@ -38,6 +38,7 @@ Route::resource('facility','FacilityConfigController',['only'=>['update','index'
 Route::resource('facility/get-province-list','FacilityConfigController@getProvinceList',['only'=>['index']]);
 Route::resource('facility/get-muncity-list','FacilityConfigController@getMuncityList',['only'=>['index']]);
 Route::resource('facility/get-brgy-list','FacilityConfigController@getBrgyList',['only'=>['index']]);
+Route::resource('facility/get-hfhudcode-list','FacilityConfigController@gethfhudcodeList',['only'=>['index']]);
 
 
 // Activation and Deactivation

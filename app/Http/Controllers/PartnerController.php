@@ -106,7 +106,7 @@ class PartnerController extends Controller
 
         $partner->save();
 
-            Session::flash('success','Partner '.$partner->first_name.' was Successfully Save');
+        Session::flash('success','Partner '.$partner->first_name.' was Successfully Save');
 
         return redirect()->route('partner.index');//,$partner->id);
         }

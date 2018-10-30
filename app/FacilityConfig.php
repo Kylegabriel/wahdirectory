@@ -10,6 +10,7 @@ class FacilityConfig extends Model
 
     protected $fillable = [
 		// 'site_id',
+    'hfhudcode',
 		'region_code',
 		'province_code',
 		'muncity_code',
@@ -31,5 +32,8 @@ class FacilityConfig extends Model
   public function barangay(){
     return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
     }
+  public function facilities(){
+    return $this->hasOne('App\Facility','hfhudcode','hfhudcode');
+  }  
     
 }  
