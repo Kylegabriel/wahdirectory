@@ -9,6 +9,9 @@ use App\UserRole;
 use App\SuffixName;
 use App\FacilityConfig;
 use App\DemographicRegion;
+use App\DemographicProvince;
+use App\DemographicMunicipality;
+use App\DemographicBarangay;
 use Session;
 
 class ProfileController extends Controller
@@ -42,19 +45,52 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $suffix = SuffixName::get();
+        $suffix = SuffixName::all();
         $suf = array();
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
-        $region = DemographicRegion::get();
 
         $facility = FacilityConfig::with('province','municipality','barangay')->first();
 
+        $regions = DemographicRegion::all();
+        $reg = array();
+        foreach ($regions as $region) {
+            $reg[$region->region_code] = $region->region_name;
+        }
+
+        $provinces = DemographicProvince::select('province_code','province_name')
+                                    ->where('region_code','=',$facility->province->region_code)
+                                    ->get();
+        $prov = array();
+        foreach ($provinces as $province) {
+            $prov[$province->province_code] = $province->province_name;
+        }
+
+        $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
+                                    //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
+                                    ->where('province_code','=',$facility->municipality->province_code)
+                                    ->get();
+        $muncity = array();
+        foreach ($municipalities as $municipality) {
+            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        }
+
+        $barangays = DemographicBarangay::select('brgy_code','brgy_name')
+                                    ->where('muncity_code','=',$facility->barangay->muncity_code)
+                                    ->get();
+        $brgy = array();
+        foreach ($barangays as $barangay) {
+            $brgy[$barangay->brgy_code] = $barangay->brgy_name;
+        }
+
         return view('profile.create')->with([
-            'suffix' => $suf,
             'facility' => $facility,
-            'region' => $region,
+            'suffix' => $suf,
+            'region' => $reg,
+            'province' => $prov,
+            'muncity' => $muncity,
+            'brgy' => $brgy,
             ]);
     }
 
@@ -164,20 +200,46 @@ class ProfileController extends Controller
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
 
-        $facility = FacilityConfig::with('province','municipality','barangay')->first();
-
-        $regions = DemographicRegion::get();
+        $regions = DemographicRegion::all();
         $reg = array();
         foreach ($regions as $region) {
             $reg[$region->region_code] = $region->region_name;
         }
+
+        $provinces = DemographicProvince::select('province_code','province_name')
+                                    ->where('region_code','=',$editProfile->region_code)
+                                    ->get();
+        $prov = array();
+        foreach ($provinces as $province) {
+            $prov[$province->province_code] = $province->province_name;
+        }
+
+        $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
+                                    //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
+                                    ->where('province_code','=',$editProfile->province_code)
+                                    ->get();
+        $muncity = array();
+        foreach ($municipalities as $municipality) {
+            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        }
+
+        $barangays = DemographicBarangay::select('brgy_code','brgy_name')
+                                    ->where('muncity_code','=',$editProfile->muncity_code)
+                                    ->get();
+        $brgy = array();
+        foreach ($barangays as $barangay) {
+            $brgy[$barangay->brgy_code] = $barangay->brgy_name;
+        }
+
             
         return view('profile.edit')->with([
             'profile' => $editProfile,
             'desig' => $desig,
             'suffix' => $suf,
-            'facility' => $facility,
-            'region' => $reg
+            'region' => $reg,
+            'province' => $prov,
+            'muncity' => $muncity,
+            'brgy' => $brgy,
           ]);
     }
 

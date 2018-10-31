@@ -80,7 +80,7 @@
 						                 </div>
 					                  
 												<div class="modal-footer">
-													<button type="submit" class="btn btn-primary">Save changes</button>
+													{{ Form::button('Save Changes', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
 							                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 							                        {{ method_field('DELETE') }}
 							                    </div>
@@ -106,21 +106,21 @@
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
-	                  <div class="modal-body">
-                        <form method="POST" action="{{ route('course.store') }}">
-		    				{{ csrf_field() }}  
-		                	<div class="row">
-		                		<div class="col s12">
-		    	            		<div class="input-field col s12">
-		    	            			<label for="course">Course</label>
-		    					        <input type="text" name="course" id="course" class="form-control"> 
-		    					    </div>
-		    	            	</div>
-		    	            </div>	    
-	                  </div>
-	                 	@include('partials._footerCreateModal')
-	                  </form>
-	                </div>
+		          <div class="modal-body">
+		            {!! Form::open(['route' => 'course.store','method' => 'POST']) !!}	
+						{{ csrf_field() }}  
+		            	<div class="row">
+		            		<div class="col s12">
+			            		<div class="input-field col s12">
+			            			{{ Form::label('course','Course') }}
+			            			{{ Form::text('course',null,['class'=>'form-control','id'=>'course']) }}
+							    </div>
+			            	</div>
+			            </div>	    
+		          </div>
+	         	@include('partials._footerCreateModal')
+	            {!! Form::close() !!}
+	        </div>
           		</div>
         	</div>
        	</div>

@@ -51,7 +51,7 @@
                   // "columnDefs": [
                   //     { "orderable": false, "targets": [2,3,4] },
                   // //     // { "orderable": true, "targets": [1, 2, 3] }
-                  // ]
+                  // ],
             });
             
             $('[data-toggle="tooltip"]').tooltip();
@@ -76,7 +76,8 @@
                         },
                         email: {
                           email: true,
-                          required: true
+                          required: true,
+                          // pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
                         },
                         birthdate: {
                           required: true
@@ -134,7 +135,7 @@
                         },
 
                       },
-                              highlight: function(element) {
+                    highlight: function(element) {
                         $(element).closest('.form-control').addClass('is-invalid');
                     },
                     unhighlight: function(element) {

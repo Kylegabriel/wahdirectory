@@ -50,6 +50,10 @@
                     . $sites->municipality['muncity_name'] . " "
                     . $sites->barangay['brgy_name'] }}</td>
                 </tr>
+                <tr>
+                  <th><strong>Facility Name :</strong></th>
+                  <td>{{ $sites->facilities['hfhudname'] }}</td>
+                </tr>
               </tbody>
             </table>
           </div>

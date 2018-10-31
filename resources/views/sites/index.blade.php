@@ -34,6 +34,7 @@
 					<th>Name</th>
 					<th>Gender</th>
 					<th>Birthdate</th>
+					<th>Facility Name</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -44,6 +45,7 @@
 					<td>{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} @if($site->suffix_name == 'NOTAP') @else {{ $site->suffix_name }} @endif</td>
 					<td>{{ $site->gender }}</td>
 					<td>{{ $site->birthdate }}</td>
+					<td>{{ $site->facilities['hfhudname'] }}</td>
 					<td>
 						<a  href="{{ route('sites.edit',$site->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 						<a data-toggle="modal" data-target="#disable{{ $site->id }}" class="btn btn-link text-primary" data-toggle="tooltip" data-placement="left" title="Activate"><i class="fa fa-eye fa-2x"></i></a>

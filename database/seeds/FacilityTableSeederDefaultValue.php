@@ -20,7 +20,7 @@ class FacilityTableSeederDefaultValue extends Seeder
 	            'province_code' => '0369',
 	            'muncity_code' => '036916',
 	            'brgy_code' => '036916075',
-	            'DOH000000000028933'
+	            'hfhudcode'=> 'DOH000000000028933'
 				],
 	    );
 	        

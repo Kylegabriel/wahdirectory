@@ -13,6 +13,7 @@ class Site extends Model
 		'region_code',
 		'province_code',
 		'muncity_code',
+		'hfhudcode',
 		'brgy_code',
 		'last_name',
 		'first_name',
@@ -53,6 +54,10 @@ class Site extends Model
 	  public function barangay(){
     	return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
       }
+
+      public function facilities(){
+	    return $this->hasOne('App\Facility','hfhudcode','hfhudcode');
+	  } 
 
 	  public function siteSuffix(){
       return $this->hasOne('App\SuffixName','suffix_name','suffix_code');

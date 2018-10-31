@@ -20,7 +20,7 @@
               <div class="profile__header">
                 <h4>{{ $profile-> first_name . ' ' . $profile->middle_name . ' ' . $profile->last_name }}</h4>
                 <small>{{ $profile->designations['role_name'] }}<br>
-                This record is {{ $profile->is_active == 'Y' ? 'Active' : 'Inactive' }}
+                 This record is {{ $profile->is_active == 'Y' ? 'Active' : 'Inactive' }}<br>
                  Birtdate: {{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}<br>
                  Date Hired: {{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}<br>
                  Gender: {{ $profile->gender == 'M' ? 'Male' : 'Female' }}<br>
@@ -88,36 +88,6 @@
             </table>
           </div>
         </div>
-
-<!--     Latest posts
-        <div class="panel panel-default">
-          <div class="panel-heading">
-          <h4 class="panel-title">Latest posts</h4>
-          </div>
-          <div class="panel-body">
-            <div class="profile__comments">
-              <div class="profile-comments__item">
-                <div class="profile-comments__controls">
-                  <a href="#"><i class="fa fa-share-square-o"></i></a>
-                  <a href="#"><i class="fa fa-edit"></i></a>
-                  <a href="#"><i class="fa fa-trash-o"></i></a>
-                </div>
-                <div class="profile-comments__avatar">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
-                </div>
-                <div class="profile-comments__body">
-                  <h5 class="profile-comments__sender">
-                    Richard Roe <small>2 hours ago</small>
-                  </h5>
-                  <div class="profile-comments__content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
       </div>
 
       <!-- start of row -->

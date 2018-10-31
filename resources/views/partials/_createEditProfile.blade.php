@@ -1,10 +1,6 @@
 <div class="card shadow rounded">
     <div class="card-header border-primary text-white bg-primary">
-            @if(isset($profile))
-            Edit WAH-NGO
-            @else
-            Create WAH NGO
-            @endif
+        {{ isset($profile) ? 'EDIT WAH-NGO' : 'CREATE WAH-NGO' }}
     </div>
         <div class="card-body">
             @if(isset($profile))
@@ -119,63 +115,28 @@
             <div class="row">
                 <div class="col-md-3">
                     {{ Form::label('region_code','Region') }}
-                    @if(isset($profile->region_code))
-                    {{ Form::select('region_code',$region,null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
-                    @else
-                    <select type="text" id="region_code" name="region_code" class="form-control">
-                        <option value="{{ $facility->region['region_code'] }}" >{{ $facility->region['region_name'] }}</option>
-                        @foreach($region as $ion)
-                          <option value="{{ $ion->region_code }}">{{ $ion->region_name }}</option>
-                        @endforeach
-                    </select>
-                    @endif
+                    {{ Form::select('region_code',$region,isset($facility) ? $facility->region->region_code : null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
                 </div>
                 <div class="col-md-3">
-                        {{ Form::label('province_code','Province') }}
-                        <select type="text" id="province_code" name="province_code" class="form-control">
-                            @if(isset($profile->province_code))
-                            <option value="{{ $profile->province['province_code'] }}" >{{ $profile->province['province_name'] }}</option>
-                            @else
-                            <option value="{{ $facility->province['province_code'] }}" >{{ $facility->province['province_name'] }}</option>
-                            @endif
-                        </select>
+                    {{ Form::label('province_code','Province') }}
+                    {{ Form::select('province_code', $province,isset($facility) ? $facility->province->province_code : null, ['class' => 'form-control','id' => 'province_code','name' => 'province_code']) }}
+
                 </div>
                 <div class="col-md-3">
-                        {{ Form::label('muncity_code','Municipality') }}
-                        <select type="text" id="muncity_code" name="muncity_code" class="form-control">
-                            @if(isset($profile->muncity_code))
-                            <option value="{{ $profile->municipality['muncity_code'] }}" >{{ $profile->municipality['muncity_name'] }}</option>
-                            @else
-                            <option value="{{ $facility->municipality['muncity_code'] }}" >{{ $facility->municipality['muncity_name'] }}</option>
-                            @endif
-                        </select>
+                    {{ Form::label('muncity_code','Municipality') }}
+                    {{ Form::select('muncity_code', $muncity,isset($facility) ? $facility->municipality->muncity_code : null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
                 </div>
                 <div class="col-md-3">
-                        {{ Form::label('brgy_code','Barangay') }}
-                        <select type="text" id="brgy_code" name="brgy_code" class="form-control">
-                            @if(isset($profile->brgy_code))
-                            <option value="{{ $profile->barangay['brgy_code'] }}" >{{ $profile->barangay['brgy_name'] }}</option>
-                            @else
-                            <option value="{{ $facility->barangay['brgy_code'] }}" >{{ $facility->barangay['brgy_name'] }}</option>
-                            @endif
-                        </select>                
+                    {{ Form::label('brgy_code','Barangay') }}
+                    {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
                 </div>
             </div>
         </div>
         <div class="card-footer border-primary">
-                <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
-                    <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
-                    <span class="btn-inner--text">
-                        @if(isset($profile))
-                        Save Changes
-                        @else
-                        Submit
-                        @endif
-                    </span>
-                </button>
+                {{ Form::button( isset($profile) ? '<i class="fa fa-save"></i> Save Changes' : '<i class="fa fa-save"></i> Submit', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
                 <a href="{{ route('profile.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
-                    <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
-                    <span class="btn-inner--text">Go Back</span>
+                    <i class="fa fa-arrow-left"></i>
+                    Go Back
                 </a>
         </div> 
     </div>            

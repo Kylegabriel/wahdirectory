@@ -1,10 +1,6 @@
 <div class="card shadow">
     <div class="card-header border-primary text-white bg-primary">
-        @if(isset($sites))
-        Edit Sites Organization
-        @else
-        Create Sites
-        @endif
+        {{ isset($sites) ? 'EDIT SITE' : 'CREATE SITE' }}
     </div>
         <div class="card-body">
         @if(isset($sites))
@@ -70,11 +66,11 @@
             <div class="col-md-4">
                 {{ Form::label('site_id','Designation*') }}
                 @if(isset($sites->site_id))
-                {{ Form::select('site_id', $siteDesig,null, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
+                {{ Form::select('site_id', $siteDesig,NULL, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
                 @else
                 <select type="text" id="site_id" name="site_id" class="form-control">
-                  <option value="31" >None of the option</option>
-                  @foreach($siteDesig as $siteDesig)
+                  <option value="" disabled selected>Choose your option</option>
+                  @foreach(App\SitesDesignation::get() as $siteDesig)
                         <option value="{{ $siteDesig['id'] }}">{{ $siteDesig['sites_desc'] }}</option>  
                    @endforeach
                 </select>
@@ -83,71 +79,38 @@
         </div>             
 
         <div class="row">
-<!--             <div class="col-md-2">
-                {{ Form::label('site', "Site") }}
-                {{ Form::select('site', ['' => 'Choose you option','L' => 'Luzon','V' => 'Visayas','M' => 'Mindanao'],null, ['class' => 'form-control','id' => 'site','name' => 'site']) }}
-            </div> -->
-            <div class="col-md-3">
-                {{ Form::label('region_code','Region') }}
-                @if(isset($sites->region_code))
-                {{ Form::select('region_code',$region,null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
-                @else
-                <select type="text" id="region_code" name="region_code" class="form-control">
-                    <option value="{{ $facility->region['region_code'] }}" >{{ $facility->region['region_name'] }}</option>
-                    @foreach($region as $ion)
-                      <option value="{{ $ion->region_code }}">{{ $ion->region_name }}</option>
-                    @endforeach
-                </select>
-                @endif
-            </div>
-            <div class="col-md-3">
+                <div class="col-md-4">
+                    {{ Form::label('region_code','Region') }}
+                    {{ Form::select('region_code',$region,isset($facility) ? $facility->region->region_code : null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
+                </div>
+                <div class="col-md-4">
                     {{ Form::label('province_code','Province') }}
-                    <select type="text" id="province_code" name="province_code" class="form-control">
-                        @if(isset($sites->province_code))
-                        <option value="{{ $sites->province['province_code'] }}" >{{ $sites->province['province_name'] }}</option>
-                        @else
-                        <option value="{{ $facility->province['province_code'] }}" >{{ $facility->province['province_name'] }}</option>
-                        @endif
-                    </select>
-            </div>
-            <div class="col-md-3">
+                    {{ Form::select('province_code', $province,isset($facility) ? $facility->province->province_code : null, ['class' => 'form-control','id' => 'province_code','name' => 'province_code']) }}
+
+                </div>
+                <div class="col-md-4">
                     {{ Form::label('muncity_code','Municipality') }}
-                    <select type="text" id="muncity_code" name="muncity_code" class="form-control">
-                        @if(isset($sites->muncity_code))
-                        <option value="{{ $sites->municipality['muncity_code'] }}" >{{ $sites->municipality['muncity_name'] }}</option>
-                        @else
-                        <option value="{{ $facility->municipality['muncity_code'] }}" >{{ $facility->municipality['muncity_name'] }}</option>
-                        @endif
-                    </select>
-            </div>
-            <div class="col-md-3">
-                    {{ Form::label('brgy_code','Barangay') }}
-                    <select type="text" id="brgy_code" name="brgy_code" class="form-control">
-                        @if(isset($sites->brgy_code))
-                        <option value="{{ $sites->barangay['brgy_code'] }}" >{{ $sites->barangay['brgy_name'] }}</option>
-                        @else
-                        <option value="{{ $facility->barangay['brgy_code'] }}" >{{ $facility->barangay['brgy_name'] }}</option>
-                        @endif
-                    </select>                
-            </div>
+                    {{ Form::select('muncity_code', $muncity,isset($facility) ? $facility->municipality->muncity_code : null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
+                </div>
+        </div>
+        <div class="row">
+                    <div class="col-md-6">
+                        {{ Form::label('brgy_code','Barangay') }}
+                        {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
+                    </div>
+                    <div class="col-md-6">
+                        {{ Form::label('hfhudcode','Facility Name') }}      
+                        {{ Form::select('hfhudcode', $fac,isset($facility) ? $facility->facilities->hfhudcode : null, ['class' => 'form-control','id' => 'hfhudcode','name' => 'hfhudcode']) }}
+                    </div>
         </div>
     </div>
 
         <div class="card-footer border-primary">
-            <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
-                <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
-                <span class="btn-inner--text">
-                    @if(isset($sites))
-                    Save Changes
-                    @else
-                    Submit
-                    @endif
-                </span>
-            </button>
-            <a href="{{ route('sites.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
-                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
-                <span class="btn-inner--text">Go Back</span>
-            </a>
+                {{ Form::button( isset($sites) ? '<i class="fa fa-save"></i> Save Changes' : '<i class="fa fa-save"></i> Submit', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
+                <a href="{{ route('sites.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
+                    <i class="fa fa-arrow-left"></i>
+                    Go Back
+                </a>
         </div> 
     </div>            
 </div>

@@ -1,10 +1,6 @@
 <div class="card shadow">
     <div class="card-header border-primary text-white bg-primary">
-            @if(isset($intern))
-            Edit Partner Organization
-            @else
-            Create Intern
-            @endif
+            {{ isset($sites) ? 'EDIT INTERN' : 'CREATE INTERN' }}
     </div>
         <div class="card-body">
             @if(isset($intern))
@@ -101,19 +97,10 @@
             </div> 
         </div>
         <div class="card-footer border-primary">
-            <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
-                <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
-                <span class="btn-inner--text">
-                    @if(isset($intern))
-                    Save Changes
-                    @else
-                    Submit
-                    @endif
-                </span>
-            </button>
-            <a href="{{ route('interns.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
-                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
-                <span class="btn-inner--text">Go Back</span>
-            </a>
+                {{ Form::button( isset($intern) ? '<i class="fa fa-save"></i> Save Changes' : '<i class="fa fa-save"></i> Submit', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
+                <a href="{{ route('interns.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
+                    <i class="fa fa-arrow-left"></i>
+                    Go Back
+                </a>
         </div>               
 </div>

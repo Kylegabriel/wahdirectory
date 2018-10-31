@@ -27,7 +27,7 @@ class FacilityConfigController extends Controller
 
     public function index(Request $request)
     {
-        $facility = FacilityConfig::with('region','province','municipality','barangay','facilities')->first();
+        $facility = FacilityConfig::with('province','municipality','barangay','facilities')->first();
 
         $reg = DemographicRegion::all();
 

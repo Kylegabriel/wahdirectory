@@ -11,6 +11,7 @@ use App\DemographicRegion;
 use App\DemographicProvince;
 use App\DemographicMunicipality;
 use App\DemographicBarangay;
+use App\Facility;
 use App\Http\Requests;
 use Session;
 
@@ -29,7 +30,7 @@ class SitesController extends Controller
     {        
 
         $site = Site::where('status', '=', 'Y')
-                      ->orderBy('id','desc')
+                      ->orderBy('hfhudcode','desc')
                       ->get();
 
         $count = 1;
@@ -47,23 +48,62 @@ class SitesController extends Controller
 
     public function create(Request $request)
     {
-        $siteDesignation = SitesDesignation::get();
         $region = DemographicRegion::get();
 
-        $suffix = SuffixName::get();
+        $suffix = SuffixName::all();
         $suf = array();
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
 
-        $facility = FacilityConfig::with('region','province','municipality','barangay')->first();
+        $facility = FacilityConfig::with('province','municipality','barangay','facilities')->first();
+
+        $regions = DemographicRegion::all();
+        $reg = array();
+        foreach ($regions as $region) {
+            $reg[$region->region_code] = $region->region_name;
+        }
+
+        $provinces = DemographicProvince::select('province_code','province_name')
+                                    ->where('region_code','=',$facility->province->region_code)
+                                    ->get();
+        $prov = array();
+        foreach ($provinces as $province) {
+            $prov[$province->province_code] = $province->province_name;
+        }
+
+        $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
+                                    //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
+                                    ->where('province_code','=',$facility->municipality->province_code)
+                                    ->get();
+        $muncity = array();
+        foreach ($municipalities as $municipality) {
+            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        }
+
+        $barangays = DemographicBarangay::select('brgy_code','brgy_name')
+                                    ->where('muncity_code','=',$facility->barangay->muncity_code)
+                                    ->get();
+        $brgy = array();
+        foreach ($barangays as $barangay) {
+            $brgy[$barangay->brgy_code] = $barangay->brgy_name;
+        }
+
+        $facilities = Facility::select('hfhudcode','hfhudname')
+                                    ->where('brgy_code','=',$facility->facilities->brgy_code)
+                                    ->get();
+        $fac = array();
+        foreach ($facilities as $data) {
+            $fac[$data->hfhudcode] = $data->hfhudname;
+        }
         
-        $count = 1;
         return view('sites.create')->with([
-            'count' => $count,
             'suffix' => $suf,
-            'siteDesig' => $siteDesignation,
-            'region' => $region,
+            'region' => $reg,
+            'province' => $prov,
+            'muncity' => $muncity,
+            'brgy' => $brgy,
+            'fac' => $fac,
             'facility' => $facility
             ]);
     }
@@ -103,6 +143,7 @@ class SitesController extends Controller
         $sites->province_code = $request->input('province_code');
         $sites->muncity_code = $request->input('muncity_code');
         $sites->brgy_code = $request->input('brgy_code');
+        $sites->hfhudcode = $request->input('hfhudcode');
         // $sites->site = $request->input('site');
         $sites->status = $request->input('status');
         $sites->gender = $request->input('gender');
@@ -151,7 +192,7 @@ class SitesController extends Controller
     {
         $editSites = Site::find($id);
 
-        $suffix = SuffixName::get();
+        $suffix = SuffixName::all();
         $suf = array();
         foreach ($suffix as $suffixes) {
             $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
@@ -163,20 +204,54 @@ class SitesController extends Controller
             $siteDesig[$siteDesignation->id] = $siteDesignation->sites_desc;
         }
 
-        $regions = DemographicRegion::get();
+        $regions = DemographicRegion::all();
         $reg = array();
         foreach ($regions as $region) {
             $reg[$region->region_code] = $region->region_name;
         }
 
-        $facility = FacilityConfig::with('region','province','municipality','barangay')->first();
+        $provinces = DemographicProvince::select('province_code','province_name')
+                                    ->where('region_code','=',$editSites->region_code)
+                                    ->get();
+        $prov = array();
+        foreach ($provinces as $province) {
+            $prov[$province->province_code] = $province->province_name;
+        }
+
+        $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
+                                    //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
+                                    ->where('province_code','=',$editSites->province_code)
+                                    ->get();
+        $muncity = array();
+        foreach ($municipalities as $municipality) {
+            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        }
+
+        $barangays = DemographicBarangay::select('brgy_code','brgy_name')
+                                    ->where('muncity_code','=',$editSites->muncity_code)
+                                    ->get();
+        $brgy = array();
+        foreach ($barangays as $barangay) {
+            $brgy[$barangay->brgy_code] = $barangay->brgy_name;
+        }
+
+        $facilities = Facility::select('hfhudcode','hfhudname')
+                                    ->where('brgy_code','=',$editSites->brgy_code)
+                                    ->get();
+        $fac = array();
+        foreach ($facilities as $data) {
+            $fac[$data->hfhudcode] = $data->hfhudname;
+        }
 
         return view('sites.edit')->with([
             'sites' => $editSites,
             'suffix' => $suf,
             'siteDesig' => $siteDesig,
             'region' => $reg,
-            'facility' => $facility,
+            'province' => $prov,
+            'muncity' => $muncity,
+            'brgy' => $brgy,
+            'fac' => $fac
           ]);
     }
 
@@ -202,6 +277,7 @@ class SitesController extends Controller
         $sites->province_code = $request->input('province_code');
         $sites->muncity_code = $request->input('muncity_code');
         $sites->brgy_code = $request->input('brgy_code');
+        $sites->hfhudcode = $request->input('hfhudcode');
         // $sites->site = $request->input('site');
         $sites->status = $request->input('status');
         $sites->gender = $request->input('gender');

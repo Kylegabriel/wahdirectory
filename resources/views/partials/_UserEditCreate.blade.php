@@ -1,10 +1,6 @@
        <div class="card shadow rounded">
         <div class="card-header border-primary text-white bg-primary">
-            @if(isset($user))
-            Edit User
-            @else
-            Create User
-            @endif
+            {{ isset($user) ? 'EDIT USER' : 'CREATE USER' }}
         </div>
         <div class="card-body">
             @if(isset($user))
@@ -92,19 +88,10 @@
                 </div>
         </div>
         <div class="card-footer border-primary">
-            <button type="submit" class="btn btn-icon btn-3 btn-primary" type="button">
-                <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
-                <span class="btn-inner--text">
-                    @if(isset($user))
-                    Save Changes
-                    @else
-                    Save
-                    @endif
-                </span>
-            </button>
-            <a href="{{ route('users.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
-                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
-                <span class="btn-inner--text">Go Back</span>
-            </a>
+                {{ Form::button( isset($user) ? '<i class="fa fa-save"></i> Save Changes' : '<i class="fa fa-save"></i> Submit', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
+                <a href="{{ route('users.index') }}" class="btn btn-icon btn-3 btn-success" role="button">
+                    <i class="fa fa-arrow-left"></i>
+                    Go Back
+                </a>
         </div>                
 </div>
