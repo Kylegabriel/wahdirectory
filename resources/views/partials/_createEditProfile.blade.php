@@ -106,12 +106,6 @@
                     {{ Form::text('getgocebupac',null,['class'=>'form-control','id'=>'getgocebupac']) }} 
                 </div>
             </div>
-<!--                                     <div class="row">
-                <div class="col-md-6">
-                    {{ Form::label('image_url','Image') }}
-                    <input type="file" name="image_url" id="image_url" class="form-control">
-                </div>
-            </div> -->
             <div class="row">
                 <div class="col-md-3">
                     {{ Form::label('region_code','Region') }}
@@ -130,6 +124,10 @@
                     {{ Form::label('brgy_code','Barangay') }}
                     {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                <input type="file" class="form-control-file" id="image" name="image">
             </div>
         </div>
         <div class="card-footer border-primary">

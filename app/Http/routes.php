@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+	
 Route::resource('partner','PartnerController',['except'=>['destroy']]);
 Route::resource('profile','ProfileController',['except'=>['destroy']]);
 Route::resource('interns','InternController',['except'=>['destroy']]);

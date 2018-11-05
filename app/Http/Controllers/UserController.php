@@ -17,8 +17,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $suf;
+
     public function __construct(){
         $this->middleware('auth');
+
+        $suffix = SuffixName::get();
+        $this->suf = array();
+        foreach ($suffix as $suffixes) {
+            $this->suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
     }
 
     public function index(Request $request)
@@ -40,14 +48,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $suffix = SuffixName::get();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
         return view('users.create')->with([
-            'suffix' => $suf
+            'suffix' => $this->suf
             ]);
     }
 
@@ -116,15 +118,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        $suffix = SuffixName::get();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
-        $role = UserRole::get();
-
-        $roles = UserRole::get();
+        $roles = UserRole::all();
         $role = array();
         foreach ($roles as $rol) {
             $role[$rol->id] = $rol->role_name;
@@ -132,7 +126,7 @@ class UserController extends Controller
 
         return view('users.edit')->with([
             'user' => $user,
-            'suffix' => $suf,
+            'suffix' => $this->suf,
             'role'=>$role
           ]);
     }

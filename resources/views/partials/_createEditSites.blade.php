@@ -103,6 +103,10 @@
                         {{ Form::select('hfhudcode', $fac,isset($facility) ? $facility->facilities->hfhudcode : null, ['class' => 'form-control','id' => 'hfhudcode','name' => 'hfhudcode']) }}
                     </div>
         </div>
+        <div class="form-group">
+            <label for="image">Upload Image:</label>
+            <input type="file" class="form-control-file" id="image" name="image">
+        </div>
     </div>
 
         <div class="card-footer border-primary">

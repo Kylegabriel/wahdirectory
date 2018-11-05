@@ -38,21 +38,21 @@
       /*** Profile: Header  ***/
       .profile__avatar {
         float: left;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        border-radius: 20%;
         margin-right: 20px;
         overflow: hidden;
       }
       @media (min-width: 768px) {
         .profile__avatar {
-          width: 100px;
-          height: 100px;
+          width: 230px;
+          height: 200px;
         }
       }
       .profile__avatar > img {
         width: 100%;
-        height: auto;
+        height: 100%;
       }
       .profile__header {
         overflow: hidden;

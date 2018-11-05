@@ -30,6 +30,7 @@ class CreateInternsTable extends Migration
             $table->char('gender',1);
             $table->date('birthdate')->nullable();
             $table->char('is_active',1);
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('course');

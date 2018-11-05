@@ -4,9 +4,9 @@
         </div>
         <div class="card-body">
             @if(isset($partners))
-            {!! Form::model($partners, ['route' => ['partner.update', $partners->id], 'method' => 'PUT']) !!}
+            {!! Form::model($partners, ['route' => ['partner.update', $partners->id], 'method' => 'PUT', 'files' => true ]) !!}
             @else
-            {!! Form::open(['route' => 'partner.store','method' => 'POST']) !!}
+            {!! Form::open(['route' => 'partner.store','method' => 'POST','files' => true]) !!}
             @endif
             {{ csrf_field() }} 
             <div class="row">
@@ -111,8 +111,11 @@
                     {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
                 </div>
             </div>
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                {{ Form::file('image',null,['class'=>'form-control','id'=>'image','name'=>'image']) }} 
+            </div>
         </div>
-
         <div class="card-footer border-primary">
             {{ Form::button( isset($partners) ? '<i class="fa fa-save"></i> Save Changes' : '<i class="fa fa-save"></i> Submit', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
             <a href="{{ route('partner.index') }}" class="btn btn-icon btn-3 btn-success" role="button">

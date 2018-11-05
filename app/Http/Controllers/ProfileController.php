@@ -13,6 +13,8 @@ use App\DemographicProvince;
 use App\DemographicMunicipality;
 use App\DemographicBarangay;
 use Session;
+use Image;
+use File;
 
 class ProfileController extends Controller
 {
@@ -22,8 +24,24 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    protected $suf;
+    protected $reg;
+
     public function __construct(){
         $this->middleware('auth');
+
+        $suffix = SuffixName::all();
+        $this->suf = array();
+        foreach ($suffix as $suffixes) {
+            $this->suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+
+        $regions = DemographicRegion::all();
+        $this->reg = array();
+        foreach ($regions as $region) {
+            $this->reg[$region->region_code] = $region->region_name;
+        }
+
     }
 
     public function index()
@@ -45,19 +63,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $suffix = SuffixName::all();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
 
         $facility = FacilityConfig::with('province','municipality','barangay')->first();
 
-        $regions = DemographicRegion::all();
-        $reg = array();
-        foreach ($regions as $region) {
-            $reg[$region->region_code] = $region->region_name;
-        }
 
         $provinces = DemographicProvince::select('province_code','province_name')
                                     ->where('region_code','=',$facility->province->region_code)
@@ -86,8 +94,8 @@ class ProfileController extends Controller
 
         return view('profile.create')->with([
             'facility' => $facility,
-            'suffix' => $suf,
-            'region' => $reg,
+            'suffix' => $this->suf,
+            'region' => $this->reg,
             'province' => $prov,
             'muncity' => $muncity,
             'brgy' => $brgy,
@@ -115,7 +123,7 @@ class ProfileController extends Controller
 
           Session::flash('repeat','Record Already Exist');
 
-          return redirect()->route('profile.index');//,$partner->id);
+          return redirect()->route('profile.index');//,$user->id);
 
         }else{
         $user = new Profile;
@@ -146,14 +154,14 @@ class ProfileController extends Controller
         $user->mabuhaymilespal = $request->input('mabuhaymilespal');
         $user->getgocebupac = $request->input('getgocebupac');
 
-        // if ($request->hasFile('image_url')) {
-        //     $file = $request->file('image_url');
-        //     $file->move(public_path(). '/', $file->getClientOriginalName());
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
 
-        //     $user->image_url = $file->getClientOriginalName();
-        // }
-
-        
+            $user->image = $filename;
+        }
 
         $user->save();
 
@@ -194,18 +202,6 @@ class ProfileController extends Controller
             $desig[$role->id] = $role->role_name;
         }
 
-        $suffix = SuffixName::get();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
-        $regions = DemographicRegion::all();
-        $reg = array();
-        foreach ($regions as $region) {
-            $reg[$region->region_code] = $region->region_name;
-        }
-
         $provinces = DemographicProvince::select('province_code','province_name')
                                     ->where('region_code','=',$editProfile->region_code)
                                     ->get();
@@ -231,12 +227,11 @@ class ProfileController extends Controller
             $brgy[$barangay->brgy_code] = $barangay->brgy_name;
         }
 
-            
         return view('profile.edit')->with([
             'profile' => $editProfile,
             'desig' => $desig,
-            'suffix' => $suf,
-            'region' => $reg,
+            'suffix' => $this->suf,
+            'region' => $this->reg,
             'province' => $prov,
             'muncity' => $muncity,
             'brgy' => $brgy,
@@ -278,6 +273,16 @@ class ProfileController extends Controller
         $user->pagibigrtn = $request->input('pagibigrtn');
         $user->mabuhaymilespal = $request->input('mabuhaymilespal');
         $user->getgocebupac = $request->input('getgocebupac');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+            $oldFilename = $partner->image;
+            $partner->image = $filename;
+            File::delete(public_path('img/'. $oldFilename));
+        }
 
         $user->save();
         

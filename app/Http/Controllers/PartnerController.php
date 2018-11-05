@@ -15,6 +15,9 @@ use App\PartnerOrganization;
 use App\FacilityConfig;
 use App\DemographicRegion;
 use Session;
+use Image;
+// use Storage;
+use File;
 
 class PartnerController extends Controller
 {
@@ -23,8 +26,27 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $suf;
+    protected $reg;
+
     public function __construct(){
+
         $this->middleware('auth');
+
+        $suffix = SuffixName::all();
+        $this->suf= array();
+        foreach ($suffix as $suffixes) {
+            $this->suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+
+        $regions = DemographicRegion::all();
+        $this->reg = array();
+        foreach ($regions as $region) {
+            $this->reg[$region->region_code] = $region->region_name;
+        }
+
+
     }
     
     public function index(Request $request)
@@ -46,19 +68,8 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        $suffix = SuffixName::all();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
         $facility = FacilityConfig::with('province','municipality','barangay')->first();
 
-        $regions = DemographicRegion::all();
-        $reg = array();
-        foreach ($regions as $region) {
-            $reg[$region->region_code] = $region->region_name;
-        }
 
         $provinces = DemographicProvince::select('province_code','province_name')
                                     ->where('region_code','=',$facility->province->region_code)
@@ -87,8 +98,8 @@ class PartnerController extends Controller
 
         return view('partner.create')->with([ 
             'facility' => $facility,
-            'suffix' => $suf,
-            'region' => $reg,
+            'suffix' => $this->suf,
+            'region' => $this->reg,
             'province' => $prov,
             'muncity' => $muncity,
             'brgy' => $brgy,
@@ -140,6 +151,15 @@ class PartnerController extends Controller
         $partner->birthdate = $request->input('birthdate');
         $partner->is_active = $request->input('is_active');
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+
+            $partner->image = $filename;
+        }
+
         $partner->save();
 
         Session::flash('success','Partner '.$partner->first_name.' was Successfully Save');
@@ -187,18 +207,6 @@ class PartnerController extends Controller
             $desig[$desiginat->id] = $desiginat->designation;
         }
 
-        $suffix = SuffixName::get();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
-        $regions = DemographicRegion::all();
-        $reg = array();
-        foreach ($regions as $region) {
-            $reg[$region->region_code] = $region->region_name;
-        }
-
         $data = DemographicProvince::select('province_code','province_name')
                                     ->where('region_code','=',$editPartner->region_code)
                                     ->get();
@@ -227,9 +235,9 @@ class PartnerController extends Controller
         return view('partner.edit')->with([
             'partners' => $editPartner,
             'designation' => $desig,
-            'suffix' => $suf,
+            'suffix' => $this->suf,
             'organization' => $org,
-            'region' => $reg,
+            'region' => $this->reg,
             'province' => $provinces,
             'muncity' => $muncity,
             'brgy' => $brgy,
@@ -268,6 +276,17 @@ class PartnerController extends Controller
         $partner->birthdate = $request->input('birthdate');
         $partner->is_active = $request->input('is_active');
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+            $oldFilename = $partner->image;
+            $partner->image = $filename;
+            // Storage::delete($oldFilename);
+            File::delete(public_path('img/'. $oldFilename));
+        }
+
         $partner->save();
 
         Session::flash('success','Partner '.$partner->last_name.' was Updated Successfully..!');
@@ -284,6 +303,7 @@ class PartnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Storage::delete($partner->image);
+        //File::delete(public_path('img/'. $oldFilename));
     }
 }

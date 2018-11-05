@@ -36,8 +36,8 @@ class Profile extends Model
         'province_code',
         'muncity_code',
         'brgy_code',
-        'user_id'
-        // 'image_url'
+        'user_id',
+        'image'
     ];
 
     public function user(){

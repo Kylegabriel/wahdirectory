@@ -36,7 +36,8 @@ class CreateSitesTable extends Migration
             $table->date('birthdate')->nullable();
             $table->char('is_active',1);
             $table->char('status',1);
-            $table->text('reasons')->nullable();          
+            $table->text('reasons')->nullable();
+            $table->string('image')->nullable();          
             $table->timestamps();
     
             $table->foreign('site_id')->references('id')->on('sites_designation');

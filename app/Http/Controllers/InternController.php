@@ -18,8 +18,17 @@ class InternController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $suf;
+
     public function __construct(){
         $this->middleware('auth');
+
+        $suffix = SuffixName::all();
+        $this->suf = array();
+        foreach ($suffix as $suffixes) {
+            $this->suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+
     }
     
     public function index(Request $request)
@@ -44,17 +53,10 @@ class InternController extends Controller
 
         $tags = Tag::all();
 
-        $suffix = SuffixName::get();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
-
         $count = 1;
         return view('intern.create')->with([ 
             'tags' => $tags,
-            'suffix' => $suf
+            'suffix' => $this->suf
             ]);
     }
 
@@ -156,12 +158,6 @@ class InternController extends Controller
             $cours[$course->id] = $course->course;
         }
 
-        $suffix = SuffixName::get();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
         $count = 1;
         return view('intern.edit')->with([
             'count' => $count,
@@ -169,7 +165,7 @@ class InternController extends Controller
             'courses' => $cours,
             'schools' => $sch,
             'tags' => $tags2,
-            'suffix' => $suf
+            'suffix' => $this->suf
           ]);
 
     }

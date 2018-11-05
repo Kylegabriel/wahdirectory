@@ -22,8 +22,22 @@ class SitesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $suf;
+    protected $reg;
+
     public function __construct(){
         $this->middleware('auth');
+
+        $suffix = SuffixName::all();
+        $this->suf = array();
+        foreach ($suffix as $suffixes) {
+            $this->suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
+        }
+        $regions = DemographicRegion::all();
+        $this->reg = array();
+        foreach ($regions as $region) {
+            $this->reg[$region->region_code] = $region->region_name;
+        }
     }
 
     public function index(Request $request)
@@ -48,21 +62,7 @@ class SitesController extends Controller
 
     public function create(Request $request)
     {
-        $region = DemographicRegion::get();
-
-        $suffix = SuffixName::all();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
-
         $facility = FacilityConfig::with('province','municipality','barangay','facilities')->first();
-
-        $regions = DemographicRegion::all();
-        $reg = array();
-        foreach ($regions as $region) {
-            $reg[$region->region_code] = $region->region_name;
-        }
 
         $provinces = DemographicProvince::select('province_code','province_name')
                                     ->where('region_code','=',$facility->province->region_code)
@@ -98,8 +98,8 @@ class SitesController extends Controller
         }
         
         return view('sites.create')->with([
-            'suffix' => $suf,
-            'region' => $reg,
+            'suffix' => $this->suf,
+            'region' => $this->reg,
             'province' => $prov,
             'muncity' => $muncity,
             'brgy' => $brgy,
@@ -191,23 +191,11 @@ class SitesController extends Controller
     public function edit($id)
     {
         $editSites = Site::find($id);
-
-        $suffix = SuffixName::all();
-        $suf = array();
-        foreach ($suffix as $suffixes) {
-            $suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
-        }
         
         $siteDesignations = SitesDesignation::get();
         $siteDesig = array();
         foreach ($siteDesignations as $siteDesignation) {
             $siteDesig[$siteDesignation->id] = $siteDesignation->sites_desc;
-        }
-
-        $regions = DemographicRegion::all();
-        $reg = array();
-        foreach ($regions as $region) {
-            $reg[$region->region_code] = $region->region_name;
         }
 
         $provinces = DemographicProvince::select('province_code','province_name')
@@ -245,9 +233,9 @@ class SitesController extends Controller
 
         return view('sites.edit')->with([
             'sites' => $editSites,
-            'suffix' => $suf,
+            'suffix' => $this->suf,
             'siteDesig' => $siteDesig,
-            'region' => $reg,
+            'region' => $this->reg,
             'province' => $prov,
             'muncity' => $muncity,
             'brgy' => $brgy,

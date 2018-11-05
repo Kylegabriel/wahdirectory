@@ -26,7 +26,8 @@ class Partner extends Model
     'province_code',
     'muncity_code',
     'brgy_code',
-    'user_id'
+    'user_id',
+    'image'
 	];
 
 

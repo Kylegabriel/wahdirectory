@@ -41,7 +41,7 @@ class CreateProfilesTable extends Migration
             $table->string('pagibigrtn',20)->nullable();
             $table->string('mabuhaymilespal',20)->nullable();
             $table->string('getgocebupac',20)->nullable();
-            // $table->string('image_url', 100);
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('user_role');

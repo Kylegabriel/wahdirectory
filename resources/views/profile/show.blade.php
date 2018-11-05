@@ -15,7 +15,7 @@
           <div class="profile-comments__item">
             <div class="card-body">
               <div class="profile__avatar">
-                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
+                <img src="{{ isset( $profile->image ) ? asset('img/' . $profile->image) : asset('img/default.png') }}" alt="...">
               </div>
               <div class="profile__header">
                 <h4>{{ $profile-> first_name . ' ' . $profile->middle_name . ' ' . $profile->last_name }}</h4>
