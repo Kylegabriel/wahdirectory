@@ -58,9 +58,7 @@
 
             $('form').each(function() {
               $.validator.setDefaults({
-                  ignore: [],
-                  debug: true,
-                  success: "valid"
+                  ignore: []
               });
             $(this).validate({
                       rules: {

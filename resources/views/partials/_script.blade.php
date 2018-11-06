@@ -8,7 +8,7 @@
     <script src="/toastr/toastr.js"></script>
     <script src="/argon-design/argon-design/assets/js/argon.js"></script>
     <script src="/jQuery-Mask/dist/jquery.mask.js"></script>
-    <script src="/jquery/additional-methods.min.js"></script>
+    <script src="/jquery/additional-methods.js"></script>
     <script src="/js/_script.js"></script>
     @yield('scripts')
     <script>
