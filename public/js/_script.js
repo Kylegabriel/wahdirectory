@@ -96,9 +96,6 @@
                         site: {
                           required: true
                         },
-                        region_code: {
-                          required: true
-                        },
                         province_code: {
                           required: true
                         },
