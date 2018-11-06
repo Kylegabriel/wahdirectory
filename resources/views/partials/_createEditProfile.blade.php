@@ -4,9 +4,9 @@
     </div>
         <div class="card-body">
             @if(isset($profile))
-            {!! Form::model($profile, ['route' => ['profile.update', $profile->id], 'method' => 'PUT']) !!}
+            {!! Form::model($profile, ['route' => ['profile.update', $profile->id], 'method' => 'PUT', 'files' => true]) !!}
             @else
-            {!! Form::open(['route' => 'profile.store','method' => 'POST']) !!}
+            {!! Form::open(['route' => 'profile.store','method' => 'POST', 'files' => true]) !!}
             @endif    
             {{ csrf_field() }}
           <div class="row">
@@ -125,9 +125,10 @@
                     {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
                 </div>
             </div>
+            <br>
             <div class="form-group">
                 <label for="image">Upload Image:</label>
-                <input type="file" class="form-control-file" id="image" name="image">
+                {{ Form::file('image',null,['class'=>'form-control','id'=>'image','name'=>'image']) }} 
             </div>
         </div>
         <div class="card-footer border-primary">

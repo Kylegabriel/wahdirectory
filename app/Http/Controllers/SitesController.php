@@ -14,6 +14,8 @@ use App\DemographicBarangay;
 use App\Facility;
 use App\Http\Requests;
 use Session;
+use Image;
+use File;
 
 class SitesController extends Controller
 {
@@ -154,6 +156,15 @@ class SitesController extends Controller
         $sites->birthdate = $request->input('birthdate');
         $sites->is_active = $request->input('is_active');
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+
+            $sites->image = $filename;
+        }
+
         $sites->save();
 
         Session::flash('success','New Site sites was Successfully Save');
@@ -275,6 +286,16 @@ class SitesController extends Controller
         $sites->secondary_email = $request->input('secondary_email');
         $sites->birthdate = $request->input('birthdate');
         $sites->is_active = $request->input('is_active');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+            $oldFilename = $sites->image;
+            $sites->image = $filename;
+            File::delete(public_path('img/'. $oldFilename));
+        }
 
         $sites->save();
 

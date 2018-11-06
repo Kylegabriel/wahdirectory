@@ -279,8 +279,8 @@ class ProfileController extends Controller
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('img/' . $filename);
             Image::make($image)->resize( 800,400 )->save($location);
-            $oldFilename = $partner->image;
-            $partner->image = $filename;
+            $oldFilename = $user->image;
+            $user->image = $filename;
             File::delete(public_path('img/'. $oldFilename));
         }
 

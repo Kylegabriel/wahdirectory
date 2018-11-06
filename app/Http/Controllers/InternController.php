@@ -10,6 +10,8 @@ use App\InternSchool;
 use App\Tag;
 use App\SuffixName;
 use Session;
+use Image;
+use File;
 
 class InternController extends Controller
 {
@@ -100,6 +102,15 @@ class InternController extends Controller
         $intern->date_start = $request->input('date_start');
         $intern->date_end = $request->input('date_end');
         $intern->is_active = $request->input('is_active');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+
+            $intern->image = $filename;
+        }
 
 
         $intern->save();
@@ -194,6 +205,16 @@ class InternController extends Controller
         $intern->date_start = $request->input('date_start');
         $intern->date_end = $request->input('date_end');
         $intern->is_active = $request->input('is_active');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+            $oldFilename = $intern->image;
+            $intern->image = $filename;
+            File::delete(public_path('img/'. $oldFilename));
+        }
 
         $intern->save();
 

@@ -13,7 +13,7 @@
           <div class="profile-comments__item">
             <div class="card-body">
               <div class="profile__avatar">
-                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
+                <img src="{{ isset( $sites->image ) ? asset('img/' . $sites->image) : asset('img/default.png') }}" alt="...">
               </div>
               <div class="profile__header">
                 <h4>{{ $sites->first_name . ' ' . $sites->middle_name . ' ' . $sites->last_name . ' ' }}</h4>

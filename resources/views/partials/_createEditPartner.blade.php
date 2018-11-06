@@ -110,7 +110,8 @@
                     {{ Form::label('brgy_code','Barangay') }}
                     {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
                 </div>
-            </div>
+            </div> 
+            <br>
             <div class="form-group">
                 <label for="image">Upload Image:</label>
                 {{ Form::file('image',null,['class'=>'form-control','id'=>'image','name'=>'image']) }} 
