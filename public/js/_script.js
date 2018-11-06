@@ -58,7 +58,9 @@
 
             $('form').each(function() {
               $.validator.setDefaults({
-                     ignore: []
+                  ignore: [],
+                  debug: true,
+                  success: "valid"
               });
             $(this).validate({
                       rules: {
@@ -77,7 +79,7 @@
                         email: {
                           email: true,
                           required: true,
-                          // pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+                          pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
                         },
                         birthdate: {
                           required: true
@@ -132,6 +134,9 @@
                         },
                         role_id: {
                           required: true
+                        },
+                        image: {
+                          extension: "jpg|jpeg|png|JPG|JPEG|PNG"
                         },
 
                       },

@@ -70,16 +70,13 @@
 
       <!-- start of row -->
       <div class="col-xs-12 col-sm-3">
-        
         <!-- Edit user -->
         <p>
           <a href="{{ route('interns.index') }}" class="profile__contact-btn btn btn-lg btn-block btn-primary">
             BACK
           </a>
         </p>
-
         <hr class="profile__contact-hr">
-        
         <!-- Contact info -->
         <div class="profile__contact-info">
           <div class="profile__contact-info-item">
@@ -104,7 +101,4 @@
         <!-- end of Contact info -->.
       </div> <!-- end of row -->
     </div>
-
-
-
 @endsection
