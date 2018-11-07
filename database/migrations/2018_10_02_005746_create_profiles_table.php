@@ -22,10 +22,6 @@ class CreateProfilesTable extends Migration
             $table->string('first_name',50);
             $table->string('middle_name',50)->nullable();
             $table->string('suffix_name');
-            $table->char('region_code',2);
-            $table->char('province_code',4);
-            $table->char('muncity_code',6);
-            $table->char('brgy_code',10);
             $table->char('gender',1)->nullable();
             $table->string('primary_contact',11)->nullable();
             $table->string('secondary_contact',11)->nullable();
@@ -33,8 +29,14 @@ class CreateProfilesTable extends Migration
             $table->string('secondary_email',50)->nullable();
             $table->date('birthdate')->nullable();
             $table->date('datehired')->nullable();
+            $table->date('dateendcontruct')->nullable();
+            $table->string('reasons')->nullable();
             $table->char('is_active',1);
             $table->string('philhealth',20)->nullable();
+            $table->string('wahemployeenumber',30)->nullable();
+            $table->string('pgtemployeenumber',30)->nullable();
+            $table->string('metrobankaccount',30)->nullable();
+            $table->string('landbankaccount',30)->nullable();
             $table->string('tin',20)->nullable();
             $table->string('sss',20)->nullable();
             $table->string('pagibigmidno',20)->nullable();
@@ -42,6 +44,7 @@ class CreateProfilesTable extends Migration
             $table->string('mabuhaymilespal',20)->nullable();
             $table->string('getgocebupac',20)->nullable();
             $table->string('image')->nullable();
+            $table->string('mailing_address')->nullable();
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('user_role');

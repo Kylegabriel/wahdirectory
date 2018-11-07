@@ -17,9 +17,8 @@
       </div>
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
-         	<a href="{{ route('sites.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="Add Partner" >  
-            <span class="btn-inner--icon"></span>
-            <span class="btn-inner--text"><i class="fa fa-globe fa-2x"></i> Add Sites</span>
+         	<a href="{{ route('sites.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="ADD SITE PERSONNEL" >  
+            <i class="fa fa-globe fa-2x"></i> ADD SITES PERSONNEL
       		</a>
         </li>
       </ul>
@@ -32,9 +31,10 @@
 				<tr>
 					<th>No.</th>
 					<th>Name</th>
-					<th>Gender</th>
-					<th>Birthdate</th>
+					<th>Designation</th>
 					<th>Facility Name</th>
+					<th>Primary Contact</th>
+					<th>Email</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -43,9 +43,10 @@
 				<tr>
 					<td>{{ $count++ .'.' }}</td>
 					<td>{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} @if($site->suffix_name == 'NOTAP') @else {{ $site->suffix_name }} @endif</td>
-					<td>{{ $site->gender }}</td>
-					<td>{{ $site->birthdate }}</td>
+					<td>{{ $site->designations['sites_desc'] }}</td>
 					<td>{{ $site->facilities['hfhudname'] }}</td>
+					<td>{{ $site->primary_contact }}</td>
+					<td>{{ $site->email }}</td>
 					<td>
 						<a  href="{{ route('sites.edit',$site->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 						<a data-toggle="modal" data-target="#disable{{ $site->id }}" class="btn btn-link text-primary" data-toggle="tooltip" data-placement="left" title="Activate"><i class="fa fa-eye fa-2x"></i></a>

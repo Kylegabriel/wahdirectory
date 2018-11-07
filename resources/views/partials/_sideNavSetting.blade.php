@@ -9,21 +9,14 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/course')}}">
-                      <i class="fa fa-graduation-cap"></i>
-                      Intern Course
+                    <a class="nav-link" href="{{ url('/partnerDesignation')}}">
+                      <i class="fa fa-building"></i>
+                      Partner Designation
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/school')}}">
-                      <i class="fa fa-university"></i>
-                      Intern School
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/papers')}}">
-                      <i class="fa fa-paperclip"></i>
-                      Intern Papers
+                    <a class="nav-link" href="{{ url('/partnerOrganization')}}">
+                      Partner Organization
                     </a>
                   </li>
                   <li class="nav-item">
@@ -39,14 +32,21 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/partnerDesignation')}}">
-                      <i class="fa fa-building"></i>
-                      Partner Designation
+                    <a class="nav-link" href="{{ url('/course')}}">
+                      <i class="fa fa-graduation-cap"></i>
+                      Intern Course
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/partnerOrganization')}}">
-                      Partner Organization
+                    <a class="nav-link" href="{{ url('/school')}}">
+                      <i class="fa fa-university"></i>
+                      Intern School
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/papers')}}">
+                      <i class="fa fa-paperclip"></i>
+                      Intern Papers
                     </a>
                   </li>
                   <li class="nav-item">

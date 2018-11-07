@@ -11,25 +11,25 @@
             {{ csrf_field() }}
           <div class="row">
                 <div class="col-md-3">
-                    {{ Form::label('last_name','Last Name') }}
+                    {{ Form::label('last_name','LAST NAME') }}
                     {{ Form::text('last_name',null,['class'=>'form-control','id'=>'last_name']) }}
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('first_name','First Name') }}
+                    {{ Form::label('first_name','FIRST NAME') }}
                     {{ Form::text('first_name',null,['class'=>'form-control','id'=>'first_name']) }} 
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('middle_name','Middle Name') }}
+                    {{ Form::label('middle_name','MIDDLE NAME') }}
                     {{ Form::text('middle_name',null,['class'=>'form-control','id'=>'middle_name']) }} 
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('suffix_name', "Suffix Name") }}
-                    {{ Form::select('suffix_name', $suffix,'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
+                    {{ Form::label('suffix_name', "SUFFIX NAME") }}
+                    {{ Form::select('suffix_name', $suffix,isset($profile) ? null : 'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
                 </div>
             </div>    
             <div class="row">
-                <div class="col-md-9">
-                    {{ Form::label('role_id','Designation') }}
+                <div class="col-md-8">
+                    {{ Form::label('role_id','DESIGNATION') }}
                     @if(isset($profile->role_id))
                     {{ Form::select('role_id', $desig,NULL, ['class' => 'form-control','id' => 'role_id','name' => 'role_id']) }}
                     @else
@@ -41,51 +41,67 @@
                     </select>
                     @endif
                  </div>
-                <div class="col-md-3">
-                    {{ Form::label('gender', "Gender") }}
+                <div class="col-md-2">
+                    {{ Form::label('birthdate','BIRTHDATE') }}
+                    {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
+                </div> 
+                <div class="col-md-2">
+                    {{ Form::label('gender', "GENDER") }}
                     {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
-                    {{ Form::label('email','Email') }}
+                <div class="col-md-3">
+                    {{ Form::label('email','EMAIL') }}
                     {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
                 </div>
-                <div class="col-md-5">
-                    {{ Form::label('secondary_email','Secondary Email') }}
+                <div class="col-md-3">
+                    {{ Form::label('secondary_email','SECONDARY CONTACT') }}
                     {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
                 </div>
-                <div class="col-md-2">
-                    {{ Form::label('datehired','Date Of Hired') }}
-                    {{ Form::date('datehired',null,['class'=>'form-control','id'=>'datehired','name' => 'datehired']) }}
+                <div class="col-md-3">
+                    {{ Form::label('primary_contact','PRIMARY CONTACT') }}
+                    {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }} 
+                </div>
+                <div class="col-md-3">
+                    {{ Form::label('secondary_contact','SECONDARY CONTACT') }}
+                    {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact']) }} 
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
-                    {{ Form::label('primary_contact','Primary Contact') }}
-                    {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }} 
+                <div class="col-md-3">
+                    {{ Form::label('wahemployeenumber','WAH EMPLOYEE #') }}
+                    {{ Form::text('wahemployeenumber',null,['class'=>'form-control','id'=>'wahemployeenumber','name' => 'wahemployeenumber']) }} 
                 </div>
-                <div class="col-md-5">
-                    {{ Form::label('secondary_contact','Secondary Contact') }}
-                    {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact']) }} 
+                <div class="col-md-3">
+                    {{ Form::label('pgtemployeenumber','PGT EMPLOYEE #') }}
+                    {{ Form::text('pgtemployeenumber',null,['class'=>'form-control','id'=>'pgtemployeenumber','name' => 'pgtemployeenumber']) }} 
                 </div>
-                <div class="col-md-2">
-                    {{ Form::label('birthdate','Birthdate') }}
-                    {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
-                </div> 
+                <div class="col-md-3">
+                    {{ Form::label('metrobankaccount','METROBANK ACCOUNT') }}
+                    {{ Form::text('metrobankaccount',null,['class'=>'form-control','id'=>'metrobankaccount','name' => 'metrobankaccount']) }} 
+                </div>
+                <div class="col-md-3">
+                    {{ Form::label('landbankaccount','LANDBANK ACCOUNT') }}
+                    {{ Form::text('landbankaccount',null,['class'=>'form-control','id'=>'landbankaccount','name' => 'landbankaccount']) }} 
+                </div>
             </div> 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     {{ Form::label('philhealth','PHILHEALTH NUMBER') }}
                     {{ Form::text('philhealth',null,['class'=>'form-control','id'=>'philhealth']) }} 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     {{ Form::label('tin','TIN NUMBER') }}
                     {{ Form::text('tin',null,['class'=>'form-control','id'=>'tin']) }} 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     {{ Form::label('sss','SSS NUMBER') }}
                     {{ Form::text('sss',null,['class'=>'form-control','id'=>'sss']) }} 
+                </div>
+                <div class="col-md-3">
+                    {{ Form::label('datehired','DATE HIRED') }}
+                    {{ Form::date('datehired',null,['class'=>'form-control','id'=>'datehired','name' => 'datehired']) }}
                 </div>
             </div>
             <div class="row">
@@ -107,27 +123,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    {{ Form::label('region_code','Region') }}
-                    {{ Form::select('region_code',$region,isset($facility) ? $facility->region->region_code : null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
-                </div>
-                <div class="col-md-3">
-                    {{ Form::label('province_code','Province') }}
-                    {{ Form::select('province_code', $province,isset($facility) ? $facility->province->province_code : null, ['class' => 'form-control','id' => 'province_code','name' => 'province_code']) }}
-
-                </div>
-                <div class="col-md-3">
-                    {{ Form::label('muncity_code','Municipality') }}
-                    {{ Form::select('muncity_code', $muncity,isset($facility) ? $facility->municipality->muncity_code : null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
-                </div>
-                <div class="col-md-3">
-                    {{ Form::label('brgy_code','Barangay') }}
-                    {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
+                <div class="col-md-12">
+                    {{ Form::label('mailing_address','MAILING ADDRESS') }}
+                    {{ Form::textarea('mailing_address',null,['class'=>'form-control','id'=>'mailing_address','rows'=>'2']) }} 
                 </div>
             </div>
             <br>
             <div class="form-group">
-                <label for="image">Upload Image:</label>
+                <label for="image">UPLOAD IMAGE</label>
                 {{ Form::file('image',null,['class'=>'form-control','id'=>'image','name'=>'image']) }} 
             </div>
         </div>

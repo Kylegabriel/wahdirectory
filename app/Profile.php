@@ -23,21 +23,23 @@ class Profile extends Model
         'password',
         'birthdate',
         'datehired',
+        'dateendcontruct',
+        'reasons',
         'is_active',
-        'sites',
         'philhealth',
+        'wahemployeenumber',
+        'pgtemployeenumber',
+        'metrobankaccount',
+        'landbankaccount',
         'tin',
         'sss',
         'pagibigmidno',
         'pagibigrtn',
         'mabuhaymilespal',
         'getgocebupac',
-        'region_code',
-        'province_code',
-        'muncity_code',
-        'brgy_code',
         'user_id',
-        'image'
+        'image',
+        'mailing_address'
     ];
 
     public function user(){
@@ -52,19 +54,7 @@ class Profile extends Model
       return $this->hasOne('App\SuffixName','suffix_code','suffix_name');
     }
 
-    public function region(){
-      return $this->hasOne('App\DemographicRegion','region_code','region_code');
-    }
-
-    public function province(){
-      return $this->hasOne('App\DemographicProvince','province_code','province_code');
-    }
-
-    public function municipality(){
-      return $this->hasOne('App\DemographicMunicipality','muncity_code','muncity_code');
-    }
-
-    public function barangay(){
-      return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
+    public function reasondeactivation(){
+      return $this->hasOne('App\ReasonDeactivation','id','reasons');
     }
 }

@@ -75,8 +75,10 @@
                           maxlength: 20
                         },
                         email: {
-                          email: true,
                           required: true,
+                          pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+                        },
+                        secondary_email: {
                           pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
                         },
                         birthdate: {
@@ -112,7 +114,6 @@
                         paper: {
                           required: true
                         },
-
                         username: {
                           required: true,
                           minlength: 4,
@@ -133,6 +134,9 @@
                         image: {
                           extension: "jpg|jpeg|png|JPG|JPEG|PNG"
                         },
+                        primary_contact: {
+                          number: true
+                        }
 
                       },
                     highlight: function(element) {
@@ -155,11 +159,6 @@
 
             // jquery-mask
             $('input[name="mobile_number"]').mask('0000-0000-000',{
-              placeholder: "0917-XXXX-XXX",
-              clearIfNotMatch: true
-            });
-
-            $('input[name="primary_contact"]').mask('0000-0000-000',{
               placeholder: "0917-XXXX-XXX",
               clearIfNotMatch: true
             });

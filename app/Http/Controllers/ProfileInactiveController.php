@@ -14,6 +14,8 @@ class ProfileInactiveController extends Controller
         $data = Profile::find($id);
 
         $data->is_active = $request->input('is_active');
+        $data->dateendcontruct = $request->input('dateendcontruct');
+        $data->reasons = $request->input('reasons');
 
         $data->save();
 

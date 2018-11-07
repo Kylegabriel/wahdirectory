@@ -10,7 +10,7 @@
         <!-- User profile -->
         <div class="card shadow">
           <div class="card-header">
-              WAH-Staff Record
+              WAH-STAFF RECORD
           </div>
           <div class="profile-comments__item">
             <div class="card-body">
@@ -50,15 +50,28 @@
             <table class=" profile__table">
               <tbody>
                 <tr>
-                  <th><strong>Address :</strong></th>
-                  <td>{{ $profile->region['region_name'] . ", " 
-                    . $profile->province['province_name'] . ", " 
-                    . $profile->municipality['muncity_name'] . " "
-                    . $profile->barangay['brgy_name'] }}</td>
+                  <th><strong>MAILING ADDRESS :</strong></th>
+                  <td>{{ $profile->mailing_address }}</td>
                 </tr>
                 <tr>
-                  <th><strong>PhilHealth :</strong></th>
+                  <th><strong>PHILHEALTH :</strong></th>
                   <td>{{ $profile->philhealth }}</td>
+                </tr>
+                <tr>
+                  <th><strong>WAH EMPLOYEE NUMBER : </strong></th>
+                  <td>{{ $profile->wahemployeenumber }}</td>
+                </tr>
+                <tr>
+                  <th><strong>PGT EMPLOYEE NUMBER : </strong></th>
+                  <td>{{ $profile->pgtemployeenumber }}</td>
+                </tr>
+                <tr>
+                  <th><strong>METROBANK ACCOUNT : </strong></th>
+                  <td>{{ $profile->metrobankaccount }}</td>
+                </tr>
+                <tr>
+                  <th><strong>LANDBANK ACCOUNT : </strong></th>
+                  <td>{{ $profile->landbankaccount }}</td>
                 </tr>
                 <tr>
                   <th><strong>SSS :</strong></th>
@@ -109,7 +122,7 @@
               <i class="fa fa-phone"></i>
             </div>
             <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Work number</h5>
+              <h5 class="profile__contact-info-heading">Primary Number</h5>
               {{ $profile->primary_contact }}
             </div>
           </div>
@@ -118,7 +131,7 @@
               <i class="fa fa-phone"></i>
             </div>
             <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Mobile number</h5>
+              <h5 class="profile__contact-info-heading">Mobile Number</h5>
               {{ $profile->secondary_contact }}
             </div>
           </div>
@@ -136,7 +149,7 @@
               <i class="fa fa-map-marker"></i>
             </div>
             <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Work address</h5>
+              <h5 class="profile__contact-info-heading">Secondary Email address</h5>
               {{ $profile->secondary_email }}
             </div>
           </div>

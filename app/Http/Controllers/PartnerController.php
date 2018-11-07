@@ -7,13 +7,8 @@ use App\Http\Requests;
 use App\Partner;
 use App\SuffixName;
 use App\UserRole;
-use App\DemographicProvince;
-use App\DemographicMunicipality;
-use App\DemographicBarangay;
 use App\PartnerDesignation;
 use App\PartnerOrganization;
-use App\FacilityConfig;
-use App\DemographicRegion;
 use Session;
 use Image;
 // use Storage;
@@ -28,7 +23,6 @@ class PartnerController extends Controller
      */
 
     protected $suf;
-    protected $reg;
 
     public function __construct(){
 
@@ -39,14 +33,6 @@ class PartnerController extends Controller
         foreach ($suffix as $suffixes) {
             $this->suf[$suffixes->suffix_code] = $suffixes->suffix_desc;
         }
-
-        $regions = DemographicRegion::all();
-        $this->reg = array();
-        foreach ($regions as $region) {
-            $this->reg[$region->region_code] = $region->region_name;
-        }
-
-
     }
     
     public function index(Request $request)
@@ -68,41 +54,41 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        $facility = FacilityConfig::with('province','municipality','barangay')->first();
+        // $facility = FacilityConfig::with('province','municipality','barangay')->first();
 
 
-        $provinces = DemographicProvince::select('province_code','province_name')
-                                    ->where('region_code','=',$facility->province->region_code)
-                                    ->get();
-        $prov = array();
-        foreach ($provinces as $province) {
-            $prov[$province->province_code] = $province->province_name;
-        }
+        // $provinces = DemographicProvince::select('province_code','province_name')
+        //                             ->where('region_code','=',$facility->province->region_code)
+        //                             ->get();
+        // $prov = array();
+        // foreach ($provinces as $province) {
+        //     $prov[$province->province_code] = $province->province_name;
+        // }
 
-        $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
-                                    //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
-                                    ->where('province_code','=',$facility->municipality->province_code)
-                                    ->get();
-        $muncity = array();
-        foreach ($municipalities as $municipality) {
-            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
-        }
+        // $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
+        //                             //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
+        //                             ->where('province_code','=',$facility->municipality->province_code)
+        //                             ->get();
+        // $muncity = array();
+        // foreach ($municipalities as $municipality) {
+        //     $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        // }
 
-        $barangays = DemographicBarangay::select('brgy_code','brgy_name')
-                                    ->where('muncity_code','=',$facility->barangay->muncity_code)
-                                    ->get();
-        $brgy = array();
-        foreach ($barangays as $barangay) {
-            $brgy[$barangay->brgy_code] = $barangay->brgy_name;
-        }
+        // $barangays = DemographicBarangay::select('brgy_code','brgy_name')
+        //                             ->where('muncity_code','=',$facility->barangay->muncity_code)
+        //                             ->get();
+        // $brgy = array();
+        // foreach ($barangays as $barangay) {
+        //     $brgy[$barangay->brgy_code] = $barangay->brgy_name;
+        // }
 
         return view('partner.create')->with([ 
-            'facility' => $facility,
+            // 'facility' => $facility,
             'suffix' => $this->suf,
-            'region' => $this->reg,
-            'province' => $prov,
-            'muncity' => $muncity,
-            'brgy' => $brgy,
+            // 'region' => $this->reg,
+            // 'province' => $prov,
+            // 'muncity' => $muncity,
+            // 'brgy' => $brgy,
             ]);
     }
 
@@ -139,10 +125,6 @@ class PartnerController extends Controller
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
-        $partner->region_code = $request->input('region_code');
-        $partner->province_code = $request->input('province_code');
-        $partner->muncity_code = $request->input('muncity_code');
-        $partner->brgy_code = $request->input('brgy_code');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
         $partner->secondary_contact = $request->input('secondary_contact');
@@ -150,6 +132,7 @@ class PartnerController extends Controller
         $partner->secondary_email = $request->input('secondary_email');
         $partner->birthdate = $request->input('birthdate');
         $partner->is_active = $request->input('is_active');
+        $partner->mailing_address = $request->input('mailing_address');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -207,40 +190,40 @@ class PartnerController extends Controller
             $desig[$desiginat->id] = $desiginat->designation;
         }
 
-        $data = DemographicProvince::select('province_code','province_name')
-                                    ->where('region_code','=',$editPartner->region_code)
-                                    ->get();
-        $provinces = array();
-        foreach ($data as $province) {
-            $provinces[$province->province_code] = $province->province_name;
-        }
+        // $data = DemographicProvince::select('province_code','province_name')
+        //                             ->where('region_code','=',$editPartner->region_code)
+        //                             ->get();
+        // $provinces = array();
+        // foreach ($data as $province) {
+        //     $provinces[$province->province_code] = $province->province_name;
+        // }
 
-        $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
-                                    //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
-                                    ->where('province_code','=',$editPartner->province_code)
-                                    ->get();
-        $muncity = array();
-        foreach ($municipalities as $municipality) {
-            $muncity[$municipality->muncity_code] = $municipality->muncity_name;
-        }
+        // $municipalities = DemographicMunicipality::select('muncity_code','muncity_name')
+        //                             //SELECT * FROM lib_municipality WHERE province_code = $facility->municipality->province_code
+        //                             ->where('province_code','=',$editPartner->province_code)
+        //                             ->get();
+        // $muncity = array();
+        // foreach ($municipalities as $municipality) {
+        //     $muncity[$municipality->muncity_code] = $municipality->muncity_name;
+        // }
 
-        $barangays = DemographicBarangay::select('brgy_code','brgy_name')
-                                    ->where('muncity_code','=',$editPartner->muncity_code)
-                                    ->get();
-        $brgy = array();
-        foreach ($barangays as $barangay) {
-            $brgy[$barangay->brgy_code] = $barangay->brgy_name;
-        }
+        // $barangays = DemographicBarangay::select('brgy_code','brgy_name')
+        //                             ->where('muncity_code','=',$editPartner->muncity_code)
+        //                             ->get();
+        // $brgy = array();
+        // foreach ($barangays as $barangay) {
+        //     $brgy[$barangay->brgy_code] = $barangay->brgy_name;
+        // }
 
         return view('partner.edit')->with([
             'partners' => $editPartner,
             'designation' => $desig,
             'suffix' => $this->suf,
             'organization' => $org,
-            'region' => $this->reg,
-            'province' => $provinces,
-            'muncity' => $muncity,
-            'brgy' => $brgy,
+            // 'region' => $this->reg,
+            // 'province' => $provinces,
+            // 'muncity' => $muncity,
+            // 'brgy' => $brgy,
           ]);
 
 
@@ -264,10 +247,6 @@ class PartnerController extends Controller
         $partner->first_name = $request->input('first_name');
         $partner->middle_name = $request->input('middle_name');
         $partner->suffix_name = $request->input('suffix_name');
-        $partner->region_code = $request->input('region_code');
-        $partner->province_code = $request->input('province_code');
-        $partner->muncity_code = $request->input('muncity_code');
-        $partner->brgy_code = $request->input('brgy_code');
         $partner->gender = $request->input('gender');
         $partner->primary_contact = $request->input('primary_contact');
         $partner->secondary_contact = $request->input('secondary_contact');
@@ -275,6 +254,7 @@ class PartnerController extends Controller
         $partner->secondary_email = $request->input('secondary_email');
         $partner->birthdate = $request->input('birthdate');
         $partner->is_active = $request->input('is_active');
+        $partner->mailing_address = $request->input('mailing_address');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

@@ -35,6 +35,7 @@ class CreatePartnersTable extends Migration
             $table->date('birthdate')->nullable();
             $table->char('is_active',1);
             $table->string('image')->nullable();
+            $table->string('mailing_address')->nullable();
             $table->timestamps();
 
             $table->foreign('desig_id')->references('id')->on('designations');

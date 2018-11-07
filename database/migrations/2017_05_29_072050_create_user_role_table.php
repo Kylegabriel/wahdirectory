@@ -36,8 +36,10 @@ class CreateUserRoleTable extends Migration
             ['id' => '9',  'role_name' => 'SP for Digital Health Programs'],
             ['id' => '10', 'role_name' => 'Staff Management Officer'],
             ['id' => '11', 'role_name' => 'Health Program Partner'],
-            ['id' => '12', 'role_name' => 'Network & System Partner'],
+            ['id' => '12', 'role_name' => 'Network & Systems Partner'],
             ['id' => '13', 'role_name' => 'Platform & Innovation Partner'],
+            ['id' => '14', 'role_name' => 'Finance Officer'],
+            ['id' => '15', 'role_name' => 'Data Protection Officer'],
         ]);
 
 

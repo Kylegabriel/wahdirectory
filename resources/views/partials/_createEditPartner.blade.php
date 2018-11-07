@@ -11,30 +11,26 @@
             {{ csrf_field() }} 
             <div class="row">
                 <div class="col-md-3">
-                    {{ Form::label('last_name','Last Name') }}
+                    {{ Form::label('last_name','LAST NAME') }}
                     {{ Form::text('last_name',null,['class'=>'form-control','id'=>'last_name']) }} 
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('first_name','First Name') }}
+                    {{ Form::label('first_name','FIRST NAME') }}
                     {{ Form::text('first_name',null,['class'=>'form-control','id'=>'first_name']) }} 
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('middle_name','Middle Name') }}
+                    {{ Form::label('middle_name','MIDDLE NAME') }}
                     {{ Form::text('middle_name',null,['class'=>'form-control','id'=>'middle_name']) }} 
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('suffix_name','Suffix Name') }}
-                    @if(isset($partners->suffix_name))
-                    {{ Form::select('suffix_name', $suffix,null, ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
-                    @else
-                    {{ Form::select('suffix_name', $suffix,'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
-                    @endif
+                    {{ Form::label('suffix_name','SUFFIX NAME') }}
+                    {{ Form::select('suffix_name', $suffix,isset($partners) ? null : 'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-5">
-                    {{ Form::label('desig_id','Designation') }}
+                <div class="col-md-4">
+                    {{ Form::label('desig_id','DESIGNATION') }}
                     @if(isset($partners->desig_id))
                     {{ Form::select('desig_id', $designation,null, ['class' => 'form-control','id' => 'desig_id','name' => 'desig_id']) }}
                     @else
@@ -46,8 +42,8 @@
                     </select>
                     @endif
                 </div>
-                <div class="col-md-5">
-                    {{ Form::label('org_id','Organization') }}
+                <div class="col-md-4">
+                    {{ Form::label('org_id','ORGANIZATION') }}
                     @if(isset($partners->org_id))
                     {{ Form::select('org_id',$organization,NULL, ['class' => 'form-control','id' => 'org_id','name' => 'org_id']) }}
                     @else
@@ -60,60 +56,42 @@
                     @endif
                 </div>
                 <div class="col-md-2">
-                    {{ Form::label('gender', "Gender") }}
+                    {{ Form::label('birthdate','BIRTHDATE') }}
+                    {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }} 
+                </div> 
+                <div class="col-md-2">
+                    {{ Form::label('gender', "GENDER") }}
                     {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],null, ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
                 </div>
             </div>    
 
             <div class="row">
-                <div class="col-md-4">
-                    {{ Form::label('primary_contact','Primary Contact') }}
-                    {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }} 
-                </div>
-                <div class="col-md-4">
-                    {{ Form::label('secondary_contact','Secondary Contact') }}
-                    {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact']) }} 
-                </div>
-                <div class="col-md-4">
-                    {{ Form::label('birthdate','Birthdate') }}
-                    {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }} 
-                </div> 
-            </div> 
-
-
-            <div class="row">
-                <div class="col-md-6">
-                    {{ Form::label('email','Email') }}
+                <div class="col-md-3">
+                    {{ Form::label('email','EMAIL') }}
                     {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
                 </div>
-                <div class="col-md-6">
-                    {{ Form::label('secondary_email','Secondary Email') }}
+                <div class="col-md-3">
+                    {{ Form::label('secondary_email','SECONDARY CONTACT') }}
                     {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-3">
-                    {{ Form::label('region_code','Region') }}
-                    {{ Form::select('region_code',$region,isset($facility) ? $facility->region->region_code : null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
+                    {{ Form::label('primary_contact','PRIMARY CONTACT') }}
+                    {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact']) }} 
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('province_code','Province') }}
-                    {{ Form::select('province_code', $province,isset($facility) ? $facility->province->province_code : null, ['class' => 'form-control','id' => 'province_code','name' => 'province_code']) }}
-
-                </div>
-                <div class="col-md-3">
-                    {{ Form::label('muncity_code','Municipality') }}
-                    {{ Form::select('muncity_code', $muncity,isset($facility) ? $facility->municipality->muncity_code : null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
-                </div>
-                <div class="col-md-3">
-                    {{ Form::label('brgy_code','Barangay') }}
-                    {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
+                    {{ Form::label('secondary_contact','SECONDARY CONTACT') }}
+                    {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact']) }} 
                 </div>
             </div> 
+            <div class="row">
+                <div class="col-md-12">
+                    {{ Form::label('mailing_address','MAILING ADDRESS') }}
+                    {{ Form::textarea('mailing_address',null,['class'=>'form-control','id'=>'mailing_address','rows'=>'2']) }} 
+                </div>
+            </div>
             <br>
             <div class="form-group">
-                <label for="image">Upload Image:</label>
+                <label for="image">UPLOAD IMAGE</label>
                 {{ Form::file('image',null,['class'=>'form-control','id'=>'image','name'=>'image']) }} 
             </div>
         </div>

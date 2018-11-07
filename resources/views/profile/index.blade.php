@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-    <a class="navbar-brand" href="">WAH-NGO</a>
+    <a class="navbar-brand" href="">WAH-STAFF</a>
     <div class="collapse navbar-collapse" id="nav-inner-primary">
       <div class="navbar-collapse-header">
         <div class="row">
@@ -17,9 +17,8 @@
       </div>
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
-          <a href="{{ route('profile.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="Add WAH-NGO" >
-            <span class="btn-inner--icon"></span>
-            <span class="btn-inner--text"><i class="fa fa-user-plus fa-2x"></i> Add WAH-NGO</span>
+          <a href="{{ route('profile.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="ADD WAH-STAFF" >
+            <i class="fa fa-user-plus fa-2x"></i> ADD WAH-STAFF
             </a>
         </li>
       </ul>
@@ -32,7 +31,8 @@
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>Gender</th>
+                            <th>Designation</th>
+                            <th>Date Hired</th>
                             <th>Birthdate</th>
                             <th>Action</th>
                         </tr>
@@ -42,7 +42,8 @@
                         <tr>
                             <td>{{ $count++ . '.' }}</td>
                             <td>{{ $profile->last_name . ", " . $profile->first_name . " " . $profile->middle_name . " " }}@if($profile->suffix_name == 'NOTAP') @else {{ $profile->suffix['suffix_desc'] }} @endif</td>
-                            <td>{{ $profile->gender }}</td>
+                            <td>{{ $profile->designations['role_name'] }}</td>
+                            <td>{{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}</td>
                             <td>{{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}</td>
                             <td>
                               <a  href="{{ route('profile.edit',$profile->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
@@ -65,12 +66,29 @@
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    <h5>Would you like to {{ $profile->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
+                                    <h4>Would you like to {{ $profile->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h4>
                                     {!! Form::model($profile, ['route' => ['ProfileActivation', $profile->id], 'method' => 'PUT']) !!}
                                     <input type="hidden" name="is_active" id="is_active" value="{{ $profile->is_active == 'N' ? 'Y' : 'N' }}">
+                                        <div class="form-group">
+                                              {{ Form::label('dateendcontruct','DATE OF END OF CONTRUCT?') }}
+                                              {{ Form::date('dateendcontruct',null,['class'=>'form-control','id'=>'dateendcontruct','name'=>'dateendcontruct']) }}
+                                        </div>
+                                        <div class="form-group">
+                                          {{ Form::label('reasons', "REASON?") }}
+                                          <select type="text" id="reasons" name="reasons" class="form-control">
+                                            @if($profile->reasons)
+                                            <option value="{{ $profile->reasondeactivation['id'] }}">{{ $profile->reasondeactivation['reasons'] }}</option>
+                                            @else
+                                            <option value="" disabled selected>Choose your option</option> 
+                                            @endif   
+                                            @foreach( App\ReasonDeactivation::all() as $reasons )
+                                                  <option value="{{ $reasons['id'] }}">{{ $reasons['reasons'] }}</option>
+                                            @endforeach
+                                          </select>
+                                        </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                   </div>
                                   {!! Form::close() !!}

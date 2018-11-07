@@ -2,7 +2,7 @@
 @section('content')
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-    <a class="navbar-brand" href="">Partner</a>
+    <a class="navbar-brand" href="">PARTNER</a>
     <div class="collapse navbar-collapse" id="nav-inner-primary">
       <div class="navbar-collapse-header">
         <div class="row">
@@ -18,9 +18,8 @@
       </div>
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
-          <a href="{{ route('partner.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="Add Partner" >  
-            <span class="btn-inner--icon"></span>
-            <span class="btn-inner--text"><i class="fa fa-user-plus fa-2x"></i> Add Partner</span>
+          <a href="{{ route('partner.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="ADD PARTNER" >  
+            <i class="fa fa-user-plus fa-2x"></i> ADD PARTNER
       		</a>
         </li>
       </ul>
@@ -33,8 +32,10 @@
 				<tr>
 					<th>No.</th>
 					<th>Name</th>
-					<th>Gender</th>
-					<th>Birthdate</th>
+					<th>Designation</th>
+					<th>Organization</th>
+					<th>Contact</th>
+					<th>Email</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -46,8 +47,10 @@
 						. $partners->first_name . " " . $partners->middle_name . " " }} 
 						@if($partners->suffix_name == 'NOTAP') @else {{ $partners->suffix_name }} @endif
 					</td>
-					<td>{{ $partners->gender }}</td>
-					<td>{{ $partners->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partners->birthdate)) }}</td>
+					<td>{{ $partners->partnerDesignation['designation'] }}</td>
+					<td>{{ $partners->partnerOrganization['organization'] }}</td>
+					<td>{{ $partners->primary_contact . '/' . $partners->secondary_contact }}</td>
+					<td>{{ $partners->email . '/' . $partners->secondary_email }}</td>
 					<td>
 						<a  href="{{ route('partner.edit',$partners->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
 						<a data-toggle="modal" data-target="#activeInactive{{ $partners->id }}"  data-toggle="tooltip" data-placement="left"

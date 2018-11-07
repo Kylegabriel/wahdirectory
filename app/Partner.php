@@ -22,11 +22,8 @@ class Partner extends Model
 		'secondary_email',
 		'birthdate',
 		'is_active',
-		'region_code',
-    'province_code',
-    'muncity_code',
-    'brgy_code',
     'user_id',
+    'mailing_address',
     'image'
 	];
 
@@ -37,23 +34,10 @@ class Partner extends Model
     public function partnerOrganization(){
       return $this->hasOne('App\PartnerOrganization','id','org_id');
     }
+        public function partnerDesignation(){
+      return $this->hasOne('App\PartnerDesignation','id','desig_id');
+    }
     public function partnerSuffix(){
       return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
     }
-    public function region(){
-      return $this->hasOne('App\DemographicRegion','region_code','region_code');
-    }
-
-    public function provinces(){
-      return $this->hasOne('App\DemographicProvince','province_code','province_code');
-    }
-
-    public function municipality(){
-      return $this->hasOne('App\DemographicMunicipality','muncity_code','muncity_code');
-    }
-
-    public function barangay(){
-      return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
-    }
-    
 }

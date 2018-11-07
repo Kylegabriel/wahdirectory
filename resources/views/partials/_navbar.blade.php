@@ -19,7 +19,7 @@
               </div>
               <ul class="navbar-nav ml-lg-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/partner')}}">Partners
+                  <a class="nav-link" href="{{ url('/partner')}}">PARTNERS
                   </a>
                 </li>
                 <li class="nav-item">
@@ -27,15 +27,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/sites')}}">Sites
+                  <a class="nav-link" href="{{ url('/sites')}}">SITES PERSONNEL
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/warmleads')}}">Warm Leads
+                  <a class="nav-link" href="{{ url('/warmleads')}}">WARMLEADS
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/interns')}}">Interns</a>
+                  <a class="nav-link" href="{{ url('/interns')}}">INTERNS</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="#" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

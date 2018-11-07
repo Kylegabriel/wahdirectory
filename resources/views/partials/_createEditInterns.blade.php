@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-3">
                     {{ Form::label('suffix_name','Suffix Name') }}
-                    {{ Form::select('suffix_name', $suffix,'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
+                    {{ Form::select('suffix_name', $suffix,isset($intern) ? null : 'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
                 </div>
             </div>
             <div class="row">

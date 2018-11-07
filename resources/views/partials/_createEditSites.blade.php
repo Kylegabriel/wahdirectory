@@ -11,60 +11,26 @@
         {{ csrf_field() }} 
         <div class="row">
             <div class="col-md-3">
-                {{ Form::label('last_name','Last Name*') }}
+                {{ Form::label('last_name','LAST NAME') }}
                 {{ Form::text('last_name',null,['class'=>'form-control','id'=>'last_name']) }} 
             </div>
             <div class="col-md-3">
-                {{ Form::label('first_name','First Name*') }}
+                {{ Form::label('first_name','FIRST NAME') }}
                 {{ Form::text('first_name',null,['class'=>'form-control','id'=>'first_name']) }} 
             </div>
             <div class="col-md-3">
-                {{ Form::label('middle_name','Middle Name*') }}
+                {{ Form::label('middle_name','MIDDLE NAME') }}
                 {{ Form::text('middle_name',null,['class'=>'form-control','id'=>'middle_name']) }} 
             </div>
             <div class="col-md-3">
-                {{ Form::label('suffix_name', "Suffix Name") }}
-                {{ Form::select('suffix_name', $suffix,'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
+                {{ Form::label('suffix_name', "SUFFIX NAME") }}
+                {{ Form::select('suffix_name', $suffix,isset($sites) ? null : 'NOTAP', ['class' => 'form-control','id' => 'suffix_name','name' => 'suffix_name']) }}
             </div>
         </div>    
 
         <div class="row">
             <div class="col-md-8">
-                {{ Form::label('status','Status') }}
-                {{ Form::select('status', ['' => 'Choose you option','Y' => 'Site Partner','N' => 'Warm Leads'],null, ['class' => 'form-control','id' => 'status','name' => 'status']) }}
-            </div>
-            <div class="col-md-2">
-                {{ Form::label('birthdate','Birthdate') }}
-                {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
-            </div> 
-            <div class="col-md-2">
-                {{ Form::label('gender', "Gender") }}
-                {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                {{ Form::label('email','Email*') }}
-                {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
-            </div>
-            <div class="col-md-6">
-                {{ Form::label('secondary_email','Secondary Email*') }}
-                {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
-            </div> 
-        </div>  
-
-        <div class="row">
-            <div class="col-md-4">
-                {{ Form::label('primary_contact','Primary Contact*') }}
-                {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact','data-length'=>'11','placeholder'=>'0930*******']) }} 
-            </div>
-            <div class="col-md-4">
-                {{ Form::label('secondary_contact','Secondary Contact*') }}
-                {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','data-length'=>'11','placeholder'=>'0906*******']) }} 
-            </div>
-            <div class="col-md-4">
-                {{ Form::label('site_id','Designation*') }}
+                {{ Form::label('site_id','DESIGNATION*') }}
                 @if(isset($sites->site_id))
                 {{ Form::select('site_id', $siteDesig,NULL, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
                 @else
@@ -76,9 +42,42 @@
                 </select>
                 @endif
             </div>
-        </div>             
+            <div class="col-md-4">
+                {{ Form::label('birthdate','BIRTHDATE') }}
+                {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                {{ Form::label('status','STATUS') }}
+                {{ Form::select('status', ['' => 'Choose you option','Y' => 'Site Partner','N' => 'Warm Leads'],null, ['class' => 'form-control','id' => 'status','name' => 'status']) }}
+            </div>
+            <div class="col-md-4">
+                {{ Form::label('gender', "GENDER") }}
+                {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
+            </div>
+        </div>
 
         <div class="row">
+            <div class="col-md-3">
+                {{ Form::label('email','EMAIL') }}
+                {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
+            </div>
+            <div class="col-md-3">
+                {{ Form::label('secondary_email','SECONDARY EMAIL') }}
+                {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email','name'=> 'secondary_email']) }} 
+            </div> 
+            <div class="col-md-3">
+                {{ Form::label('primary_contact','PRIMARY CONTACT') }}
+                {{ Form::text('primary_contact',null,['class'=>'form-control','id'=>'primary_contact','name'=> 'primary_contact']) }} 
+            </div>
+            <div class="col-md-3">
+                {{ Form::label('secondary_contact','SECONDARY CONTACT') }}
+                {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','name'=> 'secondary_contact']) }} 
+            </div>
+        </div>             
+
+<!--         <div class="row">
                 <div class="col-md-4">
                     {{ Form::label('region_code','Region') }}
                     {{ Form::select('region_code',$region,isset($facility) ? $facility->region->region_code : null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
@@ -102,7 +101,7 @@
                         {{ Form::label('hfhudcode','Facility Name') }}      
                         {{ Form::select('hfhudcode', $fac,isset($facility) ? $facility->facilities->hfhudcode : null, ['class' => 'form-control','id' => 'hfhudcode','name' => 'hfhudcode']) }}
                     </div>
-        </div>
+        </div> -->
             <br>
             <div class="form-group">
                 <label for="image">Upload Image:</label>
