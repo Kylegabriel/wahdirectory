@@ -30,11 +30,11 @@
 
         <div class="row">
             <div class="col-md-9">
-                {{ Form::label('site_id','DESIGNATION*') }}
+                {{ Form::label('site_id','DESIGNATION') }}
                 @if(isset($sites->site_id))
-                {{ Form::select('site_id', $siteDesignation,NULL, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
+                {{ Form::select('site_id', $siteDesignation,NULL, ['class' => 'js-example-basic-single form-control','id' => 'site_id','name' => 'site_id']) }}
                 @else
-                <select type="text" id="site_id" name="site_id" class="form-control">
+                <select type="text" id="site_id" name="site_id" class="js-example-basic-single form-control">
                   <option value="" disabled selected>Choose your option</option>
                   @foreach(App\SitesDesignation::get() as $siteDesig)
                         <option value="{{ $siteDesig['id'] }}">{{ $siteDesig['sites_desc'] }}</option>  

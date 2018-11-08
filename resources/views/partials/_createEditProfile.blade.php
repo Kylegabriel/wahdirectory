@@ -31,9 +31,9 @@
                 <div class="col-md-8">
                     {{ Form::label('role_id','DESIGNATION') }}
                     @if(isset($profile->role_id))
-                    {{ Form::select('role_id', $desig,NULL, ['class' => 'form-control','id' => 'role_id','name' => 'role_id']) }}
+                    {{ Form::select('role_id', $desig,NULL, ['class' => 'js-example-basic-single form-control','id' => 'role_id','name' => 'role_id']) }}
                     @else
-                    <select type="text" id="role_id" name="role_id" class="form-control">
+                    <select type="text" id="role_id" name="role_id" class="js-example-basic-single form-control">
                       <option value="" disabled selected>Choose your option</option> 
                       @foreach( App\UserRole::get() as $designation )
                             <option value="{{ $designation['id'] }}">{{ $designation['role_name'] }}</option>

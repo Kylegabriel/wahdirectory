@@ -7,7 +7,7 @@
 		    <h5 class="card-title" style="text-align: center;text-decoration: underline;">ADMINISTRATOR FUNCTIONS</h5>
 		    <p><i class="fas fa-square fa-2x" style="background-color:blue;color:blue;"></i> SUPERVISORY</p>
 		    <p><i class="fas fa-square fa-2x" style="background-color:green;color:green"></i> REPORTS OFFICER</p>
-		    <p><i class="fas fa-square fa-2x" style="background-color:lime;color:lime"></i> DATA QUALITY CHECK</p>
+		    <p><i class="fas fa-square fa-2x" style="background-color:yellow;color:yellow"></i> DATA QUALITY CHECK</p>
 		    <p><i class="fas fa-square fa-2x" style="background-color:purple;color:purple"></i> TECHNICAL SUPPORT</p>
 		  </div>
 		</div>
@@ -39,7 +39,7 @@
 		</nav>
 		<div class="card shadow border-0 border-primary">
 			<div class="card-body">
-				<table id="example" class="table-striped">
+				<table id="example" class="table-striped ">
 					<thead>
 						<tr>
 							<th>No.</th>

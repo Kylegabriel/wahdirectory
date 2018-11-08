@@ -32,9 +32,9 @@
                 <div class="col-md-4">
                     {{ Form::label('desig_id','DESIGNATION') }}
                     @if(isset($partners->desig_id))
-                    {{ Form::select('desig_id', $designation,null, ['class' => 'form-control','id' => 'desig_id','name' => 'desig_id']) }}
+                    {{ Form::select('desig_id', $designation,null, ['class' => 'js-example-basic-single form-control','id' => 'desig_id','name' => 'desig_id']) }}
                     @else
-                    <select type="text" id="desig_id" name="desig_id" class="form-control">
+                    <select type="text" id="desig_id" name="desig_id" class="js-example-basic-single form-control">
                       <option value="" disabled selected>Choose your option</option>
                       @foreach( App\PartnerDesignation::get() as $designation )
                             <option value="{{ $designation['id'] }}">{{ $designation['designation'] }}</option>
@@ -45,9 +45,9 @@
                 <div class="col-md-4">
                     {{ Form::label('org_id','ORGANIZATION') }}
                     @if(isset($partners->org_id))
-                    {{ Form::select('org_id',$organization,NULL, ['class' => 'form-control','id' => 'org_id','name' => 'org_id']) }}
+                    {{ Form::select('org_id',$organization,NULL, ['class' => 'js-example-basic-single form-control','id' => 'org_id','name' => 'org_id']) }}
                     @else
-                    <select type="text" id="org_id" name="org_id" class="form-control">
+                    <select type="text" id="org_id" name="org_id" class="js-example-basic-single form-control">
                       <option value="" disabled selected>Choose your option</option>    
                       @foreach( App\PartnerOrganization::where('is_active','Y')->get() as $organizations )
                             <option value="{{ $organizations['id'] }}">{{ $organizations['organization'] }}</option>

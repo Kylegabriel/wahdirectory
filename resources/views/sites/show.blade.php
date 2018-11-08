@@ -44,6 +44,10 @@
             <table class=" profile__table">
               <tbody>
                 <tr>
+                  <th><strong>Admin Function :</strong></th>
+                  <td>{{ $sites->systemAdmin['functions'] }}</td>
+                </tr>
+                <tr>
                   <th><strong>Address :</strong></th>
                   <td>{{ $sites->region['region_name'] . ", " 
                     . $sites->province['province_name'] . ", " 
