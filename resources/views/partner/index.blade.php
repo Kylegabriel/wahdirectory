@@ -43,7 +43,7 @@
 				@foreach($partner as $partners)
 				<tr>
 					<td>{{ $count++ .'.' }}</td>
-					<td>{{ $partners->last_name . ", " 
+					<td style="font-size:20px;">{{ $partners->last_name . ", " 
 						. $partners->first_name . " " . $partners->middle_name . " " }} 
 						@if($partners->suffix_name == 'NOTAP') @else {{ $partners->suffix_name }} @endif
 					</td>

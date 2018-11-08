@@ -15,7 +15,7 @@ class ProfileInactiveController extends Controller
 
         $data->is_active = $request->input('is_active');
         $data->dateendcontruct = $request->input('dateendcontruct');
-        $data->reasons = $request->input('reasons');
+        $data->reason_deactivation_id = $request->input('reason_deactivation_id');
 
         $data->save();
 

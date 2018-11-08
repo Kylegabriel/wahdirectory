@@ -6,6 +6,8 @@
        * Panels
        */
       /*** General styles ***/
+      .blackiconcolor {color:black;}
+      
       .panel {
         box-shadow: none;
       }

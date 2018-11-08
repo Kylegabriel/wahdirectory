@@ -10,11 +10,6 @@ class Site extends Model
 
     protected $fillable = [
 		'site_id',
-		'region_code',
-		'province_code',
-		'muncity_code',
-		'hfhudcode',
-		'brgy_code',
 		'last_name',
 		'first_name',
 		'middle_name',
@@ -28,39 +23,23 @@ class Site extends Model
 		'is_active',
 		'site',
 		'status',
-		'user_id'
+		'user_id',
+		'system_admin_id'
     ];
 
       public function user(){
-      return $this->hasOne('App\User','id','user_id');
+      	return $this->hasOne('App\User','id','user_id');
       } 
 
-	  public function region(){
-	    return $this->hasOne('App\DemographicRegion','region_code','region_code');
-	  }
-
-	  public function province(){
-	    return $this->hasOne('App\DemographicProvince','province_code','province_code');
-	  }
-
-	  public function municipality(){
-	    return $this->hasOne('App\DemographicMunicipality','muncity_code','muncity_code');
-	  }
-
-	  public function designations(){
-	    return $this->hasOne('App\SitesDesignation','id','site_id');
-	  }
-
-	  public function barangay(){
-    	return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
+      public function siteSuffix(){
+      	return $this->hasOne('App\SuffixName','suffix_code','suffix_name');
       }
 
-      public function facilities(){
-	    return $this->hasOne('App\Facility','hfhudcode','hfhudcode');
-	  } 
+      public function designations(){
+      	return $this->hasOne('App\SitesDesignation','id','site_id');
+      }
 
-	  public function siteSuffix(){
-      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
-    }
-
+      public function systemAdmin(){
+      	return $this->hasOne('App\SitePersonnelSystemAdministrator','id','system_admin_id');
+      }
 }

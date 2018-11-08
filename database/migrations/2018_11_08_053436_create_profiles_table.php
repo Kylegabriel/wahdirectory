@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration
             
             $table->increments('id');
             $table->integer('role_id')->unsigned()->nullable();
+            $table->integer('reason_deactivation_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
             $table->string('last_name',50);
             $table->string('first_name',50);
@@ -48,6 +49,7 @@ class CreateProfilesTable extends Migration
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('user_role');
+            $table->foreign('reason_deactivation_id')->references('id')->on('reason_deactivation');
             $table->foreign('user_id')->references('id')->on('users');
 
         });
@@ -62,6 +64,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::table('profiles', function ($table) {
             $table->dropForeign('profiles_role_id_foreign');
+            $table->dropForeign('profiles_reason_deactivation_id_foreign');
             $table->dropForeign('profiles_user_id_foreign');
         });
         Schema::drop('profiles');

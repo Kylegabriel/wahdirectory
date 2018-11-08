@@ -29,10 +29,10 @@
         </div>    
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 {{ Form::label('site_id','DESIGNATION*') }}
                 @if(isset($sites->site_id))
-                {{ Form::select('site_id', $siteDesig,NULL, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
+                {{ Form::select('site_id', $siteDesignation,NULL, ['class' => 'form-control','id' => 'site_id','name' => 'site_id']) }}
                 @else
                 <select type="text" id="site_id" name="site_id" class="form-control">
                   <option value="" disabled selected>Choose your option</option>
@@ -42,9 +42,27 @@
                 </select>
                 @endif
             </div>
-            <div class="col-md-4">
-                {{ Form::label('birthdate','BIRTHDATE') }}
-                {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
+            <div class="col-md-3">
+                {{ Form::label('system_admin_id','ADMIN FUNCTION') }}
+                @if(isset($sites->system_admin_id))
+                    {{ Form::select('system_admin_id', $admin,NULL, ['class' => 'form-control','id' => 'system_admin_id','name' => 'system_admin_id']) }}
+                @else
+                <select type="text" id="system_admin_id" name="system_admin_id" class="form-control">
+                  <option value="" disabled selected>Choose your option</option>
+                  @foreach(App\SitePersonnelSystemAdministrator::all() as $systemadmin)
+                        <option
+                        style="color : 
+                        @if($systemadmin['id'] == 1) blue 
+                        @elseif($systemadmin['id'] == 2) Lime 
+                        @elseif($systemadmin['id'] == 3) yellow
+                        @elseif($systemadmin['id'] == 4) purple
+                        @endif" 
+                        value="{{ $systemadmin['id'] }}">
+                        {{ $systemadmin['functions'] }}
+                    </option>  
+                   @endforeach
+                </select>
+                @endif
             </div> 
         </div>
         <div class="row">
@@ -52,7 +70,11 @@
                 {{ Form::label('status','STATUS') }}
                 {{ Form::select('status', ['' => 'Choose you option','Y' => 'Site Partner','N' => 'Warm Leads'],null, ['class' => 'form-control','id' => 'status','name' => 'status']) }}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
+                {{ Form::label('birthdate','BIRTHDATE') }}
+                {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }}
+            </div> 
+            <div class="col-md-2">
                 {{ Form::label('gender', "GENDER") }}
                 {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
             </div>
@@ -76,32 +98,6 @@
                 {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','name'=> 'secondary_contact']) }} 
             </div>
         </div>             
-
-<!--         <div class="row">
-                <div class="col-md-4">
-                    {{ Form::label('region_code','Region') }}
-                    {{ Form::select('region_code',$region,isset($facility) ? $facility->region->region_code : null, ['class' => 'form-control','id' => 'region_code','name' => 'region_code']) }}
-                </div>
-                <div class="col-md-4">
-                    {{ Form::label('province_code','Province') }}
-                    {{ Form::select('province_code', $province,isset($facility) ? $facility->province->province_code : null, ['class' => 'form-control','id' => 'province_code','name' => 'province_code']) }}
-
-                </div>
-                <div class="col-md-4">
-                    {{ Form::label('muncity_code','Municipality') }}
-                    {{ Form::select('muncity_code', $muncity,isset($facility) ? $facility->municipality->muncity_code : null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
-                </div>
-        </div>
-        <div class="row">
-                    <div class="col-md-6">
-                        {{ Form::label('brgy_code','Barangay') }}
-                        {{ Form::select('brgy_code', $brgy,isset($facility) ? $facility->barangay->brgy_code : null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}         
-                    </div>
-                    <div class="col-md-6">
-                        {{ Form::label('hfhudcode','Facility Name') }}      
-                        {{ Form::select('hfhudcode', $fac,isset($facility) ? $facility->facilities->hfhudcode : null, ['class' => 'form-control','id' => 'hfhudcode','name' => 'hfhudcode']) }}
-                    </div>
-        </div> -->
             <br>
             <div class="form-group">
                 <label for="image">Upload Image:</label>

@@ -24,7 +24,7 @@ class Profile extends Model
         'birthdate',
         'datehired',
         'dateendcontruct',
-        'reasons',
+        'reason_deactivation_id',
         'is_active',
         'philhealth',
         'wahemployeenumber',
@@ -55,6 +55,6 @@ class Profile extends Model
     }
 
     public function reasondeactivation(){
-      return $this->hasOne('App\ReasonDeactivation','id','reasons');
+      return $this->hasOne('App\ReasonDeactivation','id','reason_deactivation_id');
     }
 }

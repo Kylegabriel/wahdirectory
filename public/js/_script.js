@@ -136,6 +136,9 @@
                         },
                         primary_contact: {
                           number: true
+                        },
+                        system_admin_id: {
+                          required: true
                         }
 
                       },

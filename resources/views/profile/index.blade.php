@@ -41,7 +41,7 @@
                         @foreach($profiles as $profile)
                         <tr>
                             <td>{{ $count++ . '.' }}</td>
-                            <td>{{ $profile->last_name . ", " . $profile->first_name . " " . $profile->middle_name . " " }}@if($profile->suffix_name == 'NOTAP') @else {{ $profile->suffix['suffix_desc'] }} @endif</td>
+                            <td style="font-size:20px;">{{ $profile->last_name . ", " . $profile->first_name . " " . $profile->middle_name . " " }}@if($profile->suffix_name == 'NOTAP') @else {{ $profile->suffix['suffix_desc'] }} @endif</td>
                             <td>{{ $profile->designations['role_name'] }}</td>
                             <td>{{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}</td>
                             <td>{{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}</td>
@@ -74,9 +74,9 @@
                                               {{ Form::date('dateendcontruct',null,['class'=>'form-control','id'=>'dateendcontruct','name'=>'dateendcontruct']) }}
                                         </div>
                                         <div class="form-group">
-                                          {{ Form::label('reasons', "REASON?") }}
-                                          <select type="text" id="reasons" name="reasons" class="form-control">
-                                            @if($profile->reasons)
+                                          {{ Form::label('reason_deactivation_id', "REASON?") }}
+                                          <select type="text" id="reason_deactivation_id" name="reason_deactivation_id" class="form-control">
+                                            @if($profile->reason_deactivation_id)
                                             <option value="{{ $profile->reasondeactivation['id'] }}">{{ $profile->reasondeactivation['reasons'] }}</option>
                                             @else
                                             <option value="" disabled selected>Choose your option</option> 

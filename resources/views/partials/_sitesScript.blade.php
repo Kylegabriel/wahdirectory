@@ -28,6 +28,33 @@
 
      // });
 
+     // $('#system_admin').change(function(e) {
+     //    var colorID = $(this).val();
+     //    // console.log(colorID);
+     //    switch(colorID) {
+     //          case "1":
+     //              var e = document.getElementById("system_admin");
+     //              var tex = e.options[e.selectedIndex].text;
+     //              // var val = e.options[e.selectedIndex].value; 
+     //              e.options[e.selectedIndex].style = "background-color:blue" ;    
+     //              break;
+     //          case "2":
+     //              var e = document.getElementById("system_admin");
+     //              e.options[e.selectedIndex].style.color = "green";
+     //              break;
+     //          case "3":
+     //              var e = document.getElementById("system_admin");
+     //              e.options[e.selectedIndex].style.color = "yellow";
+     //              break;
+     //          case "4":
+     //              var e = document.getElementById("system_admin");
+     //              e.options[e.selectedIndex].style.color = "purple";
+     //              break;
+     //          default:
+     //                console.log(4);
+     //      }
+     // });
+
       $('#region_code').on('change',function(){
       // Get the region code select id value
       var regionID = $(this).val();    
