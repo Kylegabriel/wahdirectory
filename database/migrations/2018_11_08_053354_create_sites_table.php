@@ -19,6 +19,7 @@ class CreateSitesTable extends Migration
             $table->integer('site_id')->unsigned()->nullable();
             $table->integer('system_admin_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('facility_id')->unsigned();
             // $table->char('site',1);
             $table->string('last_name',50);
             $table->string('first_name',50);
@@ -40,6 +41,7 @@ class CreateSitesTable extends Migration
             $table->foreign('site_id')->references('id')->on('sites_designation');
             $table->foreign('system_admin_id')->references('id')->on('system_administrator');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('facility_id')->references('id')->on('facility');
 
 
         });
@@ -56,6 +58,7 @@ class CreateSitesTable extends Migration
             $table->dropForeign('sites_site_id_foreign');
             $table->dropForeign('sites_system_admin_id_foreign');
             $table->dropForeign('sites_user_id_foreign');
+            $table->dropForeign('sites_facility_id_foreign');
         });
         Schema::drop('sites');
     }

@@ -7,6 +7,8 @@ use App\SuffixName;
 use App\Site;
 use App\SitePersonnelSystemAdministrator;
 use App\SitesDesignation;
+use App\Facility;
+use App\FacilityConfig;
 use App\Http\Requests;
 use Session;
 use Image;
@@ -89,6 +91,7 @@ class SitesController extends Controller
         $sites->middle_name = $request->input('middle_name');
         $sites->suffix_name = $request->input('suffix_name');
         $sites->site_id = $request->input('site_id');
+        $sites->facility_id = $request->input('facility_id');
         $sites->user_id = $request->user()->id;
         $sites->system_admin_id = $request->input('system_admin_id');
         $sites->status = $request->input('status');
@@ -159,11 +162,19 @@ class SitesController extends Controller
             $admins[$systemadmin->id] = $systemadmin->functions;
         }
 
+        $facilities = FacilityConfig::all();
+        $fac = array();
+        foreach ($facilities as $facility) {
+            $fac[$facility->id] = $facility->facilities->hfhudname;
+        }
+
+
         return view('sites.edit')->with([
             'sites' => $editSites,
             'suffix' => $this->suf,
             'admin' => $admins,
-            'siteDesignation' => $siteDesig
+            'siteDesignation' => $siteDesig,
+            'fac' => $fac,
           ]);
     }
 
@@ -185,6 +196,7 @@ class SitesController extends Controller
         $sites->middle_name = $request->input('middle_name');
         $sites->suffix_name = $request->input('suffix_name');
         $sites->site_id = $request->input('site_id');
+        $sites->facility_id = $request->input('facility_id');
         $sites->system_admin_id = $request->input('system_admin_id');
         $sites->status = $request->input('status');
         $sites->gender = $request->input('gender');

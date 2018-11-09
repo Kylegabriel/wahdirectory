@@ -24,7 +24,8 @@ class Site extends Model
 		'site',
 		'status',
 		'user_id',
-		'system_admin_id'
+		'system_admin_id',
+		'facility_id'
     ];
 
       public function user(){
@@ -41,5 +42,9 @@ class Site extends Model
 
       public function systemAdmin(){
       	return $this->hasOne('App\SitePersonnelSystemAdministrator','id','system_admin_id');
+      }
+
+      public function facilityConfig(){
+      	return $this->hasOne('App\FacilityConfig','id','facility_id');
       }
 }

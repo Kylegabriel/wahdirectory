@@ -105,6 +105,9 @@
                         brgy_code: {
                           required: true
                         },
+                        hfhudcode: {
+                          required: true
+                        },
                         course: {
                           required: true
                         },
@@ -139,8 +142,10 @@
                         },
                         system_admin_id: {
                           required: true
+                        },
+                        facility_id: {
+                          required: true
                         }
-
                       },
                     highlight: function(element) {
                         $(element).closest('.form-control').addClass('is-invalid');

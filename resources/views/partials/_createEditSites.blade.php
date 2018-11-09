@@ -97,6 +97,21 @@
                 {{ Form::label('secondary_contact','SECONDARY CONTACT') }}
                 {{ Form::text('secondary_contact',null,['class'=>'form-control','id'=>'secondary_contact','name'=> 'secondary_contact']) }} 
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ Form::label('facility_id','Facility Config') }}
+                @if(isset($sites->facility_id))
+                {{ Form::select('facility_id', $fac,NULL, ['class' => 'form-control','id' => 'facility_id','name' => 'facility_id']) }}
+                @else
+                <select type="text" id="facility_id" name="facility_id" class="js-example-basic-single form-control">
+                  <option value="" disabled selected>Choose your option</option>
+                  @foreach(App\FacilityConfig::all() as $facility)
+                        <option value="{{ $facility['id'] }}">{{ $facility->facilities->hfhudname  }}</option>  
+                   @endforeach
+                </select>
+                @endif
+            </div>
         </div>             
             <br>
             <div class="form-group">

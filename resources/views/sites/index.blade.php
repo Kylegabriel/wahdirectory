@@ -60,11 +60,11 @@
 		                        @elseif($site->system_admin_id == 2) Lime 
 		                        @elseif($site->system_admin_id == 3) yellow
 		                        @elseif($site->system_admin_id == 4) purple
-		                        @endif;font-size:20px;padding: 0 0 0 10px">
+		                        @endif;font-size:15px;padding: 0 0 0 10px">
 		                     	{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} 
 		                     	{{ $site->suffix_name == 'NOTAP' ? ' ' : $site->siteSuffix['suffix_desc'] }}</td>
 							<td>{{ $site->designations['sites_desc'] }}</td>
-							<td>{{ $site->facilities['hfhudname'] }}</td>
+							<td>{{ $site->facilityConfig->facilities->hfhudname }}</td>
 							<td>{{ $site->primary_contact }}</td>
 							<td>{{ $site->email }}</td>
 							<td>

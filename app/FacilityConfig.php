@@ -32,8 +32,12 @@ class FacilityConfig extends Model
   public function barangay(){
     return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
     }
+
   public function facilities(){
     return $this->hasOne('App\Facility','hfhudcode','hfhudcode');
   }  
-    
+  
+  public function sites(){
+    return $this->belongsTo('App\Site');
+  }   
 }  
