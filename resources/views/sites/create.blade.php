@@ -1,11 +1,7 @@
 @extends('layouts.app')
 {!! Html::style('/select2/dist/css/select2.css') !!}
 @section('content')
-
     @include('partials._createEditSites')
-    <input type="hidden" name="is_active" id="is_active" value="Y">
-    {!! Form::close() !!}
-
 @endsection
 @section('scripts')  
     @include('partials._sitesScript')

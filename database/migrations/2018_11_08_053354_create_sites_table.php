@@ -32,7 +32,6 @@ class CreateSitesTable extends Migration
             $table->string('email',50)->nullable();
             $table->string('secondary_email',50)->nullable();
             $table->date('birthdate')->nullable();
-            $table->char('is_active',1);
             $table->char('status',1);
             $table->text('reasons')->nullable();
             $table->string('image')->nullable();          

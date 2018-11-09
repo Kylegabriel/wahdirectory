@@ -20,7 +20,6 @@ class Site extends Model
 		'email',
 		'secondary_email',
 		'birthdate',
-		'is_active',
 		'site',
 		'status',
 		'user_id',

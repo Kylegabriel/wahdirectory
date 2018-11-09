@@ -101,7 +101,6 @@ class SitesController extends Controller
         $sites->email = $request->input('email');
         $sites->secondary_email = $request->input('secondary_email');
         $sites->birthdate = $request->input('birthdate');
-        $sites->is_active = $request->input('is_active');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -205,7 +204,6 @@ class SitesController extends Controller
         $sites->email = $request->input('email');
         $sites->secondary_email = $request->input('secondary_email');
         $sites->birthdate = $request->input('birthdate');
-        $sites->is_active = $request->input('is_active');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

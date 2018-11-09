@@ -22,6 +22,7 @@ class CreateFacilityTable extends Migration
             $table->char('muncity_code',6);
             $table->char('brgy_code',9);
             $table->string('hfhudcode');
+            $table->char('is_active',1);
             $table->timestamps();
 
             $table->foreign('region_code')->references('region_code')->on('lib_region');

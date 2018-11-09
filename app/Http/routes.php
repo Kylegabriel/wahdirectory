@@ -50,8 +50,10 @@ Route::put('internInactive/{id}',  ['uses' => 'InternInactiveController@update',
 Route::put('userInactive/{id}',    ['uses' => 'UserInactiveController@update', 'as' => 'UserActivation']);
 
 
-// diactivate partner organization and diactivate all record that have this course
+// diactivate partner organization and diactivate all record that have this organization
 Route::put('partnerOrganizationInactive/{id}',    ['uses' => 'PartnerOrganizationInactiveController@update', 'as' => 'PartnerOrganizationInactive']);
+// diactivate sites facility and diactivate all record that have this facility
+Route::put('sitesFacilityInactive/{id}',['uses' => 'FacilityConfigInactiveController@update', 'as' => 'facilityActivation']);
 
 Route::auth();
 

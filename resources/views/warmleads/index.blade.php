@@ -17,34 +17,5 @@
       </div>
     </div>
 </nav>
-<div class="card shadow border-0 border-primary">
-	<div class="card-body">
-		<table id="example" class="table-striped">
-			<thead>
-				<tr>
-					<th>No.</th>
-					<th>Name</th>
-					<th>Gender</th>
-					<th>Birthdate</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($sites as $site)
-				<tr>
-					<td>{{ $count++ .'.' }}</td>
-					<td>{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} @if($site->suffix_name == 'NOTAP') @else {{ $site->suffix_name }} @endif</td>
-					<td>{{ $site->gender }}</td>
-					<td>{{ $site->birthdate }}</td>
-					<td>
-						<a  href="{{ route('sites.edit',$site->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
-						<a data-toggle="modal" data-target="#disable{{ $site->id }}" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="left" title="Activate"><i class="fa fa-eye-slash fa-2x"></i></a>
-					</td>
-				</tr>
-					@include('partials._activeInactiveSites')
-				@endforeach
-			</tbody>
-		</table>
-	</div>			
-</div>
+@include('partials._warmleadsSites')
 @endsection

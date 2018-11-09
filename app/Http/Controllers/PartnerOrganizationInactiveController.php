@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PartnerOrganization;
-use App\Partner;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Session;
@@ -30,7 +29,7 @@ class PartnerOrganizationInactiveController extends Controller
             Session::flash('success','Account has been Activated and Partner also Activated');
             return redirect()->route('partnerOrganization.index');
         }else{
-            Session::flash('repeat','Account has been Deactivated and Partner also Activated');
+            Session::flash('repeat','Account has been Deactivated and Partner also Deacctivated');
             return redirect()->route('partnerOrganization.index');
         }
     }

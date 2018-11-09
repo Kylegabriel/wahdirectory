@@ -118,6 +118,7 @@ class FacilityConfigController extends Controller
         $facility->muncity_code = $request->input('muncity_code');
         $facility->brgy_code = $request->input('brgy_code');
         $facility->hfhudcode = $request->input('hfhudcode');
+        $facility->is_active = $request->input('is_active');
 
         $facility->save();
 
@@ -215,6 +216,7 @@ class FacilityConfigController extends Controller
         $facility->muncity_code = $request->input('muncity_code');
         $facility->brgy_code = $request->input('brgy_code');
         $facility->hfhudcode = $request->input('hfhudcode');
+        $facility->is_active = $request->input('is_active');
 
         $facility->save();
 
