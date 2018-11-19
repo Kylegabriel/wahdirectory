@@ -39,5 +39,9 @@ class FacilityConfig extends Model
   
   public function sites(){
     return $this->belongsTo('App\Site');
-  }   
+  }
+
+  public function facilityInfo(){
+    return $this->belongsTo('App\FacilityInfo');
+  }     
 }  

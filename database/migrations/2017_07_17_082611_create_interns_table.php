@@ -23,7 +23,7 @@ class CreateInternsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->char('suffix_name',5);
-            $table->string('primary_contact',12);
+            $table->string('primary_contact',15);
             $table->string('email',50)->nullable();
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();

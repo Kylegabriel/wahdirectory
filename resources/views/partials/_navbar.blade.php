@@ -31,6 +31,10 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/facilityinfo')}}">FACILITY INFO
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="{{ url('/warmleads')}}">WARMLEADS
                   </a>
                 </li>

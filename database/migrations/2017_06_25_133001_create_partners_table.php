@@ -28,8 +28,8 @@ class CreatePartnersTable extends Migration
             $table->string('middle_name',50);
             $table->char('suffix_name',5);
             $table->char('gender',1);
-            $table->string('primary_contact',11)->nullable();
-            $table->string('secondary_contact',11)->nullable();
+            $table->string('primary_contact',15)->nullable();
+            $table->string('secondary_contact',15)->nullable();
             $table->string('email',50)->nullable();
             $table->string('secondary_email',50)->nullable();
             $table->date('birthdate')->nullable();

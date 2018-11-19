@@ -100,7 +100,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                {{ Form::label('facility_id','Facility Config') }}
+                {{ Form::label('facility_id','FACILITY CONFIG') }}
                 @if(isset($sites->facility_id))
                 {{ Form::select('facility_id', $fac,NULL, ['class' => 'form-control','id' => 'facility_id','name' => 'facility_id']) }}
                 @else

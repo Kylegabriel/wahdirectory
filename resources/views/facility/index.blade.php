@@ -47,8 +47,8 @@
           <td>{{ $facility->municipality['muncity_name'] }}</td>
           <td>{{ $facility->barangay['brgy_name'] }}</td>
           <td>{{ $facility->facilities['hfhudname'] }}</td>
-          <td><a  href="{{ route('facility.edit',$facility->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a></td>
-          <td>  
+          <td>
+            <a  href="{{ route('facility.edit',$facility->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
             <a data-toggle="modal" data-target="#activeInactive{{ $facility->id }}"  data-toggle="tooltip" data-placement="left"
                   class="btn btn-link text-{{ $facility->is_active == 'Y' ? 'primary' : 'danger' }}" 
                   title="{{ $facility->is_active == 'Y' ? 'Deactivate' : 'Activate' }}">

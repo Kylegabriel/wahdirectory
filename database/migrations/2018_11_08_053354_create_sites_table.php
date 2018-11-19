@@ -27,8 +27,8 @@ class CreateSitesTable extends Migration
             $table->char('suffix_name',5);
             $table->char('system_admin',1);
             $table->char('gender',1);
-            $table->string('primary_contact',11)->nullable();
-            $table->string('secondary_contact',11)->nullable();
+            $table->string('primary_contact',15)->nullable();
+            $table->string('secondary_contact',15)->nullable();
             $table->string('email',50)->nullable();
             $table->string('secondary_email',50)->nullable();
             $table->date('birthdate')->nullable();

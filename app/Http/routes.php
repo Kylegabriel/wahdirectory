@@ -21,6 +21,8 @@ Route::resource('profile','ProfileController',['except'=>['destroy']]);
 Route::resource('interns','InternController',['except'=>['destroy']]);
 Route::resource('warmleads','WarmLeadsController',['only'=>['index']]);
 Route::resource('sites','SitesController',['except'=>['destroy']]);
+Route::resource('facilityinfo','FacilityInfoController',['except'=>['destroy']]);
+
 
 //settings
 Route::resource('settings','SettingsController',['only' => ['index']]);
