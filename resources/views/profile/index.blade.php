@@ -57,43 +57,7 @@
 
                             <!-- Modal -->
                             <div class="modal fade" id="activeInactive{{ $profile->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Please Confirm!</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <h4>Would you like to {{ $profile->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h4>
-                                    {!! Form::model($profile, ['route' => ['ProfileActivation', $profile->id], 'method' => 'PUT']) !!}
-                                    <input type="hidden" name="is_active" id="is_active" value="{{ $profile->is_active == 'N' ? 'Y' : 'N' }}">
-                                        <div class="form-group">
-                                              {{ Form::label('dateendcontruct','DATE OF END OF CONTRUCT?') }}
-                                              {{ Form::date('dateendcontruct',null,['class'=>'form-control','id'=>'dateendcontruct','name'=>'dateendcontruct']) }}
-                                        </div>
-                                        <div class="form-group">
-                                          {{ Form::label('reason_deactivation_id', "REASON?") }}
-                                          <select type="text" id="reason_deactivation_id" name="reason_deactivation_id" class="form-control">
-                                            @if($profile->reason_deactivation_id)
-                                            <option value="{{ $profile->reasondeactivation['id'] }}">{{ $profile->reasondeactivation['reasons'] }}</option>
-                                            @else
-                                            <option value="" disabled selected>Choose your option</option> 
-                                            @endif   
-                                            @foreach( App\ReasonDeactivation::all() as $reasons )
-                                                  <option value="{{ $reasons['id'] }}">{{ $reasons['reasons'] }}</option>
-                                            @endforeach
-                                          </select>
-                                        </div>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </div>
-                                  {!! Form::close() !!}
-                                </div>
-                              </div>
+                                @include('partials._modalActivation')
                             </div>
                         </tr>
                         @endforeach

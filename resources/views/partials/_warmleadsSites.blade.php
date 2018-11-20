@@ -40,7 +40,10 @@
 							</td>
 						</tr>
 							
-						@include('partials._activeInactiveSites')
+							<!-- Modal -->
+							<div class="modal fade" id="activeInactive{{ $site->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								@include('partials._modalActivation')
+							</div>
 
 						@endforeach				  
 					</tbody>
