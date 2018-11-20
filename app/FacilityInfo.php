@@ -21,7 +21,8 @@ class FacilityInfo extends Model
 		'moa_version',
 		'pickup_delivery',
 		'mailing_address',
-		'user_id'
+		'user_id',
+		'is_active'
 	];
 
 	public function facilityIncomeClass(){

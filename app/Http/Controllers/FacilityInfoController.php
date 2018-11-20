@@ -73,6 +73,7 @@ class FacilityInfoController extends Controller
         $facility->moa_version = $request->input('moa_version');
         $facility->pickup_delivery = $request->input('pickup_delivery');
         $facility->mailing_address = $request->input('mailing_address');
+        $facility->is_active = $request->input('is_active');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -162,6 +163,7 @@ class FacilityInfoController extends Controller
         $facility->moa_version = $request->input('moa_version');
         $facility->pickup_delivery = $request->input('pickup_delivery');
         $facility->mailing_address = $request->input('mailing_address');
+        $facility->is_active = $request->input('is_active');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

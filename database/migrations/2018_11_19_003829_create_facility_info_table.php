@@ -30,6 +30,7 @@ class CreateFacilityInfoTable extends Migration
             $table->boolean('pickup_delivery')->default(false)->nullable();
             $table->string('mailing_address')->nullable();
             $table->string('image')->nullable();
+            $table->char('is_active',1);
 
             $table->foreign('facility_id')->references('id')->on('facility');
             $table->foreign('incomeclass_id')->references('id')->on('facility_income_classes');
@@ -48,7 +49,7 @@ class CreateFacilityInfoTable extends Migration
         Schema::table('facility_infos', function($table) {  
           $table->dropForeign('facility_infos_facility_id_foreign');
           $table->dropForeign('facility_infos_incomeclass_id_foreign');
-          $table->dropForeign('profiles_user_id_foreign');
+          $table->dropForeign('facility_user_id_foreign');
         });
         Schema::drop('facility_infos');
     }

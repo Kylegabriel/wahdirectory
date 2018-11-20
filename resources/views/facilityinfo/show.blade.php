@@ -19,6 +19,7 @@
               </div>
               <div class="profile__header">
                 <h4>{{ $fac->facilityConfig->facilities->hfhudname }}</h4>
+                This record is {{ $fac->is_active == 'Y' ? 'Active' : 'Inactive' }}<br>
                 Registered by : {{ $fac->user->first_name . ' ' . $fac->user->middle_name . ' ' . $fac->user->last_name . ' ' }}
                 @if($fac->user->suffix_name == 'NOTAP') @else {{ $fac->user->suffix_name }} @endif
               </div>

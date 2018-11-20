@@ -112,4 +112,3 @@
             </a>
         </div>                
 </div>
-            {!! Form::close() !!}

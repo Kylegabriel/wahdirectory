@@ -50,6 +50,7 @@ Route::put('profileInactive/{id}', ['uses' => 'ProfileInactiveController@update'
 Route::put('sitesInactive/{id}',   ['uses' => 'SitesInactiveController@update', 'as' => 'SitesActivation']);
 Route::put('internInactive/{id}',  ['uses' => 'InternInactiveController@update', 'as' => 'InternActivation']);
 Route::put('userInactive/{id}',    ['uses' => 'UserInactiveController@update', 'as' => 'UserActivation']);
+Route::put('facilityInfoInactive/{id}',    ['uses' => 'FacilityInfoActiveInactive@update', 'as' => 'FacilityInfoActivation']);
 
 
 // diactivate partner organization and diactivate all record that have this organization

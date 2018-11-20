@@ -2,6 +2,8 @@
 {!! Html::style('/select2/dist/css/select2.css') !!}
 @section('content')
 	@include('partials._facilityInfoEditCreate')
+	<input type="hidden" name="is_active" id="is_active" value="Y">
+    {!! Form::close() !!}
 @endsection
 @section('scripts')        
     {!! Html::script('/select2/dist/js/select2.js') !!}
