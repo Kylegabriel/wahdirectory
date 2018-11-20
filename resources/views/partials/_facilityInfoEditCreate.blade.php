@@ -4,9 +4,9 @@
         </div>
         <div class="card-body">
        	@if(isset($facilityInfo))
-        {!! Form::model($facilityInfo, ['route' => ['facilityinfo.update', $facilityInfo->id], 'method' => 'PUT']) !!}
+        {!! Form::model($facilityInfo, ['route' => ['facilityinfo.update', $facilityInfo->id], 'method' => 'PUT', 'files' => true]) !!}
         @else
-        	{!! Form::open(['route' => 'facilityinfo.store','method' => 'POST']) !!}
+        	{!! Form::open(['route' => 'facilityinfo.store','method' => 'POST', 'files' => true]) !!}
         @endif 
         {{ csrf_field() }}
         <div class="row">
@@ -95,6 +95,11 @@
                     {{ Form::textarea('lgu_address',null,['class'=>'form-control','id'=>'lgu_address','rows'=>'1']) }} 
 		    	</div>
 		    </div>
+		    <br>
+		    <div class="form-group">
+                <label for="image">UPLOAD IMAGE</label>
+                {{ Form::file('image',null,['class'=>'form-control','id'=>'image','name'=>'image']) }} 
+            </div>
 
         </div>
 

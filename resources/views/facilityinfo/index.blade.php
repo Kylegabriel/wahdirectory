@@ -46,6 +46,7 @@
 					<td>{{ $info->primary_contact . '/' . $info->secondary_contact }}</td>					
 					<td>
 						<a  href="{{ route('facilityinfo.edit',$info->id) }}" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>
+						<a  href="{{ route('facilityinfo.show',$info->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Show"><i class="fa fa-clipboard fa-2x"></i></a>
 					</td>
 				</tr>
 

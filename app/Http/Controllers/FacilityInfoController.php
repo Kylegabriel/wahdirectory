@@ -7,6 +7,8 @@ use App\FacilityInfo;
 use App\FacilityIncomeClass;
 use App\FacilityConfig;
 use App\Http\Requests;
+use Image;
+use File;
 use Session;
 
 class FacilityInfoController extends Controller
@@ -61,6 +63,7 @@ class FacilityInfoController extends Controller
         $facility->facility_id = $request->input('facility_id');
         $facility->incomeclass_id = $request->input('incomeclass_id');
         $facility->primary_contact = $request->input('primary_contact');
+        $facility->user_id = $request->user()->id;
         $facility->secondary_contact = $request->input('secondary_contact');
         $facility->email = $request->input('email');
         $facility->secondary_email = $request->input('secondary_email');
@@ -70,6 +73,15 @@ class FacilityInfoController extends Controller
         $facility->moa_version = $request->input('moa_version');
         $facility->pickup_delivery = $request->input('pickup_delivery');
         $facility->mailing_address = $request->input('mailing_address');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+
+            $facility->image = $filename;
+        }
 
         $facility->save();
 
@@ -150,6 +162,16 @@ class FacilityInfoController extends Controller
         $facility->moa_version = $request->input('moa_version');
         $facility->pickup_delivery = $request->input('pickup_delivery');
         $facility->mailing_address = $request->input('mailing_address');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize( 800,400 )->save($location);
+            $oldFilename = $facility->image;
+            $facility->image = $filename;
+            File::delete(public_path('img/'. $oldFilename));
+        }
 
         $facility->save();
 

@@ -1,10 +1,8 @@
 @extends('layouts.app')
   {!! Html::style('/css/show.css') !!}
 @section('content')
-
 <div class="row">
       <div class="col-xs-12 col-sm-9">
-        
         <!-- User profile -->
         <div class="card shadow">
           <div class="card-header">
@@ -17,23 +15,19 @@
               </div>
               <div class="profile__header">
                 <h4>{{ $sites->first_name . ' ' . $sites->middle_name . ' ' . $sites->last_name . ' ' }}</h4>
-                <small>{{ $sites->designations['sites_desc'] }}<br>
+                {{ $sites->designations['sites_desc'] }}<br>
                 This record is {{ $sites->is_active == 'Y' ? 'Active' : 'Inactive' }}
                 Birtdate: {{ $sites->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($sites->birthdate)) }}<br>
                 Gender: {{ $sites->gender == 'M' ? 'Male' : 'Female' }}<br>
                 Registered by : {{ $sites->user->first_name . ' ' . $sites->user->middle_name . ' ' . $sites->user->last_name . ' ' }}
                 @if($sites->user->suffix_name == 'NOTAP') @else {{ $sites->user->suffix_name }} @endif
-                </small>
               </div>
             </div>
             <div class="profile-comments__controls">
-              <!-- <a href="#"><i class="fa fa-share-square-o"></i></a>
-  -->         <a href="{{ route('sites.edit',$sites->id) }}"><i class="fa fa-edit"></i></a>
-              <!-- <a href="#"><i class="fa fa-trash-o"></i></a> -->
+              <a href="{{ route('sites.edit',$sites->id) }}"><i class="fa fa-edit"></i></a>
             </div>
           </div>
         </div>
-
         <br>
         <!-- User info -->
         <div class="card shadow">
@@ -48,15 +42,8 @@
                   <td>{{ $sites->systemAdmin['functions'] }}</td>
                 </tr>
                 <tr>
-                  <th><strong>Address :</strong></th>
-                  <td>{{ $sites->region['region_name'] . ", " 
-                    . $sites->province['province_name'] . ", " 
-                    . $sites->municipality['muncity_name'] . " "
-                    . $sites->barangay['brgy_name'] }}</td>
-                </tr>
-                <tr>
                   <th><strong>Facility Name :</strong></th>
-                  <td>{{ $sites->facilities['hfhudname'] }}</td>
+                  <td>{{ $sites->facilityConfig->facilities->hfhudname }}</td>
                 </tr>
               </tbody>
             </table>
@@ -148,7 +135,4 @@
         <!-- end of Contact info -->.
       </div> <!-- end of row -->
     </div>
-
-
-
 @endsection

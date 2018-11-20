@@ -20,14 +20,19 @@ class FacilityInfo extends Model
 		'lgu_address',
 		'moa_version',
 		'pickup_delivery',
-		'mailing_address'
+		'mailing_address',
+		'user_id'
 	];
 
 	public function facilityIncomeClass(){
     	return $this->hasOne('App\FacilityIncomeClass','id','incomeclass_id');
     }
 
-      public function facilityConfig(){
+    public function facilityConfig(){
       	return $this->hasOne('App\FacilityConfig','id','facility_id');
       }
+
+    public function user(){
+      return $this->hasOne('App\User','id','user_id');
+    } 
 }
