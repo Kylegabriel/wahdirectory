@@ -24,9 +24,10 @@
               </div>
             </div>
             <div class="profile-comments__controls">
-              <!-- <a href="#"><i class="fa fa-share-square-o"></i></a>
-  -->         <a href="{{ route('facilityinfo.edit',$fac->id) }}"><i class="fa fa-edit"></i></a>
-              <!-- <a href="#"><i class="fa fa-trash-o"></i></a> -->
+              <a href="{{ route('facilityinfo.edit',$fac->id) }}"><i class="fa fa-edit"></i></a>
+              <a href="/img/{{$fac->image}}" download="{{ $fac->image }}">
+                <i class="fa fa-download"></i>
+              </a>
             </div>
           </div>
         </div>

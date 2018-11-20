@@ -29,9 +29,7 @@
               </div>
             </div>
             <div class="profile-comments__controls">
-              <!-- <a href="#"><i class="fa fa-share-square-o"></i></a>
-  -->         <a href="{{ route('interns.edit',$tag->id) }}"><i class="fa fa-edit"></i></a>
-              <!-- <a href="#"><i class="fa fa-trash-o"></i></a> -->
+              <a href="{{ route('interns.edit',$tag->id) }}"><i class="fa fa-edit"></i></a>
             </div>
           </div>
         </div>
