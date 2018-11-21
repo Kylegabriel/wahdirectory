@@ -17,7 +17,7 @@
                	@else
                 <select type="text" id="facility_id" name="facility_id" class="js-example-basic-single form-control">
                   <option value="" disabled selected>Choose your option</option>
-                  @foreach(App\FacilityConfig::all() as $facility)
+                  @foreach($info2 as $facility)
                         <option value="{{ $facility['id'] }}">{{ $facility->facilities->hfhudname  }}</option>  
                    @endforeach
                 </select>

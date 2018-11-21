@@ -34,7 +34,12 @@ class FacilityInfoController extends Controller
      */
     public function create()
     {
-        return view('facilityinfo.create');
+        $facility = FacilityInfo::select('facility_id')->get();
+        $info = FacilityConfig::whereNotIn('id',$facility)->get();
+
+        return view('facilityinfo.create')->with([
+            'info2' => $info
+            ]);
     }
 
     /**
