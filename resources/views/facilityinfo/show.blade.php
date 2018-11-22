@@ -43,11 +43,11 @@
             <table class=" profile__table">
               <tbody>
                 <tr>
-                  <th><strong>MAYOR'S NAME :</strong></th>
+                  <th><strong>MAYOR NAME :</strong></th>
                   <td>{{ $fac->mayors_name }}</td>
                 </tr>
                 <tr>
-                  <th><strong>MHO's NAME :</strong></th>
+                  <th><strong>MHO NAME :</strong></th>
                   <td>{{ $fac->mho_name }}</td>
                 </tr>
                 <tr>

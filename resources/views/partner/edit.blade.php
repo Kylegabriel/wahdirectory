@@ -8,7 +8,9 @@
 @section('scripts')        
     {!! Html::script('/select2/dist/js/select2.js') !!}
     <script>
-        $('.js-example-basic-single').select2();
+        $('.js-example-basic-single').select2({
+        	theme: "classic"
+        });
     </script>
 @endsection
             
