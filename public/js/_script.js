@@ -70,20 +70,20 @@
                           required: true,
                           maxlength: 20 
                         },
-                        middle_name: {
-                          required: true,    
-                          maxlength: 20
-                        },
+                        // middle_name: {
+                        //   required: true,    
+                        //   maxlength: 20
+                        // },
                         email: {
-                          required: true,
+                          // required: true,
                           pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
                         },
                         secondary_email: {
                           pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
                         },
-                        birthdate: {
-                          required: true
-                        },
+                        // birthdate: {
+                        //   required: true
+                        // },
                         mobile_number : {
                           required: true,
                         },
@@ -131,9 +131,9 @@
                           required: true,
                           equalTo: "#password"
                         },
-                        role_id: {
-                          required: true
-                        },
+                        // role_id: {
+                        //   required: true
+                        // },
                         image: {
                           extension: "jpg|jpeg|png|JPG|JPEG|PNG"
                         },

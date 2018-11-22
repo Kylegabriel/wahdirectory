@@ -33,13 +33,13 @@ class Profile extends Model
         'landbankaccount',
         'tin',
         'sss',
-        'pagibigmidno',
-        'pagibigrtn',
+        'pagibighdmf',
         'mabuhaymilespal',
         'getgocebupac',
         'user_id',
         'image',
-        'mailing_address'
+        'mailing_address',
+        'contact_person'
     ];
 
     public function user(){

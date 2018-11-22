@@ -46,10 +46,10 @@ class CreateFacilityInfoTable extends Migration
      */
     public function down()
     {
-        Schema::table('facility_infos', function($table) {  
-          $table->dropForeign('facility_infos_facility_id_foreign');
-          $table->dropForeign('facility_infos_incomeclass_id_foreign');
-          $table->dropForeign('facility_user_id_foreign');
+        Schema::table('facility_infos', function ($table) {
+            $table->dropForeign('facility_infos_facility_id_foreign');
+            $table->dropForeign('facility_infos_incomeclass_id_foreign');
+            $table->dropForeign('facility_infos_user_id_foreign');
         });
         Schema::drop('facility_infos');
     }

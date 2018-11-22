@@ -53,11 +53,11 @@
             <div class="row">
                 <div class="col-md-3">
                     {{ Form::label('email','EMAIL') }}
-                    {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
+                    {{ Form::email('email',null,['class'=>'form-control','id'=>'email','placeholder' => 'domain@gmail.com']) }} 
                 </div>
                 <div class="col-md-3">
-                    {{ Form::label('secondary_email','SECONDARY CONTACT') }}
-                    {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
+                    {{ Form::label('secondary_email','ALTERNATIVE EMAIL') }}
+                    {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email','placeholder' => 'domain@gmail.com']) }} 
                 </div>
                 <div class="col-md-3">
                     {{ Form::label('primary_contact','PRIMARY CONTACT') }}
@@ -106,12 +106,8 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    {{ Form::label('pagibigmidno','PAG-IBIG MID NO.') }}
-                    {{ Form::text('pagibigmidno',null,['class'=>'form-control','id'=>'pagibigmidno']) }} 
-                </div>
-                <div class="col-md-3">
-                    {{ Form::label('pagibigrtn','PAG-IBIG RTN') }}
-                    {{ Form::text('pagibigrtn',null,['class'=>'form-control','id'=>'pagibigrtn']) }}
+                    {{ Form::label('pagibighdmf','PAG-IBIG HDMF') }}
+                    {{ Form::text('pagibighdmf',null,['class'=>'form-control','id'=>'pagibighdmf']) }}
                 </div>    
                 <div class="col-md-3">
                     {{ Form::label('mabuhaymilespal','MABUHAY MILES NO.') }}
@@ -120,6 +116,10 @@
                 <div class="col-md-3">
                     {{ Form::label('getgocebupac','GET GO CEBU PAC NO.') }}
                     {{ Form::text('getgocebupac',null,['class'=>'form-control','id'=>'getgocebupac']) }} 
+                </div>
+                <div class="col-md-3">
+                    {{ Form::label('contact_person','CONTACT PERSON') }}
+                    {{ Form::text('contact_person',null,['class'=>'form-control','id'=>'contact_person','name' => 'contact_person','placeholder' => 'IN CASE OF EMERGENCY']) }}
                 </div>
             </div>
             <div class="row">

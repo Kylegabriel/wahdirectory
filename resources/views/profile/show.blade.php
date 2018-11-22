@@ -76,12 +76,8 @@
                   <td>{{ $profile->tin }}</td>
                 </tr>
                 <tr>
-                  <th><strong>MID NO :</strong></th>
-                  <td>{{ $profile->pagibigmidno }}</td>
-                </tr>
-                <tr>
-                  <th><strong>RTN NO :</strong></th>
-                  <td>{{ $profile->pagibigrtn }}</td>
+                  <th><strong>HDMF NO :</strong></th>
+                  <td>{{ $profile->pagibighdmf }}</td>
                 </tr>
                 <tr>
                   <th><strong>MABUHAY MILES NO : </strong></th>
@@ -90,6 +86,10 @@
                 <tr>
                   <th><strong>CEBU PAC GET GO NO : </strong></th>
                   <td>{{ $profile->getgocebupac }}</td>
+                </tr>
+                <tr>
+                  <th><strong>CONTACT PERSON : </strong></th>
+                  <td>{{ $profile->contact_person }}</td>
                 </tr>
               </tbody>
             </table>

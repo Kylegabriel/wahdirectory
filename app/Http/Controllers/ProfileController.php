@@ -108,11 +108,11 @@ class ProfileController extends Controller
         $user->landbankaccount = $request->input('landbankaccount');
         $user->tin = $request->input('tin');
         $user->sss = $request->input('sss');
-        $user->pagibigmidno = $request->input('pagibigmidno');
-        $user->pagibigrtn = $request->input('pagibigrtn');
+        $user->pagibighdmf = $request->input('pagibighdmf');
         $user->mabuhaymilespal = $request->input('mabuhaymilespal');
         $user->getgocebupac = $request->input('getgocebupac');
         $user->mailing_address = $request->input('mailing_address');
+        $user->contact_person = $request->input('contact_person');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -200,11 +200,12 @@ class ProfileController extends Controller
         $user->landbankaccount = $request->input('landbankaccount');
         $user->tin = $request->input('tin');
         $user->sss = $request->input('sss');
-        $user->pagibigmidno = $request->input('pagibigmidno');
-        $user->pagibigrtn = $request->input('pagibigrtn');
+        $user->pagibighdmf = $request->input('pagibighdmf');
         $user->mabuhaymilespal = $request->input('mabuhaymilespal');
         $user->getgocebupac = $request->input('getgocebupac');
         $user->mailing_address = $request->input('mailing_address');
+        $user->contact_person = $request->input('contact_person');
+
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
