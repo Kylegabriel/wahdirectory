@@ -16,13 +16,14 @@
 						@foreach($sites as $site)
 						<tr>
 							<td>{{ $count++ .'.' }}</td>
-							<td style="border: 5px solid 
+							<td>
+								<i class="fa fa-square fa-2x"  style="color:
 		                        @if($site->system_admin_id == 1) blue 
 		                        @elseif($site->system_admin_id == 2) Lime 
 		                        @elseif($site->system_admin_id == 3) yellow
 		                        @elseif($site->system_admin_id == 4) purple
-		                        @endif;font-size:15px;padding: 0 0 0 10px">
-		                     	{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} 
+		                        @endif;"></i>
+								{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} 
 		                     	{{ $site->suffix_name == 'NOTAP' ? ' ' : $site->siteSuffix['suffix_desc'] }}</td>
 							<td>{{ $site->designations['sites_desc'] }}</td>
 							<td>{{ $site->facilityConfig->facilities->hfhudname }}</td>

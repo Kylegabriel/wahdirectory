@@ -17,7 +17,7 @@ class CreateSitesTable extends Migration
 
             $table->increments('id');
             $table->integer('site_id')->unsigned()->nullable();
-            $table->integer('system_admin_id')->unsigned();
+            $table->integer('system_admin_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
             $table->integer('facility_id')->unsigned();
             // $table->char('site',1);

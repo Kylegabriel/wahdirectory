@@ -15982,8 +15982,8 @@ textarea[resize='horizontal']
 
 .navbar-brand
 {
-    font-size: .875rem;
-    font-size: .875rem;
+    font-size: 1rem;
+    font-size: 1rem;
     font-weight: 600;
 
     letter-spacing: .05px; 
@@ -15991,7 +15991,7 @@ textarea[resize='horizontal']
 }
 .navbar-brand img
 {
-    height: 30px;
+    height: 65px;
 }
 
 .navbar-dark .navbar-brand

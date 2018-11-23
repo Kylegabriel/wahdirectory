@@ -72,6 +72,16 @@
                     <h5>Site Personnel under this Facility Record will also {{ $facility->is_active == 'N' ? 'Activated' : 'Deactived' }}?</h5>
                     {!! Form::model($facility, ['route' => ['facilityActivation', $facility->id], 'method' => 'PUT']) !!}
                     <input type="hidden" name="is_active" id="is_active" value="{{ $facility->is_active == 'N' ? 'Y' : 'N' }}">
+                        <div class="form-group">
+                          {{ Form::label('deactivation_date','DATE OF END OF DEACTIVATION?') }}
+                          {{ Form::date('deactivation_date',null,['class'=>'form-control','id'=>'deactivation_date','name'=>'deactivation_date']) }}
+                        </div>
+                        <div class="form-group">
+                        <div class="form-group">
+                          {{ Form::label('remarks','REMARKS:') }}
+                          {{ Form::textarea('remarks',null,['class'=>'form-control','id'=>'remarks','name'=>'remarks','rows' => '3']) }}
+                      </div>
+                    </div>
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>

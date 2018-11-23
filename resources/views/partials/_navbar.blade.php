@@ -1,6 +1,9 @@
                 <!-- Navbar primary -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-2">
-            <a class="navbar-brand" href="#">WAH DIRECTORY</a>
+            <a class="navbar-brand" href="#">
+              <img src="/img/wah_logo.png" class="img-responsive" width="120" height="height:auto" alt="">
+              WAH DIRECTORY
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

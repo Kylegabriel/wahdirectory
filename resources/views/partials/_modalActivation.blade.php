@@ -17,7 +17,7 @@
                                     {!! Form::model($profile, ['route' => ['ProfileActivation', $profile->id], 'method' => 'PUT']) !!}
 	                        	<input type="hidden" name="is_active" id="is_active" value="{{ $profile->is_active == 'N' ? 'Y' : 'N' }}">
 	                            <div class="form-group">
-	                                  {{ Form::label('dateendcontruct','DATE OF END OF CONTRUCT?') }}
+	                                  {{ Form::label('dateendcontruct','DATE OF END OF CONTRACT?') }}
 	                                  {{ Form::date('dateendcontruct',null,['class'=>'form-control','id'=>'dateendcontruct','name'=>'dateendcontruct']) }}
 	                            </div>
 	                            <div class="form-group">
@@ -39,8 +39,8 @@
 							        <input type="hidden" name="status" id="status" value="{{ $site->status == 'N' ? 'Y' : 'N' }}">
 							          <div class="form-group">
 									   		<div class="form-group">
-										   		<label for="reasons">Reason:</label>
-										   		<textarea class="form-control" id="reasons" name="reasons" rows="3">{{ $site->reasons }}</textarea>
+										   		{{ Form::label('reasons','REASON?') }}
+										   		{{ Form::textarea('reasons',null,['class'=>'form-control','id'=>'reasons','name'=>'reasons','rows' => '3']) }}
 											</div>
 									  </div>
 							@elseif(isset($info))

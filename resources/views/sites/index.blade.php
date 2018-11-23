@@ -5,10 +5,10 @@
 		<div class="card shadow border-0 border-primary">
 		  <div class="card-body">
 		    <h5 class="card-title" style="text-align: center;text-decoration: underline;">ADMINISTRATOR FUNCTIONS</h5>
-		    <p><i class="fas fa-square fa-2x" style="background-color:blue;color:blue;"></i> SUPERVISORY</p>
-		    <p><i class="fas fa-square fa-2x" style="background-color:green;color:green"></i> REPORTS OFFICER</p>
-		    <p><i class="fas fa-square fa-2x" style="background-color:yellow;color:yellow"></i> DATA QUALITY CHECK</p>
-		    <p><i class="fas fa-square fa-2x" style="background-color:purple;color:purple"></i> TECHNICAL SUPPORT</p>
+		    <p><i class="fa fa-square fa-2x" style="color:blue;"></i> SUPERVISORY</p>
+		    <p><i class="fa fa-square fa-2x" style="color:green"></i> REPORTS OFFICER</p>
+		    <p><i class="fa fa-square fa-2x" style="color:yellow"></i> DATA QUALITY CHECK</p>
+		    <p><i class="fa fa-square fa-2x" style="color:purple"></i> TECHNICAL SUPPORT</p>
 		  </div>
 		</div>
 	</div>

@@ -22,6 +22,8 @@ class CreateFacilityTable extends Migration
             $table->char('muncity_code',6);
             $table->char('brgy_code',9);
             $table->string('hfhudcode');
+            $table->date('deactivation_date')->nullable();
+            $table->string('remarks')->nullable();
             $table->char('is_active',1);
             $table->timestamps();
 

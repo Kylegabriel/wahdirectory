@@ -33,7 +33,7 @@
 		            {{ Form::email('email',null,['class'=>'form-control','id'=>'email']) }} 
 		        </div>
 		        <div class="col-md-3">
-		            {{ Form::label('secondary_email','SECONDARY CONTACT') }}
+		            {{ Form::label('secondary_email','ALTERNATIVE EMAIL') }}
 		            {{ Form::email('secondary_email',null,['class'=>'form-control','id'=>'secondary_email']) }} 
 		        </div>
 		        <div class="col-md-3">

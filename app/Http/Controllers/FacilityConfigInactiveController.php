@@ -16,6 +16,8 @@ class FacilityConfigInactiveController extends Controller
     	$data = FacilityConfig::find($id);
 
         $data->is_active = $request->input('is_active');
+        $data->deactivation_date = $request->input('deactivation_date');
+        $data->remarks = $request->input('remarks');
 
         $data->save();
 

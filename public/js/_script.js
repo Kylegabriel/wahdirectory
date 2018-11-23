@@ -140,9 +140,9 @@
                         primary_contact: {
                           number: true
                         },
-                        system_admin_id: {
-                          required: true
-                        },
+                        // system_admin_id: {
+                        //   required: true
+                        // },
                         facility_id: {
                           required: true
                         }
