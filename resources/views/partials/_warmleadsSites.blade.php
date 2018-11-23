@@ -16,7 +16,7 @@
 						@foreach($sites as $site)
 						<tr>
 							<td>{{ $count++ .'.' }}</td>
-							<td>
+							<td style="font-size:20px;">
 								<i class="fa fa-square fa-2x"  style="color:
 		                        @if($site->system_admin_id == 1) blue 
 		                        @elseif($site->system_admin_id == 2) Lime 
@@ -26,7 +26,11 @@
 								{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} 
 		                     	{{ $site->suffix_name == 'NOTAP' ? ' ' : $site->siteSuffix['suffix_desc'] }}</td>
 							<td>{{ $site->designations['sites_desc'] }}</td>
-							<td>{{ $site->facilityConfig->facilities->hfhudname }}</td>
+							<td>{{ $site->facilityConfig->region->region_name . ', ' . 
+								   $site->facilityConfig->province->province_name . ', ' .
+								   $site->facilityConfig->municipality->muncity_name . ', ' .	
+								   $site->facilityConfig->facilities->hfhudname }}
+							</td>
 							<td>{{ $site->primary_contact }}</td>
 							<td>{{ $site->email }}</td>
 							<td>
