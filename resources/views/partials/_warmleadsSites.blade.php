@@ -27,7 +27,6 @@
 		                     	{{ $site->suffix_name == 'NOTAP' ? ' ' : $site->siteSuffix['suffix_desc'] }}</td>
 							<td>{{ $site->designations['sites_desc'] }}</td>
 							<td>{{ $site->facilityConfig->region->region_name . ', ' . 
-								   $site->facilityConfig->province->province_name . ', ' .
 								   $site->facilityConfig->municipality->muncity_name . ', ' .	
 								   $site->facilityConfig->facilities->hfhudname }}
 							</td>
