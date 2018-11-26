@@ -107,7 +107,10 @@ class InternController extends Controller
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('img/' . $filename);
-            Image::make($image)->resize( 800,400 )->save($location);
+            Image::make($image)->resize(null, 400, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->save($location);
 
             $intern->image = $filename;
         }
@@ -210,7 +213,10 @@ class InternController extends Controller
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('img/' . $filename);
-            Image::make($image)->resize( 800,400 )->save($location);
+            Image::make($image)->resize(null, 400, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->save($location);
             $oldFilename = $intern->image;
             $intern->image = $filename;
             File::delete(public_path('img/'. $oldFilename));
