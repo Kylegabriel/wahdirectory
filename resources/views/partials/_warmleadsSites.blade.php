@@ -1,9 +1,9 @@
 <div class="card shadow border-0 border-primary">
 	<div class="card-body">
-				<table id="example" class="table-striped ">
+				<table id="example" class="table-striped">
 					<thead>
 						<tr>
-							<th>No.</th>
+							<th>ID.</th>
 							<th>Name</th>
 							<th>Designation</th>
 							<th>Facility Name</th>
@@ -15,16 +15,21 @@
 					<tbody>
 						@foreach($sites as $site)
 						<tr>
-							<td>{{ $count++ .'.' }}</td>
-							<td style="font-size:20px;">
-								<i class="fa fa-square fa-2x"  style="color:
+							<td>
+								<I class="fa fa-square fa-2x"  style="color:
 		                        @if($site->system_admin_id == 1) blue 
 		                        @elseif($site->system_admin_id == 2) Lime 
 		                        @elseif($site->system_admin_id == 3) yellow
 		                        @elseif($site->system_admin_id == 4) purple
-		                        @endif;"></i>
-								{{ $site->last_name . ", " . $site->first_name . " " . $site->middle_name . " " }} 
-		                     	{{ $site->suffix_name == 'NOTAP' ? ' ' : $site->siteSuffix['suffix_desc'] }}</td>
+		                        @endif;"></I>
+								{{ $site->id }}</td>
+							<td style="font-size:20px;">
+							  {{ 
+                              $site->first_name . " " . 
+                              $site->middle_name . " " . 
+                              $site->last_name 
+                              }} {{ $site->suffix_name == "NOTAP" ? : $site->siteSuffix['suffix_desc'] }}
+                          </td>
 							<td>{{ $site->designations['sites_desc'] }}</td>
 							<td>{{ $site->facilityConfig->region->region_name . ', ' . 
 								   $site->facilityConfig->province->province_name . ', ' .

@@ -43,9 +43,12 @@
 				@foreach($partner as $partners)
 				<tr>
 					<td>{{ $count++ .'.' }}</td>
-					<td style="font-size:20px;">{{ $partners->last_name . ", " 
-						. $partners->first_name . " " . $partners->middle_name . " " }} 
-						@if($partners->suffix_name == 'NOTAP') @else {{ $partners->suffix_name }} @endif
+					<td style="font-size:20px;">
+						{{ 
+						$partners->first_name . " " . 
+						$partners->middle_name . " " . 
+						$partners->last_name 
+						}} {{ $partners->suffix_name == "NOTAP" ? : $partners->partnerSuffix['suffix_desc'] }}
 					</td>
 					<td>{{ $partners->partnerDesignation['designation'] }}</td>
 					<td>{{ $partners->partnerOrganization['organization'] }}</td>

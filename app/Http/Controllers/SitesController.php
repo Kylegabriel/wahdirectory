@@ -38,6 +38,7 @@ class SitesController extends Controller
     {        
 
         $site = Site::where('status', '=', 'Y')
+                      ->orderBy('id')
                       ->get();
 
         $count = 1;

@@ -1,4 +1,4 @@
-        
+                
 
         //       // make it First letter to be capitale
         // ,'onkeyup' => 'capitalize(this.id, this.value);'
@@ -42,18 +42,38 @@
             $('.dropdown-toggle').dropdown();
             // DataTables
 
-            $('#example')
-            .DataTable({
-                  "scrollY"        : "400px",
-                  "scrollCollapse" : true,
-                  "responsive": true,
-                  // "ordering": false
-                  // "columnDefs": [
-                  //     { "orderable": false, "targets": [2,3,4] },
-                  // //     // { "orderable": true, "targets": [1, 2, 3] }
-                  // ],
-            });
-            
+            var dataSrc = [];
+
+             var table = $('#example').DataTable({
+                "scrollY"        : "400px",
+                "scrollCollapse" : true,
+                "responsive": true,
+                'initComplete': function(){
+                   var api = this.api();
+
+                   // Populate a dataset for autocomplete functionality
+                   // using data from first, second and third columns
+                   api.cells('tr', [1, 2]).every(function(){
+                      // Get cell data as plain text
+                      var data = $('<div>').html(this.data()).text();           
+                      if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+                   });
+                   
+                   // Sort dataset alphabetically
+                   dataSrc.sort();
+                  
+                   // Initialize Typeahead plug-in
+                   $('.dataTables_filter input[type="search"]', api.table().container())
+                      .typeahead({
+                         source: dataSrc,
+                         afterSelect: function(value){
+                            api.search(value).draw();
+                         }
+                      }
+                   );
+                }
+             });
+
             $('[data-toggle="tooltip"]').tooltip();
 
             $('form').each(function() {

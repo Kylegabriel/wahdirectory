@@ -41,7 +41,13 @@
                         @foreach($profiles as $profile)
                         <tr>
                             <td>{{ $count++ . '.' }}</td>
-                            <td style="font-size:20px;">{{ $profile->last_name . ", " . $profile->first_name . " " . $profile->middle_name . " " }}@if($profile->suffix_name == 'NOTAP') @else {{ $profile->suffix['suffix_desc'] }} @endif</td>
+                            <td style="font-size:20px;">
+                              {{ 
+                              $profile->first_name . " " . 
+                              $profile->middle_name . " " . 
+                              $profile->last_name 
+                              }} {{ $profile->suffix_name == "NOTAP" ? : $profile->suffix['suffix_desc'] }}
+                            </td>
                             <td>{{ $profile->designations['role_name'] }}</td>
                             <td>{{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}</td>
                             <td>{{ $profile->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->birthdate)) }}</td>

@@ -38,6 +38,6 @@ class Partner extends Model
       return $this->hasOne('App\PartnerDesignation','id','desig_id');
     }
     public function partnerSuffix(){
-      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
+      return $this->hasOne('App\SuffixName','suffix_code','suffix_name');
     }
 }
