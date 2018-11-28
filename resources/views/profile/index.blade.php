@@ -46,7 +46,7 @@
                               $profile->first_name . " " . 
                               $profile->middle_name . " " . 
                               $profile->last_name 
-                              }} {{ $profile->suffix_name == "NOTAP" ? : $profile->suffix['suffix_desc'] }}
+                              }} {{ $profile->suffix_name == "NOTAP" ? ' ' : $profile->suffix['suffix_desc'] }}
                             </td>
                             <td>{{ $profile->designations['role_name'] }}</td>
                             <td>{{ $profile->datehired == '0000-00-00' ? '' :  date('F j, Y', strtotime($profile->datehired)) }}</td>

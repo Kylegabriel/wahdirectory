@@ -39,6 +39,6 @@ class Intern extends Model
     }
 
     public function internSuffix(){
-      return $this->hasOne('App\SuffixName','suffix_name','suffix_code');
+      return $this->hasOne('App\SuffixName','suffix_code','suffix_name');
     }
 }

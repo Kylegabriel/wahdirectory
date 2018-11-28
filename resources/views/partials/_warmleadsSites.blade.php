@@ -28,7 +28,7 @@
                               $site->first_name . " " . 
                               $site->middle_name . " " . 
                               $site->last_name 
-                              }} {{ $site->suffix_name == "NOTAP" ? : $site->siteSuffix['suffix_desc'] }}
+                              }} {{ $site->suffix_name == "NOTAP" ? ' ' : $site->siteSuffix['suffix_desc'] }}
                           </td>
 							<td>{{ $site->designations['sites_desc'] }}</td>
 							<td>{{ $site->facilityConfig->region->region_name . ', ' . 

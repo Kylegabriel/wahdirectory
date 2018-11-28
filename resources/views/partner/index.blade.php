@@ -48,7 +48,7 @@
 						$partners->first_name . " " . 
 						$partners->middle_name . " " . 
 						$partners->last_name 
-						}} {{ $partners->suffix_name == "NOTAP" ? : $partners->partnerSuffix['suffix_desc'] }}
+						}} {{ $partners->suffix_name == "NOTAP" ? ' ' : $partners->partnerSuffix['suffix_desc'] }}
 					</td>
 					<td>{{ $partners->partnerDesignation['designation'] }}</td>
 					<td>{{ $partners->partnerOrganization['organization'] }}</td>

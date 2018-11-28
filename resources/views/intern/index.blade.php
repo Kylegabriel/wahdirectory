@@ -41,7 +41,13 @@
 				@foreach($interns as $intern)
 					<tr>
 						<td>{{ $count++ .'.' }}</td>
-						<td style="font-size:20px;">{{ $intern->last_name . ", " . $intern->first_name . " " . $intern->middle_name . " " }} @if($intern->suffix_name == 'NOTAP') @else {{ $intern->suffix_name }} @endif</td>
+						<td style="font-size:20px;">
+						{{ 
+						$intern->first_name . " " . 
+						$intern->middle_name . " " . 
+						$intern->last_name 
+						}} {{ $intern->suffix_name == "NOTAP" ? ' ' : $intern->internSuffix['suffix_desc'] }}
+						</td>
 						<td>{{ $intern->gender }}</td>
 						<td>{{ $intern->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($intern->birthdate)) }}</td>
 						<td>
