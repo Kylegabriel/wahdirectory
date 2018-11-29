@@ -17,7 +17,7 @@
       </div>
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
-          <a href="{{ route('facility.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="ADD PARTNER" >  
+          <a href="{{ route('facility.create') }}" role="button" class="btn btn-link text-default text-white" data-toggle="tooltip" data-placement="left" title="ADD FACILITY CONFIG" >  
             <i class="fa fa-user-plus fa-2x"></i> ADD FACILITY CONFIG
           </a>
         </li>
