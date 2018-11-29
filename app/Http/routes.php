@@ -36,7 +36,8 @@ Route::resource('partnerDesignation','partnerDesignationController',['except' =>
 Route::resource('partnerOrganization','PartnerOrganizationtionController',['except' =>['create','show']]);
 
 // // Facility Config
-Route::resource('facility','FacilityConfigController',['except'=>['destroy','show']]);
+Route::resource('facility','FacilityConfigController',['except'=>['show']]);
+
 // Route::resource('facility/get-region-list','FacilityConfigController@getRegionList',['only'=>['index']]);
 Route::resource('facility/get-province-list','FacilityConfigController@getProvinceList',['only'=>['index']]);
 Route::resource('facility/get-muncity-list','FacilityConfigController@getMuncityList',['only'=>['index']]);

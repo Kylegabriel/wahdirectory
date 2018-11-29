@@ -233,6 +233,11 @@ class FacilityConfigController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $facility = FacilityConfig::find($id);
+
+        $facility->delete();
+
+        Session::flash('repeat','Record was Successfully Deleted');
+        return redirect()->route('facility.index');
     }
 }
