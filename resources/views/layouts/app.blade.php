@@ -6,7 +6,6 @@
 <body>  
 <div class="row">
   <div class="col-md-12" style="padding:0px 30px 0px 30px">
-  	123
     @include('partials._navbar')  
     <br>
     @yield('content')
