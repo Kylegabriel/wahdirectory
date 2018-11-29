@@ -11,6 +11,7 @@
     <script src="/jQuery-Mask/dist/jquery.mask.js"></script>
     <script src="/jquery/additional-methods.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="/js/_script.js"></script>
     @yield('scripts')
     <script>

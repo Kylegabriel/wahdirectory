@@ -45,9 +45,14 @@
             var dataSrc = [];
 
              var table = $('#example').DataTable({
-                "scrollY"        : "400px",
+                "scrollY"        : "500px",
                 "scrollCollapse" : true,
                 "responsive": true,
+                'processing': true,
+                'language': {
+                    'loadingRecords': '&nbsp;',
+                    'processing': 'Loading...'
+                },
                 'initComplete': function(){
                    var api = this.api();
 
