@@ -41,10 +41,10 @@ class ProfileController extends Controller
         $profiles = Profile::orderBy('id','desc')
                             ->get();
         
-        $no = 1;
+        // $no = 1;
         return view('profile.index')->with([
             'profiles'=>$profiles,
-            'count'=>$no,
+            // 'count'=>$no,
             ]);
     }
 

@@ -29,7 +29,7 @@
                 <table id="example" class="table-striped">
                     <thead>
                         <tr>
-                            <th>No.</th>
+                            <th>ID.</th>
                             <th>Name</th>
                             <th>Designation</th>
                             <th>Date Hired</th>
@@ -40,7 +40,7 @@
                     <tbody>
                         @foreach($profiles as $profile)
                         <tr>
-                            <td>{{ $count++ . '.' }}</td>
+                            <td>{{ $profile->id }}</td>
                             <td style="font-size:20px;">
                               {{ 
                               $profile->first_name . " " . 
