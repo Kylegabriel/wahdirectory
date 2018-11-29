@@ -31,6 +31,7 @@
 			<thead>
 				<tr>
 					<th>ID.</th>
+					<th>Municipality</th>
 					<th>Facility Name</th>
 					<th>Email</th>
 					<th>Contact</th>
@@ -41,6 +42,7 @@
 			@foreach($facility as $info)
 				<tr>
 					<td>{{ $info->id }}</td>
+					<td>{{ $info->facilityConfig->municipality->muncity_name }}</td>
 					<td>{{ $info->facilityConfig->facilities->hfhudname }}</td>
 					<td>{{ $info->email . '/' . $info->secondary_email }}</td>
 					<td>{{ $info->primary_contact . '/' . $info->secondary_contact }}</td>					
