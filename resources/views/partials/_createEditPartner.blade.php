@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-md-2">
                     {{ Form::label('birthdate','BIRTHDATE') }}
-                    {{ Form::text('birthdate',null,['class'=>'form-control datepicker','id'=>'birthdate','name'=>'birthdate','placeholder' => 'mm/dd/yyyy']) }} 
+                    {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }} 
                 </div> 
                 <div class="col-md-2">
                     {{ Form::label('gender', "GENDER") }}

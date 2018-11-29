@@ -8,7 +8,7 @@
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="/argon-design/assets/css/argon.css" rel="stylesheet">
     <link href="/DataTables/Data/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"> -->
     <style>
         .pace {
           -webkit-pointer-events: none;
