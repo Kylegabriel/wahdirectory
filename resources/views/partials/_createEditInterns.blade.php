@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-md-2">
                         {{ Form::label('gender', "Gender") }}
-                        {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],null, ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
+                        {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],isset($intern) ? null : 'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
                     </div>
             </div> 
             <div class="row">

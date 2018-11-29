@@ -1,5 +1,10 @@
                 
-
+        $('.datepicker').datepicker({
+            format: "mm/dd/yyyy",
+            clearBtn: true,
+            todayHighlight: true,
+            autoclose: true,
+        });
         //       // make it First letter to be capitale
         // ,'onkeyup' => 'capitalize(this.id, this.value);'
         // function capitalize(textboxid, str) {

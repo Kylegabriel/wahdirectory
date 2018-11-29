@@ -76,7 +76,7 @@
             </div> 
             <div class="col-md-2">
                 {{ Form::label('gender', "GENDER") }}
-                {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
+                {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],isset($sites) ? null : 'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
             </div>
         </div>
 

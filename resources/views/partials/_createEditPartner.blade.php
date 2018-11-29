@@ -57,11 +57,11 @@
                 </div>
                 <div class="col-md-2">
                     {{ Form::label('birthdate','BIRTHDATE') }}
-                    {{ Form::date('birthdate',null,['class'=>'form-control','id'=>'birthdate','name'=>'birthdate']) }} 
+                    {{ Form::text('birthdate',null,['class'=>'form-control datepicker','id'=>'birthdate','name'=>'birthdate','placeholder' => 'mm/dd/yyyy']) }} 
                 </div> 
                 <div class="col-md-2">
                     {{ Form::label('gender', "GENDER") }}
-                    {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],null, ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
+                    {{ Form::select('gender', ['M' => 'M', 'F' => 'F'],isset($partners) ? null : 'M', ['class' => 'form-control','id' => 'gender','name' => 'gender']) }}
                 </div>
             </div>    
 
