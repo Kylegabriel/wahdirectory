@@ -4,7 +4,7 @@
 	<div class="col-md-2">
 		<div class="card shadow border-0 border-primary">
 		  <div class="card-body">
-		    <h5 class="card-title" style="text-align: center;text-decoration: underline;">ADMINISTRATOR FUNCTIONS</h5>
+		    <h5 class="card-title" style="text-align: center;">ADMINISTRATOR FUNCTIONS</h5>
 		    <p><i class="fa fa-square fa-2x" style="color:blue;"></i> SUPERVISORY</p>
 		    <p><i class="fa fa-square fa-2x" style="color:green"></i> REPORTS OFFICER</p>
 		    <p><i class="fa fa-square fa-2x" style="color:yellow"></i> DATA QUALITY CHECK</p>
