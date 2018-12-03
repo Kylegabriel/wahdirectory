@@ -56,7 +56,7 @@
                 'processing': true,
                 'language': {
                     'loadingRecords': '&nbsp;',
-                    'processing': 'Loading...'
+                    'processing': "<img src='/Spin-1s-200px.gif' />"
                 },
                 'initComplete': function(){
                    var api = this.api();
@@ -83,6 +83,7 @@
                    );
                 }
              });
+
 
             $('[data-toggle="tooltip"]').tooltip();
 
