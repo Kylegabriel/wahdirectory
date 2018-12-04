@@ -43,24 +43,21 @@
             })
 
 
-            // Bootstrap 
+            // Bootstrap toggle icon 
             $('.dropdown-toggle').dropdown();
-            // DataTables
 
-            var dataSrc = [];
-
+             // datatables
+             var dataSrc = [];
              var table = $('#example').DataTable({
                 "scrollY"        : "500px",
                 "scrollCollapse" : true,
                 "responsive": true,
                 'processing': true,
                 'language': {
-                    'loadingRecords': '&nbsp;',
                     'processing': "<img src='/Spin-1s-200px.gif' />"
                 },
                 'initComplete': function(){
                    var api = this.api();
-
                    // Populate a dataset for autocomplete functionality
                    // using data from first, second and third columns
                    api.cells('tr', [1, 2]).every(function(){
@@ -68,10 +65,8 @@
                       var data = $('<div>').html(this.data()).text();           
                       if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
                    });
-                   
                    // Sort dataset alphabetically
                    dataSrc.sort();
-                  
                    // Initialize Typeahead plug-in
                    $('.dataTables_filter input[type="search"]', api.table().container())
                       .typeahead({
@@ -83,6 +78,12 @@
                    );
                 }
              });
+
+              $(window).bind('resize', function () {
+                table.fnAdjustColumnSizing();
+              } );   
+             // datatables
+
 
 
             $('[data-toggle="tooltip"]').tooltip();

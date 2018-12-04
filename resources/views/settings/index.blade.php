@@ -9,10 +9,11 @@
   <div class="col-md-12" style="padding:0px 30px 0px 30px">
       @include('partials._navbar')
       <br>
-      @include('partials._sideNavSetting')
-      <div class="col-md-10">
-          @yield('settings')
-      </div>
+      <div class="row" style="padding:0px 0px 0px 10px;">
+        @include('partials._sideNavSetting')
+        <div class="col-md-10">
+            @yield('settings')
+        </div>
       </div>
    </div>
 </div>

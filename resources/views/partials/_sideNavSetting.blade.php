@@ -1,4 +1,3 @@
-        <div class="row" style="padding:0px 10px 0px 10px;">
           <div class="col-md-2 card shadow">
               <nav>
                 <ul class="nav flex-column">

@@ -1,6 +1,6 @@
 <div class="card shadow border-0 border-primary">
 	<div class="card-body">
-				<table id="example" class="table-striped display">
+				<table id="example" class="table-striped">
 					<thead>
 						<tr>
 							<th>ID.</th>

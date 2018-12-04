@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('stylesheets')
+	<style>
+		.dataTableParentHidden {overflow:hidden;height:0px;width:100%;}
+	</style>
+@endsection
 @section('content')
 <div class="row">
 	<div class="col-md-2">
@@ -37,7 +42,11 @@
 		      </ul>
 		    </div>
 		</nav>
+	<div class="wrapper loading">	
 	@include('partials._warmleadsSites')
 	</div>
 </div>
+@endsection
+@section('scripts')
+
 @endsection
