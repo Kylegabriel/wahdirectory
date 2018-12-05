@@ -9,7 +9,7 @@
   <div class="col-md-12" style="padding:0px 30px 0px 30px">
       @include('partials._navbar')
       <br>
-      <div class="row" style="padding:0px 0px 0px 10px;">
+      <div class="row">
         @include('partials._sideNavSetting')
         <div class="col-md-10">
             @yield('settings')
@@ -17,8 +17,6 @@
       </div>
    </div>
 </div>
-  @include('partials._script')
+@include('partials._script')
 </body>
 </html>
-
- 
