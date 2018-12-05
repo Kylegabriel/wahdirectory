@@ -17,7 +17,7 @@
 
 	<div class="card shadow border-0">
 		<div class="card-body">  <!-- div card body -->
-			<table id="example" class="table-striped" style="display:none">
+			<table id="example" class="table-striped">
 				<thead>
 					<tr>
 						<th>ID#</th>
@@ -25,7 +25,7 @@
 						<th>Action</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="example2" style="display:none">
 					@foreach( $userRole as $role )
 						<tr>
 							<td>{{ $count++ }}</td>

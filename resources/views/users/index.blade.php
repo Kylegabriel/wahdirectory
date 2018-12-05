@@ -27,7 +27,7 @@
 </nav> 
 <div class="card shadow border-0">
   <div class="card-body">  
-    <table id="example" class="table-striped" style="display:none">
+    <table id="example" class="table-striped">
       <thead>
         <tr>
           <th>No.</th>
@@ -40,7 +40,7 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="example2" style="display:none">
         @foreach($users as $user)
         <tr>
           <td>{{ $count++ .'.' }}</td>

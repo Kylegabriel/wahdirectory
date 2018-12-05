@@ -58,7 +58,7 @@
                 },
                 // this will show the table after it hide
                 "fnPreDrawCallback":function(){
-                    $("#example").show();
+                    $("#example2").show();
                 },
                 "initComplete": function(){
                    var api = this.api();
