@@ -1,3 +1,4 @@
+        <div class="loader"></div>  
                 <!-- Navbar primary -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-2">
             <a class="navbar-brand" href="#">

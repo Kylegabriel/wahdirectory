@@ -17,6 +17,13 @@
         //     }
         //     document.getElementById(textboxid).value = str;
         // }
+
+        // loader of every page
+        $(window).on('load', function(){
+            $(".loader").hide();
+        });
+
+
         $.fn.capitalize = function() {
             $.each(this, function() {
                 this.value = this.value.replace(/\b[a-z]/gi, function($0) {
@@ -54,7 +61,7 @@
                 "responsive": true,
                 'processing': true,
                 'language': {
-                    'processing': "<img src='/Spin-1s-200px.gif' />"
+                    'processing': "<img src='/Gear-1s-95px.gif' />"
                 },
                 // this will show the table after it hide
                 "fnPreDrawCallback":function(){

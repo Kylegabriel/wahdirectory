@@ -1,3 +1,4 @@
+
 <div class="card shadow border-0 border-primary" id="example2" style="display:none">
 	<div class="card-body">
 				<table id="example" class="table-striped" >
