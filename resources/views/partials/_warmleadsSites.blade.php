@@ -1,4 +1,4 @@
-<div class="card shadow border-0 border-primary">
+<div class="card shadow border-0 border-primary" id="example2" style="display:none">
 	<div class="card-body">
 				<table id="example" class="table-striped" >
 					<thead>
@@ -12,7 +12,7 @@
 							<th>Action</th>
 						</tr>
 					</thead>
-					<tbody id="example2" style="display:none">
+					<tbody>
 						@foreach($sites as $site)
 						<tr>
 							<td>
