@@ -16,7 +16,7 @@
 						</nav> 
 						<div class="card shadow border-0"> <!-- start of card div -->
 							<div class="card-body">  
-								<table id="example" class="table-striped">
+								<table id="example" class="table-striped" style="display:none">
 									<thead>
 										<tr>
 											<th>No.</th>

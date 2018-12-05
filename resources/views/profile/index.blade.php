@@ -26,7 +26,7 @@
 </nav>
 <div class="card shadow border-0  border-primary">
     <div class="card-body">
-                <table id="example" class="table-striped">
+                <table id="example" class="table-striped" style="display:none">
                     <thead>
                         <tr>
                             <th>ID.</th>

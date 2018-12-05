@@ -56,7 +56,11 @@
                 'language': {
                     'processing': "<img src='/Spin-1s-200px.gif' />"
                 },
-                'initComplete': function(){
+                // this will show the table after it hide
+                "fnPreDrawCallback":function(){
+                    $("#example").show();
+                },
+                "initComplete": function(){
                    var api = this.api();
                    // Populate a dataset for autocomplete functionality
                    // using data from first, second and third columns
