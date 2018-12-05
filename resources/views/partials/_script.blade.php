@@ -1,17 +1,19 @@
     
     <script src="/jquery/dist/jquery.min.js"></script>
-    <script src="/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="/DataTables/datatables.js"></script>
+    <script src="/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/DataTables/datatables.min.js"></script>
     <script src="/DataTables/Data/js/dataTables.bootstrap4.min.js"></script>
     <script src="/node_modules/popper/popper.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/boostrap-typeahead.js"></script>
-    <script src="/toastr/toastr.js"></script>
-    <script src="/argon-design/assets/js/argon.js"></script>
+    <script src="/boostrap3-typeahead.min.js"></script>
+    <script src="/toastr/toastr.min.js"></script>
+    <script src="/argon-design/assets/js/argon.min.js"></script>
     <script src="/jQuery-Mask/dist/jquery.mask.js"></script>
-    <script src="/jquery/additional-methods.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <!-- jquery validation addtional method for jpg,png -->
+    <script src="/jquery/additional-methods.min.js"></script>
+    <!-- pace for loading bar  -->
+    <script src="/pace.js"></script>
+    <script src="/dataTables.responsive.min.js"></script>
     <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script> -->
     <script src="/js/_script.js"></script>
     @yield('scripts')
