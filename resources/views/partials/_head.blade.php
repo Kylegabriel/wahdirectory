@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>WAH Directory</title>    
     
-    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/toastr/build/toastr.min.css" rel="stylesheet">
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/argon-design/assets/css/argon.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
           left: 0px;
           top: 0px;
           width: 100%;
-          height: 50%;
+          height: 100%;
           z-index: 9999;
           background: url('/Gear-1s-95px.gif') 50% 50% no-repeat rgb(249,249,249);
           opacity: .8;
