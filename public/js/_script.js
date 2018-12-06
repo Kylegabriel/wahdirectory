@@ -88,11 +88,7 @@
                       }
                    );
                 }
-             });
-
-              $(window).bind('resize', function () {
-                table.fnAdjustColumnSizing();
-              } );   
+             }); 
              // datatables
 
 
