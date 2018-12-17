@@ -1,4 +1,5 @@
                 
+                // jsdfhjksadhfjklashdfkjlasdhf
         // loader of every page
         $(window).on('load', function(){
             $(".loader").hide();
