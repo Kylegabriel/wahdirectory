@@ -21,8 +21,12 @@ class FacilityConfigController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $region;
+
     public function __construct(){
         $this->middleware('auth');
+
+        $this->region = DemographicRegion::all();
     }
 
     public function index(Request $request)
@@ -76,14 +80,8 @@ class FacilityConfigController extends Controller
      */
     public function create()
     {
-        $regions = DemographicRegion::all();
-        // $reg = array();
-        // foreach ($regions as $region) {
-        //     $reg[$region->region_code] = $region->region_name;
-        // }
-
-          return view('facility.create')->with([
-            'region' => $regions
+        return view('facility.create')->with([
+            'region' => $this->region
             ]);
     }
 
@@ -149,9 +147,8 @@ class FacilityConfigController extends Controller
     {   
         $editFacilityConfig = FacilityConfig::find($id);
 
-        $regions = DemographicRegion::all();
         $reg = array();
-        foreach ($regions as $region) {
+        foreach ($this->region as $region) {
             $reg[$region->region_code] = $region->region_name;
         }
 

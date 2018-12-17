@@ -35,6 +35,10 @@ Route::resource('siteDesignation','siteDesignationController',['except' =>['crea
 Route::resource('partnerDesignation','partnerDesignationController',['except' =>['create','show']]);
 Route::resource('partnerOrganization','PartnerOrganizationtionController',['except' =>['create','show']]);
 
+//check if user and email is exist for registration
+Route::get('checkUser', 'CheckUserIfExistController@CheckUserIfExist');
+Route::get('checkEmail', 'CheckEmailIfExistController@CheckEmailIfExist');
+
 // // Facility Config
 Route::resource('facility','FacilityConfigController',['except'=>['show']]);
 

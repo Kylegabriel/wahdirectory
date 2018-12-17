@@ -65,7 +65,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Please Confirm!</h5>
+                  <h5 class="modal-title">Please Confirm!</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -76,7 +76,7 @@
                   <input type="hidden" name="is_active" id="is_active" value="{{ $user->is_active == 'N' ? 'Y' : 'N' }}">
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
                 {!! Form::close() !!}

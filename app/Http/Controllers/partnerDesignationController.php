@@ -126,6 +126,6 @@ class partnerDesignationController extends Controller
         $site->delete();
 
         Session::flash('repeat','Partner Designation was Successfully Deleted');
-        return redirect()->route('userDesignaton.index');
+        return redirect()->route('partnerDesignation.index');
     }
 }

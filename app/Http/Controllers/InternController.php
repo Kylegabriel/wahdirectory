@@ -21,9 +21,12 @@ class InternController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $suf;
+    protected $tags;
 
     public function __construct(){
         $this->middleware('auth');
+
+        $this->tags = Tag::all();
 
         $suffix = SuffixName::all();
         $this->suf = array();
@@ -52,12 +55,9 @@ class InternController extends Controller
      */
     public function create()
     {
-
-        $tags = Tag::all();
-
         $count = 1;
         return view('intern.create')->with([ 
-            'tags' => $tags,
+            'tags' => $this->tags,
             'suffix' => $this->suf
             ]);
     }
@@ -154,9 +154,8 @@ class InternController extends Controller
     {
         $internedit = Intern::find($id);
 
-        $tags = Tag::all();
         $tags2 = [];
-        foreach ($tags as $tag) {
+        foreach ($this->tags as $tag) {
             $tags2[$tag->id] = $tag->name;
         }
 

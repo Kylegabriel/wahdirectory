@@ -35,10 +35,10 @@
 
 						<!--modal -->
 						<div class="modal fade" id="editPartDesig{{ $partnerDsg->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-			              <div class="modal-dialog modal- modal-dialog modal-" role="document">
+			              <div class="modal-dialog modal-dialog-centered" role="document">
 			                <div class="modal-content">
 			                  <div class="modal-header">
-			                    <h6 class="modal-title" id="modal-title-default">Edit Partner Designation</h6>
+			                    <h5 class="modal-title">Edit Partner Designation</h5>
 			                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			                      <span aria-hidden="true">×</span>
 			                    </button>
@@ -65,26 +65,25 @@
 
 			           	<!--modal -->
 						<div class="modal fade" id="deletePartDesig{{ $partnerDsg->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-			              <div class="modal-dialog modal- modal-dialog modal-" role="document">
-			                <div class="modal-content">
-			                  <div class="modal-header">
-			                    <h6 class="modal-title" id="modal-title-default">Please Confirm!</h6>
-			                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                      <span aria-hidden="true">×</span>
-			                    </button>
-			                  </div>
-						                 <div class="modal-body">
-					                        <form method="POST" action="{{ route('partnerDesignation.destroy',$partnerDsg->id) }}">
-							    				{{ csrf_field() }}  
-							    			<h5>Would you like to Delete this record?</h5>
-						                 </div>
-					                  
-												<div class="modal-footer">
-													<button type="submit" class="btn btn-primary">Save changes</button>
-							                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							                        {{ method_field('DELETE') }}
-							                    </div>
-					                  		</form>
+			              	<div class="modal-dialog modal-dialog-centered" role="document">
+			                	<div class="modal-content">
+					                <div class="modal-header">
+					                    <h5 class="modal-title">Please Confirm!</h5>
+					                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                      <span aria-hidden="true">×</span>
+					                    </button>
+					                </div>
+						            <div class="modal-body">
+					                    <form method="POST" action="{{ route('partnerDesignation.destroy',$partnerDsg->id) }}">
+							    		{{ csrf_field() }}  
+							    		<h5>Would you like to Delete this record?</h5>
+						            </div>
+									<div class="modal-footer">
+										{{ Form::button('Save', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
+										{{ Form::button('Close', ['type' => 'submit', 'class' => 'btn btn-secondary' , 'data-dismiss' => 'modal'] )  }}
+							            {{ method_field('DELETE') }}
+							        </div>
+					                	</form>
 
 					                </div>
 			              		</div>
@@ -99,10 +98,10 @@
 </div>
 
 		<div class="modal fade" id="createCourse" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-          <div class="modal-dialog modal- modal-dialog modal-" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h6 class="modal-title" id="modal-title-default">Partner Designation</h6>
+                <h5 class="modal-title">Partner Designation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
@@ -113,8 +112,8 @@
 		                	<div class="row">
 		                		<div class="col s12">
 		    	            		<div class="input-field col s12">
-		    	            			<label for="designation">Partner Designation</label>
-		    					        <input type="text" name="designation" id="designation" class="form-control"> 
+		    	            			{{ Form::label('designation','Partner Designation') }}
+	            						{{ Form::text('designation',null,['class'=>'form-control','id'=>'designation','required' => 'required']) }}
 		    					    </div>
 		    	            	</div>
 		    	            </div>	    

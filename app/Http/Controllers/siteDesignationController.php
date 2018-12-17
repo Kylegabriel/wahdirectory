@@ -126,6 +126,6 @@ class siteDesignationController extends Controller
         $site->delete();
 
         Session::flash('repeat','Site Designation was Successfully Deleted');
-        return redirect()->route('userDesignaton.index');
+        return redirect()->route('siteDesignation.index');
     }
 }

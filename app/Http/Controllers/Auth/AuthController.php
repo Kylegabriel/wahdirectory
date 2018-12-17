@@ -41,15 +41,6 @@ class AuthController extends Controller
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
-
-    public function authenticate()
-    {
-        if (Auth::attempt(['username' => $username, 'password' => $password , 'is_active' => 1])) {
-            // Authentication passed...
-            return redirect()->intended('/partner');
-        }
-    }
-
     /**
      * Get a validator for an incoming registration request.
      *

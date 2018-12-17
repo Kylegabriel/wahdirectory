@@ -1,23 +1,4 @@
                 
-        // $('.datepicker').datepicker({
-        //     format: "mm/dd/yyyy",
-        //     clearBtn: true,
-        //     todayHighlight: true,
-        //     autoclose: true,
-        // });
-        //       // make it First letter to be capitale
-        // ,'onkeyup' => 'capitalize(this.id, this.value);'
-        // function capitalize(textboxid, str) {
-        //     // string with alteast one character
-        //     if (str && str.length >= 1)
-        //     {       
-        //         var firstChar = str.charAt(0);
-        //         var remainingStr = str.slice(1);
-        //         str = firstChar.toUpperCase() + remainingStr;
-        //     }
-        //     document.getElementById(textboxid).value = str;
-        // }
-
         // loader of every page
         $(window).on('load', function(){
             $(".loader").hide();
@@ -41,7 +22,7 @@
       $(document).ready(function(){
 
             // to remove dropdown suggested comment in form input
-            // $('input').attr('autocomplete','off');
+            $('input').attr('autocomplete','off');
             
             // to prevent clicking outside of the modal
             $('.modal').modal({
@@ -109,13 +90,13 @@
                           required: true,
                           maxlength: 20 
                         },
-                        // middle_name: {
-                        //   required: true,    
-                        //   maxlength: 20
-                        // },
                         email: {
                           // required: true,
-                          pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+                          pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+                          // remote:{
+                          //       url  :"/checkEmail",
+                          //       type :"GET",
+                          //  }
                         },
                         secondary_email: {
                           pattern : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
@@ -159,7 +140,11 @@
                         username: {
                           required: true,
                           minlength: 4,
-                          maxlength: 10
+                          maxlength: 10,
+                          // remote:{
+                          //       url  :"/checkUser",
+                          //       type :"GET",
+                          //  }
                         },
                         password: {
                           required: true,
@@ -170,37 +155,39 @@
                           required: true,
                           equalTo: "#password"
                         },
-                        // role_id: {
-                        //   required: true
-                        // },
                         image: {
                           extension: "jpg|jpeg|png|JPG|JPEG|PNG"
                         },
                         primary_contact: {
                           number: true
                         },
-                        // system_admin_id: {
-                        //   required: true
-                        // },
                         facility_id: {
                           required: true
                         }
                       },
-                    highlight: function(element) {
-                        $(element).closest('.form-control').addClass('is-invalid');
-                    },
-                    unhighlight: function(element) {
-                        $(element).closest('.form-control').removeClass('is-invalid');
-                    },
-                    errorElement: 'div',
-                    errorClass: 'invalid-feedback',
-                    errorPlacement: function(error, element) {
-                        if(element.parent('.invalid-feedback').length) {
-                            error.insertAfter(element.parent());
-                        } else {
-                            error.insertAfter(element);
-                        }
-                    }
+                      messages:{
+                          username:{
+                              remote: function() { return $.validator.format("{0} is already exits.", $("#username").val()) }
+                          },
+                          email:{
+                              remote: function() { return $.validator.format("{0} is already exits.", $("#email").val()) }
+                          }
+                      },
+                      highlight: function(element) {
+                          $(element).closest('.form-control').addClass('is-invalid');
+                      },
+                      unhighlight: function(element) {
+                          $(element).closest('.form-control').removeClass('is-invalid');
+                      },
+                      errorElement: 'div',
+                      errorClass: 'invalid-feedback',
+                      errorPlacement: function(error, element) {
+                          if(element.parent('.invalid-feedback').length) {
+                              error.insertAfter(element.parent());
+                          } else {
+                              error.insertAfter(element);
+                          }
+                      }
               });
             });
 
