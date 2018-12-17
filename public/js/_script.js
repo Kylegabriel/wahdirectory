@@ -21,6 +21,9 @@
 
       $(document).ready(function(){
 
+            //dropdown select
+            $('.js-example-basic-single').select2();
+
             // to remove dropdown suggested comment in form input
             $('input').attr('autocomplete','off');
             

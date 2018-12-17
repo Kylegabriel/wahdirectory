@@ -11,6 +11,7 @@
     <script src="/jQuery-Mask/dist/jquery.mask.js"></script>
     <!-- jquery validation addtional method for jpg,png -->
     <script src="/jquery/additional-methods.min.js"></script>
+    <script src="/select2/dist/js/select2.js"></script>
     <!-- pace for loading bar  -->
     <script src="/pace.js"></script>
     <script src="/dataTables.responsive.min.js"></script>
