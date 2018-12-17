@@ -1,5 +1,6 @@
     
     <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/select2/dist/js/select2.js"></script>
     <script src="/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="/DataTables/datatables.min.js"></script>
     <script src="/DataTables/Data/js/dataTables.bootstrap4.min.js"></script>
@@ -9,13 +10,9 @@
     <script src="/toastr/toastr.min.js"></script>
     <script src="/argon-design/assets/js/argon.min.js"></script>
     <script src="/jQuery-Mask/dist/jquery.mask.js"></script>
-    <!-- jquery validation addtional method for jpg,png -->
     <script src="/jquery/additional-methods.min.js"></script>
-    <script src="/select2/dist/js/select2.js"></script>
-    <!-- pace for loading bar  -->
     <script src="/pace.js"></script>
     <script src="/dataTables.responsive.min.js"></script>
-    <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script> -->
     <script src="/js/_script.js"></script>
     @yield('scripts')
     <script>
