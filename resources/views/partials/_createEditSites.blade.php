@@ -102,7 +102,7 @@
             <div class="col-md-12">
                 {{ Form::label('facility_id','FACILITY CONFIG') }}
                 @if(isset($sites->facility_id))
-                {{ Form::select('facility_id', $fac,NULL, ['class' => 'form-control','id' => 'facility_id','name' => 'facility_id']) }}
+                {{ Form::select('facility_id', $fac,NULL, ['class' => 'js-example-basic-single form-control','id' => 'facility_id','name' => 'facility_id']) }}
                 @else
                 <select type="text" id="facility_id" name="facility_id" class="js-example-basic-single form-control">
                   <option value="" disabled selected>Choose your option</option>
