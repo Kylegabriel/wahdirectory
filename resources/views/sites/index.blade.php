@@ -17,7 +17,7 @@
 	</div>
 <div class="col-md-10">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-	    <a class="navbar-brand" href="">Sites</a>
+	    <a class="navbar-brand" href="">Sites Personnel</a>
 	    <div class="collapse navbar-collapse" id="nav-inner-primary">
 	      <div class="navbar-collapse-header">
 	        <div class="row">

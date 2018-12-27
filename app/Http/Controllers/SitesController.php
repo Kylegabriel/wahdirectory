@@ -37,8 +37,9 @@ class SitesController extends Controller
     public function index(Request $request)
     {        
 
-        $site = Site::where('status', '=', 'Y')
-                      ->orderBy('id')
+        $site = Site::
+                      // where('status', '=', 'Y')
+                      orderBy('id')
                       ->get();
 
         $count = 1;
@@ -117,14 +118,14 @@ class SitesController extends Controller
 
         $sites->save();
 
-        Session::flash('success','New Site sites was Successfully Save');
+        Session::flash('success','New Personnel was Successfully Save');
 
-        if ($request->input('status') == 'N') {
-          return redirect()->route('warmleads.index');
-        }else{
-          return redirect()->route('sites.index');
-        }
-        
+        // if ($request->input('status') == 'N') {
+        //   return redirect()->route('warmleads.index');
+        // }else{
+        //   return redirect()->route('sites.index');
+        // }
+        return redirect()->route('sites.index');
         }
     }
 
@@ -224,14 +225,14 @@ class SitesController extends Controller
 
         $sites->save();
 
-        Session::flash('success','Site sites '.$sites->last_name.' was Updated Successfully..!');
+        Session::flash('success','Site Personnel was Updated Successfully..!');
 
-        if ($request->input('status') == 'N') {
-          return redirect()->route('warmleads.index');
-        }else{
-          return redirect()->route('sites.index');
-        }
-
+        // if ($request->input('status') == 'N') {
+        //   return redirect()->route('warmleads.index');
+        // }else{
+        //   return redirect()->route('sites.index');
+        // }
+        return redirect()->route('sites.index');
     }
 
     /**

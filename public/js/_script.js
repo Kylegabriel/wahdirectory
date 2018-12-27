@@ -182,6 +182,7 @@
                       },
                       unhighlight: function(element) {
                           $(element).closest('.form-control').removeClass('is-invalid');
+                          $(element).closest('.form-control').addClass('is-valid');
                       },
                       errorElement: 'div',
                       errorClass: 'invalid-feedback',

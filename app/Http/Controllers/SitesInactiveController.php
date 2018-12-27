@@ -21,11 +21,13 @@ class SitesInactiveController extends Controller
 
         if ($request->input('status') == 'Y') {
         	Session::flash('success','Account has been Activated');
-            return redirect()->route('sites.index');
+            // return redirect()->route('sites.index');
         }else{
         	Session::flash('repeat','Account has been Deactivated');
-            return redirect()->route('warmleads.index');
+            // return redirect()->route('warmleads.index');
+            // return redirect()->route('sites.index');
         }
+        return redirect()->route('sites.index');
 
     }
 }

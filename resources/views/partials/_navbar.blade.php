@@ -34,10 +34,10 @@
                   <a class="nav-link" href="{{ url('/sites')}}">SITES PERSONNEL
                   </a>
                 </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/warmleads')}}">WARMLEADS
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/facilityinfo')}}">FACILITY INFO
                   </a>
