@@ -16,5 +16,11 @@
 	         }
 	     });
 
+		$('#facility_id')
+		    .select2()
+		    .on('select2:open', () => {
+		        $(".select2-results:not(:has(a))").append('<a href="{{ route('facility.create') }}" style="padding: 6px;height: 20px;display: inline-table;">CREATE NEW FACILITY</a>');
+		})
+
     </script>
 @endsection
