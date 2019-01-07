@@ -34,7 +34,7 @@
           <th>Region</th>
           <th>Province</th>
           <th>Municipality</th>
-          <th>Barangay</th>
+          <!-- <th>Barangay</th> -->
           <th>Facility Name</th>
           <th>Action</th>
         </tr>
@@ -46,7 +46,7 @@
           <td>{{ $facility->region['region_name'] }}</td>
           <td>{{ $facility->province['province_name'] }}</td>
           <td>{{ $facility->municipality['muncity_name'] }}</td>
-          <td>{{ $facility->barangay['brgy_name'] }}</td>
+          <!-- <td>{{ $facility->barangay['brgy_name'] }}</td> -->
           <td>{{ $facility->facilities['hfhudname'] }}</td>
           <td>
             <a  href="{{ route('facility.edit',$facility->id) }}" class="btn btn-link text-info" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil fa-2x"></i></a>

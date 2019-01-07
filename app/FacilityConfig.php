@@ -14,7 +14,7 @@ class FacilityConfig extends Model
 		'region_code',
 		'province_code',
 		'muncity_code',
-		'brgy_code'
+		// 'brgy_code'
     ];
 
    public function region(){
@@ -29,9 +29,9 @@ class FacilityConfig extends Model
     return $this->hasOne('App\DemographicMunicipality','muncity_code','muncity_code');
     }
 
-  public function barangay(){
-    return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
-    }
+  // public function barangay(){
+  //   return $this->hasOne('App\DemographicBarangay','brgy_code','brgy_code');
+  //   }
 
   public function facilities(){
     return $this->hasOne('App\Facility','hfhudcode','hfhudcode');

@@ -125,3 +125,26 @@
         	</div>
        	</div>
 @endsection
+<!-- @section('scripts')
+	<script>
+
+		$("#saveData").click(function() {
+
+			$.ajax({
+				type: 'POST',
+				url: " {{ route('siteDesignation.store') }}",
+				dataType: 'json',
+		        data: {
+		            '_token': $('input[name=_token]').val(),
+		            'designation': $('input[name=designation]').val()
+		        },
+		        success: function(data) {
+		        	console.log(data);
+		        }
+			})
+
+		    $('#designation').val('');
+		});
+
+	</script>
+@endsection -->

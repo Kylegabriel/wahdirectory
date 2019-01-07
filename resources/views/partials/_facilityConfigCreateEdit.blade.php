@@ -42,7 +42,7 @@
                               <div class="col-md-4">
                                   {{ Form::label('muncity_code','Municipality') }}
                                   @if(isset($facility->municipality))
-                                  {{ Form::select('muncity_code', $muncity,null, ['class' => 'form-control','id' => 'muncity_code','name' => 'muncity_code']) }}
+                                  {{ Form::select('muncity_code', $muncity,null, ['class' => 'form-control ','id' => 'muncity_code','name' => 'muncity_code']) }}
                                   @else
                                   <select type="text" id="muncity_code" name="muncity_code" class="form-control">
 
@@ -51,22 +51,22 @@
                               </div>
                           </div>
                           <div class="row">    
-                              <div class="col-md-6">
+<!--                               <div class="col-md-6">
                                   {{ Form::label('brgy_code','Barangay') }}
                                   @if(isset($facility->barangay))
-                                  {{ Form::select('brgy_code', $brgy,null, ['class' => 'form-control','id' => 'brgy_code','name' => 'brgy_code']) }}
+                                  {{ Form::select('brgy_code', $brgy,null, ['class' => 'form-control js-example-basic-single','id' => 'brgy_code','name' => 'brgy_code']) }}
                                   @else
-                                  <select type="text" id="brgy_code" name="brgy_code" class="form-control">
+                                  <select type="text" id="brgy_code" name="brgy_code" class="form-control js-example-basic-single">
 
                                   </select>
                                   @endif
-                              </div>  
-                              <div class="col-md-6">
+                              </div>   -->
+                              <div class="col-md-10">
                                   {{ Form::label('hfhudcode','Facility Name') }}
                                   @if(isset($facility->hfhudcode))
-                                  {{ Form::select('hfhudcode', $fac,null, ['class' => 'form-control','id' => 'hfhudcode','name' => 'hfhudcode']) }}
+                                  {{ Form::select('hfhudcode', $fac,null, ['class' => 'form-control js-example-basic-single','id' => 'hfhudcode','name' => 'hfhudcode']) }}
                                   @else
-                                  <select type="text" id="hfhudcode" name="hfhudcode" class="form-control">
+                                  <select type="text" id="hfhudcode" name="hfhudcode" class="form-control js-example-basic-single">
 
                                   </select>
                                   @endif

@@ -112,38 +112,14 @@
            });
 
       $('#muncity_code').on('change',function(){
-      var muncityID = $(this).val();    
+      var muncityID = $(this).val();
+      console.log(muncityID);    
       if(muncityID){
           $.ajax({
              type:"GET",
-             url:"{{url('facility/get-brgy-list')}}?muncity_id="+muncityID,
-             success:function(res){            
-              if(res){
-                  $("#brgy_code").empty();
-                  $("#brgy_code").append('<option disabled selected>Choose your Barangay</option>');
-                  $.each(res,function(key,value){
-                      $('#brgy_code').html();
-                      $("#brgy_code").append('<option value="'+key+'">'+value+'</option>');
-                  });
-             
-              }else{
-                 $("#brgy_code").empty();
-              }
-             }
-          });
-      }
-      // else{
-      //     $("#brgy_code").empty();
-      // }     
-     });
-
-      $('#brgy_code').on('change',function(){
-      var brgy_code = $(this).val();    
-      if(brgy_code){
-          $.ajax({
-             type:"GET",
-             url:"{{url('facility/get-hfhudcode-list')}}?brgy_code="+brgy_code,
+             url:"{{url('facility/get-hfhudcode-list')}}?muncity_id="+muncityID,
              success:function(res){        
+             console.log(res);    
               if(res){
                   $("#hfhudcode").empty();
                   $("#hfhudcode").append('<option disabled selected>Choose your Barangay</option>');
@@ -158,9 +134,61 @@
              }
           });
       }
-      else{
-          $("#hfhudcode").empty();
-      }     
+      // else{
+      //     $("#brgy_code").empty();
+      // }     
      });
+
+     //  $('#muncity_code').on('change',function(){
+     //  var muncityID = $(this).val();    
+     //  if(muncityID){
+     //      $.ajax({
+     //         type:"GET",
+     //         url:"{{url('facility/get-brgy-list')}}?muncity_id="+muncityID,
+     //         success:function(res){            
+     //          if(res){
+     //              $("#brgy_code").empty();
+     //              $("#brgy_code").append('<option disabled selected>Choose your Barangay</option>');
+     //              $.each(res,function(key,value){
+     //                  $('#brgy_code').html();
+     //                  $("#brgy_code").append('<option value="'+key+'">'+value+'</option>');
+     //              });
+             
+     //          }else{
+     //             $("#brgy_code").empty();
+     //          }
+     //         }
+     //      });
+     //  }
+     //  // else{
+     //  //     $("#brgy_code").empty();
+     //  // }     
+     // });
+
+     //  $('#brgy_code').on('change',function(){
+     //  var brgy_code = $(this).val();    
+     //  if(brgy_code){
+     //      $.ajax({
+     //         type:"GET",
+     //         url:"{{url('facility/get-hfhudcode-list')}}?brgy_code="+brgy_code,
+     //         success:function(res){        
+     //          if(res){
+     //              $("#hfhudcode").empty();
+     //              $("#hfhudcode").append('<option disabled selected>Choose your Barangay</option>');
+     //              $.each(res,function(key,value){
+     //                  $('#hfhudcode').html();
+     //                  $("#hfhudcode").append('<option value="'+key+'">'+value+'</option>');
+     //              });
+             
+     //          }else{
+     //             $("#hfhudcode").empty();
+     //          }
+     //         }
+     //      });
+     //  }
+     //  else{
+     //      $("#hfhudcode").empty();
+     //  }     
+     // });
 
   </script>

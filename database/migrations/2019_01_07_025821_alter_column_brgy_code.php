@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNullableToRoleIdColoum extends Migration
+class AlterColumnBrgyCode extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,11 @@ class AddNullableToRoleIdColoum extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role_id')->unsigned()->nullable()->change();
+        Schema::table('facility', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->dropForeign('facility_brgy_code_foreign');
+            $table->dropColumn('brgy_code');
         });
     }
 
@@ -24,8 +27,6 @@ class AddNullableToRoleIdColoum extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role_id')->unsigned()->nullable()->change();
-        });
+
     }
 }

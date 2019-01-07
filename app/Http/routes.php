@@ -45,7 +45,7 @@ Route::resource('facility','FacilityConfigController',['except'=>['show']]);
 // Route::resource('facility/get-region-list','FacilityConfigController@getRegionList',['only'=>['index']]);
 Route::resource('facility/get-province-list','FacilityConfigController@getProvinceList',['only'=>['index']]);
 Route::resource('facility/get-muncity-list','FacilityConfigController@getMuncityList',['only'=>['index']]);
-Route::resource('facility/get-brgy-list','FacilityConfigController@getBrgyList',['only'=>['index']]);
+// Route::resource('facility/get-brgy-list','FacilityConfigController@getBrgyList',['only'=>['index']]);
 Route::resource('facility/get-hfhudcode-list','FacilityConfigController@gethfhudcodeList',['only'=>['index']]);
 
 
