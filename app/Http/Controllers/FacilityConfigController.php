@@ -56,22 +56,6 @@ class FacilityConfigController extends Controller
         return $muncity;
     }
 
-    // public function getBrgyList(Request $request)
-    // {
-    //     $muncity = DemographicBarangay::
-    //                   select('brgy_name','brgy_code')
-    //                 ->where('muncity_code','LIKE','%'.$request->input('muncity_id').'%')
-    //                 ->pluck("brgy_name","brgy_code");
-    //     return $muncity;
-    // }
-    // public function gethfhudcodeList(Request $request)
-    // {
-    //     $hfhudcode = Facility::
-    //                 select('hfhudname','hfhudcode')
-    //                 ->where('brgy_code','LIKE','%'.$request->input('brgy_code').'%')
-    //                 ->pluck("hfhudname","hfhudcode");
-    //     return $hfhudcode;
-    // }
         public function gethfhudcodeList(Request $request)
     {
         $hfhudcode = Facility::
@@ -104,7 +88,6 @@ class FacilityConfigController extends Controller
 
         $count_facility = FacilityConfig::where('region_code','LIKE',$request->input('region_code'))
                                   ->where('province_code','LIKE',$request->input('province_code'))
-                                  ->where('brgy_code','LIKE',$request->input('brgy_code'))
                                   ->where('hfhudcode','=',$request->input('hfhudcode'))
                                   ->get();
 
@@ -122,7 +105,6 @@ class FacilityConfigController extends Controller
         $facility->region_code = $request->input('region_code');
         $facility->province_code = $request->input('province_code');
         $facility->muncity_code = $request->input('muncity_code');
-        // $facility->brgy_code = $request->input('brgy_code');
         $facility->hfhudcode = $request->input('hfhudcode');
         $facility->is_active = $request->input('is_active');
 
@@ -177,17 +159,6 @@ class FacilityConfigController extends Controller
             $muncity[$municipality->muncity_code] = $municipality->muncity_name;
         }
 
-        // $barangays = DemographicBarangay::select('brgy_code','brgy_name')
-        //                             ->where('muncity_code','=',$editFacilityConfig->muncity_code)
-        //                             ->get();
-        // $brgy = array();
-        // foreach ($barangays as $barangay) {
-        //     $brgy[$barangay->brgy_code] = $barangay->brgy_name;
-        // }
-
-        // $facilities = Facility::select('hfhudcode','hfhudname')
-        //                             ->where('brgy_code','=',$editFacilityConfig->brgy_code)
-        //                             ->get();
         $facilities = Facility::select('hfhudcode','hfhudname')
                                     ->where('muncity_code','=',$editFacilityConfig->muncity_code)
                                     ->get();
@@ -203,7 +174,6 @@ class FacilityConfigController extends Controller
         'region' => $reg,
         'province' => $provinces,
         'muncity' => $muncity,
-        // 'brgy' => $brgy,
         ]);
     }
 
@@ -219,11 +189,9 @@ class FacilityConfigController extends Controller
         //
         $facility = FacilityConfig::find($id);
 
-        //$facility->site_id = $request->input('site');
         $facility->region_code = $request->input('region_code');
         $facility->province_code = $request->input('province_code');
         $facility->muncity_code = $request->input('muncity_code');
-        // $facility->brgy_code = $request->input('brgy_code');
         $facility->hfhudcode = $request->input('hfhudcode');
         $facility->is_active = $request->input('is_active');
 

@@ -51,16 +51,6 @@
                               </div>
                           </div>
                           <div class="row">    
-<!--                               <div class="col-md-6">
-                                  {{ Form::label('brgy_code','Barangay') }}
-                                  @if(isset($facility->barangay))
-                                  {{ Form::select('brgy_code', $brgy,null, ['class' => 'form-control js-example-basic-single','id' => 'brgy_code','name' => 'brgy_code']) }}
-                                  @else
-                                  <select type="text" id="brgy_code" name="brgy_code" class="form-control js-example-basic-single">
-
-                                  </select>
-                                  @endif
-                              </div>   -->
                               <div class="col-md-10">
                                   {{ Form::label('hfhudcode','Facility Name') }}
                                   @if(isset($facility->hfhudcode))
