@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\InternCourse;
 use App\Http\Requests;
+use Response;
 use Session;
 
 class CourseController extends Controller
@@ -14,6 +15,10 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $course = InternCourse::orderBy('id','desc')
@@ -53,7 +58,7 @@ class CourseController extends Controller
         if($count >= 1){
 
           Session::flash('repeat','Course Already Exist');
-          return redirect()->route('others.index');
+          return redirect()->route('course.index');
 
         }else{
 
@@ -124,7 +129,7 @@ class CourseController extends Controller
 
         $course->delete();
 
-        Session::flash('repeat','School was Successfully Deleted');
+        Session::flash('repeat','Course was Successfully Deleted');
         return redirect()->route('course.index');
     }
 }

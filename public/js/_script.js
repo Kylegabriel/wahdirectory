@@ -1,5 +1,4 @@
-                
-                // jsdfhjksadhfjklashdfkjlasdhf
+
         // loader of every page
         $(window).on('load', function(){
             $(".loader").hide();
@@ -163,7 +162,9 @@
                           extension: "jpg|jpeg|png|JPG|JPEG|PNG"
                         },
                         primary_contact: {
-                          number: true
+                          number: true,
+                          minlength: 4,
+                          maxlength: 12
                         },
                         facility_id: {
                           required: true

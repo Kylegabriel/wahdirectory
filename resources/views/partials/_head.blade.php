@@ -9,6 +9,7 @@
     <link href="/select2/dist/css/select2.css" rel="stylesheet">
     <link href="/argon-design/assets/css/argon.min.css" rel="stylesheet">
     <link href="/DataTables/Data/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
     <style>
         .pace {
           -webkit-pointer-events: none;

@@ -22,10 +22,10 @@ class Partner extends Model
 		'secondary_email',
 		'birthdate',
 		'is_active',
-    'user_id',
-    'mailing_address',
-    'image'
-	];
+	    'user_id',
+	    'mailing_address',
+	    'image'
+		];
 
 
 	  public function user(){
@@ -39,5 +39,8 @@ class Partner extends Model
     }
     public function partnerSuffix(){
       return $this->hasOne('App\SuffixName','suffix_code','suffix_name');
+    }
+    public function comments(){
+    	return $this->hasMany('App\Comment');
     }
 }
