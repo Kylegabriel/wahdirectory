@@ -1,10 +1,13 @@
-<div class="card shadow rounded">
+@extends('layouts.app')
+@section('content')
+	<div class="card shadow rounded">
         <div class="card-header border-primary text-white bg-primary">
         {{ isset($facilityInfo) ? 'EDIT FACILITY INFO' : 'CREATE FACILITY INFO' }}
         </div>
         <div class="card-body">
        	@if(isset($facilityInfo))
         {!! Form::model($facilityInfo, ['route' => ['facilityinfo.update', $facilityInfo->id], 'method' => 'PUT', 'files' => true]) !!}
+        <input type="hidden" name="is_active" id="is_active" value="{{ $facilityInfo->is_active == 'Y' ? 'Y' : 'N' }}">
         @else
         	{!! Form::open(['route' => 'facilityinfo.store','method' => 'POST', 'files' => true]) !!}
         @endif 
@@ -112,3 +115,14 @@
             </a>
         </div>                
 </div>
+    {!! Form::close() !!}
+@endsection
+@section('scripts')        
+    <script>
+		$('#facility_id')
+		    .select2()
+		    .on('select2:open', () => {
+		        $(".select2-results:not(:has(a))").append('<a href="{{ route('facility.create') }}" style="padding: 6px;height: 20px;display: inline-table;">CREATE NEW FACILITY</a>');
+		})
+    </script>
+@endsection

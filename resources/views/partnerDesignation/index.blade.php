@@ -37,26 +37,26 @@
 						<div class="modal fade" id="editPartDesig{{ $partnerDsg->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 			              <div class="modal-dialog modal-dialog-centered" role="document">
 			                <div class="modal-content">
-			                  <div class="modal-header">
-			                    <h5 class="modal-title">Edit Partner Designation</h5>
+			                  <div class="modal-header bg-primary">
+			                    <h5 class="modal-title text-white">EDIT DESIGNATION</h5>
 			                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                      <span aria-hidden="true">×</span>
+			                      <span aria-hidden="true" class="text-white">×</span>
 			                    </button>
 			                  </div>
 					                  <div class="modal-body">
-				                        <form method="POST" action="{{ route('partnerDesignation.update',$partnerDsg->id) }}">
+				                        {!! Form::model($partnerDsg, ['route' => ['partnerDesignation.update', $partnerDsg->id], 'method' => 'PUT']) !!}
 						    				{{ csrf_field() }}  
 						                	<div class="row">
 						                		<div class="col s12">
 						    	            		<div class="input-field col s12">
-						    	            			<label for="designation">Partner Designation</label>
-						    					        <input type="text" name="designation" id="designation" class="form-control" value="{{ $partnerDsg->designation }}"> 
+						    	            			{{ Form::label('designation','PARTNER DESIGNATION') }}
+						        						{{ Form::text('designation',null,['class'=>'form-control','id'=>'designation','required' => 'required']) }}
 						    					    </div>
 						    	            	</div>
 						    	            </div>	    
 					                  </div>
-					                  @include('partials._footerEditModal')
-					                  </form>
+					                    @include('partials._footerEditModal')
+					                    {!! Form::close() !!}
 					                </div>
 			              		</div>
 			            	</div>
@@ -67,23 +67,22 @@
 						<div class="modal fade" id="deletePartDesig{{ $partnerDsg->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 			              	<div class="modal-dialog modal-dialog-centered" role="document">
 			                	<div class="modal-content">
-					                <div class="modal-header">
-					                    <h5 class="modal-title">Please Confirm!</h5>
+					                <div class="modal-header bg-warning">
+					                    <h5 class="modal-title text-white">Please Confirm!</h5>
 					                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					                      <span aria-hidden="true">×</span>
+					                      <span aria-hidden="true" class="text-white">×</span>
 					                    </button>
 					                </div>
 						            <div class="modal-body">
-					                    <form method="POST" action="{{ route('partnerDesignation.destroy',$partnerDsg->id) }}">
+						            	{!! Form::model($partnerDsg, ['route' => ['partnerDesignation.destroy', $partnerDsg->id], 'method' => 'DELETE']) !!}
 							    		{{ csrf_field() }}  
 							    		<h5>Would you like to Delete this record?</h5>
 						            </div>
 									<div class="modal-footer">
 										{{ Form::button('Save', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
 										{{ Form::button('Close', ['type' => 'submit', 'class' => 'btn btn-secondary' , 'data-dismiss' => 'modal'] )  }}
-							            {{ method_field('DELETE') }}
 							        </div>
-					                	</form>
+					                	{!! Form::close() !!}
 
 					                </div>
 			              		</div>
@@ -97,54 +96,31 @@
 	</div><!-- end div card body -->
 </div>
 
-		<div class="modal fade" id="createCourse" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Partner Designation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
+<div class="modal fade" id="createCourse" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white">ADD DESIGNATION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="text-white">×</span>
+        </button>
+      </div>
+              <div class="modal-body">
+                	{!! Form::open(['route' => 'partnerDesignation.store','method' => 'POST']) !!}
+    				{{ csrf_field() }}  
+                	<div class="row">
+                		<div class="col s12">
+    	            		<div class="input-field col s12">
+    	            			{{ Form::label('designation','PARTNER DESIGNATION') }}
+        						{{ Form::text('designation',null,['class'=>'form-control','id'=>'designation','required' => 'required']) }}
+    					    </div>
+    	            	</div>
+    	            </div>	    
               </div>
-	                  <div class="modal-body">
-                        <form method="POST" action="{{ route('partnerDesignation.store') }}">
-		    				{{ csrf_field() }}  
-		                	<div class="row">
-		                		<div class="col s12">
-		    	            		<div class="input-field col s12">
-		    	            			{{ Form::label('designation','Partner Designation') }}
-	            						{{ Form::text('designation',null,['class'=>'form-control','id'=>'designation','required' => 'required']) }}
-		    					    </div>
-		    	            	</div>
-		    	            </div>	    
-	                  </div>
-	                 	@include('partials._footerCreateModal')
-	                  </form>
-	                </div>
-          		</div>
-        	</div>
-       	</div>
+             		@include('partials._footerCreateModal')
+              		{!! Form::close() !!}
+            </div>
+  		</div>
+	</div>
+	</div>
 @endsection
-<!-- @section('scripts')
-	<script>
-
-		$("#saveData").click(function() {
-
-			$.ajax({
-				type: 'POST',
-				url: " {{ route('siteDesignation.store') }}",
-				dataType: 'json',
-		        data: {
-		            '_token': $('input[name=_token]').val(),
-		            'designation': $('input[name=designation]').val()
-		        },
-		        success: function(data) {
-		        	console.log(data);
-		        }
-			})
-
-		    $('#designation').val('');
-		});
-
-	</script>
-@endsection -->

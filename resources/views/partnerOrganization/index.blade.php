@@ -42,27 +42,27 @@
 						<div class="modal fade" id="editPartOrg{{ $partner->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 			              	<div class="modal-dialog modal-dialog-centered" role="document">
 			                	<div class="modal-content">
-				                  	<div class="modal-header">
-					                    <h5 class="modal-title">Edit Partner Organization</h5>
+				                  	<div class="modal-header bg-primary">
+					                    <h5 class="modal-title text-white">EDIT ORGANIZATION</h5>
 					                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					                      <span aria-hidden="true">×</span>
+					                      <span aria-hidden="true" class="text-white">×</span>
 					                    </button>
 				                  	</div>
 					                <div class="modal-body">
-				                        <form method="POST" action="{{ route('partnerOrganization.update',$partner->id) }}">
+					                	{!! Form::model($partner, ['route' => ['partnerOrganization.update', $partner->id], 'method' => 'PUT']) !!}
 						    				{{ csrf_field() }}  
 						                	<div class="row">
 						                		<div class="col s12">
 						    	            		<div class="input-field col s12">
-						    	            			<label for="organization">Partner Organization</label>
-						    					        <input type="text" name="organization" id="organization" class="form-control" value="{{ $partner->organization }}">
+						    	            			{{ Form::label('organization','PARTNER ORGANIZATION') }}
+							    						{{ Form::text('organization',null,['class'=>'form-control','id'=>'organization','required' => 'required']) }} 
 						    					        <input type="hidden" name="is_active" id="is_active" value="{{ $partner->is_active == 'Y' ? 'Y' : 'N' }}"> 
 						    					    </div>
 						    	            	</div>
 						    	            </div>	    
 					                </div>
-					                  @include('partials._footerEditModal')
-					                  	</form>
+					                  	@include('partials._footerEditModal')
+					                  	{!! Form::close() !!}
 					                </div>
 			              		</div>
 			            	</div>
@@ -73,26 +73,24 @@
 						<div class="modal fade" id="deleteeditPartOrg{{ $partner->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 			              	<div class="modal-dialog modal-dialog-centered" role="document">
 			                	<div class="modal-content">
-				                  	<div class="modal-header">
-					                    <h5 class="modal-title">Please Confirm!</h5>
+				                  	<div class="modal-header bg-warning">
+					                    <h5 class="modal-title text-white">Please Confirm!</h5>
 					                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					                      <span aria-hidden="true">×</span>
+					                      <span aria-hidden="true" class="text-white">×</span>
 					                    </button>
 					                </div>
 					                <div class="modal-body">
-				                        <form method="POST" action="{{ route('partnerOrganization.destroy',$partner->id) }}">
-						    				{{ csrf_field() }}  
+					                	{!! Form::model($partner, ['route' => ['partnerOrganization.destroy', $partner->id], 'method' => 'DELETE']) !!}
+						    			{{ csrf_field() }}  
 						    			<h5>Would you like to Delete this record?</h5>
 					               	</div>
 									<div class="modal-footer">
 										{{ Form::button('Save', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
 										{{ Form::button('Close', ['type' => 'submit', 'class' => 'btn btn-secondary' , 'data-dismiss' => 'modal'] )  }}
-				                        {{ method_field('DELETE') }}
 				                    </div>
-					                  		</form>
+					                  	{!! Form::close() !!}
 
-					                </div>
-			              		</div>
+					            </div>
 			            	</div>
 			           	</div>
 			           	<!--modal -->
@@ -101,10 +99,10 @@
 						<div class="modal fade" id="activeInactive{{ $partner->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 						  	<div class="modal-dialog modal-dialog-centered" role="document">
 						    	<div class="modal-content">
-							      	<div class="modal-header">
-								        <h5 class="modal-title">Please Confirm!</h5>
+							      	<div class="modal-header  bg-warning">
+								        <h5 class="modal-title text-white">Please Confirm!</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								          <span aria-hidden="true">&times;</span>
+								          <span aria-hidden="true" class="white-text">&times;</span>
 								        </button>
 							      	</div>
 								    <div class="modal-body">
@@ -117,7 +115,7 @@
 										{{ Form::button('Save', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
 										{{ Form::button('Close', ['type' => 'submit', 'class' => 'btn btn-secondary' , 'data-dismiss' => 'modal'] )  }}
 								    </div>
-							      {!! Form::close() !!}
+							     	 {!! Form::close() !!}
 						    	</div>
 						  	</div>
 						</div>
@@ -132,27 +130,26 @@
 <div class="modal fade" id="createCourse" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
   	<div class="modal-dialog modal-dialog-centered" role="document">
     	<div class="modal-content">
-	      	<div class="modal-header">
-		        <h5 class="modal-title">Create Partner Organization</h5>
+	      	<div class="modal-header bg-primary">
+		        <h5 class="modal-title text-white">ADD ORGANIZATION</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">×</span>
+		          <span aria-hidden="true" class="text-white">×</span>
 		        </button>
 		    </div>
             <div class="modal-body">
-            	<form method="POST" action="{{ route('partnerOrganization.store') }}">
+            	{!! Form::open(['route' => 'partnerOrganization.store','method' => 'POST']) !!}
 				{{ csrf_field() }}  
             	<div class="row">
             		<div class="col s12">
 	            		<div class="input-field col s12">
-    					    {{ Form::label('organization','Partner Organization') }}
+    					    {{ Form::label('organization','PARTNER ORGANIZATION') }}
     						{{ Form::text('organization',null,['class'=>'form-control','id'=>'organization','required' => 'required']) }} 
 					    </div>
 	            	</div>
-	            	<input type="hidden" name="is_active" id="is_active" value="Y">
 	            </div>	    
             </div>
              	@include('partials._footerCreateModal')
-                </form>
+                {!! Form::close() !!}
             </div>
   		</div>
 	</div>

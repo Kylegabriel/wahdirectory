@@ -3,6 +3,7 @@
 
 @endsection
 @section('content')
+<div class="loader"></div>  
 <div class="row">
 	<div class="col-md-2">
 		<div class="card shadow border-0 border-primary">

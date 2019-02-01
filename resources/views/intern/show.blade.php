@@ -10,7 +10,7 @@
         <!-- User profile -->
         <div class="card shadow">
           <div class="card-header">
-              Partner Record
+              Intern Record
           </div>
           <div class="profile-comments__item">
             <div class="card-body">
@@ -26,6 +26,8 @@
                 End of OJT: {{ $tag->date_start == '0000-00-00' ? '' : date('F j, Y', strtotime($tag->date_end)) }}<br>
                 Registered by : {{ $tag->user->first_name . ' ' . $tag->user->middle_name . ' ' . $tag->user->last_name . ' ' }}
                 @if($tag->user->suffix_name == 'NOTAP') @else {{ $tag->user->suffix_name }} @endif
+                Work Number : {{ $tag->primary_contact }} <br>
+                Email : {{ $tag->email }}
               </div>
             </div>
             <div class="profile-comments__controls">
@@ -64,38 +66,5 @@
           </div>
         </div>
       </div>
-
-      <!-- start of row -->
-      <div class="col-xs-12 col-sm-3">
-        <!-- Edit user -->
-        <p>
-          <a href="{{ route('interns.index') }}" class="profile__contact-btn btn btn-lg btn-block btn-primary">
-            BACK
-          </a>
-        </p>
-        <hr class="profile__contact-hr">
-        <!-- Contact info -->
-        <div class="profile__contact-info">
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-phone"></i>
-            </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Mobile number</h5>
-              {{ $tag->primary_contact }}
-            </div>
-          </div>
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-envelope-square"></i>
-            </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">E-mail address</h5>
-              {{ $tag->email }}
-            </div>
-          </div>
-        </div>
-        <!-- end of Contact info -->.
-      </div> <!-- end of row -->
     </div>
 @endsection

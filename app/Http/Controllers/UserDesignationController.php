@@ -45,7 +45,7 @@ class UserDesignationController extends Controller
     public function store(Request $request)
     {
         //post to database
-        $check_userRole = UserRole::where('role_name','LIKE',$request->input('role'))
+        $check_userRole = UserRole::where('role_name','LIKE',$request->input('role_name'))
                                   ->get();
 
         $count = count($check_userRole);
@@ -59,7 +59,7 @@ class UserDesignationController extends Controller
 
         $UserRole = new UserRole;
 
-        $UserRole->role_name = $request->input('role');
+        $UserRole->role_name = $request->input('role_name');
 
         $UserRole->save();
 
@@ -104,7 +104,7 @@ class UserDesignationController extends Controller
         //
         $UserRole = UserRole::find($id);
 
-        $UserRole->role_name = $request->input('role');
+        $UserRole->role_name = $request->input('role_name');
 
         $UserRole->save();
 

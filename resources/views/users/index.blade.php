@@ -1,5 +1,6 @@
 @extends('settings.index')
 @section('settings')
+<div class="loader"></div> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
     <a class="navbar-brand" href="">User List</a>
     <div class="collapse navbar-collapse" id="nav-inner-primary">
@@ -60,14 +61,14 @@
           </td>
         </tr>
 
-                  <!-- Modal -->
+          <!-- Modal -->
           <div class="modal fade" id="activeInactive{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Please Confirm!</h5>
+                <div class="modal-header bg-primary">
+                  <h5 class="modal-title text-white">Please Confirm!</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true" class="text-white">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
@@ -83,6 +84,8 @@
               </div>
             </div>
           </div>
+          <!-- End Modal -->
+
       @endforeach 
       </tbody>
     </table>

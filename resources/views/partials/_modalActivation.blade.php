@@ -1,13 +1,12 @@
 					  <div class="modal-dialog modal-dialog-centered" role="document">
 					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title">Please Confirm!</h5>
+					      <div class="modal-header bg-primary">
+					        <h5 class="modal-title text-white">Please Confirm!</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
+					          <span aria-hidden="true" class="text-white">&times;</span>
 					        </button>
 					      </div>
 					      <div class="modal-body">
-
 					      	@if(isset($partners))
 					        <h5>Would you like to {{ $partners->is_active == 'N' ? 'Activate' : 'Deactive' }} this record?</h5>
 					        {!! Form::model($partners, ['route' => ['PartnerActivation', $partners->id], 'method' => 'PUT']) !!}

@@ -1,4 +1,6 @@
-<div class="card shadow">
+@extends('layouts.app')
+@section('content')
+  <div class="card shadow">
     <div class="card-header border-primary text-white bg-primary">
         {{ isset($sites) ? 'EDIT SITE' : 'CREATE SITE' }}
     </div>
@@ -130,3 +132,4 @@
     </div>            
 </div>
 {!! Form::close() !!}
+@endsection

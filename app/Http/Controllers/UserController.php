@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create')->with([
+        return view('users.form')->with([
             'suffix' => $this->suf
             ]);
     }
@@ -87,7 +87,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->role_id = $request->input('role_id');
         $user->is_admin = $request->input('is_admin');
-        $user->is_active = $request->input('is_active');
+        $user->is_active = $request->input('is_active','Y');
 
         $user->save();
 
@@ -124,7 +124,7 @@ class UserController extends Controller
             $role[$rol->id] = $rol->role_name;
         }
 
-        return view('users.edit')->with([
+        return view('users.form')->with([
             'user' => $user,
             'suffix' => $this->suf,
             'role'=>$role

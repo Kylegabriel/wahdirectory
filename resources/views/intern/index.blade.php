@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<div class="loader"></div>  
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
     <a class="navbar-brand" href="">Interns</a>
     <div class="collapse navbar-collapse" id="nav-inner-primary">

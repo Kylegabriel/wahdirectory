@@ -30,7 +30,7 @@ class CreateFacilityInfoTable extends Migration
             $table->boolean('pickup_delivery')->default(false)->nullable();
             $table->string('mailing_address')->nullable();
             $table->string('image')->nullable();
-            $table->char('is_active',1);
+            $table->char('is_active');
 
             $table->foreign('facility_id')->references('id')->on('facility');
             $table->foreign('incomeclass_id')->references('id')->on('facility_income_classes');

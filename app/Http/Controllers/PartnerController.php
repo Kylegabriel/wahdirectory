@@ -82,7 +82,7 @@ class PartnerController extends Controller
         //     $brgy[$barangay->brgy_code] = $barangay->brgy_name;
         // }
 
-        return view('partner.create')->with([ 
+        return view('partner.form')->with([ 
             // 'facility' => $facility,
             'suffix' => $this->suf,
             // 'region' => $this->reg,
@@ -131,7 +131,7 @@ class PartnerController extends Controller
         $partner->email = $request->input('email');
         $partner->secondary_email = $request->input('secondary_email');
         $partner->birthdate = $request->input('birthdate');
-        $partner->is_active = $request->input('is_active');
+        $partner->is_active = $request->input('is_active','Y');
         $partner->mailing_address = $request->input('mailing_address');
 
         if ($request->hasFile('image')) {
@@ -215,7 +215,7 @@ class PartnerController extends Controller
         //     $brgy[$barangay->brgy_code] = $barangay->brgy_name;
         // }
 
-        return view('partner.edit')->with([
+        return view('partner.form')->with([
             'partners' => $editPartner,
             'designation' => $desig,
             'suffix' => $this->suf,

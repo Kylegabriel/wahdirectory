@@ -47,19 +47,19 @@
 			                        </button>
 			                    </div>
 			                  	<div class="modal-body">
-		                        	<form method="POST" action="{{ route('userDesignation.update',$role->id) }}">
+		                        	{!! Form::model($role, ['route' => ['userDesignation.update', $role->id], 'method' => 'PUT']) !!}	
 				    				{{ csrf_field() }}  
 				                	<div class="row">
 				                		<div class="col s12">
 				    	            		<div class="input-field col s12">
-				    	            			<label for="role">User Role</label>
-				    					        <input type="text" name="role" id="role" class="form-control" value="{{ $role->role_name }}"> 
+				    					        {{ Form::label('role_name','USER ROLE') }}
+							    				{{ Form::text('role_name',null,['class'=>'form-control','id'=>'role_name','required' => 'required']) }}  
 				    					    </div>
 				    	            	</div>
 				    	            </div>	    
 			                  	</div>
-					                  @include('partials._footerEditModal')
-					            	</form>
+					                @include('partials._footerEditModal')
+					            	{!! Form::close() !!}
 					            </div>
 		              		</div>
 		            	</div>
@@ -77,8 +77,8 @@
 				                    </button>
 				                </div>
 				                <div class="modal-body">
-			                        <form method="POST" action="{{ route('userDesignation.destroy',$role->id) }}">
-					    				{{ csrf_field() }}  
+			                        {!! Form::model($role, ['route' => ['userDesignation.destroy', $role->id], 'method' => 'DELETE']) !!}	
+					    			{{ csrf_field() }}  
 					    			<h5>Would you like to Delete this record?</h5>
 				                </div>
 								<div class="modal-footer">
@@ -86,7 +86,7 @@
 				                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				                        {{ method_field('DELETE') }}
 				                    </div>
-		                  		</form>
+		                  			{!! Form::close() !!}
 
 				                </div>
 		              		</div>
@@ -110,19 +110,19 @@
         </button>
       </div>
               <div class="modal-body">
-                <form method="POST" action="{{ route('userDesignation.store') }}">
+                {!! Form::open(['route' => 'userDesignation.store','method' => 'POST']) !!}
     				{{ csrf_field() }}  
                 	<div class="row">
                 		<div class="col s12">
     	            		<div class="input-field col s12">
-    	            			<label for="role">Role</label>
-    					        <input type="text" name="role" id="role" class="form-control" required> 
+    	            			{{ Form::label('role_name','USER ROLE') }}
+							    {{ Form::text('role_name',null,['class'=>'form-control','id'=>'role_name','required' => 'required']) }}   
     					    </div>
     	            	</div>
     	            </div>	    
               </div>
              	@include('partials._footerCreateModal')
-              </form>
+               {!! Form::close() !!}
             </div>
   		</div>
 	</div>

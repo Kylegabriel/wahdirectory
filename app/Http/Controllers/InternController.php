@@ -56,7 +56,7 @@ class InternController extends Controller
     public function create()
     {
         $count = 1;
-        return view('intern.create')->with([ 
+        return view('intern.form')->with([ 
             'tags' => $this->tags,
             'suffix' => $this->suf
             ]);
@@ -101,7 +101,7 @@ class InternController extends Controller
         $intern->primary_contact = $request->input('primary_contact');
         $intern->date_start = $request->input('date_start');
         $intern->date_end = $request->input('date_end');
-        $intern->is_active = $request->input('is_active');
+        $intern->is_active = $request->input('is_active','Y');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -172,7 +172,7 @@ class InternController extends Controller
         }
 
         $count = 1;
-        return view('intern.edit')->with([
+        return view('intern.form')->with([
             'count' => $count,
             'intern' => $internedit,
             'courses' => $cours,

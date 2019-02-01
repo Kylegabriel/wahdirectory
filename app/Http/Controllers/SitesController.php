@@ -58,7 +58,7 @@ class SitesController extends Controller
     public function create(Request $request)
     {
         
-        return view('sites.create')->with([
+        return view('sites.form')->with([
             'suffix' => $this->suf
             ]);
     }
@@ -173,7 +173,7 @@ class SitesController extends Controller
         }
 
 
-        return view('sites.edit')->with([
+        return view('sites.form')->with([
             'sites' => $editSites,
             'suffix' => $this->suf,
             'admin' => $admins,

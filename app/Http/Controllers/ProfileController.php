@@ -56,7 +56,7 @@ class ProfileController extends Controller
     public function create()
     {
 
-        return view('profile.create')->with([
+        return view('profile.form')->with([
             'suffix' => $this->suf,
             ]);
     }
@@ -100,7 +100,7 @@ class ProfileController extends Controller
         $user->secondary_email = $request->input('secondary_email');
         $user->birthdate = $request->input('birthdate');
         $user->datehired = $request->input('datehired');
-        $user->is_active = $request->input('is_active');
+        $user->is_active = $request->input('is_active','Y');
         $user->philhealth = $request->input('philhealth');
         $user->wahemployeenumber = $request->input('wahemployeenumber');
         $user->pgtemployeenumber = $request->input('pgtemployeenumber');
@@ -165,7 +165,7 @@ class ProfileController extends Controller
             $desig[$role->id] = $role->role_name;
         }
 
-        return view('profile.edit')->with([
+        return view('profile.form')->with([
             'profile' => $editProfile,
             'desig' => $desig,
             'suffix' => $this->suf,

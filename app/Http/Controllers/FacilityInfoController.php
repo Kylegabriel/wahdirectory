@@ -37,7 +37,7 @@ class FacilityInfoController extends Controller
         $facility = FacilityInfo::select('facility_id')->get();
         $info = FacilityConfig::whereNotIn('id',$facility)->get();
 
-        return view('facilityinfo.create')->with([
+        return view('facilityinfo.form')->with([
             'info2' => $info
             ]);
     }
@@ -78,7 +78,7 @@ class FacilityInfoController extends Controller
         $facility->moa_version = $request->input('moa_version');
         $facility->pickup_delivery = $request->input('pickup_delivery');
         $facility->mailing_address = $request->input('mailing_address');
-        $facility->is_active = $request->input('is_active');
+        $facility->is_active = $request->input('is_active','Y');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -140,7 +140,7 @@ class FacilityInfoController extends Controller
             $facility2[$fac->id] = $fac->facilities->hfhudname;
         }
 
-        return view('facilityinfo.edit')->with([
+        return view('facilityinfo.form')->with([
             'facilityInfo' => $editFacilityInfo,
             'income_class' => $inform,
             'facility1' => $facility2

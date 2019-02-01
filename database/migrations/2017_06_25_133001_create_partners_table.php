@@ -19,10 +19,6 @@ class CreatePartnersTable extends Migration
             $table->integer('desig_id')->unsigned()->nullable();
             $table->integer('org_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
-            $table->char('region_code',2);
-            $table->char('province_code',4);
-            $table->char('muncity_code',6);
-            $table->char('brgy_code',10);
             $table->string('last_name',50);
             $table->string('first_name',50);
             $table->string('middle_name',50);

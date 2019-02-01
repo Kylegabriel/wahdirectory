@@ -94,15 +94,8 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->loginUsername() => 'required', 'password' => 'required', 'is_active' => 'Y'
+            $this->loginUsername() => 'required', 'password' => 'required',
         ]);
-        // this is the validation if the user is active or not
-        // $this->validate($request, [
-        //     $this->loginUsername() => 'required|exists:users,' . $this->loginUsername() . ',is_active=Y',
-        //     'password' => 'required',
-        // ], [
-        //     $this->loginUsername() . '.exists' => 'The selected username is invalid or the account has been disabled.'
-        // ]);
     }
 
     /**
@@ -161,7 +154,6 @@ trait AuthenticatesUsers
     protected function getCredentials(Request $request)
     {
         return $request->only($this->loginUsername(), 'password');
-        // return $request->only($this->loginUsername(), 'password') + [ 'is_active' => 'Y' ];
     }
 
     /**

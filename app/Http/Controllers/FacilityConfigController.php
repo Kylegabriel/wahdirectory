@@ -72,7 +72,7 @@ class FacilityConfigController extends Controller
      */
     public function create()
     {
-        return view('facility.create')->with([
+        return view('facility.form')->with([
             'region' => $this->region
             ]);
     }
@@ -106,7 +106,7 @@ class FacilityConfigController extends Controller
         $facility->province_code = $request->input('province_code');
         $facility->muncity_code = $request->input('muncity_code');
         $facility->hfhudcode = $request->input('hfhudcode');
-        $facility->is_active = $request->input('is_active');
+        $facility->is_active = $request->input('is_active','Y');
 
         $facility->save();
 
@@ -168,7 +168,7 @@ class FacilityConfigController extends Controller
             $fac[$facility->hfhudcode] = $facility->hfhudname;
         }
 
-        return view('facility.edit')->with([
+        return view('facility.form')->with([
         'facility' =>  $editFacilityConfig,
         'fac' => $fac, 
         'region' => $reg,
