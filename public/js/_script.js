@@ -131,15 +131,6 @@
                         hfhudcode: {
                           required: true
                         },
-                        course: {
-                          required: true
-                        },
-                        school: {
-                          required: true
-                        },
-                        paper: {
-                          required: true
-                        },
                         username: {
                           required: true,
                           minlength: 4,

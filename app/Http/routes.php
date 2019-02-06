@@ -17,12 +17,13 @@ Route::get('/', function () {
 
 //partner	
 Route::resource('partner','PartnerController',['except'=>['destroy']]);
-//partner Comments
 Route::post('comments/{partner_id}',[ 'uses' => 'CommentsController@store','as' => 'comments.store']);
 // Route::get('comments/{id}/edit',[ 'uses' => 'CommentsController@edit','as' => 'comments.edit']);
 Route::put('comments/{id}',[ 'uses' => 'CommentsController@update','as' => 'comments.update']);
 Route::delete('comments/{id}',[ 'uses' => 'CommentsController@destroy','as' => 'comments.destroy']);
 Route::get('comments/{id}',[ 'uses' => 'CommentsController@show','as' => 'comments.show']);
+//partner
+
 
 Route::resource('profile','ProfileController',['except'=>['destroy']]);
 Route::resource('interns','InternController',['except'=>['destroy']]);

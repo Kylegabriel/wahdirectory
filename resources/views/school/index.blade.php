@@ -36,26 +36,26 @@
 					<div class="modal fade" id="editSchool{{ $school->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 		              <div class="modal-dialog modal-dialog-centered" role="document">
 		                <div class="modal-content">
-		                  <div class="modal-header">
-		                    <h5 class="modal-title">Edit School</h5>
+		                  <div class="modal-header bg-primary">
+		                    <h5 class="modal-title text-white">EDIT SCHOOL</h5>
 		                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                      <span aria-hidden="true">×</span>
+		                      <span aria-hidden="true" class="text-white">×</span>
 		                    </button>
 		                  </div>
 		                  <div class="modal-body">
-	                        <form method="POST" action="{{ route('school.update',$school->id) }}">
-			    				{{ csrf_field() }}  
+	                        {!! Form::model($school, ['route' => ['school.update', $school->id], 'method' => 'PUT']) !!}		
+			    			{{ csrf_field() }}  
 			                	<div class="row">
 			                		<div class="col s12">
 			    	            		<div class="input-field col s12">
-			    	            			<label for="schools">School</label>
-			    					        <input type="text" name="schools" id="schools" class="form-control" value="{{ $school->school }}"> 
+			    	            			{{ Form::label('school','SCHOOL') }}
+					            			{{ Form::text('school',null,['class'=>'form-control','id'=>'school','required' => 'required']) }}
 			    					    </div>
 			    	            	</div>
 			    	            </div>	    
 		                  </div>
 		                  @include('partials._footerEditModal')
-		                  </form>
+		                  {!! Form::close() !!}
 		                </div>
 		             	</div>
 		            	</div>
@@ -65,25 +65,23 @@
 					<div class="modal fade" id="deleteSchool{{ $school->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 		              	<div class="modal-dialog modal-dialog-centered" role="document">
 		                	<div class="modal-content">
-			                  	<div class="modal-header">
-				                    <h5 class="modal-title">Please Confirm!</h5>
+			                  	<div class="modal-header bg-warning">
+				                    <h5 class="modal-title text-white">Please Confirm!</h5>
 				                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				                      <span aria-hidden="true">×</span>
+				                      <span aria-hidden="true" class="text-white">×</span>
 				                    </button>
 			                  	</div>
 						        <div class="modal-body">
-			                        <form method="POST" action="{{ route('school.destroy',$school->id) }}">
-					    				{{ csrf_field() }}  
+			                        {!! Form::model($school, ['route' => ['school.destroy', $school->id], 'method' => 'DELETE']) !!}	
+					    			{{ csrf_field() }}  
 					    			<h5>Would you like to Delete this record?</h5>
 						         </div>
 					                  
 								<div class="modal-footer">
 									{{ Form::button('Save', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
 									{{ Form::button('Close', ['type' => 'submit', 'class' => 'btn btn-secondary' , 'data-dismiss' => 'modal'] )  }}
-			                        {{ method_field('DELETE') }}
 							    </div>
-					                </form>
-
+					                {!! Form::close() !!}
 					            </div>
 		              		</div>
 		            	</div>
@@ -99,26 +97,26 @@
 <div class="modal fade" id="createSchool" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      	<div class="modal-header">
-        <h5 class="modal-title">Create School</h5>
+      	<div class="modal-header bg-primary">
+        <h5 class="modal-title text-white">ADD SCHOOL</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">×</span>
+	          <span aria-hidden="true" class="text-white">×</span>
 	        </button>
       	</div>
         <div class="modal-body">
-            <form method="POST" action="{{ route('school.store') }}">
-				{{ csrf_field() }}  
+            {!! Form::open(['route' => 'school.store','method' => 'POST']) !!}	
+			{{ csrf_field() }}  
             	<div class="row">
             		<div class="col s12">
 	            		<div class="input-field col s12">
-					        {{ Form::label('school','School') }}
+					        {{ Form::label('school','SCHOOL') }}
 	            			{{ Form::text('school',null,['class'=>'form-control','id'=>'school','required' => 'required']) }} 
 					    </div>
 	            	</div>
 	            </div>	    
         </div>
             @include('partials._footerCreateModal')
-            </form>
+            {!! Form::close() !!}
         </div>
   		</div>
 	</div>

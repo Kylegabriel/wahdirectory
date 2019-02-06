@@ -167,6 +167,14 @@ class PartnerController extends Controller
             ]);
     }
 
+    public function partnerProfile($id){
+        $partner = Partner::find($id);
+
+        return view('partner.profile')->with([
+            'partner'=>$partner,
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

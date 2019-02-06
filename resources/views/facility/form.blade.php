@@ -15,8 +15,8 @@
 		       		<input type="hidden" name="is_active" id="is_active" value="{{ $facility->is_active == 'Y' ? 'Y' : 'N' }}">
 		        @else
 		        {!! Form::open(['route' => 'facility.store','method' => 'POST']) !!}
-
 		        @endif
+		        {{ csrf_field() }}
 		        <div class="card-body">
 		              <div class="row">    
 		                  <div class="col-md-4">

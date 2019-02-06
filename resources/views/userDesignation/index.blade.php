@@ -40,10 +40,10 @@
 					<div class="modal fade" id="editRole{{ $role->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 		              	<div class="modal-dialog modal-dialog-centered" role="document">
 		                	<div class="modal-content">
-			                    <div class="modal-header">
-			                        <h5 class="modal-title">Edit User Role</h5>
+			                    <div class="modal-header bg-primary">
+			                        <h5 class="modal-title text-white">EDIT ROLE</h5>
 			                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                         <span aria-hidden="true">×</span>
+			                         <span aria-hidden="true" class="text-white">×</span>
 			                        </button>
 			                    </div>
 			                  	<div class="modal-body">
@@ -70,10 +70,10 @@
 					<div class="modal fade" id="deleteRole{{ $role->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 		              <div class="modal-dialog modal-dialog-centered" role="document">
 		                <div class="modal-content">
-				                <div class="modal-header">
-				                    <h5 class="modal-title">Please Confirm!</h5>
+				                <div class="modal-header bg-warning">
+				                    <h5 class="modal-title text-white">Please Confirm!</h5>
 				                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				                      <span aria-hidden="true">×</span>
+				                      <span aria-hidden="true" class="text-white">×</span>
 				                    </button>
 				                </div>
 				                <div class="modal-body">
@@ -84,10 +84,8 @@
 								<div class="modal-footer">
 										<button type="submit" class="btn btn-primary">Save</button>
 				                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				                        {{ method_field('DELETE') }}
 				                    </div>
 		                  			{!! Form::close() !!}
-
 				                </div>
 		              		</div>
 		            	</div>
@@ -103,10 +101,10 @@
 <div class="modal fade" id="createUserRole" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Create User Role</h5>
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white">ADD ROLE</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
+          <span aria-hidden="true" class="text-white">×</span>
         </button>
       </div>
               <div class="modal-body">

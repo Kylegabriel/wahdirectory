@@ -1,5 +1,5 @@
 @extends('settings.index')
-@section('settings')	
+@section('settings')
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
     <a class="navbar-brand" href="">Site Designation</a>
     @include('partials._headerNav')
@@ -41,25 +41,25 @@
 		              	<div class="modal-dialog modal-dialog-centered" role="document">
 		                	<div class="modal-content">
 			                  	<div class="modal-header">
-				                    <h5 class="modal-title">Edit Site Designation</h5>
+				                    <h5 class="modal-title">EDIT SITE DESIGNATION</h5>
 				                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                      <span aria-hidden="true">×</span>
 				                    </button>
 			                  	</div>
 			                  	<div class="modal-body">
-		                        	<form method="POST" action="{{ route('siteDesignation.update',$sitesDes->id) }}">
+		                        	{!! Form::model($sitesDes, ['route' => ['siteDesignation.update', $sitesDes->id], 'method' => 'PUT']) !!}	
 				    				{{ csrf_field() }}  
 				                	<div class="row">
 				                		<div class="col s12">
 				    	            		<div class="input-field col s12">
-				    	            			<label for="sites_desc">Site Designation</label>
-				    					        <input type="text" name="sites_desc" id="sites_desc" class="form-control" value="{{ $sitesDes->sites_desc }}"> 
+				    	            			{{ Form::label('sites_desc','SITE DESIGNATION') }}
+												{{ Form::text('sites_desc',null,['class'=>'form-control','id'=>'sites_desc','required' => 'required']) }} 
 				    					    </div>
 				    	            	</div>
 				    	            </div>	    
 			                  	</div>
 				                  @include('partials._footerEditModal')
-				                  	</form>
+				                  	{!! Form::close() !!}
 				                </div>
 		              		</div>
 		            	</div>
@@ -77,16 +77,15 @@
 				                    </button>
 				                </div>
 				                 <div class="modal-body">
-			                        <form method="POST" action="{{ route('siteDesignation.destroy',$sitesDes->id) }}">
-					    				{{ csrf_field() }}  
+			                        {!! Form::model($sitesDes, ['route' => ['siteDesignation.destroy', $sitesDes->id], 'method' => 'DELETE']) !!}	
+					    			{{ csrf_field() }}  
 					    			<h5>Would you like to Delete this record?</h5>
 				                </div>
 								<div class="modal-footer">
 									<button type="submit" class="btn btn-primary">Save</button>
 			                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			                        {{ method_field('DELETE') }}
 			                    </div>
-				                  	</form>
+				                  	{!! Form::close() !!}  
 				                </div>
 		              		</div>
 		            	</div>
@@ -102,25 +101,25 @@
   	<div class="modal-dialog modal-dialog-centered" role="document">
     	<div class="modal-content">
 	      	<div class="modal-header">
-		        <h5 class="modal-title">Create Site Designation</h5>
+		        <h5 class="modal-title">ADD SITE DESIGNATION</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">×</span>
 		        </button>
 	      	</div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('siteDesignation.store') }}">
+                {!! Form::open(['route' => 'siteDesignation.store','method' => 'POST']) !!}	
     			{{ csrf_field() }}  
             	<div class="row">
             		<div class="col s12">
 	            		<div class="input-field col s12">
-	            			<label for="sites_desc">Site Designation</label>
-					        <input type="text" name="sites_desc" id="sites_desc" class="form-control" required> 
+					        {{ Form::label('sites_desc','SITE DESIGNATION') }}
+							{{ Form::text('sites_desc',null,['class'=>'form-control','id'=>'sites_desc','required' => 'required']) }}  
 					    </div>
 	            	</div>
 	            </div>	    
             </div>
              	@include('partials._footerCreateModal')
-              </form>
+               {!! Form::close() !!}
             </div>
   		</div>
 	</div>

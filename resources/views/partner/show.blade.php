@@ -1,124 +1,57 @@
 @extends('layouts.app')
-@section('stylesheets')
-  {!! Html::style('/css/show.css') !!}
-@endsection
-@section('content')
-<div class="row">
-      <div class="col-xs-12 col-sm-9">
-        
-        <!-- User profile -->
-        <div class="card shadow">
-          <div class="card-header bg-primary text-white">
-              Partner Record
-          </div>
-          <div class="profile-comments__item">
-            <div class="card-body">
-              <div class="profile__avatar">
-                <img src="{{ isset( $partner->image ) ? asset('img/' . $partner->image) : asset('img/default.png') }}" alt="...">
-              </div>
-              <div class="profile__header">
-                <h4>{{ $partner-> first_name . ' ' . $partner->middle_name . ' ' . $partner->last_name }}</h4>
-                {{ $partner->partnerDesignation['designation'] }}<br>
-                This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}<br>
-                Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
-                Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
-                Registered by : {{ $partner->user->first_name . ' ' . $partner->user->middle_name . ' ' . $partner->user->last_name . ' ' }}
-                @if($partner->user->suffix_name == 'NOTAP') @else {{ $partner->user->suffix_name }} @endif  
-              </div>
-            </div>
-            <div class="profile-comments__controls">
-              <!-- <a href="#"><i class="fa fa-share-square-o"></i></a>
-  -->         <a href="{{ route('partner.edit',$partner->id) }}"><i class="fa fa-edit"></i></a>
-              <!-- <a href="#"><i class="fa fa-trash-o"></i></a> -->
-            </div>
-          </div>
-        </div>
 
-        <br>
-        <!-- User info -->
-        <div class="card shadow">
-          <div class="card-header">
-              Other Details
-          </div>
+@section('content')
+  <div class="row">
+      <div class="col-md-2 offset-md">
+        <div class="card shadow" style="width: 16rem;">
+          <img class="card-img-top" src="{{ isset( $partner->image ) ? asset('img/' . $partner->image) : asset('img/default.png') }}" style="height: 15rem;" alt="Card image cap">
           <div class="card-body">
-            <table class=" profile__table">
-              <tbody>
-                <tr>
-                  <th><strong>Address :</strong></th>
-                  <td>
-                   {{ 
-                      $partner->region['region_name'] . ", " 
-                    . $partner->provinces['province_name'] . ", " 
-                    . $partner->municipality['muncity_name'] . " "
-                    . $partner->barangay['brgy_name'] 
-                  }}</td>
-                </tr>
-                <tr>
-                  <th><strong>Organization :</strong></th>
-                  <td>{{ $partner->partnerOrganization['organization'] }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <h5>{{ $partner-> first_name . ' ' . $partner->middle_name . ' ' . $partner->last_name }}</h5>
+            <p class="card-text">Registered by : {{ $partner->user->first_name . ' ' . $partner->user->middle_name . ' ' . $partner->user->last_name . ' ' }}</p>
+            {{ $partner->mailing_address }}   
           </div>
         </div>
       </div>
-
-      <!-- start of row -->
-      <div class="col-xs-12 col-sm-3">
-        
-        <!-- Edit user -->
-        <p>
-          <a href="{{ route('partner.index') }}" class="profile__contact-btn btn btn-lg btn-block btn-primary">
-            BACK
-          </a>
-        </p>
-
-        <hr class="profile__contact-hr">
-        
-        <!-- Contact info -->
-        <div class="profile__contact-info">
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-phone"></i>
-            </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Work number</h5>
-              {{ $partner->primary_contact }}
+      <div class="col-md-8">
+    <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">GENERAL</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">INFORMATION</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title">{{ $partner->partnerDesignation['designation'] }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}</h6>
+              <p class="card-text">
+                Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
+                Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
+              </p>
             </div>
           </div>
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-phone"></i>
-            </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Mobile number</h5>
-              {{ $partner->secondary_contact }}
-            </div>
-          </div>
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-envelope-square"></i>
-            </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">E-mail address</h5>
-              {{ $partner->email }}
+      </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title">{{ $partner->partnerOrganization['organization'] }}</h5>
+              <p class="card-text">
+                Primary Contact: {{ $partner->primary_contact }}<br>
+                Mobile Number: {{ $partner->secondary_contact }}<br>
+                Email: {{ $partner->email }}<br>
+                Secondary Email: {{ $partner->secondary_email }}
+              </p>
+              <a href="{{ route('partner.edit',$partner->id) }}" class="btn btn-primary">Edit Partner</a>
             </div>
           </div>
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-map-marker"></i>
-            </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Work address</h5>
-              {{ $partner->secondary_email }}
-            </div>
-          </div>
-        </div>
-        <!-- end of Contact info -->.
-      </div> <!-- end of row -->
+      </div>
     </div>
 
     <br>
+
 <div class="row">
   <div class="col-md-12">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
@@ -273,5 +206,9 @@
             </div>
           </div>
         </div>
+</div>
+<div class="col-md-4">
 
+</div>
+  </div>
 @endsection

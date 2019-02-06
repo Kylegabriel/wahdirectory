@@ -1,6 +1,5 @@
 @extends('settings.index')
 @section('settings')
-<div class="loader"></div> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
     <a class="navbar-brand" href="">User List</a>
     <div class="collapse navbar-collapse" id="nav-inner-primary">

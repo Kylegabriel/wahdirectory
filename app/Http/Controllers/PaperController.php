@@ -100,7 +100,7 @@ class PaperController extends Controller
     {
         $paper = Tag::find($id);
 
-        $paper->name = $request->input('paper');
+        $paper->name = $request->input('name');
 
         $paper->save();
 

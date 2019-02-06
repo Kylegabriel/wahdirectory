@@ -100,7 +100,7 @@ class SchoolController extends Controller
     {
         $school = InternSchool::find($id);
 
-        $school->school = $request->input('schools');
+        $school->school = $request->input('school');
 
         $school->save();
 

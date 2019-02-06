@@ -6,7 +6,7 @@
 <body>  
    
 <div class="row">
-  <div class="col-md-12" style="padding:0px 30px 0px 30px">
+  <div class="col-md-12" style="padding:0px 20px 0px 20px">
       @include('partials._navbar')
       <br>
       <div class="row">

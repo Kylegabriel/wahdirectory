@@ -1,6 +1,6 @@
 
                 <!-- Navbar primary -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-2">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-1">
             <a class="navbar-brand" href="#">
               <img src="/img/wah_logo.png" class="img-responsive" width="auto" height="auto" alt="">
               WAH DIRECTORY
@@ -34,10 +34,6 @@
                   <a class="nav-link" href="{{ url('/sites')}}">SITES PERSONNEL
                   </a>
                 </li>
-<!--                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/warmleads')}}">WARMLEADS
-                  </a>
-                </li> -->
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/facilityinfo')}}">FACILITY INFO
                   </a>
