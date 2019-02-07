@@ -2,53 +2,53 @@
 
 @section('content')
   <div class="row">
-      <div class="col-md-2 offset-md">
-        <div class="card shadow" style="width: 16rem;">
-          <img class="card-img-top" src="{{ isset( $partner->image ) ? asset('img/' . $partner->image) : asset('img/default.png') }}" style="height: 15rem;" alt="Card image cap">
-          <div class="card-body">
-            <h5>{{ $partner-> first_name . ' ' . $partner->middle_name . ' ' . $partner->last_name }}</h5>
-            <p class="card-text">Registered by : {{ $partner->user->first_name . ' ' . $partner->user->middle_name . ' ' . $partner->user->last_name . ' ' }}</p>
-            {{ $partner->mailing_address }}   
-          </div>
+    <div class="col-md-2">
+      <div class="card shadow" style="width: 16rem;">
+        <img class="card-img-top" src="{{ isset( $partner->image ) ? asset('img/' . $partner->image) : asset('img/default.png') }}" style="height: 15rem;" alt="Card image cap">
+        <div class="card-body">
+          <h5>{{ $partner-> first_name . ' ' . $partner->middle_name . ' ' . $partner->last_name }}</h5>
+          <p class="card-text">Registered by : {{ $partner->user->first_name . ' ' . $partner->user->middle_name . ' ' . $partner->user->last_name . ' ' }}</p>
+          {{ $partner->mailing_address }}   
         </div>
       </div>
-      <div class="col-md-8">
-    <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">GENERAL</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">INFORMATION</a>
-      </li>
-    </ul>
-    <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <div class="card shadow">
-            <div class="card-body">
-              <h5 class="card-title">{{ $partner->partnerDesignation['designation'] }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}</h6>
-              <p class="card-text">
-                Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
-                Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
-              </p>
-            </div>
-          </div>
-      </div>
-      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-          <div class="card shadow">
-            <div class="card-body">
-              <h5 class="card-title">{{ $partner->partnerOrganization['organization'] }}</h5>
-              <p class="card-text">
-                Primary Contact: {{ $partner->primary_contact }}<br>
-                Mobile Number: {{ $partner->secondary_contact }}<br>
-                Email: {{ $partner->email }}<br>
-                Secondary Email: {{ $partner->secondary_email }}
-              </p>
-              <a href="{{ route('partner.edit',$partner->id) }}" class="btn btn-primary">Edit Partner</a>
-            </div>
-          </div>
-      </div>
     </div>
+    <div class="col-md-8">
+      <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">GENERAL</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">INFORMATION</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">{{ $partner->partnerDesignation['designation'] }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">This record is {{ $partner->is_active == 'Y' ? 'Active' : 'Inactive' }}</h6>
+                <p class="card-text">
+                  Birtdate: {{ $partner->birthdate == '0000-00-00' ? '' :  date('F j, Y', strtotime($partner->birthdate)) }}<br>
+                  Gender: {{ $partner->gender == 'M' ? 'Male' : 'Female' }}<br>
+                </p>
+              </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">{{ $partner->partnerOrganization['organization'] }}</h5>
+                <p class="card-text">
+                  Primary Contact: {{ $partner->primary_contact }}<br>
+                  Mobile Number: {{ $partner->secondary_contact }}<br>
+                  Email: {{ $partner->email }}<br>
+                  Secondary Email: {{ $partner->secondary_email }}
+                </p>
+                <a href="{{ route('partner.edit',$partner->id) }}" class="btn btn-primary">Edit Partner</a>
+              </div>
+            </div>
+        </div>
+      </div>
 
     <br>
 
@@ -210,5 +210,5 @@
 <div class="col-md-4">
 
 </div>
-  </div>
+</div>
 @endsection
